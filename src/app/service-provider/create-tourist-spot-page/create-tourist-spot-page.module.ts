@@ -17,7 +17,6 @@ import { ComponentsModulePageModule } from 'src/app/components-module/components
     IonicModule,
     CreateTouristSpotPagePageRoutingModule,
     ComponentsModulePageModule,
-    IonicModule.forRoot(),
   ],schemas: [CUSTOM_ELEMENTS_SCHEMA],
   declarations: [CreateTouristSpotPagePage]
 })

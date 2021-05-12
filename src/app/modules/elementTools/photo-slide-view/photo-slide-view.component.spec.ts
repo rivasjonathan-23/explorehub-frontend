@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
 
 import { PhotoSlideViewComponent } from './photo-slide-view.component';
@@ -7,7 +7,7 @@ describe('PhotoSlideViewComponent', () => {
   let component: PhotoSlideViewComponent;
   let fixture: ComponentFixture<PhotoSlideViewComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ PhotoSlideViewComponent ],
       imports: [IonicModule.forRoot()]

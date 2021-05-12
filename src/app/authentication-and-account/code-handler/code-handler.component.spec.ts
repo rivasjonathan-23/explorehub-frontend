@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
 
 import { CodeHandlerComponent } from './code-handler.component';
@@ -7,7 +7,7 @@ describe('CodeHandlerPage', () => {
   let component: CodeHandlerComponent;
   let fixture: ComponentFixture<CodeHandlerComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ CodeHandlerComponent ],
       imports: [IonicModule.forRoot()]

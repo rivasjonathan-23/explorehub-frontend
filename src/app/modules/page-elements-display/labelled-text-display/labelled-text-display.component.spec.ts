@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
 
 import { LabelledTextDisplayComponent } from './labelled-text-display.component';
@@ -7,7 +7,7 @@ describe('LabelledTextDisplayComponent', () => {
   let component: LabelledTextDisplayComponent;
   let fixture: ComponentFixture<LabelledTextDisplayComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ LabelledTextDisplayComponent ],
       imports: [IonicModule.forRoot()]

@@ -16,7 +16,6 @@ import { ComponentsModulePageModule } from 'src/app/components-module/components
     IonicModule,
     BookingInformationPageRoutingModule,
     ComponentsModulePageModule,
-    IonicModule.forRoot(),
   ],
   declarations: [BookingInformationPage],schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })

@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
 
 import { DateInputDisplayComponent } from './date-input-display.component';
@@ -7,7 +7,7 @@ describe('DateInputDisplayComponent', () => {
   let component: DateInputDisplayComponent;
   let fixture: ComponentFixture<DateInputDisplayComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ DateInputDisplayComponent ],
       imports: [IonicModule.forRoot()]

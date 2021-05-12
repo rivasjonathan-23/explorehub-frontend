@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
 
 import { TextInputDisplayComponent } from './text-input-display.component';
@@ -7,7 +7,7 @@ describe('TextInputDisplayComponent', () => {
   let component: TextInputDisplayComponent;
   let fixture: ComponentFixture<TextInputDisplayComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ TextInputDisplayComponent ],
       imports: [IonicModule.forRoot()]

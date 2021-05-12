@@ -20,7 +20,6 @@ import { NotificationHandlerComponent } from '../../components/notification-hand
     IonicModule,
     BookingReviewPageRoutingModule,
     ComponentsModulePageModule,
-    IonicModule.forRoot()
   ],
     
     declarations: [BookingReviewPage]

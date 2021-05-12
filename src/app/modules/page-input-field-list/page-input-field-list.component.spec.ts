@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
 
 import { PageInputFieldListComponent } from './page-input-field-list.component';
@@ -7,7 +7,7 @@ describe('PageInputFieldListComponent', () => {
   let component: PageInputFieldListComponent;
   let fixture: ComponentFixture<PageInputFieldListComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ PageInputFieldListComponent ],
       imports: [IonicModule.forRoot()]

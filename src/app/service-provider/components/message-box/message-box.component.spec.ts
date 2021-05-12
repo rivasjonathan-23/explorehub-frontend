@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
 
 import { MessageBoxComponent } from './message-box.component';
@@ -7,7 +7,7 @@ describe('MessageBoxComponent', () => {
   let component: MessageBoxComponent;
   let fixture: ComponentFixture<MessageBoxComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ MessageBoxComponent ],
       imports: [IonicModule.forRoot()]

@@ -18,7 +18,6 @@ import { ComponentsModulePageModule } from 'src/app/components-module/components
     IonicModule,
     OnlinePagesListPageRoutingModule,
     ComponentsModulePageModule,
-    IonicModule.forRoot(),
   ],schemas: [CUSTOM_ELEMENTS_SCHEMA],
   declarations: [OnlinePagesListPage, OnlinePagesComponent, PageCardComponent]
 })

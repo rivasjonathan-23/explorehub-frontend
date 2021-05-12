@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
 
 import { PageCardComponent } from './page-card.component';
@@ -7,7 +7,7 @@ describe('PageCardComponent', () => {
   let component: PageCardComponent;
   let fixture: ComponentFixture<PageCardComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ PageCardComponent ],
       imports: [IonicModule.forRoot()]

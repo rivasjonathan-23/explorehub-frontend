@@ -18,7 +18,6 @@ import { ComponentsModulePageModule } from 'src/app/components-module/components
     IonicModule,
     SelectServicePageRoutingModule,
     ComponentsModulePageModule,
-    IonicModule.forRoot(),
   ],
   declarations: [SelectServicePage],schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })

@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
 
 import { StylePopupComponent } from './style-popup.component';
@@ -7,7 +7,7 @@ describe('StylePopupComponent', () => {
   let component: StylePopupComponent;
   let fixture: ComponentFixture<StylePopupComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ StylePopupComponent ],
       imports: [IonicModule.forRoot()]

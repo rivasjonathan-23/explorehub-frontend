@@ -39,7 +39,6 @@ import { PageInputFieldListComponent } from '../modules/page-input-field-list/pa
     IonicModule,
     ReactiveFormsModule,
     ComponentsModulePageRoutingModule,
-    IonicModule.forRoot(),
   ],
   declarations: [
     ComponentsModulePage,

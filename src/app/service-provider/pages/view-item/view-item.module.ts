@@ -15,7 +15,6 @@ import { ServiceDetailsComponent } from '../service-details/service-details.comp
     FormsModule,
     IonicModule,
     ViewItemPageRoutingModule,
-    IonicModule.forRoot()
   ],
   declarations: [ViewItemPage, ServiceDetailsComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],

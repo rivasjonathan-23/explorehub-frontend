@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
 
 import { SelectPageTypePage } from './select-page-type.page';
@@ -7,7 +7,7 @@ describe('SelectPageTypePage', () => {
   let component: SelectPageTypePage;
   let fixture: ComponentFixture<SelectPageTypePage>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ SelectPageTypePage ],
       imports: [IonicModule.forRoot()]

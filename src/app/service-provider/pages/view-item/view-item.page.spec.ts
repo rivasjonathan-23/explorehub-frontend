@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
 
 import { ViewItemPage } from './view-item.page';
@@ -7,7 +7,7 @@ describe('ViewItemPage', () => {
   let component: ViewItemPage;
   let fixture: ComponentFixture<ViewItemPage>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ ViewItemPage ],
       imports: [IonicModule.forRoot()]

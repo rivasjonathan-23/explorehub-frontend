@@ -2,7 +2,9 @@
 // `ng build --prod` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
 
-export const environment = {
+import { environmentInterface } from "environtmentInterface";
+
+export const environment:environmentInterface = {
   pusher_key:"b36265bb4cc959e12f16",
   cluster: "ap1",
   apiUrl: "https://explorehub-backend.herokuapp.com/",
