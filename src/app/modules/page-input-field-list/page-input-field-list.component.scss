@@ -1,0 +1,109 @@
+.modalFooter {
+    background-color: rgba(255, 255, 255, .8);
+}
+
+.closeList {
+    font-size:31px;
+    color:#fff;
+    position: fixed;
+    top:0;
+    right:0;
+    padding:5px;
+    flex:1;
+}
+
+.listWrapper {
+    flex:1;
+    background: rgba(0, 0, 0, .3);
+    overflow: auto;
+    text-align: center;
+
+}
+
+.modalWrapper {
+    display:flex;
+    height: 100vh;
+    flex-direction: column;
+}
+
+.itemWrapper {
+    background: #fff;
+    margin: 15px;
+    border-radius: 5px;
+    overflow: hidden;
+    border:1px solid dodgerblue;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    // flex-wrap: wrap;
+    height:120px;
+    width:130px;
+    // padding:10px;
+
+    ion-icon {
+        font-size: 28px !important;
+        color: rgb(133, 149, 163);
+        padding:8px;
+    }
+}
+
+.itemTitle {
+    padding:8px;
+    display: flex;
+    justify-content:center;
+    align-items:center;
+    font-size: 18px;
+    color:rgb(18, 134, 250);
+}
+
+
+.itemSample {
+    flex:2;
+    background-color:lightgray;
+    padding:8px;
+}
+
+.paragraph {
+    font-size: 5px;
+    color:rgb(49, 47, 47);
+    text-align:left;
+    line-height: 8px;
+}
+
+.title {
+    font-size:15px !important;
+    color:rgb(105, 105, 105); 
+    padding-top:15px; 
+}
+
+.subText {
+    font-size: 5px !important;
+    color:rgb(167, 167, 167);
+}
+
+.imagePlaceholder {
+    width:80px;
+    vertical-align: middle;
+}
+
+.imgHolder {
+    text-align: center;
+}
+
+.listInnerWrapper {
+    // display: inline-block;
+    justify-content: center;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.closeModal {
+    padding:10px;
+    color:red;
+}
+
+.hidden {
+    display: none;
+}

@@ -1,0 +1,85 @@
+.outerWrapper {
+    margin: 10px 0;
+}
+.serviceContainer {
+    margin-top: 15px 10px;
+    box-sizing: border-box;
+    overflow-y: visible;
+    overflow-x: scroll;
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    transition: .5s;
+
+    padding: 1px 0;
+} 
+
+.settings {
+    background-color: rgb(219, 222, 226);
+    margin:8px 0;
+    .options {
+        display: flex;
+        padding:2px 0;
+        align-items: center;
+        justify-content: flex-end;
+
+        span {
+           color: rgb(145, 158, 168);
+        }
+
+        .clicked{
+             color:rgb(72, 103, 134)  !important;
+        }
+    }
+
+    
+}
+
+.noItem {
+    margin:50px 0;
+    text-align: center;
+}
+.editBox {
+    padding-top: 10px;
+    background-color: rgba(198, 201, 204, 0.5);
+}
+
+ion-slides {
+    overflow: visible;
+}
+
+ion-slide {
+    overflow: visible;
+}
+
+.deleted {
+    display: none !important;
+}
+.wrapper {
+    
+    padding:10px 0;
+    margin:20px 0;
+}
+
+.serviceFooter {
+    height: 40px;
+}
+
+.listFooter {
+    padding:20px 0;
+    background-color: white !important;
+}
+
+.addComp {
+    padding:10px;
+    border-radius: 4px;
+    background: rgba(244, 247, 250, 0.5);
+    color:rgb(5, 104, 204);
+    text-align: center;
+    margin: 0 10px;
+}
+
+.newItem {
+    background-color: red;
+    padding:10px;
+}

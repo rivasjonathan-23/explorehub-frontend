@@ -1,0 +1,329 @@
+.addComponentBtn {
+    background-color: rgb(10, 122, 233);
+    padding:10px 20px;
+    border-radius: 3px;
+    color:white;
+    margin:10px;
+    text-align: center;
+}
+
+.creator {
+    margin-bottom: 50px;
+    padding-top:30px;
+    background: #ffff;
+    position: relative;
+}
+
+.addInfo {
+    padding:5px;
+    margin:40px 10px;
+    background: rgba(114, 114, 114, 0.2);
+    text-align: center;
+
+    h5 {
+        margin:5px;
+    }
+    
+    p {
+        margin: 5px;
+        font-size: 13px;
+        color:rgb(102, 102, 102);
+    }
+}
+
+.services {
+    background: seagreen !important;
+}   
+
+.addServicesBox {
+    text-align: left !important;
+}
+
+.btnHolder {
+    text-align: right;
+}
+
+.nextIcon {
+    // font-size: 20px;
+    vertical-align: middle;
+    padding:5px;
+}
+
+.bookingBtn {
+    background: rgb(1, 153, 158) !important;
+}
+
+.divider {
+    text-align: center;
+
+    h4 {
+        // margin:5px;
+        font-weight: bold;
+        color:rgb(68, 77, 87);
+        margin-bottom: 20px;
+    }
+}
+
+.servicesSection {
+    background: #ffff;
+    border-top: 1px solid lightgray;
+    padding: 20px 0;
+    height: 100%;
+    // padding-bottom: 50px;
+}
+
+.bookingInfoSection {
+    background-color: rgb(244, 246, 248) !important;
+    border-bottom: 1px solid rgb(167, 167, 167);
+    padding:20px 15px;
+    // display: flex;
+    // justify-content: center;
+    padding-bottom: 40px !important;
+    height: 100% !important;
+
+    .innerHolder {
+        width: 320px;
+    }
+}
+
+@media only screen and (max-width: 320px) {
+    .innerHolder {
+        width: 100%;
+    }
+}
+
+
+
+
+.preview {
+    padding: 6px 10px;
+    margin: 5px;
+    font-size: 14px;
+    
+    background-color: none;
+    color: rgb(171, 213, 245) !important;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    // width:90px;
+
+    // span {
+    //     font-size: 13px;
+    // }
+}
+
+.exit {
+    padding: 6px 10px;
+    margin: 5px;
+    font-size: 14px;
+    border-radius: 5px;
+    background-color: none;
+    color: rgb(196, 225, 247) !important;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+}
+
+.submit {
+    padding: 6px 10px;
+    padding-left:20px;
+    margin: 5px;
+    font-size: 16px;
+    
+    color: #ffff;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+}
+
+.icons {
+    font-size:18px !important;
+}
+
+.menu {
+    position: fixed;
+    top: 0;
+    left:0;
+    margin:0;
+    height: 40px;
+    right:0;
+    z-index: 99999;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width:100%;
+    background-color:rgb(42, 60, 78);
+    color: #ffff;
+}
+
+.tabs {
+    z-index: 99999;
+    font-size: 14px;
+    // color:#ffff;
+    // color:rgb(40, 97, 146);
+   
+    position: fixed;
+    font-weight: normal;
+    bottom: 0;
+    width:100%;
+    height: 45px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+
+
+    .tab {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        position: relative;
+        align-items: center;
+        border-radius: 5px;
+        color:rgb(8, 82, 151);
+    }
+
+    .dark {
+        color: rgb(4, 69, 134) !important;
+    }
+}
+
+
+
+.boxHolder {
+    z-index: 99998;
+    background-color: rgb(243, 248, 250);
+    font-size: 14px;
+    box-shadow: 2px 4px 10px rgb(76, 82, 87);
+    // color:#ffff;
+    // color:rgb(37, 81, 95);
+    font-weight: bold !important;
+    position: fixed;
+    bottom: 0;
+    width:100%;
+    height: 45px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+
+
+    .boxes {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        position: relative;
+        align-items: center;
+
+        .box {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            left:0;
+            transition: .5s;
+            padding: 6px;
+
+            .active {
+                width:100%;
+                height: 100%;
+                border-radius: 5px;
+                background-color: rgb(171, 210, 241);
+                // box-shadow: 1px 1px 2px rgb(136, 143, 153);
+
+            }
+        }
+    }
+}
+
+
+.csmodal {
+    position: fixed;
+    background-color: rgb(255, 255, 255);
+    border-top: 5px solid red;
+    background-color:none;
+    bottom:45px;
+    left: 0;
+    right: 0;
+    z-index: 999999;
+    width: 100%;
+
+    
+
+    .errHeader {
+        padding:15px 10px;
+        background-color: rgb(248, 234, 234);
+        text-align: left;
+
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+
+        .closeErr {
+            top:0;
+            right:0;
+            font-size: 50px;
+            color:gray;
+        }
+    }
+
+     .modalCont {
+        
+         display: flex;
+         flex-direction: row;
+         justify-content: space-evenly;
+
+         .holder {
+            margin-top: 5px;
+            padding: 5px 0;
+            text-align: center;
+            
+            .fieldHolder {
+                text-align: center;
+                color:rgb(199, 2, 12);
+                padding:4px 8px;
+                margin:5px 10px;
+                max-height: 200px;
+                overflow: auto;
+
+                .field {
+                    background-color: rgb(247, 208, 208);
+                    border-radius: 4px;
+                    width: 100%;
+                    text-align: center;
+                    padding:5px;
+                    margin: 5px 0;
+                }
+            }
+         }
+         
+     }
+}
+
+.btnHolder {
+    padding:50px 20px;
+    
+    .submitPage {
+        color:#ffff;
+        background-color: rgb(10, 122, 233);
+    }
+}
+
+.submitted {
+    text-align: center;
+    padding:5px;
+    margin:2px;
+}
+
+.bookBtn {
+    margin-top: 20px;
+    font-size: 15px;
+    padding:13px 30px;
+}

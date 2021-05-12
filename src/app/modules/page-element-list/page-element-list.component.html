@@ -1,0 +1,61 @@
+<div>
+  <div class="modalWrapper">
+    <div class="listWrapper">
+      <!-- <ion-icon class="closeList" (click)="dismiss()" name="close-outline"></ion-icon> -->
+      <div class="listInnerWrapper">
+
+        <!-- <div class="itemWrapper" (click)="addComponent('title')">
+          <div class="itemTitle">Add Title</div>
+          <div class="itemSample paragraph title">
+            Lorem ipsum
+            <p class="subText">Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae nihil incidunt culpa quisquam neque unde porro dolorum deleniti reprehenderit corporis.</p>
+          </div>
+        </div> -->
+
+        <div class="itemWrapper" (click)="addComponent('text')">
+          <div class="itemTitle">Add Text</div>
+          <ion-icon name="reorder-four-outline"></ion-icon>
+        </div>
+
+        <div class="itemWrapper" (click)="addComponent('labelled-text')">
+          <div class="itemTitle">Add Labelled Text</div>
+          <ion-icon name="reorder-two-outline"></ion-icon>
+        </div>
+
+        <div [class.hidden]="isInItemList" class="itemWrapper" (click)="addComponent('photo')">
+          <div class="itemTitle">Add Photo</div>
+          <ion-icon name="image-outline"></ion-icon>
+         
+        </div>
+
+        <!-- <div class="itemWrapper" (click)="addComponent('item-list')">
+          <div class="itemTitle">Add Item List</div>
+          <div class="itemSample imgHolder">
+            <img class="imagePlaceholder" src="assets/images/image-placeholder.png" alt="">
+          </div>
+        </div> -->
+
+        <div class="itemWrapper" (click)="addComponent('bullet-form-text')">
+          <div class="itemTitle">Add List</div>
+          <ion-icon name="list-outline"></ion-icon>
+  
+        </div>
+
+        <!-- <div class="itemWrapper" [class.hidden]="!insideItem" (click)="addComponent('labelled-text_quantity')">
+          <div class="itemTitle">Add Quantity Info</div>
+         
+        </div> -->
+
+        <div class="itemWrapper" [class.hidden]="!insideItem" (click)="addComponent('labelled-text_price')">
+          <div class="itemTitle">Add Price Info</div>
+          <ion-icon name="pricetag-outline"></ion-icon>
+        
+        </div>
+      </div>
+    </div>
+
+    <div class="modalFooter">
+      <div class="closeModal" (click)="dismiss()">Cancel</div>
+    </div>
+  </div>
+</div>
