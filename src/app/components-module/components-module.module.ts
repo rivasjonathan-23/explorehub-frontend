@@ -1,6 +1,6 @@
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
@@ -26,13 +26,20 @@ import { OtherServiceCardComponent } from '../service-provider/pages/other-servi
 import { GroupOfServicesComponent } from '../service-provider/components/group-of-services/group-of-services.component';
 import { ListOfPagesPage } from '../service-provider/list-of-pages/list-of-pages.page';
 import { AllServicesComponent } from '../service-provider/pages/all-services/all-services.component';
+import { CodeHandlerComponent } from '../authentication-and-account/code-handler/code-handler.component';
+import { PageCreatorComponent } from '../modules/page-creator/page-creator.component';
+import { PageElementListComponent } from '../modules/page-element-list/page-element-list.component';
+import { WeatherComponent } from '../modules/common-components/weather/weather.component';
+import { PageInputFieldListComponent } from '../modules/page-input-field-list/page-input-field-list.component';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    ComponentsModulePageRoutingModule
+    ReactiveFormsModule,
+    ComponentsModulePageRoutingModule,
+    IonicModule.forRoot(),
   ],
   declarations: [
     ComponentsModulePage,
@@ -52,6 +59,11 @@ import { AllServicesComponent } from '../service-provider/pages/all-services/all
     NotificationHandlerComponent,
     AllServicesComponent,
     GroupOfServicesComponent,
+    PageCreatorComponent,
+    PageInputFieldListComponent,
+    WeatherComponent,
+    PageElementListComponent,
+   CodeHandlerComponent,
     SelectedServiceCardComponent],
   exports: [
     BookingInfoDisplayComponent,
@@ -61,17 +73,26 @@ import { AllServicesComponent } from '../service-provider/pages/all-services/all
     BulletFormTextDisplayComponent,
     HeaderMenuComponent,
     NotificationCardComponent,
+    PageElementListComponent,
     NotificationHandlerComponent,
     ConfirmPopupComponent,
     OtherServiceCardComponent,
+    PageInputFieldListComponent,
     AllServicesComponent,
+    WeatherComponent,
+    PageCreatorComponent,
     GroupOfServicesComponent,
     ConversationCardComponent,
     SelectedServiceCardComponent,
+   CodeHandlerComponent,
     MessageBoxComponent,
     OptionPopupComponent,
     PageListCardComponent
 
-  ]
+  ],
+  schemas: [
+    CUSTOM_ELEMENTS_SCHEMA
+  ],
+
 })
 export class ComponentsModulePageModule { }

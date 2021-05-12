@@ -91,7 +91,7 @@ export class DashboardPage implements OnInit {
     await alert.present();
   }
 
-  viewPage(e) {
+  viewPage() {
     setTimeout(() => {
       this.router.navigate(["/service-provider/view-page", this.page._id, this.page.pageType])
     }, 300);

@@ -12,7 +12,7 @@ import { AlertController } from "@ionic/angular";
 import { PusherService } from "../../services-common-helper/PushNotification/pusher.service";
 import { FormBuilder } from "@angular/forms";
 import { CValidator } from "../validators/validation";
-import { CodeHandlerPage } from "../code-handler/code-handler.page";
+import { CodeHandlerComponent } from "../code-handler/code-handler.component";
 import userTokenType from "src/app/services-common-helper/constantValue/user-token-type";
 
 @Component({
@@ -21,8 +21,8 @@ import userTokenType from "src/app/services-common-helper/constantValue/user-tok
   styleUrls: ["./forgot-password.page.scss", "../login/login.page.scss"],
 })
 export class ForgotPasswordPage implements OnInit, OnDestroy {
-  @ViewChild(CodeHandlerPage)
-  public codeHandler: CodeHandlerPage;
+  @ViewChild(CodeHandlerComponent)
+  public codeHandler: CodeHandlerComponent;
   public fullName: string;
   public email: string;
   public contactNumber: string;
@@ -133,7 +133,7 @@ export class ForgotPasswordPage implements OnInit, OnDestroy {
     );
   }
 
-  onExpiredAllCode() {
+  onExpiredAllCode(e) {
     this.pendingCode = false;
     this.authService.removeItem("pendingCode");
   }

@@ -12,6 +12,7 @@ import { PageCreatorService } from '../../page-creator/page-creator-service/page
 export class NumberInputComponent implements OnInit {
   public footerData: FooterData;
   @Input() values: ElementValues;
+  public clickOtherFunction: boolean = false
   @Input() parentId: string;
   @Input() parent: string;
   @Input() grandParentId: string;

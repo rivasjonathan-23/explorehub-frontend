@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
@@ -15,6 +15,6 @@ import { SelectTouristSpotCategoryPage } from './select-tourist-spot-category.pa
     IonicModule,
     SelectTouristSpotCategoryPageRoutingModule
   ],
-  declarations: [SelectTouristSpotCategoryPage]
+  declarations: [SelectTouristSpotCategoryPage],schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class SelectTouristSpotCategoryPageModule {}

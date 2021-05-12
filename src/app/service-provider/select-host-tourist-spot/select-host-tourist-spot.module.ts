@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
@@ -16,7 +16,7 @@ import { PhotoDisplayComponent } from 'src/app/modules/page-elements-display/pho
     FormsModule,
     IonicModule,
     SelectHostTouristSpotPageRoutingModule
-  ],
+  ],schemas: [CUSTOM_ELEMENTS_SCHEMA],
   declarations: [
     SelectHostTouristSpotPage, 
     SearchPipe

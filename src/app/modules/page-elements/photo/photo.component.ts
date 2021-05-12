@@ -36,7 +36,7 @@ export class PhotoComponent implements OnInit {
   @ViewChild('slides', { static: false }) slides: IonSlides;
 
 
-  constructor(private creator: PageCreatorService,
+  constructor(public creator: PageCreatorService,
     private plt: Platform,
     public toastController: ToastController,
     private actionSheetCtrl: ActionSheetController,

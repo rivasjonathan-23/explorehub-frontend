@@ -12,6 +12,7 @@ interface Spot {
   id: number;
   category_id: number;
   category_name: string;
+  components: any;
   name: string;
   description: string;
   image: string;
@@ -35,6 +36,8 @@ export class SelectHostTouristSpotPage implements OnInit {
   touristSpotPages: Page[] = [];
   selectedPage:Page;
   keyupValues = "";
+  showMore:boolean = false;
+
 
   sampleCategory;
 
@@ -45,9 +48,9 @@ export class SelectHostTouristSpotPage implements OnInit {
     private selectHostTouristSpotService: SelectHostTouristSpotService
   ) {}
 
-  spotsListCategory: Spot[] = [];
-  selectedSpots: Spot[] = [];
-  yourHostSpot: Spot;
+  spotsListCategory: Page[] = [];
+  selectedSpots: Page[] = [];
+  yourHostSpot: Page;
   spotsLocation = [];
   allSpotsName = [];
   show = false;

@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { CreateBookingGuardGuard } from './route-guards/create-booking-guard/create-booking-guard.guard';
 import { PageGuardGuard } from './route-guards/page-guard/page-guard.guard';

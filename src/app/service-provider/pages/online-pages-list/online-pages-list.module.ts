@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
@@ -17,8 +17,9 @@ import { ComponentsModulePageModule } from 'src/app/components-module/components
     FormsModule,
     IonicModule,
     OnlinePagesListPageRoutingModule,
-    ComponentsModulePageModule
-  ],
+    ComponentsModulePageModule,
+    IonicModule.forRoot(),
+  ],schemas: [CUSTOM_ELEMENTS_SCHEMA],
   declarations: [OnlinePagesListPage, OnlinePagesComponent, PageCardComponent]
 })
 export class OnlinePagesListPageModule {}

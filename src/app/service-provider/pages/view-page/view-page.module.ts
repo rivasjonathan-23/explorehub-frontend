@@ -18,8 +18,9 @@ import { ComponentsModulePageModule } from 'src/app/components-module/components
     FormsModule,
     IonicModule,
     ViewPagePageRoutingModule,
-    ComponentsModulePageModule
+    ComponentsModulePageModule,
+    IonicModule.forRoot()
   ],
-  declarations: [ViewPagePage, ViewPageComponent]
+  declarations: [ViewPagePage, ViewPageComponent],
 })
 export class ViewPagePageModule {}

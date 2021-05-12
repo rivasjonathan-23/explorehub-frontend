@@ -1,5 +1,5 @@
 
-<div class="card ion-activatable ripple-parent" [class.unread]="!conversation.viewedBy.includes(mainService.user._id)" (click)="openConvo($event)">
+<div class="card ion-activatable ripple-parent" [class.unread]="!conversation['viewedBy'].includes(mainService.user._id)" (click)="openConvo($event)">
   <div class="picHolder">
     <div class="pic" *ngIf="photo" [ngStyle]="{'background-image': 'url('+photo+')'}">
     </div>

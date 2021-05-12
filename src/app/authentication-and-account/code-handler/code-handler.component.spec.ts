@@ -1,19 +1,19 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
 
-import { CodeHandlerPage } from './code-handler.page';
+import { CodeHandlerComponent } from './code-handler.component';
 
 describe('CodeHandlerPage', () => {
-  let component: CodeHandlerPage;
-  let fixture: ComponentFixture<CodeHandlerPage>;
+  let component: CodeHandlerComponent;
+  let fixture: ComponentFixture<CodeHandlerComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ CodeHandlerPage ],
+      declarations: [ CodeHandlerComponent ],
       imports: [IonicModule.forRoot()]
     }).compileComponents();
 
-    fixture = TestBed.createComponent(CodeHandlerPage);
+    fixture = TestBed.createComponent(CodeHandlerComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   }));

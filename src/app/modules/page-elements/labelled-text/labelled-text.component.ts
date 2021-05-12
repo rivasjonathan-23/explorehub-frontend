@@ -18,6 +18,7 @@ export class LabelledTextComponent implements OnInit {
   public lastValue: string = null;
   public defaults: any[];
   public hasChanges: boolean = false;
+  public clickOtherFunction: boolean = false
   public clickedDone: boolean = false;
   public pending: boolean = false;
   public showDefaults: boolean = false;

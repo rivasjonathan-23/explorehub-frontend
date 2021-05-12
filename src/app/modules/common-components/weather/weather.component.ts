@@ -41,7 +41,7 @@ export class WeatherComponent implements OnInit {
 
   getWeather() {
     this.loading = true
-    fetch(`${environment.weatherMap_base_url}weather?q=moalboal,cebu&APPID=${environment.weatherMap_api_key}`)
+    fetch(`${environment["weatherMap_base_url"]}weather?q=moalboal,cebu&APPID=${environment["weatherMap_api_key"]}`)
       .then(weather => {
         this.loading = false
          return weather.json();

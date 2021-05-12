@@ -1,4 +1,4 @@
-import { NgModule} from "@angular/core";
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule} from "@angular/core";
 import { BrowserModule } from "@angular/platform-browser";
 import { RouteReuseStrategy } from "@angular/router";
 import { PusherService } from "./services-common-helper/PushNotification/pusher.service";
@@ -14,7 +14,7 @@ import { TokenInterceptorService } from "./services-common-helper/interceptors/t
 import { LoadingService } from "./services-common-helper/loadingService/loading-service.service";
 import { LoadingPage } from "./modules/loading/loading.page";
 import { TextComponent } from "./modules/page-elements/text/text.component";
-import { FormsModule } from "@angular/forms";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { PhotoComponent } from "./modules/page-elements/photo/photo.component";
 import { ElementFooterComponent } from "./modules/elementTools/element-footer/element-footer.component";
 import { EditOrDeletePopupComponent } from "./modules/elementTools/edit-or-delete-popup/edit-or-delete-popup.component";
@@ -75,8 +75,8 @@ const config: SocketIoConfig = { url: environment.apiUrl, options: {} };
     DateInputDisplayComponent,
     ChoicesInputComponent,
     ChoicesInputDisplayComponent,
-    StatisticsPage,
-    BookingPage,
+    // StatisticsPage,
+    // BookingPage,
 
   ],
   entryComponents: [],
@@ -86,6 +86,7 @@ const config: SocketIoConfig = { url: environment.apiUrl, options: {} };
     IonicModule.forRoot(),
     AppRoutingModule,
     HttpClientModule,
+    ReactiveFormsModule,
     ComponentsModulePageModule,
     IonicStorageModule.forRoot({
       name: "__mydb",
@@ -106,6 +107,6 @@ const config: SocketIoConfig = { url: environment.apiUrl, options: {} };
     },
     DatePipe
   ],
-  bootstrap: [AppComponent],
+  bootstrap: [AppComponent],schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class AppModule { }                        

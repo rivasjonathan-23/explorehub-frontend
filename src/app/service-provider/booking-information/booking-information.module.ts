@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
@@ -15,8 +15,9 @@ import { ComponentsModulePageModule } from 'src/app/components-module/components
     FormsModule,
     IonicModule,
     BookingInformationPageRoutingModule,
-    ComponentsModulePageModule
+    ComponentsModulePageModule,
+    IonicModule.forRoot(),
   ],
-  declarations: [BookingInformationPage]
+  declarations: [BookingInformationPage],schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class BookingInformationPageModule {}

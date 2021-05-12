@@ -2,7 +2,6 @@ import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
 import { Page } from 'src/app/modules/elementTools/interfaces/page';
 import { MainServicesService } from '../../provider-services/main-services.service';
-import { WeatherComponent } from 'src/app/modules/common-components/weather/weather.component';
 import { ModalController } from '@ionic/angular';
 import { environment } from 'src/environments/environment';
 
@@ -17,18 +16,14 @@ export class HeaderMenuComponent implements OnInit {
   @Input() currentCategory: string;
   @Output() changeCategory: EventEmitter<any> = new EventEmitter();
   public pages: Page[] =[]
-  weatherToday = {
-    icon: null,
-    temp: null,
-    weather: null,
-  }
+
 
   constructor(public mainService:MainServicesService, public router: Router, public modalCtrl: ModalController) { }
 
   ngOnInit() {
   }
 
-  goTo(path, fromHome) {
+  goTo(path, fromHome = false) {
     setTimeout(() => {
       const params = fromHome? {queryParams: {formDashboard: true}}: {}
       this.router.navigate(path, params)

@@ -4,7 +4,7 @@ import { Router } from "@angular/router";
 import { AlertController } from "@ionic/angular";
 import { AuthService } from "src/app/services/auth-services/auth-service.service";
 import { PusherService } from "src/app/services-common-helper/PushNotification/pusher.service";
-import { CodeHandlerPage } from "../code-handler/code-handler.page";
+import { CodeHandlerComponent } from "../code-handler/code-handler.component";
 import jwt_decode from "jwt-decode";
 import userTokenType from "src/app/services-common-helper/constantValue/user-token-type";
 
@@ -14,8 +14,8 @@ import userTokenType from "src/app/services-common-helper/constantValue/user-tok
   styleUrls: ["./verification.page.scss", "../login/login.page.scss"],
 })
 export class VerificationPage implements OnInit {
-  @ViewChild(CodeHandlerPage)
-  public codeHandler: CodeHandlerPage;
+  @ViewChild(CodeHandlerComponent)
+  public codeHandler: CodeHandlerComponent;
   public contactNumber = "";
   public pendingCode = false;
   public form;
@@ -106,7 +106,7 @@ export class VerificationPage implements OnInit {
     );
   }
 
-  onExpiredAllCode() {
+  onExpiredAllCode(e) {
     this.pendingCode = false;
   }
 

@@ -13,6 +13,7 @@ export class TextInputComponent implements OnInit {
   public footerData: FooterData;
   @Input() values: ElementValues;
   @Input() parentId: string;
+  public clickOtherFunction: boolean = false
   @Input() parent: string;
   @Input() grandParentId: string;
   public pending: boolean = false;

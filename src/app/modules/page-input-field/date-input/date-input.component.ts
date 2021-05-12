@@ -21,6 +21,8 @@ export class DateInputComponent implements OnInit {
   public footerData: FooterData;
   erroredAlready = false;
   clickedDone = false;
+  clickOtherFunction = false
+  customize = false
   showYears = false;
   showMonths = false;
   showDays = false;

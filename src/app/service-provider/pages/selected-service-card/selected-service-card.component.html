@@ -16,7 +16,7 @@
           Price: <b>{{getServiceName(item.service, 'price')? 
           formatNumber(getServiceName(item.service, 'price')): 0}}</b>
         </div>
-        <div>Quantity: <b>{{item.quantity}}</b></div>
+        <div>Quantity: <b>{{item['quantity']}}</b></div>
       </div>
       <div *ngIf="editable" (click)="changeService()" class="changeItem">Change</div>
     </div>

@@ -3,16 +3,16 @@
   <div class="cardPhotoHolder">
     <!-- <p *ngIf="!photo">No photo</p> -->
     
-    <div *ngIf="booking.photo" class="cardPhoto" [ngStyle]="{'background-image': 'url('+booking.photo+')' }">
+    <div *ngIf="booking['photo']" class="cardPhoto" [ngStyle]="{'background-image': 'url('+booking['photo']+')' }">
      
     </div>
-    <div class="cardPhoto" *ngIf="!booking.photo">
+    <div class="cardPhoto" *ngIf="!booking['photo']">
       <ion-icon *ngIf="!forDashboard" name="golf-outline"></ion-icon>
       <ion-icon *ngIf="forDashboard" name="card-outline"></ion-icon>
     </div>
   </div>
   <div class="cardInfo">
-    <div class="cardTitle" [class.isManual]="booking.isManual">{{booking.isManual? "On-site Reservation": booking.name}}</div>
+    <div class="cardTitle" [class.isManual]="booking.isManual">{{booking.isManual? "On-site Reservation": booking["name"]}}</div>
     <div class="servicesHolder">
 
       <div class="selectedServices">

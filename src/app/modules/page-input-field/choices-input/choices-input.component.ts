@@ -20,6 +20,7 @@ export class ChoicesInputComponent implements OnInit {
   clickedDone = false;
   choiceInput = null;
   deletedChoice = [];
+  clickOtherFunction = false
   newlyAddedChoice = []
 
   constructor(public creator: PageCreatorService, public alert: AlertController) {

@@ -171,7 +171,7 @@ export class ViewPagePage implements OnInit {
 
   }
 
-  onScroll(event, info: HTMLElement, services: HTMLElement, bookingInfo: HTMLElement, div: HTMLElement) {
+  onScroll(event, info: HTMLElement, services: HTMLElement, bookingInfo: HTMLElement) {
     // const width = div.clientWidth;
 
 
@@ -341,7 +341,7 @@ export class ViewPagePage implements OnInit {
   }
 
   getWeather() {
-    fetch(`${environment.weatherMap_base_url}weather?q=moalboal,cebu&APPID=${environment.weatherMap_api_key}`)
+    fetch(`${environment["weatherMap_base_url"]}weather?q=moalboal,cebu&APPID=${environment["weatherMap_api_key"]}`)
       .then(weather => {
          this.loadingWeather = false
          return weather.json();

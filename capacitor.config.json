@@ -1,5 +1,5 @@
 {
-  "appId": "io.3xploreHub-frontend.starter",
+  "appId": "io.explorehub.frontend",
   "appName": "3xploreHub-frontend",
   "bundledWebRuntime": false,
   "npmClient": "npm",

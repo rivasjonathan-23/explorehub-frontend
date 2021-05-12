@@ -44,7 +44,7 @@
       (render)="footerData.done = this.images.length > 0" (delete)="delete()">
     </app-element-footer>
     <div class="componentWrapper" *ngIf="showStylePopup">
-      <app-photo-style *ngIf="footerData.hasStyle" (cancel)="showStylePopup = false" (save)="renderText()"
+      <app-photo-style *ngIf="footerData.hasStyle" (cancel)="showStylePopup = false"
         (select)="applyStyle($event)" class="componentPopup" [selectedStyles]="values.styles"></app-photo-style>
     </div>
   </div>

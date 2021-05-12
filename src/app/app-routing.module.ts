@@ -1,4 +1,4 @@
-import { NgModule } from "@angular/core";
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from "@angular/core";
 import { PreloadAllModules, RouterModule, Routes } from "@angular/router";
 import { AuthGuard } from "./services-common-helper/route-guards/auth-guard/auth.guard";
 import { AppEntryGuard } from "./services-common-helper/route-guards/app-entry-guard/app-entry.guard";
@@ -62,13 +62,7 @@ const routes: Routes = [
       ).then((m) => m.FindAccountPageModule),
     canActivate: [AppEntryGuard],
   },
-  {
-    path: "code-handler",
-    loadChildren: () =>
-      import(
-        "./authentication-and-account/code-handler/code-handler.module"
-      ).then((m) => m.CodeHandlerPageModule),
-  },
+
   {
     path: "add-account-info",
     loadChildren: () =>

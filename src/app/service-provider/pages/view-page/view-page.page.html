@@ -6,7 +6,7 @@
     <ion-title>{{getPageName()}}</ion-title>
   </ion-toolbar>
 </ion-header>
-<ion-content [scrollEvents]="true" *ngIf="!loading" (ionScroll)="onScroll($event, info, services, others, tab)">
+<ion-content [scrollEvents]="true" *ngIf="!loading" (ionScroll)="onScroll($event, info, services, others)">
   <div class="pageCont">
     <div class="mainLightBg2 pageView">
       <div class="info" #info>
