@@ -58,11 +58,15 @@ export class LoginPage implements OnInit {
 
   onSubmit() {
     if (
-      this.form.valid &&
       this.form.value.credential &&
       this.form.value.password
     ) {
       this.loading = true;
+      if (this.form.value.credential.includes("@")) {
+        this.form.credentialUsed = "email"
+      } else {
+        this.form.credentialUsed = "contactNumber"
+      }
       if (this.form.value.credentialUsed == "contactNumber") {
         this.form.value.credential = this.completeNum(
           this.form.value.credential
@@ -85,7 +89,7 @@ export class LoginPage implements OnInit {
           if (err.status === 400) {
             if (err.error.type === "account_not_found") {
               this.presentAlert(
-                "Can't find account associated with " +
+                "Can't find an account associated with " +
                   this.form.value.credential
               );
 
