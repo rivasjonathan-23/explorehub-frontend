@@ -43,19 +43,14 @@ export class AddAccountInfoPage implements OnInit {
           { v: "pattern", r: "^[a-zA-Z .]*$", m: ["letters"] },
         ]),
       ],
-      address: [
-        "",
-        CValidator.validate([{ v: "required" }]),
-      ],
+      address: [ "",CValidator.validate([{ v: "required" }])],
+      address2: [ "",CValidator.validate([{ v: "required" }])],
+      city: [ "",CValidator.validate([{ v: "required" }])],
+      stateOrProvince: [ "",CValidator.validate([{ v: "required" }])],
+      country: [ "",CValidator.validate([{ v: "required" }])],
       gender: ["Female ", CValidator.validate([{ v: "required" }])],
-      birthday: ["Birthday", CValidator.validate([{ v: "required" }])],
-      age: [
-        "",
-        CValidator.validate([
-          { v: "required" },
-          { v: "pattern", r: "^[0-9]*$", m: ["numbers"] },
-        ]),
-      ],
+      birthday: ["", CValidator.validate([{ v: "required" }])],
+ 
     });
   }
 

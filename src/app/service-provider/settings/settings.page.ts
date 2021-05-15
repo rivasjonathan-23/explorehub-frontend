@@ -28,6 +28,10 @@ export class SettingsPage implements OnInit {
   email = null;
   phone = null;
   address = null;
+  address2 = null;
+  stateOrProvince = null;
+  city = null;
+  country = null;
   gender = null;
   password = null;
   birthday = null;
@@ -78,6 +82,10 @@ export class SettingsPage implements OnInit {
       this.email = userInfo.email;
       this.phone = userInfo.contactNumber;
       this.address = userInfo.address;
+      this.address2 = userInfo.address2;
+      this.city = userInfo.city;
+      this.stateOrProvince = userInfo.stateOrProvince;
+      this.country = userInfo.country;
       this.gender = userInfo.gender;
       this.birthday = this.datePipe.transform(userInfo.birthday, 'yyyy-MM-dd');
       this.password = userInfo.password;

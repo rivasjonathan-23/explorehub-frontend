@@ -1,6 +1,6 @@
 {
   "appId": "io.explorehub.frontend",
-  "appName": "3xploreHub-frontend",
+  "appName": "ExploreHub",
   "bundledWebRuntime": false,
   "npmClient": "npm",
   "webDir": "www",

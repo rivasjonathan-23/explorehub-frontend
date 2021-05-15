@@ -51,10 +51,13 @@ export class EditAccountInfoPage implements OnInit {
   userFullname = null;
   userFirstname = null;
   userLastname = null;
-  userAge = null;
   userEmail = null;
   userPhone = null;
   userAddress = null;
+  userAddress2 = null;
+  userCity = null;
+  userStateOrProvince = null;
+  userCountry = null;
   userGender = null;
   userBirthday = null;
 
@@ -65,10 +68,13 @@ export class EditAccountInfoPage implements OnInit {
     userFullname: null,
     userFirstname: null,
     userLastname: null,
-    userAge: null,
     userEmail: null,
     userPhone: null,
     userAddress: null,
+    userAddress2: null,
+    userCity: null,
+    userStateOrProvince: null,
+    userCountry: null,
     userGender: null,
     userBirthday: null,
   };
@@ -96,10 +102,13 @@ export class EditAccountInfoPage implements OnInit {
     phone: new FormControl("", Validators.required),
     firstName: new FormControl("", Validators.required),
     lastName: new FormControl("", Validators.required),
-    age: new FormControl("", [Validators.required, Validators.min(5), Validators.max(100)]),
     gender: new FormControl("", Validators.required),
     birthday: new FormControl("", Validators.required),
     address: new FormControl("", Validators.required),
+    address2: new FormControl("", Validators.required),
+    city: new FormControl("", Validators.required),
+    stateOrProvince: new FormControl("", Validators.required),
+    country: new FormControl("", Validators.required),
   });
 
   get email() {
@@ -114,9 +123,7 @@ export class EditAccountInfoPage implements OnInit {
   get lastName() {
     return this.updateUserForm.get("lastName");
   }
-  get age() {
-    return this.updateUserForm.get("age");
-  }
+
   get gender() {
     return this.updateUserForm.get("gender");
   }
@@ -125,6 +132,18 @@ export class EditAccountInfoPage implements OnInit {
   }
   get address() {
     return this.updateUserForm.get("address");
+  }
+  get address2() {
+    return this.updateUserForm.get("address2");
+  }
+  get city() {
+    return this.updateUserForm.get("city");
+  }
+  get stateOrProvince() {
+    return this.updateUserForm.get("stateOrProvince");
+  }
+  get country() {
+    return this.updateUserForm.get("country");
   }
 
   customYearValues = [2020, 2016, 2008, 2004, 2000, 1996];
@@ -199,13 +218,16 @@ export class EditAccountInfoPage implements OnInit {
       firstName: this.userFirstname.trim(),
       lastName: this.userLastname.trim(),
       address: this.userAddress.trim(),
+      address2: this.userAddress2.trim(),
+      city: this.userCity.trim(),
+      stateOrProvince: this.userStateOrProvince.trim(),
+      country: this.userCountry.trim(),
       fullName: this.userFullname.trim(),
       gender: this.userGender,
-      age: this.userAge,
       birthday: this.userBirthday,
     };
 
-    if(this.checkIfValuesChange() == true) {
+    if (this.checkIfValuesChange() == true) {
       this.presentAlert("Your changes saved successfully!");
       let updated = this.settingsService.updateUserInfo(
         formValuesNoUpdatePassword
@@ -214,7 +236,7 @@ export class EditAccountInfoPage implements OnInit {
         this.getUserInfo();
         return user;
       });
-    }else if(this.checkIfValuesChange() == false) {
+    } else if (this.checkIfValuesChange() == false) {
       this.presentAlert("You don't have changes of your personal information!");
     }
 
@@ -250,10 +272,13 @@ export class EditAccountInfoPage implements OnInit {
       this.user.userFirstname == this.userFirstname &&
       this.user.userLastname == this.userLastname &&
       this.user.userFullname == this.userFullname &&
-      this.user.userAge == this.userAge &&
       this.user.userEmail == this.userEmail &&
       this.user.userPhone == this.userPhone &&
       this.user.userAddress == this.userAddress &&
+      this.user.userAddress2 == this.userAddress2 &&
+      this.user.userCity == this.userCity &&
+      this.user.userStateOrProvince == this.userStateOrProvince &&
+      this.user.userCountry == this.userCountry &&
       this.user.userGender == this.userGender &&
       this.user.userBirthday == this.userBirthday
     ) {
@@ -270,10 +295,13 @@ export class EditAccountInfoPage implements OnInit {
       this.user.userFirstname = userInfo.firstName;
       this.user.userLastname = userInfo.lastName;
       this.user.userFullname = userInfo.fullName;
-      this.user.userAge = userInfo.age;
       this.user.userEmail = userInfo.email;
       this.user.userPhone = userInfo.contactNumber;
       this.user.userAddress = userInfo.address;
+      this.user.userAddress2 = userInfo.address2;
+      this.user.userCity = userInfo.city;
+      this.user.userStateOrProvince = userInfo.stateOrProvince;
+      this.user.userCountry = userInfo.country;
       this.user.userGender = userInfo.gender;
       this.user.userBirthday = this.datePipe.transform(
         userInfo.birthday,
@@ -287,10 +315,13 @@ export class EditAccountInfoPage implements OnInit {
       this.userFirstname = userInfo.firstName;
       this.userLastname = userInfo.lastName;
       this.userFullname = userInfo.fullName;
-      this.userAge = userInfo.age;
       this.userEmail = userInfo.email;
       this.userPhone = userInfo.contactNumber;
       this.userAddress = userInfo.address;
+      this.userAddress2 = userInfo.address2;
+      this.userCity = userInfo.city;
+      this.userStateOrProvince = userInfo.stateOrProvince;
+      this.userCountry = userInfo.country;
       this.userGender = userInfo.gender;
       this.userBirthday = this.datePipe.transform(
         userInfo.birthday,

@@ -3,36 +3,39 @@
     <div class="options">
       <p (click)="logOut()">Log out</p>
     </div>
-  
+
     <div class="formHolder">
       <div class="contents">
         <div class="titleCont">
           <p>Add Personal Information</p>
         </div>
         <form [formGroup]="form" (ngSubmit)="onSubmit()">
-          <div class="fieldHolder"
-            [class.hasErrors]="form.get('firstName').errors != null && form.get('firstName').touched">
-            <div class="inputLabel">First name</div>
-            <input class="inputField" formControlName="firstName" name="firstName">
-            <ul class="validationError"
-              *ngIf="(form.get('firstName').dirty || form.get('firstName').touched) && form.get('firstName').errors != null">
-              <li *ngFor="let error of form.get('firstName').errors.validations">
-                {{ error.message }}
-              </li>
-            </ul>
-          </div>
-          <div class="fieldHolder"
-            [class.hasErrors]="form.get('lastName').errors != null && form.get('lastName').touched">
-            <div class="inputLabel">Last name</div>
-            <input class="inputField" name="lastName" formControlName="lastName">
-            <ul class="validationError"
-              *ngIf=" (form.get('lastName').dirty || form.get('lastName').touched) && form.get('lastName').errors !=null">
-              <li *ngFor="let error of form.get('lastName').errors.validations">
-                {{ error.message }}
-              </li>
-            </ul>
-          </div>
+          <div class="twoInputField">
 
+            <div class="fieldHolder inColumn"
+              [class.hasErrors]="form.get('firstName').errors != null && form.get('firstName').touched">
+              <div class="inputLabel">First name</div>
+              <input class="inputField" formControlName="firstName" name="firstName">
+              <ul class="validationError"
+                *ngIf="(form.get('firstName').dirty || form.get('firstName').touched) && form.get('firstName').errors != null">
+                <li *ngFor="let error of form.get('firstName').errors.validations">
+                  {{ error.message }}
+                </li>
+              </ul>
+            </div>&nbsp;
+            <div class="fieldHolder inColumn"
+              [class.hasErrors]="form.get('lastName').errors != null && form.get('lastName').touched">
+              <div class="inputLabel">Last name</div>
+              <input class="inputField" name="lastName" formControlName="lastName">
+              <ul class="validationError"
+                *ngIf=" (form.get('lastName').dirty || form.get('lastName').touched) && form.get('lastName').errors !=null">
+                <li *ngFor="let error of form.get('lastName').errors.validations">
+                  {{ error.message }}
+                </li>
+              </ul>
+            </div>
+
+          </div>
           <div class="fieldHolder"
             [class.hasErrors]="form.get('birthday').errors != null && form.get('birthday').touched">
             <div class="inputLabel">Birthday</div>
@@ -58,16 +61,54 @@
             </ul>
           </div>
 
-          <div class="fieldHolder" [class.hasErrors]="form.get('age').errors != null && form.get('age').touched">
-            <div class="inputLabel">Age</div>
-            <input type="number" class="inputField" formControlName="age" name="age">
+          <div class="fieldHolder"
+            [class.hasErrors]="form.get('address2').errors != null && form.get('address2').touched">
+            <div class="inputLabel">Address 2</div>
+            <input class="inputField" formControlName="address2" name="address2">
             <ul class="validationError"
-              *ngIf="(form.get('age').dirty || form.get('age').touched) && form.get('age').errors != null">
-              <li *ngFor="let error of form.get('age').errors.validations">
+              *ngIf="(form.get('address2').dirty || form.get('address2').touched) && form.get('address2').errors != null">
+              <li *ngFor="let error of form.get('address2').errors.validations">
                 {{ error.message }}
               </li>
             </ul>
           </div>
+
+          <div class="fieldHolder"
+            [class.hasErrors]="form.get('city').errors != null && form.get('city').touched">
+            <div class="inputLabel">City</div>
+            <input class="inputField" formControlName="city" name="city">
+            <ul class="validationError"
+              *ngIf="(form.get('city').dirty || form.get('city').touched) && form.get('city').errors != null">
+              <li *ngFor="let error of form.get('city').errors.validations">
+                {{ error.message }}
+              </li>
+            </ul>
+          </div>
+
+          <div class="fieldHolder"
+            [class.hasErrors]="form.get('stateOrProvince').errors != null && form.get('stateOrProvince').touched">
+            <div class="inputLabel">State/Province</div>
+            <input class="inputField" formControlName="stateOrProvince" name="stateOrProvince">
+            <ul class="validationError"
+              *ngIf="(form.get('stateOrProvince').dirty || form.get('stateOrProvince').touched) && form.get('stateOrProvince').errors != null">
+              <li *ngFor="let error of form.get('stateOrProvince').errors.validations">
+                {{ error.message }}
+              </li>
+            </ul>
+          </div>
+
+          <div class="fieldHolder"
+            [class.hasErrors]="form.get('country').errors != null && form.get('country').touched">
+            <div class="inputLabel">Country</div>
+            <input class="inputField" formControlName="country" name="country">
+            <ul class="validationError"
+              *ngIf="(form.get('country').dirty || form.get('country').touched) && form.get('country').errors != null">
+              <li *ngFor="let error of form.get('country').errors.validations">
+                {{ error.message }}
+              </li>
+            </ul>
+          </div>
+
 
           <div class="fieldHolder" [class.hasErrors]="form.get('gender').errors != null && form.get('gender').touched">
 

@@ -106,12 +106,12 @@
               <p id="error" *ngIf="lastName.errors.required">Last name is required</p>
             </div>
   
-            <label class="inputLabel" for="lname">Age</label>
+            <!-- <label class="inputLabel" for="lname">Age</label>
             <input type="number" id="age" formControlName="age" name="age" [(ngModel)]="userAge">
             <div *ngIf="age.invalid && (age.touched || age.dirty)">
               <p id="error" *ngIf="age.errors.required">Age is required</p>
               <p id="error" *ngIf="age.errors.min || age.errors.max">Age must less than 100 and greater than 5</p>
-            </div>
+            </div> -->
 
             <label class="inputLabel" for="lname">Gender</label><br>
             <select name="gender" id="gender" (change)="changeGender($event)" formControlName="gender" [ngModel]="userGender">
@@ -132,6 +132,31 @@
             <label class="inputLabel" for="lname">Address</label><br>
             <input type="text" id="address" formControlName="address" name="address" [(ngModel)]="userAddress">
             <div *ngIf="address.invalid && (address.touched || address.dirty)">
+              <p id="error" *ngIf="address.errors.required">Middle name is required</p>
+            </div>
+
+            <label class="inputLabel" for="lname">Address 2</label><br>
+            <input type="text" id="address2" formControlName="address2" name="address2" [(ngModel)]="userAddress2">
+            <div *ngIf="address2.invalid && (address2.touched || address2.dirty)">
+              <p id="error" *ngIf="address2.errors.required">Address 2 is required</p>
+            </div>
+
+            <label class="inputLabel" for="lname">City</label><br>
+            <input type="text" id="city" formControlName="city" name="city" [(ngModel)]="userCity">
+
+            <div *ngIf="city && city.invalid && (city.touched || city.dirty)">
+              <p id="error" *ngIf="city.errors.required">Middle name is required</p>
+            </div>
+
+            <label class="inputLabel" for="lname">State/Province</label><br>
+            <input type="text" id="stateOrProvince" formControlName="stateOrProvince" name="stateOrProvince" [(ngModel)]="userStateOrProvince">
+            <div *ngIf="stateOrProvince.invalid && (stateOrProvince.touched || stateOrProvince.dirty)">
+              <p id="error" *ngIf="stateOrProvince.errors.required">Middle name is required</p>
+            </div>
+
+            <label class="inputLabel" for="lname">Country</label><br>
+            <input type="text" id="country" formControlName="country" name="country" [(ngModel)]="userCountry">
+            <div *ngIf="country.invalid && (country.touched || country.dirty)">
               <p id="error" *ngIf="address.errors.required">Middle name is required</p>
             </div>
           </div>  
