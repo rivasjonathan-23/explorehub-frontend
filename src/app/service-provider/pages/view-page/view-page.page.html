@@ -122,7 +122,7 @@
             Declined
           </div>
         </div> -->
-        <div class="innerCont" *ngIf="page.creator != mainService.user._id">
+        <div class="innerCont" *ngIf="page.creator._id != mainService.user._id">
           <div class="options ion-activatable ripple-parent messageCont" (click)="message()">
             <ion-icon class="message" name="chatbubble-ellipses"></ion-icon>&nbsp;
             Message

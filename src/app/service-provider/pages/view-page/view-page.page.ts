@@ -290,8 +290,8 @@ export class ViewPagePage implements OnInit {
       let name = this.getPageName()
       let message = this.popupData.type == "approve"? `The owner of <b>${this.getPageName(this.page.hostTouristSpot)}</b> approved your service named <b>${name}</b>` :`The owner of <b>${this.getPageName(this.page.hostTouristSpot)}</b> declined your service named <b>${name}</b>`
       let notificationData = {
-        receiver:  this.page.creator,
-        mainReceiver: this.page.creator,
+        receiver:  this.page.creator._id,
+        mainReceiver: this.page.creator._id,
         page: this.page._id,
         booking: null,
         sender: this.mainService.user._id,
@@ -302,7 +302,7 @@ export class ViewPagePage implements OnInit {
       this.mainService.changeInitialStatus({ pageId: this.page._id, status: status , notificationData: notificationData}).subscribe(
         (data: any) => {
           this.page.initialStatus = status
-          this.mainService.notify({user: this.mainService.user,pageId: this.page._id, initialStatus: status, receiver: [this.page.creator, "admin"], type: "page-submission", message: message})
+          this.mainService.notify({user: this.mainService.user,pageId: this.page._id, initialStatus: status, receiver: [this.page.creator._id, "admin"], type: "page-submission", message: message})
         }
       )
     } else {
@@ -323,7 +323,7 @@ export class ViewPagePage implements OnInit {
 
   message() {
     setTimeout(() => {
-      this.router.navigate(["/service-provider/page-chat"], { queryParams: { pageId: this.page._id, type: "host_page_creator_approval", receiver: this.page.creator, receiverName: this.getPageName() } })
+      this.router.navigate(["/service-provider/page-chat"], { queryParams: { pageId: this.page._id, type: "host_page_creator_approval", receiver: this.page.creator._id, receiverName: this.getPageName() } })
     }, 300);
   }
 
