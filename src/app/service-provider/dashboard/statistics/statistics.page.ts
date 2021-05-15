@@ -56,8 +56,8 @@ export class StatisticsPage implements OnInit {
 
   ngOnInit() {
     const url = this.router.url.split('/').reverse();
-    this.pageId = url[2]
-    this.pageType = url[3]
+    this.pageId = url[1]
+    this.pageType = url[2]
     this.getPageServices()
 
     this.mainService.notification.subscribe(

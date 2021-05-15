@@ -8,6 +8,7 @@ import { BoardPageRoutingModule } from './board-routing.module';
 
 import { BoardPage } from './board.page';
 import { BrowserModule } from '@angular/platform-browser';
+import { ComponentsModulePageModule } from 'src/app/components-module/components-module.module';
 
 @NgModule({
   imports: [
@@ -15,8 +16,9 @@ import { BrowserModule } from '@angular/platform-browser';
     CommonModule,
     FormsModule,
     IonicModule,
-    BoardPageRoutingModule
-  ],schemas: [CUSTOM_ELEMENTS_SCHEMA],
+    BoardPageRoutingModule,
+    ComponentsModulePageModule
+  ],
   declarations: [BoardPage]
 })
 export class BoardPageModule {}

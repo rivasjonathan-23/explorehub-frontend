@@ -25,8 +25,8 @@ export class BookingPage implements OnInit {
   ngOnInit() {
     this.route.paramMap.subscribe(params => {
       this.bookingStatus = params.get('status');
-      this.pageId = this.router.url.split('/').reverse()[3]
-      this.pageType = this.router.url.split('/').reverse()[4]
+      this.pageId = this.router.url.split('/').reverse()[2]
+      this.pageType = this.router.url.split('/').reverse()[3]
       this.getBooking()
       this.mainService.notification.subscribe(
         (data: any) => {

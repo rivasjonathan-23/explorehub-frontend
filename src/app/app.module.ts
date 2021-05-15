@@ -45,6 +45,7 @@ import { DatePipe } from "@angular/common";
 import { environment } from "src/environments/environment";
 import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
 import { ConfirmPopupComponent } from "./service-provider/components/confirm-popup/confirm-popup.component";
+import { BookingCardComponent } from "./service-provider/components/booking-card/booking-card.component";
 const config: SocketIoConfig = { url: environment.apiUrl, options: {} };
 
 @NgModule({
@@ -75,6 +76,7 @@ const config: SocketIoConfig = { url: environment.apiUrl, options: {} };
     DateInputDisplayComponent,
     ChoicesInputComponent,
     ChoicesInputDisplayComponent,
+    // BookingCardComponent,
     // StatisticsPage,
     // BookingPage,
 
@@ -107,6 +109,6 @@ const config: SocketIoConfig = { url: environment.apiUrl, options: {} };
     },
     DatePipe
   ],
-  bootstrap: [AppComponent],schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  bootstrap: [AppComponent],
 })
 export class AppModule { }                        

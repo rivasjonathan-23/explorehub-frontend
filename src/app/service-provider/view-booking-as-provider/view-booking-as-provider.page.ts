@@ -121,7 +121,7 @@ export class ViewBookingAsProviderPage implements OnInit, AfterViewInit {
       this.router.navigate(["/service-provider/notifications"])
     } else {
 
-      this.router.navigate(["./service-provider/dashboard/" + this.pageType + "/" + this.pageId + "/board/booking/" + this.bookingStatus])
+      this.router.navigate(["./service-provider/dashboard/" + this.pageType + "/" + this.pageId + "/booking/" + this.bookingStatus])
     }
   }
 

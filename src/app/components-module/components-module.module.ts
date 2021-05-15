@@ -31,9 +31,11 @@ import { PageCreatorComponent } from '../modules/page-creator/page-creator.compo
 import { PageElementListComponent } from '../modules/page-element-list/page-element-list.component';
 import { WeatherComponent } from '../modules/common-components/weather/weather.component';
 import { PageInputFieldListComponent } from '../modules/page-input-field-list/page-input-field-list.component';
+import { BrowserModule } from '@angular/platform-browser';
 
 @NgModule({
   imports: [
+    // BrowserModule,
     CommonModule,
     FormsModule,
     IonicModule,
@@ -62,7 +64,7 @@ import { PageInputFieldListComponent } from '../modules/page-input-field-list/pa
     PageInputFieldListComponent,
     WeatherComponent,
     PageElementListComponent,
-   CodeHandlerComponent,
+    CodeHandlerComponent,
     SelectedServiceCardComponent],
   exports: [
     BookingInfoDisplayComponent,
@@ -88,10 +90,7 @@ import { PageInputFieldListComponent } from '../modules/page-input-field-list/pa
     OptionPopupComponent,
     PageListCardComponent
 
-  ],
-  schemas: [
-    CUSTOM_ELEMENTS_SCHEMA
-  ],
+  ]
 
 })
 export class ComponentsModulePageModule { }

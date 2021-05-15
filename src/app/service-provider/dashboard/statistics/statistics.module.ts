@@ -20,6 +20,6 @@ import { ComponentsModulePageModule } from 'src/app/components-module/components
     StatisticsPageRoutingModule,
     ComponentsModulePageModule
   ],
-  declarations: [StatisticsPage],schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  declarations: [],
 })
 export class StatisticsPageModule {}

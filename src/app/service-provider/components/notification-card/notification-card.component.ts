@@ -58,7 +58,7 @@ export class NotificationCardComponent implements OnInit {
               this.router.navigate(['/service-provider/page-chat'], { queryParams: {pageId: page._id, conversationId: this.notif["conversation"] } })
             } else {
               if (page.creator == this.mainService.user._id) {
-                this.router.navigate([`/service-provider/dashboard/${page.pageType}/${page._id}/board/booking/Booked`], {queryParams: {fromNotification: true}})
+                this.router.navigate([`/service-provider/dashboard/${page.pageType}/${page._id}/booking/Booked`], {queryParams: {fromNotification: true}})
               } else {
                 this.router.navigate(["/service-provider/view-page",page._id, page.pageType], {queryParams: {fromHostedList: true, parentPageCreator: this.mainService.user._id}})
               }

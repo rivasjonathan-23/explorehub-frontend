@@ -8,6 +8,9 @@ import { DashboardPageRoutingModule } from './dashboard-routing.module';
 
 import { DashboardPage } from './dashboard.page';
 import { BrowserModule } from '@angular/platform-browser';
+import { ComponentsModulePageModule } from 'src/app/components-module/components-module.module';
+import { BookingPage } from './booking/booking.page';
+import { StatisticsPage } from './statistics/statistics.page';
 
 @NgModule({
   imports: [
@@ -15,8 +18,9 @@ import { BrowserModule } from '@angular/platform-browser';
     CommonModule,
     FormsModule,
     IonicModule,
-    DashboardPageRoutingModule
-  ],schemas: [CUSTOM_ELEMENTS_SCHEMA],
-  declarations: [DashboardPage]
+    DashboardPageRoutingModule,
+    ComponentsModulePageModule
+  ],
+  declarations: [DashboardPage, BookingPage, StatisticsPage]
 })
 export class DashboardPageModule {}

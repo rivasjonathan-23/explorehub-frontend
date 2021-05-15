@@ -38,7 +38,7 @@ export class BoardPage implements AfterViewInit {
     this.clickedTab = tab
     if (url) {
       const currentPage = this.mainService.currentPage
-      const route = ["/service-provider/dashboard/" + currentPage.pageType + "/" + currentPage._id + "/board/" + url[0]]
+      const route = ["/service-provider/dashboard/" + currentPage.pageType + "/" + currentPage._id + "/" + url[0]]
       if (url.length > 1) route.push(url[1])
       this.router.navigate(route)
     }

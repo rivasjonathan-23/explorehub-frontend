@@ -8,15 +8,17 @@ import { BookingPageRoutingModule } from './booking-routing.module';
 
 import { BookingPage } from './booking.page';
 import { ComponentsModulePageModule } from 'src/app/components-module/components-module.module';
+import { BookingCardComponent } from '../../components/booking-card/booking-card.component';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
-    IonicModule,
+    IonicModule, 
     BookingPageRoutingModule,
     ComponentsModulePageModule
-  ],schemas: [CUSTOM_ELEMENTS_SCHEMA],
-  declarations: [BookingPage]
+  ],
+  declarations: []
 })
+
 export class BookingPageModule {}

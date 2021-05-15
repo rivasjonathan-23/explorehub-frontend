@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
 import { ComponentsModulePageModule } from 'src/app/components-module/components-module.module';
@@ -11,10 +11,12 @@ import { MainServicesService } from '../provider-services/main-services.service'
   templateUrl: './dashboard.page.html',
   styleUrls: ['./dashboard.page.scss'],
 })
-export class DashboardPage implements OnInit {
-  public page: Page;
+export class DashboardPage implements OnInit, AfterViewInit {
+  @ViewChild('tab', { read: ViewContainerRef }) tab: ViewContainerRef;
   public clickedTab: string = 'Booked'
   public boxPosition: number;
+  public height: any = window.innerHeight - 124;
+  public page: Page;
   public pageType: string;
   public name: string;
   public notificationsCount: number;
@@ -27,6 +29,10 @@ export class DashboardPage implements OnInit {
     private route: ActivatedRoute,
   ) {
     this.page = { _id: '', pageType: "", initialStatus: "", otherServices: [], components: [], services: [], bookingInfo: [], status: '', creator: "", hostTouristSpot: '', createdAt: "" }
+  }
+
+  ngAfterViewInit() {
+    this.init()
   }
 
   ngOnInit() {
@@ -72,6 +78,50 @@ export class DashboardPage implements OnInit {
         }
       )
     })
+  }
+
+
+  init() {
+    setTimeout(() => {
+      const url = this.router.url.split('/').reverse();
+      const path = url[0];
+      let currentTab = path[0].toUpperCase() + path.substring(1);
+      currentTab = currentTab.includes("?") ? currentTab.split("?")[0] : currentTab;
+      if (this.tab) {
+        this.goToSection(currentTab, this.tab.element.nativeElement);
+      }
+    }, 500);
+  }
+
+  goToSection(tab: string, div: HTMLElement, url = null) {
+    const width = 110
+    this.clickedTab = tab
+    if (url) {
+      const currentPage = this.mainService.currentPage
+      const route = ["/service-provider/dashboard/" + currentPage.pageType + "/" + currentPage._id + "/" + url[0]]
+      if (url.length > 1) route.push(url[1])
+      this.router.navigate(route)
+    }
+    switch (tab) {
+      case 'Closed':
+        this.boxPosition = -width;
+        break;
+      case 'Booked':
+        this.boxPosition = 0;
+        break;
+      case 'Processing':
+        this.boxPosition = width;
+        break;
+      case 'Pending':
+        this.boxPosition = width * 2;
+        break;
+      case 'Cancelled':
+        this.boxPosition = width * 3;
+        break;
+      default:
+        this.boxPosition = width * 4
+        break;
+    }
   }
 
   getNotifications() {
@@ -121,7 +171,7 @@ export class DashboardPage implements OnInit {
 
   viewStats() {
     setTimeout(() => {
-      this.router.navigate(["/service-provider/dashboard/" + this.page.pageType + "/" + this.page._id + "/board/statistics"])
+      this.router.navigate(["/service-provider/dashboard/" + this.page.pageType + "/" + this.page._id + "/statistics"])
     }, 200);
   }
 
