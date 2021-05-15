@@ -187,10 +187,11 @@
   overflow: visible;
   text-align: center;
   height:0;
+  margin-bottom: 45px;
   margin:35px 0;
   border-bottom: 1px solid lightsteelblue;
   p {
-    position: relative;
+    position: relative; 
     top:-10px;
     background-color: rgb(244, 246, 248) !important;
     display: inline;
@@ -232,9 +233,9 @@
     align-items: center;
     padding:0 9px;
 
-    .fieldsIcon {
+    ion-icon {
       font-size: 25px;
-      color:rgb(43, 63, 92);
+      color:rgb(154, 177, 214);
     }
   }
 }
@@ -343,7 +344,7 @@ button:focus {
   text-align: center;
   position: relative;
   overflow:hidden;
-  box-shadow: 0 1px 5px rgb(30, 115, 169);
+  // box-shadow: 0 1px 2px rgba(8, 83, 130, .5);
 
   .ring {
     width: 90px;

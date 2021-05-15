@@ -67,7 +67,7 @@
             <ul class="validationError"
               *ngIf="(form.get('contactNumber').dirty || form.get('contactNumber').touched) && form.get('contactNumber').errors != null">
               <li *ngFor="let error of form.get('contactNumber').errors.validations">
-                {{ error.message }}
+                {{ error.type == 'required' ? error.message : 'Invalid number' }}
               </li>
             </ul>
           </div>
