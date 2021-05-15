@@ -22,8 +22,9 @@
 }
 
 .sbText {
-    font-size: 14px;
+    font-size: 15px;
     margin-bottom: 0 !important;
+    color: rgb(72, 98, 122) !important;
 }
 
 .header-content {
@@ -95,8 +96,11 @@
 }
 
 .active {
-    color: rgb(0, 153, 255) !important;
-
+    
+    .sbText {
+        
+        color: rgb(0, 153, 255) !important;
+    }
     ion-icon {
         color: rgb(0, 140, 255) !important;
     }
@@ -111,7 +115,10 @@
 
 .logout {
     // border-top: 1px solid rgb(177, 177, 177) !important;
-    color: rgb(160, 159, 159) !important;
+    .sbText {
+
+        color: rgb(160, 159, 159) !important;
+    }
 
     ion-icon {
         color: rgb(160, 159, 159) !important;
@@ -119,7 +126,7 @@
 }
 
 .divider {
-    border-top: 1px solid rgb(177, 177, 177) !important;
+    border-top: 1px solid rgb(189, 207, 216) !important;
 }
 .profilePic {
     width: 43px;

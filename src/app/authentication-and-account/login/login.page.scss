@@ -130,6 +130,17 @@
   top:-200px;
   left: -500px;
 }
+
+.design3 {
+  width:500px;
+  height: 500px;
+  position: absolute;
+  background-color: rgba(104, 172, 255, 0.2);
+  transform: rotate(45deg);
+  border-radius: 15px;
+  top:250px;
+  left: -200px;
+}
 .appTitle {
   color: white;
   z-index: 9999999;
@@ -148,14 +159,24 @@
   justify-content: center;
   align-items: center;
   width: 100%;
-
+  flex:1;
 
 }
 
 .formHolder {
-  max-width: 300px;
   width: 100%;
+  // flex:1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin:20px 0;
 
+  .contents {
+     width: 100%;
+
+    max-width: 280px;
+    flex-shrink: 0;
+  }
 }
 
 .inputField {
@@ -273,6 +294,7 @@ button:focus {
 .nlogo {
   width:90px;
   height: 90px;
+  flex-shrink: 0;
   border-radius: 50%;
   // background-color: rgb(199, 245, 255);
   background-color: white;

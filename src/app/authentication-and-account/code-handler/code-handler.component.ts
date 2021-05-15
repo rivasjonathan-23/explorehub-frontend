@@ -7,7 +7,7 @@ import { AuthService } from "../../services/auth-services/auth-service.service";
 @Component({
   selector: "app-code-handler",
   templateUrl: "./code-handler.component.html",
-  styleUrls: ["./code-handler.component.scss"],
+  styleUrls: ["./code-handler.component.scss", "../login/login.page.scss"],
 })
 export class CodeHandlerComponent implements OnInit {
   @Output() expiredAllCode: EventEmitter<any> = new EventEmitter();

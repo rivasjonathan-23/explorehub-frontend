@@ -3,6 +3,7 @@
     <div class="header">
       <div class="design"></div>
       <div class="design2"></div>
+      <div class="design3"></div>
 
       <div class="nlogo">
         <div class="boxes">
@@ -15,59 +16,63 @@
         <div class="horizontal"></div>
         <div class="arrowPoint1"></div>
       </div>
-     
+
       <h3 class="appTitle">ExploreHub</h3>
     </div>
     <div class="formHolder">
-      <form [formGroup]="form" (ngSubmit)="onSubmit()">
-        <div class="fieldHolder">
-          <p class="inputLabel">Phone number | email</p>
-          <input class="inputField" (keyup)="checkCred()" name="credential" formControlName="credential"
-            autcomplete="on">
-          <ul class="validationError"
-            *ngIf="(form.get('credential').dirty || form.get('credential').touched) && form.get('credential').errors != null">
-            <li *ngFor="let error of form.get('credential').errors.validations">
-              {{ error.message }}
-            </li>
-          </ul>
-        </div>
+      <div class="contents">
 
-        <div class="fieldHolder">
-          <p class="inputLabel">Password</p>
-          <div class="hasIcons">
-            <div class="iconHolder">
-              <ion-icon class="fieldsIcon" (click)="showPassword = false" *ngIf="showPassword" name="eye-off-outline">
-              </ion-icon>
-              <ion-icon class="fieldsIcon" (click)="showPassword = true" *ngIf="!showPassword" name="eye-outline">
-              </ion-icon>
-            </div>
-            <input class="inputField" name="password" autocomplete="off" formControlName="password"
-              [type]=" !showPassword ? 'password': 'text'">
+        <form [formGroup]="form" (ngSubmit)="onSubmit()">
+          <div class="fieldHolder">
+            <p class="inputLabel">Phone number | email</p>
+            <input class="inputField" (keyup)="checkCred()" name="credential" formControlName="credential"
+              autcomplete="on">
+            <ul class="validationError"
+              *ngIf="(form.get('credential').dirty || form.get('credential').touched) && form.get('credential').errors != null">
+              <li *ngFor="let error of form.get('credential').errors.validations">
+                {{ error.message }}
+              </li>
+            </ul>
           </div>
-          <ul class="validationError"
-            *ngIf="(form.get('password').dirty || form.get('password').touched) && form.get('password').errors != null">
-            <li *ngFor="let error of form.get('password').errors.validations">
-              {{ error.message }}
-            </li>
-          </ul>
-        </div>
-        <div class="submitBtnHolder">
-          <button type="submit" class="submitBtn ion-activatable ripple-parent"
-            [disabled]="!form.get('credential').value || !form.get('password').value || !form.valid" type="submit">Login
+
+          <div class="fieldHolder">
+            <p class="inputLabel">Password</p>
+            <div class="hasIcons">
+              <div class="iconHolder">
+                <ion-icon class="fieldsIcon" (click)="showPassword = false" *ngIf="showPassword" name="eye-off-outline">
+                </ion-icon>
+                <ion-icon class="fieldsIcon" (click)="showPassword = true" *ngIf="!showPassword" name="eye-outline">
+                </ion-icon>
+              </div>
+              <input class="inputField" name="password" autocomplete="off" formControlName="password"
+                [type]=" !showPassword ? 'password': 'text'">
+            </div>
+            <ul class="validationError"
+              *ngIf="(form.get('password').dirty || form.get('password').touched) && form.get('password').errors != null">
+              <li *ngFor="let error of form.get('password').errors.validations">
+                {{ error.message }}
+              </li>
+            </ul>
+          </div>
+          <div class="submitBtnHolder">
+            <button type="submit" class="submitBtn ion-activatable ripple-parent"
+              [disabled]="!form.get('credential').value || !form.get('password').value || !form.valid"
+              type="submit">Login
+              <ion-ripple-effect></ion-ripple-effect>
+            </button>
+          </div>
+        </form>
+
+
+        <div>
+          <button class="registerBtn ion-activatable ripple-parent" (click)="goTo('register')">
+            Register
             <ion-ripple-effect></ion-ripple-effect>
           </button>
         </div>
-      </form>
-
-
-      <div>
-        <button class="registerBtn ion-activatable ripple-parent" (click)="goTo('register')">
-          Register
-          <ion-ripple-effect></ion-ripple-effect>
-        </button>
-      </div>
-      <div>
-        <p class="textBtn" routerLink="/find-account">forgot password</p>
+        <div>
+          <p class="textBtn" routerLink="/find-account">Forgot password</p>
+        </div>
       </div>
     </div>
   </div>
