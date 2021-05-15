@@ -40,7 +40,7 @@ export class DashboardPage implements OnInit {
       const pageId = params.get('pageId');
       this.pageType = params.get('pageType');
       if (pageId && this.pageType) {
-        this.mainService.getPage(pageId).subscribe(
+        this.mainService.getPage(pageId, { headers: { hideLoadingIndicator: "true" } }).subscribe(
           (response: Page) => {
             this.page = response;
             this.mainService.currentPage = this.page;

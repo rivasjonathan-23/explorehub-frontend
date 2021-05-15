@@ -3,7 +3,7 @@
   <ion-content (click)="clickContent($event)">
     <div class="menu-header-bg"></div>
     <div class="header-content">
-      <div class="logo" [ngStyle]="{'background-image': 'url('+appLogo + ')'}" ></div>
+      <div class="logo" [ngStyle]="{'background-image': 'url('+appLogo + ')'}"></div>
       <ion-label>
         <h2>ExploreHub</h2>
         <p class="serve">Explore the Wonders of Nature</p>
@@ -22,7 +22,11 @@
                 <ion-icon name="person-outline"></ion-icon>
               </div>
             </div>
-            <ion-label>{{mainService.user.fullName}}</ion-label>
+            <ion-label>
+              <p class="sbText">
+                {{mainService.user.fullName}}
+              </p>
+            </ion-label>
           </div>
           <p class="accType">{{accountType}}</p>
           <ion-ripple-effect></ion-ripple-effect>
@@ -32,7 +36,11 @@
           class="divider ion-activatable ripple-parent">
           <div>
             <ion-icon name="compass-outline"></ion-icon>
-            <ion-label>Tourist Spots</ion-label>
+            <ion-label>
+              <p class="sbText">
+                Tourist Spots
+              </p>
+            </ion-label>
           </div>
           <ion-ripple-effect></ion-ripple-effect>
         </ion-item>
@@ -41,7 +49,11 @@
           class="ion-activatable ripple-parent">
           <div>
             <ion-icon name="newspaper-outline"></ion-icon>
-            <ion-label>Bookings</ion-label>
+            <ion-label>
+              <p class="sbText">
+                Bookings
+              </p>
+            </ion-label>
           </div>
           <ion-ripple-effect></ion-ripple-effect>
         </ion-item>
@@ -50,7 +62,11 @@
           class="ion-activatable ripple-parent">
           <div>
             <ion-icon name="notifications-outline"></ion-icon>
-            <ion-label>Notifications</ion-label>
+            <ion-label>
+              <p class="sbText">
+                Notifications
+              </p>
+            </ion-label>
           </div>
           <ion-ripple-effect></ion-ripple-effect>
         </ion-item>
@@ -60,7 +76,11 @@
           class="ion-activatable ripple-parent">
           <div>
             <ion-icon name="file-tray-full-outline"></ion-icon>
-            <ion-label>Draft Bookings</ion-label>
+            <ion-label>
+              <p class="sbText">
+                Draft Bookings
+              </p>
+            </ion-label>
           </div>
           <ion-ripple-effect></ion-ripple-effect>
         </ion-item>
@@ -70,7 +90,11 @@
           (click)="gotTo($event, 'list-of-pages', ['submitted'])" class="divider ion-activatable ripple-parent">
           <div>
             <ion-icon name="bar-chart-outline"></ion-icon>
-            <ion-label>My Pages</ion-label>
+            <ion-label>
+              <p class="sbText">
+                My Pages
+              </p>
+            </ion-label>
           </div>
           <ion-ripple-effect></ion-ripple-effect>
         </ion-item>
@@ -79,7 +103,11 @@
           (click)="gotTo($event, 'select-page-type')" class="ion-activatable ripple-parent">
           <div>
             <ion-icon name="create-outline"></ion-icon>
-            <ion-label>Create New Page</ion-label>
+            <ion-label>
+              <p class="sbText">
+                Create New Page
+              </p>
+            </ion-label>
           </div>
           <ion-ripple-effect></ion-ripple-effect>
         </ion-item>
@@ -88,7 +116,11 @@
           (click)="gotTo($event, 'list-of-pages', ['unfinished'])" class="ion-activatable ripple-parent">
           <div>
             <ion-icon name="file-tray-full-outline"></ion-icon>
-            <ion-label>Draft Pages</ion-label>
+            <ion-label>
+              <p class="sbText">
+                Draft Pages
+              </p>
+            </ion-label>
           </div>
           <ion-ripple-effect></ion-ripple-effect>
         </ion-item>
@@ -100,7 +132,11 @@
         <ion-item (click)="logout()" class="divider logout ion-activatable ripple-parent">
           <div>
             <ion-icon name="log-out-outline"></ion-icon>
-            <ion-label>Logout</ion-label>
+            <ion-label>
+              <p class="sbText">
+                Logout
+              </p>
+            </ion-label>
           </div>
           <ion-ripple-effect></ion-ripple-effect>
         </ion-item>
