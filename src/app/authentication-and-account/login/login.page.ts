@@ -62,11 +62,13 @@ export class LoginPage implements OnInit {
       this.form.value.password
     ) {
       this.loading = true;
-      if (this.form.value.credential.includes("@")) {
-        this.form.credentialUsed = "email"
-      } else {
-        this.form.credentialUsed = "contactNumber"
-      }
+      const credential = this.form.value.credential.split("")
+      credential.forEach(char => {
+        if (char.toLowerCase() != char.toUpperCase()) {
+          this.form.credentialUsed = "email"
+        }
+      });
+
       if (this.form.value.credentialUsed == "contactNumber") {
         this.form.value.credential = this.completeNum(
           this.form.value.credential

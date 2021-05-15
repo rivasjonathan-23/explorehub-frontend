@@ -31,6 +31,12 @@ export class FindAccountPage implements OnInit {
   }
 
   onSubmit() {
+    const credential = this.form.value.credential.split("")
+    credential.forEach(char => {
+      if (char.toLowerCase() != char.toUpperCase()) {
+        this.form.credentialUsed = "email"
+      }
+    });
     if (this.form.value.credentialUsed == "contactNumber") {
       this.form.value.credential = this.completeNum(this.form.value.credential);
     }
@@ -41,7 +47,7 @@ export class FindAccountPage implements OnInit {
         this.router.navigate(["/account-found"]);
       },
       (error) => {
-        if (error.status == 404) {
+        if (error.status == 400) {
           this.form.controls["credential"].setErrors({
             validations: [{ type: "notFound", message: "Cannot find account" }],
           });
