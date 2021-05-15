@@ -34,7 +34,7 @@ export class FindAccountPage implements OnInit {
     const credential = this.form.value.credential.split("")
     credential.forEach(char => {
       if (char.toLowerCase() != char.toUpperCase()) {
-        this.form.credentialUsed = "email"
+        this.form.controls["credentialUsed"].value= "email"
       }
     });
     if (this.form.value.credentialUsed == "contactNumber") {
@@ -66,14 +66,14 @@ export class FindAccountPage implements OnInit {
   }
 
   checkCred() {
-    const value = this.form.controls["credential"].value;
-    const pattern = new RegExp("^[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$");
-    const numPattern = new RegExp("^[0-9]*$");
-    if (pattern.test(value)) {
-      this.form.controls["credentialUsed"].value = "email";
-    } else if (numPattern.test(value)) {
-      this.form.controls["credentialUsed"].value = "contactNumber";
-    }
+    // const value = this.form.controls["credential"].value;
+    // const pattern = new RegExp("^[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$");
+    // const numPattern = new RegExp("^[0-9]*$");
+    // if (pattern.test(value)) {
+    //   this.form.controls["credentialUsed"].value = "email";
+    // } else if (numPattern.test(value)) {
+    //   this.form.controls["credentialUsed"].value = "contactNumber";
+    // }
   }
 
   async presentAlert(message) {
