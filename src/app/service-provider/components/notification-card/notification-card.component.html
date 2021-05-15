@@ -1,4 +1,4 @@
-<div class="notifCard" [class.unread]="!notif.opened" (click)="viewNotification()">
+<div class="notifCard ion-activatable ripple-parent" [class.unread]="!notif.opened" (click)="viewNotification()">
 
   <div class="notifPicHolder" [class.unreadsPic]="!notif.opened">
     <div class="notifPic">
@@ -14,4 +14,5 @@
   <div class="options">
     <ion-icon name="ellipsis-vertical-outline"></ion-icon>
   </div>
+  <ion-ripple-effect></ion-ripple-effect>
 </div>
