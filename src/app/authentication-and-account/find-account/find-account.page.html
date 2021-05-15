@@ -15,7 +15,7 @@
     <div class="formCard boxShadowed2">
       <div class="header"></div>
       <form [formGroup]="form" (ngSubmit)="onSubmit()">
-        <div class="fieldHolder">
+        <div class="fieldHolder" [class.hasErrors]="form.get('credential').errors != null && form.get('credential').touched">
           
           <div class="inputLabel">Email | Phone number</div>
           <input class="inputField" name="credential" (keyup)="checkCred()" formControlName="credential">

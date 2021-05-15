@@ -31,7 +31,7 @@ export class FindAccountPage implements OnInit {
   }
 
   onSubmit() {
-    const credential = this.form.value.credential.split("")
+    const credential = (this.form.value.credential + "").split("")
     credential.forEach(char => {
       if (char.toLowerCase() != char.toUpperCase()) {
         this.form.controls["credentialUsed"].value= "email"

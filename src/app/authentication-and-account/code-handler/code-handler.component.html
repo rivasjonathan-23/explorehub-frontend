@@ -4,7 +4,7 @@
       <h3>{{atVerification? "Enter verification code here": "Enter code here to reset password"}}</h3>
     </div>
     <form [formGroup]="form" (ngSubmit)="onSubmit()">
-      <div class="fieldHolder noMarginBottom">
+      <div class="fieldHolder noMarginBottom"  [class.hasErrors]="form.get('code').errors != null && form.get('code').touched">
         <div class="inputLabel">Code</div>
         <input class="inputField" name="code"  autocomplete="off" formControlName="code">
         <ul class="validationError"

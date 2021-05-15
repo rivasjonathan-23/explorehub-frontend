@@ -62,7 +62,7 @@ export class LoginPage implements OnInit {
       this.form.value.password
     ) {
       this.loading = true;
-      const credential = this.form.value.credential.split("")
+      const credential = (this.form.value.credential + "").split("")
       credential.forEach(char => {
         if (char.toLowerCase() != char.toUpperCase()) {
           this.form.controls["credentialUsed"].value = "email"
@@ -75,6 +75,8 @@ export class LoginPage implements OnInit {
         );
       }
       const login = this.authservice.login(this.form.value);
+      this.form.controls["password"].setErrors(null);
+      this.form.controls["credential"].setErrors(null);
       login.subscribe(
         (resp) => {
           this.loading = false;
@@ -90,10 +92,10 @@ export class LoginPage implements OnInit {
           this.loading = false;
           if (err.status === 400) {
             if (err.error.type === "account_not_found") {
-              this.presentAlert(
-                "Can't find an account associated with " +
-                  this.form.value.credential
-              );
+              // this.presentAlert(
+              //   "Can't find an account associated with " +
+              //     this.form.value.credential
+              // );
 
               this.form.controls["credential"].setErrors({
                 validations: [
@@ -101,7 +103,7 @@ export class LoginPage implements OnInit {
                 ],
               });
             } else {
-              this.presentAlert("Incorrect password!");
+              // this.presentAlert("Incorrect password!");
               this.form.controls["password"].setErrors({
                 validations: [
                   { type: "incorrect", message: "This password is incorrect" },

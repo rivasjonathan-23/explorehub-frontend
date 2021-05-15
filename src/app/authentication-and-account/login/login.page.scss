@@ -214,6 +214,15 @@
   font-size: 14px;
   color:rgb(96, 119, 141);
 }
+.hasErrors {
+  .inputLabel {
+    color: red;
+  }
+  input {
+    // color:red !important;
+    border-color: red !important;
+  }
+}
 
 .validationError {
   color: red;
@@ -222,7 +231,7 @@
   background-color: rgb(251, 231, 231);
   z-index: 999;
   border-radius: 5px;
-  padding:8px;
+  padding:5px 8px;
   margin:3px 0;
   right:0;
   border:1px solid rgb(255, 140, 140);

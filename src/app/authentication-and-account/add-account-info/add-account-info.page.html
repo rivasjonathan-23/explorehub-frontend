@@ -1,15 +1,16 @@
-
 <ion-content class="page" no-padding>
   <div class="pageBody mainLightBg2">
-      <div class="options">
-        <p (click)="logOut()">Log out</p>
-      </div>
-      <div class="titleCont">
-        <p>Add Personal Information</p>
-      </div>
-      <div class="formHolder">
+    <div class="options">
+      <p (click)="logOut()">Log out</p>
+    </div>
+    <div class="titleCont">
+      <p>Add Personal Information</p>
+    </div>
+    <div class="formHolder">
+      <div class="contents">
         <form [formGroup]="form" (ngSubmit)="onSubmit()">
-          <div class="fieldHolder">
+          <div class="fieldHolder"
+            [class.hasErrors]="form.get('firstName').errors != null && form.get('firstName').touched">
             <div class="inputLabel">First name</div>
             <input class="inputField" formControlName="firstName" name="firstName">
             <ul class="validationError"
@@ -19,7 +20,8 @@
               </li>
             </ul>
           </div>
-          <div class="fieldHolder">
+          <div class="fieldHolder"
+            [class.hasErrors]="form.get('lastName').errors != null && form.get('lastName').touched">
             <div class="inputLabel">Last name</div>
             <input class="inputField" name="lastName" formControlName="lastName">
             <ul class="validationError"
@@ -30,9 +32,11 @@
             </ul>
           </div>
 
-          <div class="fieldHolder">
+          <div class="fieldHolder"
+            [class.hasErrors]="form.get('birthday').errors != null && form.get('birthday').touched">
             <div class="inputLabel">Birthday</div>
-            <ion-datetime id="birthday" class="inputField inputF" displayFormat="MM/DD/YYYY" min="1950-01-01" formControlName="birthday" name="birthday"></ion-datetime>
+            <ion-datetime id="birthday" class="inputField inputF" displayFormat="MM/DD/YYYY" min="1950-01-01"
+              formControlName="birthday" name="birthday"></ion-datetime>
             <ul class="validationError"
               *ngIf=" (form.get('birthday').dirty || form.get('birthday').touched) && form.get('birthday').errors !=null">
               <li *ngFor="let error of form.get('birthday').errors.validations">
@@ -41,7 +45,8 @@
             </ul>
           </div>
 
-          <div class="fieldHolder">
+          <div class="fieldHolder"
+            [class.hasErrors]="form.get('address').errors != null && form.get('address').touched">
             <div class="inputLabel">Address</div>
             <input class="inputField" formControlName="address" name="address">
             <ul class="validationError"
@@ -52,7 +57,7 @@
             </ul>
           </div>
 
-          <div class="fieldHolder">
+          <div class="fieldHolder" [class.hasErrors]="form.get('age').errors != null && form.get('age').touched">
             <div class="inputLabel">Age</div>
             <input type="number" class="inputField" formControlName="age" name="age">
             <ul class="validationError"
@@ -63,7 +68,7 @@
             </ul>
           </div>
 
-          <div class="fieldHolder">
+          <div class="fieldHolder" [class.hasErrors]="form.get('gender').errors != null && form.get('gender').touched">
 
             <ion-list class="genderSection">
               <ion-radio-group class="genderSection" formControlName="gender">
@@ -88,7 +93,7 @@
               </li>
             </ul>
           </div>
-          
+
           <div class="submitBtnHolder btnToRight">
             <button class="appBtn ion-activatable ripple-parent" type="submit">Submit
               <ion-ripple-effect></ion-ripple-effect>
@@ -97,4 +102,5 @@
         </form>
       </div>
     </div>
+  </div>
 </ion-content>

@@ -33,7 +33,7 @@
       </div>
     </div>
     <div (click)="change()" class="selectedType ion-activatable ripple-parent boxShadowed2">
-      <p class="creatingAccAs">Creating account as:</p>
+      <p class="creatingAccAs">Creating an account as:</p>
       <p class="selectedTypeText">
         {{form.get('accountType').value}}
       </p>
@@ -46,7 +46,7 @@
       <div class="contents">
 
         <form [formGroup]="form" (ngSubmit)="onSubmit()">
-          <div class="fieldHolder">
+          <div class="fieldHolder" [class.hasErrors]="form.get('email').errors != null && form.get('email').touched">
             <div class="inputLabel">Email</div>
             <input class="inputField" name="email" formControlName="email">
             <ul class="validationError"
@@ -58,7 +58,7 @@
             </ul>
           </div>
 
-          <div class="fieldHolder">
+          <div class="fieldHolder"  [class.hasErrors]="form.get('contactNumber').errors != null && form.get('contactNumber').touched">
             <div class="inputLabel">Contact number
               <span>&nbsp;+63</span>
             </div>
@@ -71,7 +71,7 @@
               </li>
             </ul>
           </div>
-          <div class="fieldHolder">
+          <div class="fieldHolder"  [class.hasErrors]="form.get('password').errors != null && form.get('password').touched">
             <div class="inputLabel">Password</div>
             <input class="inputField" name="password" type="password" autocomplete="off" formControlName="password">
             <ul class="validationError"
@@ -81,7 +81,7 @@
               </li>
             </ul>
           </div>
-          <div class="fieldHolder">
+          <div class="fieldHolder"  [class.hasErrors]="form.get('confirmPassword').errors != null && form.get('confirmPassword').touched">
             <div class="inputLabel">Confirm password</div>
             <input class="inputField" type="password" name="confirmPassword" (change)="checkPasswordConfirmation()"
               formControlName="confirmPassword">

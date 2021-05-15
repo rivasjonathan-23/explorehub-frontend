@@ -23,7 +23,7 @@
       <div class="contents">
 
         <form [formGroup]="form" (ngSubmit)="onSubmit()">
-          <div class="fieldHolder">
+          <div class="fieldHolder" [class.hasErrors]="form.get('credential').errors != null && form.get('credential').touched">
             <p class="inputLabel">Phone number | email</p>
             <input class="inputField" (keyup)="checkCred()" name="credential" formControlName="credential"
               autcomplete="on">
@@ -35,7 +35,7 @@
             </ul>
           </div>
 
-          <div class="fieldHolder">
+          <div class="fieldHolder" [class.hasErrors]="form.get('password').errors != null && form.get('password').touched">
             <p class="inputLabel">Password</p>
             <div class="hasIcons">
               <div class="iconHolder">
