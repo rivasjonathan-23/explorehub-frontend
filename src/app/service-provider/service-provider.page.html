@@ -13,7 +13,7 @@
       <ion-menu-toggle auto-hide="false">
         <ion-item style="position:relative;" [class.active]="active == 'settings'" (click)="gotTo($event, 'settings')"
           class="ion-activatable ripple-parent accHolder">
-          <div>
+          <div style="overflow: visible;">
             <div class="profilePic">
               <div class="pic" *ngIf="mainService.user.profile"
                 [ngStyle]="{'background-image' : 'url(' + api + mainService.user.profile + ')'}">
