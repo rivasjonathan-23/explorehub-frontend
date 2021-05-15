@@ -25,7 +25,9 @@
 @import "~@ionic/angular/css/text-transformation.css";
 @import "~@ionic/angular/css/flex-utils.css";
 @import "variables.scss";
-
+* {
+    font-family: Helvetica, Arial, sans-serif;
+}
 
 .componentListModal {
     --background: rgba(49, 49, 49, 0.1);
