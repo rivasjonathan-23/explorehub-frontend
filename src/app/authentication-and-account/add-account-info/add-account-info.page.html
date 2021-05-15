@@ -3,11 +3,12 @@
     <div class="options">
       <p (click)="logOut()">Log out</p>
     </div>
-    <div class="titleCont">
-      <p>Add Personal Information</p>
-    </div>
+  
     <div class="formHolder">
       <div class="contents">
+        <div class="titleCont">
+          <p>Add Personal Information</p>
+        </div>
         <form [formGroup]="form" (ngSubmit)="onSubmit()">
           <div class="fieldHolder"
             [class.hasErrors]="form.get('firstName').errors != null && form.get('firstName').touched">
