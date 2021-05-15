@@ -71,7 +71,7 @@ export class CreateBookingGuardGuard implements CanActivate {
               this.router.navigate(["/service-provider/bookings", "Unfinished"])
 
             } else if (this.isManual) {
-              this.router.navigate(["/service-provider/dashboard/" + this.pageType + "/" + this.pageId + "/statistics"])
+              this.router.navigate(["/service-provider/dashboard/" + this.pageType + "/" + this.pageId + "/board/statistics"])
             } else {
               if (this.mainService.currentPage) {
                 this.router.navigate(["/service-provider/view-page", this.pageId, this.pageType])
@@ -109,7 +109,7 @@ export class CreateBookingGuardGuard implements CanActivate {
                 if (this.fromDraft) {
                   this.router.navigate(["/service-provider/bookings", "Unfinished"])
                 } else if (this.isManual) {
-                  this.router.navigate(["/service-provider/dashboard/" + this.pageType + "/" + this.pageId + "/statistics"])
+                  this.router.navigate(["/service-provider/dashboard/" + this.pageType + "/" + this.pageId + "/board/statistics"])
                 } else {
                   this.router.navigate(["/service-provider/online-pages-list"])
                 }

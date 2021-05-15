@@ -1,5 +1,6 @@
 import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { BoardPage } from './board/board.page';
 import { BookingPage } from './booking/booking.page';
 
 import { DashboardPage } from './dashboard.page';
@@ -11,18 +12,14 @@ const routes: Routes = [
     component: DashboardPage,
     children: [
       {
-        path: 'booking/:status',
-        component: BookingPage,
-      },
-      {
-        path: 'statistics',
-        component: StatisticsPage,
+        path: 'board',
+        loadChildren: () => import('./board/board.module').then( m => m.BoardPageModule),
       },
       {
         path: '',
-        redirectTo: 'booking/Booked',
+        redirectTo: 'board',
         pathMatch: 'full'
-      }
+      },
     ]
   },
 ];
