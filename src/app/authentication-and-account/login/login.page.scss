@@ -179,12 +179,41 @@
   }
 }
 
+.loginContent {
+  margin:10px 0;
+  margin-bottom: 15px;
+}
+.or {
+  overflow: visible;
+  text-align: center;
+  height:0;
+  margin:35px 0;
+  border-bottom: 1px solid lightsteelblue;
+  p {
+    position: relative;
+    top:-10px;
+    background-color: rgb(244, 246, 248) !important;
+    display: inline;
+    font-size: 12px;
+    padding:0 8px;
+    color:rgb(135, 154, 181);
+  }
+}
+
 .inputField {
   width: 100%;
   padding:10px;
   box-sizing: border-box;
   border-radius: 5px;
-  border: 1px solid rgb(106, 128, 158);
+  border: 1px solid rgb(173, 187, 208);
+}
+.noMarginBottom {
+  margin-bottom: 0 !important;
+}
+
+.forgotPass {
+  margin-top: 5px !important;
+  margin-bottom: 0;
 }
 
 .fieldHolder {
