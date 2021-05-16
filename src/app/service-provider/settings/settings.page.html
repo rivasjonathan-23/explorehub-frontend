@@ -24,7 +24,10 @@
       <div class="profile-container">
           <div class="profile">
               <div id="additional-div">
-                  <ion-icon (click)="editAccountInfo()" name="create-outline"></ion-icon>
+                      <p>
+                          Edit
+                        </p>
+                      <ion-icon (click)="editAccountInfo()" name="create-outline"></ion-icon>
               </div>
               <div class="profile-pic-container">
                   <div id="profile-pic">
@@ -39,21 +42,21 @@
               <div class="profile-pic-container" ></div>
               <h3 class="fullname" style="text-transform: capitalize;"><b>{{firstname}} {{middlename}} {{lastname}}</b></h3>
               <div class="contact-info-container">
-                  <p>{{email}}</p>
+                  <p class="email">{{email}}</p>
                   <p>{{phone}}</p>
               </div>
-
+              <br>
               <div class="additional-info">
                   <ion-row>
                       <ion-col size="4">
-                          <label for="address"><b>Address:</b></label>
+                          <label class="infoLabel" for="address"><b>Address:</b></label>
                       </ion-col>
                       <ion-col>
-                          <label for="address-val" style="text-transform: capitalize;">{{address}}</label>
+                          <label for="address-val" class="infoText" style="text-transform: capitalize;">{{completeAddress}}</label>
                       </ion-col>
                   </ion-row>
 
-                  <ion-row>
+                  <!-- <ion-row>
                     <ion-col size="4">
                         <label for="address2"><b>Address 2:</b></label>
                     </ion-col>
@@ -84,24 +87,28 @@
                     <ion-col>
                         <label for="address-val" style="text-transform: capitalize;">{{country}}</label>
                     </ion-col>
-                </ion-row>
+                </ion-row> -->
 
                   <ion-row>
                       <ion-col size="4">
-                          <label for="gender"><b>Gender:</b></label>
+                          <label class="infoLabel" for="gender"><b>Gender:</b></label>
                       </ion-col>
                       <ion-col>
-                          <label for="gender-val">{{gender}}</label>
+                          <label for="gender-val" class="infoText">{{gender}}</label>
                       </ion-col>
                   </ion-row>
                   <ion-row>
                       <ion-col size="4">
-                          <label for="gender"><b>Birthday:</b></label>
+                          <label class="infoLabel"  for="gender"><b>Birthday:</b></label>
                       </ion-col>
                       <ion-col>
-                          <label for="gender-val">{{birthday | date:'longDate'}}</label>
+                          <label for="gender-val" class="infoText">{{birthday | date:'longDate'}}</label>
                       </ion-col>
                   </ion-row>
+              </div>
+              <div class="btnStyle editAccountInfo" (click)="editAccountInfo()">
+                Edit Account Info
+                <ion-ripple-effect></ion-ripple-effect>
               </div>
               <div class="btnStyle" (click)="goTo()">
                 Change password

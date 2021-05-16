@@ -16,6 +16,7 @@ export class RegisterPage implements OnInit {
   public form;
   public accountType = accountType;
   public selectingAccountType = true;
+  public number: number;
 
   constructor(
     public authServices: AuthService,
@@ -33,9 +34,8 @@ export class RegisterPage implements OnInit {
     return this.formBuilder.group({
       accountType: [""],
       contactNumber: [
-        "63",
+        "",
         CValidator.validate([
-          { v: "minLength", r: 12 },
           { v: "maxLength", r: 12 },
           { v: "required" },
           { v: "pattern", r: "^[0-9]*$", m: ["numbers"] },
@@ -74,7 +74,6 @@ export class RegisterPage implements OnInit {
       var num = nform.contactNumber;
       nform.email  = nform.email.toLowerCase()
       nform.contactNumber = this.completeNum(num);
-      console.log(nform)
       const request = this.authService.initialRegistration(nform);
       request.subscribe(
         (resp) => {
@@ -150,8 +149,21 @@ export class RegisterPage implements OnInit {
     );
   }
 
+  completeNumber(num) {
+    if (!num) return;
+    let strNum = num + ""
+    if (strNum.length == 11 && strNum[0] == "0") {
+      strNum = "63" + strNum.substring(1, 11);
+    } if (strNum.length == 10) {
+      strNum = "63" + strNum;
+    }
+    if (strNum.length == 12) this.number = parseInt(strNum)
+    console.log(strNum);
+  }
+
   completeNum(num) {
     if (!num) return;
+    num = num + ""
     if (num.length == 11 && num[0] == "0") {
       return "63" + num.substring(1, 11);
     } else if (num.length == 10) {
@@ -159,6 +171,7 @@ export class RegisterPage implements OnInit {
     }
     return num;
   }
+
 
   async presentAlert(message) {
     const alert = await this.alertController.create({

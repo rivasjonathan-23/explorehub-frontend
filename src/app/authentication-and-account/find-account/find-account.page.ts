@@ -32,11 +32,17 @@ export class FindAccountPage implements OnInit {
 
   onSubmit() {
     const credential = (this.form.value.credential + "").split("")
+    let isEmail = false
     credential.forEach(char => {
       if (char.toLowerCase() != char.toUpperCase()) {
-        this.form.controls["credentialUsed"].value= "email"
+        isEmail = true
       }
     });
+    if (isEmail) {
+      this.form.value.credentialUsed= "email"
+    } else {
+      this.form.value.credentialUsed = "contactNumber"
+    }
     if (this.form.value.credentialUsed == "contactNumber") {
       this.form.value.credential = this.completeNum(this.form.value.credential);
     }
@@ -57,12 +63,13 @@ export class FindAccountPage implements OnInit {
   }
 
   completeNum(num) {
+    num = num + ""
     if (num.length == 11 && num[0] == "0") {
-      return "63" + num.substring(1, 11);
+      num = "63" + num.substring(1, 11);
     } else if (num.length == 10) {
-      return "63" + num;
+      num =  "63" + num;
     }
-    return num;
+    return parseInt(num);
   }
 
   checkCred() {

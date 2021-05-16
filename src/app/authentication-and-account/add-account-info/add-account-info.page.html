@@ -51,7 +51,7 @@
 
           <div class="fieldHolder"
             [class.hasErrors]="form.get('address').errors != null && form.get('address').touched">
-            <div class="inputLabel">Address</div>
+            <div class="inputLabel">Unit Number/House/Building/Street Number</div>
             <input class="inputField" formControlName="address" name="address">
             <ul class="validationError"
               *ngIf="(form.get('address').dirty || form.get('address').touched) && form.get('address').errors != null">
@@ -63,7 +63,7 @@
 
           <div class="fieldHolder"
             [class.hasErrors]="form.get('address2').errors != null && form.get('address2').touched">
-            <div class="inputLabel">Address 2</div>
+            <div class="inputLabel">Street Name/Barangay/District Name</div>
             <input class="inputField" formControlName="address2" name="address2">
             <ul class="validationError"
               *ngIf="(form.get('address2').dirty || form.get('address2').touched) && form.get('address2').errors != null">
@@ -75,7 +75,7 @@
 
           <div class="fieldHolder"
             [class.hasErrors]="form.get('city').errors != null && form.get('city').touched">
-            <div class="inputLabel">City</div>
+            <div class="inputLabel">City/Municipality</div>
             <input class="inputField" formControlName="city" name="city">
             <ul class="validationError"
               *ngIf="(form.get('city').dirty || form.get('city').touched) && form.get('city').errors != null">

@@ -3,14 +3,31 @@
 }
 
 .container {
-    background-color: rgb(230, 230, 230);
+    // background-color: rgb(230, 230, 230);
     min-height: 450px;
     height: auto;
 }
 
+ion-row {
+    // padding:15px 0;
+    border-color:rgb(238, 241, 243) !important;
+    border-top:1px solid rgb(238, 241, 243) !important;
+    // border:none !important;
+}
+
+.infoText {
+    color:rgb(69, 76, 83) !important;
+}
+.editAccountInfo {
+    margin-top: 40px !important;
+    margin-bottom: 5px;
+    background: rgb(238, 241, 243) !important;
+    color: dodgerblue !important;
+}
+
 .profile-container {
-    width: 95%;
-    margin: auto;
+    width: 100%;
+    // margin: auto;
     min-width: 300px;
     height: auto;
     
@@ -29,12 +46,19 @@
             background-color: rgb(208, 225, 236);
             border: 1px solid white;
             padding-top: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            p {
+                color:dodgerblue;
+                margin:0;
+            }
 
             ion-icon {
                 float: right;
                 font-size: 25px;
                 padding: 5px;
-                color: rgb(22, 22, 53);
+                color: dodgerblue;
             }
         }
 
@@ -43,7 +67,8 @@
             width: 100%;
             display: inline-block;
             text-align: center;
-            padding: 10px 0px;
+            padding: 5px 0px;
+            margin-bottom: 5px !important;
             margin-top: -20%;
 
             #profile-pic {
@@ -75,16 +100,27 @@
         .fullname {
             text-align: center;
             padding: 0 10px;
+            font-size: 21px;
+            margin-bottom: 0;
+            margin-top: 0 !important;
+            color:rgb(59, 76, 93);
         }
 
         .contact-info-container {
-            line-height: 4px;
+            line-height: 10px;
+            color:rgb(75, 97, 115);
 
+            .email {
+                margin-top: 10px;
+            }
+            
             p {
+                font-size: 16px;
                 text-align: center;
+                margin:17px 0 !important; 
+
             }
 
-            ;
         }
 
         .additional-info {
@@ -108,7 +144,11 @@
             padding: 10px;
             text-align: center;
             border-radius: 4px;
-            margin: 7% 5% 0 5%;
+            margin: 5% 5% 0 5%;
         }
     }
+}
+
+.infoLabel {
+    color:rgb(59, 86, 113);
 }

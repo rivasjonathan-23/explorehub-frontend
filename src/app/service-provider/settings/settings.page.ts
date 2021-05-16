@@ -27,6 +27,7 @@ export class SettingsPage implements OnInit {
   age = null;
   email = null;
   phone = null;
+  completeAddress = null
   address = null;
   address2 = null;
   stateOrProvince = null;
@@ -90,6 +91,8 @@ export class SettingsPage implements OnInit {
       this.birthday = this.datePipe.transform(userInfo.birthday, 'yyyy-MM-dd');
       this.password = userInfo.password;
       this.profile = userInfo.profile;
+
+      this.completeAddress = `${this.address} ${this.address2}, ${this.city}, ${this.stateOrProvince}, ${this.country}`
     });
   }
 
