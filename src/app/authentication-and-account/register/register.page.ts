@@ -36,6 +36,7 @@ export class RegisterPage implements OnInit {
       contactNumber: [
         "",
         CValidator.validate([
+          { v: "minLength", r: 10 },
           { v: "maxLength", r: 12 },
           { v: "required" },
           { v: "pattern", r: "^[0-9]*$", m: ["numbers"] },

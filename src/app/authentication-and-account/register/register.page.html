@@ -50,7 +50,7 @@
             <div class="inputLabel">Email</div>
             <input class="inputField" autocomplete="off" name="email" formControlName="email">
             <ul class="validationError"
-              *ngIf="(form.get('email').dirty && form.get('email').touched) && form.get('email').errors != null">
+              *ngIf="(form.get('email').dirty || form.get('email').touched) && form.get('email').errors != null">
               <li *ngFor="let error of form.get('email').errors.validations">
                 {{ error.type =="required" || error.type == "availability"?
                 error.message : 'Invalid Email' }}
@@ -65,7 +65,7 @@
             <input class="inputField" type="number" autocomplete="off" (change)="completeNumber(form.get('contactNumber').value)"
               name="contactNumber" [value]="number" formControlName="contactNumber">
             <ul class="validationError"
-              *ngIf="(form.get('contactNumber').dirty && form.get('contactNumber').touched) && form.get('contactNumber').errors != null">
+              *ngIf="(form.get('contactNumber').dirty || form.get('contactNumber').touched) && form.get('contactNumber').errors != null">
               <li *ngFor="let error of form.get('contactNumber').errors.validations">
                 {{ error.type == 'required' ? error.message : 'Invalid number' }}
               </li>
@@ -75,7 +75,7 @@
             <div class="inputLabel">Password</div>
             <input class="inputField" name="password" type="password" autocomplete="off" formControlName="password">
             <ul class="validationError"
-              *ngIf="(form.get('password').dirty && form.get('password').touched) && form.get('password').errors != null">
+              *ngIf="(form.get('password').dirty || form.get('password').touched) && form.get('password').errors != null">
               <li *ngFor="let error of form.get('password').errors.validations">
                 {{ error.message }}
               </li>
@@ -86,7 +86,7 @@
             <input class="inputField" type="password" name="confirmPassword" (change)="checkPasswordConfirmation()"
               formControlName="confirmPassword">
             <ul class="validationError"
-              *ngIf="(form.get('confirmPassword').dirty && form.get('confirmPassword').touched) && form.get('confirmPassword').errors != null">
+              *ngIf="(form.get('confirmPassword').dirty || form.get('confirmPassword').touched) && form.get('confirmPassword').errors != null">
               <li *ngFor="let error of form.get('confirmPassword').errors.validations">
                 {{ error.message }}
               </li>
