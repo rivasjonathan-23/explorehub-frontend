@@ -113,18 +113,24 @@
   width:500px;
   height: 500px;
   position: absolute;
-  background-color: rgba(6, 174, 235, .5);//rgb(6, 174, 235));
+  background-color: rgba(6, 174, 235, .1);//rgb(6, 174, 235));
   transform: rotate(45deg);
   border-radius: 15px;
   top:-100px;
   right: -500px;
 }
 
+.design1 {
+  background-color: rgba(6, 174, 235, 0.2) !important;
+  top: -540px;
+  right: -180px;
+}
+
 .design2 {
   width:500px;
   height: 500px;
   position: absolute;
-  background-color: rgba(56, 135, 231, 0.3);
+  background-color: rgba(56, 135, 231, 0.2);
   transform: rotate(45deg);
   border-radius: 15px;
   top:-200px;
@@ -135,15 +141,16 @@
   width:500px;
   height: 500px;
   position: absolute;
-  background-color: rgba(56, 135, 231, 0.3);
+  background-color: rgba(56, 135, 231, 0.1);
   transform: rotate(45deg);
   border-radius: 15px;
   top:250px;
   left: -200px;
 }
 .appTitle {
-  color: white;
-  font-size: 22px;
+  // color: white;
+  color:rgb(5, 92, 179);
+  font-size: 23px;
   z-index: 9999999;
   font-weight: bold;
   text-align: center;
@@ -156,7 +163,7 @@
   position: relative;
   display: flex;
   flex-direction: column;
-  background-image: $gradient;
+  // background-image: $gradient;
   justify-content: center;
   align-items: center;
   width: 100%;
@@ -429,21 +436,22 @@ button:focus {
     z-index: 99999;
   }
 }
-
+//rgb(5, 92, 179),rgb(6, 174, 235)
+//rgb(192, 219, 251)
 .b1 {
-  background-color: rgb(192, 219, 251);
+  background-color: rgb(6, 147, 235);
 }
 
 .b2 {
-  background-color: rgb(182, 219, 255);
+  background-color: rgb(6, 147, 235);
 }
 
 .b3 {
-  background-color: rgb(139, 194, 250);
+  background-color: rgb(5, 92, 179);
 }
 
 .b4 {
-  background-color: rgb(139, 194, 250);
+  background-color: rgb(5, 92, 179);
 }
 
 
@@ -455,7 +463,7 @@ button:focus {
     background: none;
     left: -10px;
     top: 25px;
-    border-right: 2px solid white;
+    border-right: 3px solid white;
 }
 
 .horizontal {
@@ -466,5 +474,5 @@ button:focus {
     background: none;
     left: 20px;
     top: 59px;
-    border-top: 2px solid white;
+    border-top: 3px solid white;
 }

@@ -26,7 +26,7 @@
         <div class="title">{{getTitle(notif)}}</div>
         <div class="numberOfNotif">{{notif.notifications.length}}</div>
       </div>
-      <app-notification-card *ngFor="let ntf of notif.notifications.reverse()" [notificationGroup]="notif" [notif]="ntf"></app-notification-card>
+      <app-notification-card *ngFor="let ntf of notif.notifications" [notificationGroup]="notif" [notif]="ntf"></app-notification-card>
     </div>
   </div>
 </ion-content>
