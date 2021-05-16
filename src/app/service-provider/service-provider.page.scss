@@ -11,9 +11,11 @@
     // background: skyblue;
     // background: linear-gradient(90deg, hsla(199, 100%, 50%, 0.71) 0%, skyblue 100%);
     // box-shadow: 0px 1px 10px rgb(21, 160, 224);
-    background: rgb(6, 170, 235);
+    background-color: rgb(236, 241, 247);
+    
+    // background: linear-gradient(to right, white, white, rgb(206, 238, 255));
     // background: linear-gradient(90deg, rgb(21, 127, 233), rgb(122, 229, 236));
-    background-image:$gradient;
+    // background-image:$gradient;
     // box-shadow: 0px 1px 10px rgb(21, 224, 190);
     // border-radius: 10px 10px 10px 50px;
     margin-left: -18px;
@@ -21,19 +23,43 @@
     // margin-bottom: 8px;
 }
 
+
+
 .sbText {
     font-size: 16px;
     margin-top: 3px;
     margin-bottom: 0 !important;
     color: rgb(72, 98, 122) !important;
 }
+.divDesign {
+    position: absolute;
+    transform: rotate(45deg);
+    width:400px;
+    left:-20px;
+    top:80px;
+    z-index: 2;
+    border-radius: 14px;
+    // border:10px solid white;
+    height:400px;
+    background-color: rgb(119, 203, 245)
+}
+
+.design2 {
+    top: -135px;
+    left: 149px;
+    z-index: 1;
+    background-color: rgb(119, 203, 245)
+}
 
 .header-content {
     position: absolute;
     top: 15px;
+    z-index: 3;
     left: 15px;
     display: flex;
     align-items: flex-start;
+
+    
     .logo {
         width: 60px;
         height: 60px;
@@ -52,13 +78,14 @@
         font-weight: 600;
         margin-top: 13px;
         // color: rgb(11, 67, 124);
-        color:#ffff;
+        // color:#ffff;//rgb(5, 92, 179),rgb(6, 174, 235)
+        color: rgb(5, 92, 179);
         font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     }
     p {
         font-size: 12px;
         // color: rgb(97, 97, 97);
-        color:rgb(206, 231, 255) !important;
+        color:rgb(6, 174, 235) !important;
         font-weight: 400;
         letter-spacing: 0.4px;
         margin-left: 2px;
@@ -70,6 +97,9 @@
 .menu-items {
     padding-right: 10px;
     padding-top: 0;
+    position: absolute;
+    z-index: 4;
+    width:100%;
     margin: 0px;
     ion-icon {
         color: rgb(106, 127, 158);
@@ -173,9 +203,9 @@
 }
 
 .accHolder {
-    padding-bottom: 10px !important;
+    padding-bottom: 13px !important;
     overflow:visible !important;
-
+    margin-bottom: 0 !important;
 }
 
 .input-wrapper {

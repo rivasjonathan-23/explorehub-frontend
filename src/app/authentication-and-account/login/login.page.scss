@@ -126,6 +126,18 @@
   right: -180px;
 }
 
+.design0 {
+  background-color: rgba(113, 198, 250, 0.1) !important;
+  top: 310px;
+  right: -40px;
+}
+
+.design4 {
+  background-color: rgba(113, 198, 250, 0.1) !important;
+  top: -30px;
+    right: -520px;
+}
+
 .design2 {
   width:500px;
   height: 500px;
@@ -159,6 +171,7 @@
 .header {
   padding: 40px 0;
   overflow:hidden;
+  min-height: 175px;
   padding-bottom: 30px;
   position: relative;
   display: flex;
@@ -461,7 +474,7 @@ button:focus {
     height: 70px;
     z-index: 99999999;
     background: none;
-    left: -10px;
+    left: -9px;
     top: 25px;
     border-right: 3px solid white;
 }

@@ -104,15 +104,24 @@ flex-direction: column;
     }
   }
  
-  .shadow {
-    height: 18px;
-    width: 140px;
-    border-radius: 50%;
-    bottom: -50px;
-    background-color: rgb(224, 232, 248);
-    position: absolute;
-  }
   
+  
+}
+
+.shadow {
+  height: 200px;
+  width: 200px;
+  transform: rotate(45deg);
+  border-radius: 15px;
+  top: -50px;
+  right: -120px;
+  z-index: -1;
+  background-color: rgba(192, 216, 255, 0.2);
+  position: fixed;
+}
+.shadow1 {
+  top: 220px;
+    left: -120px;
 }
 .createAcc {
   text-align: center;
@@ -126,6 +135,7 @@ flex-direction: column;
   border-radius: 5px;
   background-color: rgb(229, 235, 243);
   box-sizing: border-box;
+  border:1px solid white;
   overflow: visible;
   color:#ffff; 
   .accTypeName {
