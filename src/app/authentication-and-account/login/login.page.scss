@@ -113,7 +113,7 @@
   width:500px;
   height: 500px;
   position: absolute;
-  background-color: rgba(185, 243, 251, 0.2);
+  background-color: rgba(0, 189, 241, .4);
   transform: rotate(45deg);
   border-radius: 15px;
   top:-100px;
@@ -124,7 +124,7 @@
   width:500px;
   height: 500px;
   position: absolute;
-  background-color: rgba(104, 172, 255, 0.2);
+  background-color: rgba(56, 135, 231, 0.2);
   transform: rotate(45deg);
   border-radius: 15px;
   top:-200px;
@@ -135,7 +135,7 @@
   width:500px;
   height: 500px;
   position: absolute;
-  background-color: rgba(104, 172, 255, 0.2);
+  background-color: rgba(56, 135, 231, 0.2);
   transform: rotate(45deg);
   border-radius: 15px;
   top:250px;
@@ -155,7 +155,7 @@
   position: relative;
   display: flex;
   flex-direction: column;
-  background-image: linear-gradient(to right, rgb(11, 108, 204),rgb(91, 218, 223));
+  background-image: $gradient;
   justify-content: center;
   align-items: center;
   width: 100%;
@@ -281,7 +281,7 @@
   padding:12px 40px;
   width:100%;
   border-radius: 5px;
-  background-image: linear-gradient(to right, rgb(36, 142, 248), rgb(9, 214, 221));
+  background-image:$gradient;
 }
 
 .submitBtnHolder {
