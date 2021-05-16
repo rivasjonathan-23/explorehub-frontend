@@ -74,7 +74,7 @@ export class ViewPagePage implements OnInit {
   }
 
   ngOnInit() {
-    // this.getWeather();
+    this.getWeather();
     this.route.queryParams.subscribe(
       (params: any) => {
         if (params && params.fromHostedList && params.parentPageCreator) {
