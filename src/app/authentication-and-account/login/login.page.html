@@ -28,8 +28,7 @@
         <form [formGroup]="form" (ngSubmit)="onSubmit()">
           <div class="fieldHolder" [class.hasErrors]="form.get('credential').errors != null && form.get('credential').touched">
             <p class="inputLabel">Phone number | email</p>
-            <input class="inputField" autocomplete="off" (keyup)="checkCred()" name="credential" formControlName="credential"
-              autcomplete="on">
+            <input class="inputField" autocomplete="off" (keyup)="checkCred()" name="credential" formControlName="credential">
             <ul class="validationError"
               *ngIf="(form.get('credential').dirty || form.get('credential').touched) && form.get('credential').errors != null">
               <li *ngFor="let error of form.get('credential').errors.validations">
