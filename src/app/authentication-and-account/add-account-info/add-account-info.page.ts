@@ -43,7 +43,7 @@ export class AddAccountInfoPage implements OnInit {
           { v: "pattern", r: "^[a-zA-Z .]*$", m: ["letters"] },
         ]),
       ],
-      address: [ "",CValidator.validate([{ v: "required" }])],
+      address: [ ""],
       address2: [ "",CValidator.validate([{ v: "required" }])],
       city: [ "",CValidator.validate([{ v: "required" }])],
       stateOrProvince: [ "",CValidator.validate([{ v: "required" }])],

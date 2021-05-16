@@ -104,7 +104,7 @@ export class EditAccountInfoPage implements OnInit {
     lastName: new FormControl("", Validators.required),
     gender: new FormControl("", Validators.required),
     birthday: new FormControl("", Validators.required),
-    address: new FormControl("", Validators.required),
+    address: new FormControl(""),
     address2: new FormControl("", Validators.required),
     city: new FormControl("", Validators.required),
     stateOrProvince: new FormControl("", Validators.required),
