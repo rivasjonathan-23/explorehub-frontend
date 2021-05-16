@@ -42,7 +42,7 @@ export class ConversationCardComponent implements OnInit {
         if (receiver.length > 0) {
           this.receiver = receiver[0]._id
           this.receiverName = receiver[0].fullName
-          this.photo = receiver[0].profile ? environment.apiUrl +receiver[0].profile: ""
+          this.photo = receiver[0].profile ? receiver[0].profile: ""
         }
         if (this.conversation.page) {
           this.conversation.page.components.forEach(comp => {

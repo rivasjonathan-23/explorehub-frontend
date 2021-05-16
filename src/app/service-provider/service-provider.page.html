@@ -16,7 +16,7 @@
           <div style="overflow: visible;">
             <div class="profilePic">
               <div class="pic" *ngIf="mainService.user.profile"
-                [ngStyle]="{'background-image' : 'url(' + api + mainService.user.profile + ')'}">
+                [ngStyle]="{'background-image' : 'url(' + mainService.user.profile + ')'}">
               </div>
               <div *ngIf="!mainService.user.profile" class="pic">
                 <ion-icon name="person-outline"></ion-icon>
