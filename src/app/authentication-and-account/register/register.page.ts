@@ -17,6 +17,7 @@ export class RegisterPage implements OnInit {
   public accountType = accountType;
   public selectingAccountType = true;
   public number: number;
+  public appLogo: string = 'assets/explorehub.png'
 
   constructor(
     public authServices: AuthService,

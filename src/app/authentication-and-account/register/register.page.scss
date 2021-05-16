@@ -11,9 +11,35 @@ ion-label {
   color: dodgerblue !important;
 }
 
+.logo {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  // box-shadow: 0 1px 5px rgb(30, 115, 169);
+  // border: 1px solid white;
+  background-size: cover;
+  background-position: center;
+}
+
+.createAccountAs {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  max-width: 300px;
+
+  flex: 1;
+  width: 100%;
+  // border-bottom: 1px solid dodgerblue;
+//  background-color: lightblue;
+}
+
 .selectType {
+  flex: 1;
   display: flex;
   align-items: center;
+flex-direction: column;
   justify-content: center;
   position: absolute;
   height: 100%;
@@ -25,24 +51,44 @@ ion-label {
 }
 
 .accTypeHolder {
+  flex:2;
   display: flex;
   flex-direction: column;
-  align-items: stretch;
+  align-items: center;
+  justify-content: center;
 }
 
 .userIcon {
   text-align: center;
   width: 100px;
+  flex-shrink: 0;
   height: 100px;
   border-radius: 50%;
   display: flex;
   justify-content: center;
   align-items: center;
   margin:0 auto;
+  position: relative;
   background-color: rgb(227, 233, 241);
-  ion-icon {
-    font-size: 50px;
-    color:rgb(117, 139, 168);
+
+  .user {
+    position: absolute;
+    width:45px;
+    height: 45px;
+    background-color: rgb(0, 94, 189);
+    bottom: -13px;
+    left: -14px;
+    border:3px solid white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+
+    ion-icon {
+      
+      font-size: 20px;
+      color:rgb(255, 255, 255);
+    }
   }
 }
 .createAcc {
@@ -52,6 +98,7 @@ ion-label {
 }
 .accType {
   max-width: 300px;
+  width: 100%;
   margin:10px 0;
   border-radius: 5px;
   background-color: rgb(229, 235, 243);

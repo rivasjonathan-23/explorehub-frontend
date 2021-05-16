@@ -10,10 +10,17 @@
   <div class="pageBody mainLightBg2">
 
     <div *ngIf="selectingAccountType" class="selectType">
-      <div class="accTypeHolder">
+      <div class="createAccountAs">
+
         <div class="userIcon">
-          <ion-icon name="person-outline"></ion-icon>
+          <div class="logo" [ngStyle]="{'background-image': 'url('+appLogo + ')'}"></div>
+          <div class="user">
+
+            <ion-icon name="person-outline"></ion-icon>
+          </div>
         </div>
+      </div>
+      <div class="accTypeHolder">
         <h4 class="createAcc">Create an account as:</h4>
         <div (click)="setAccountType(accountType.tourist)" class="accType ion-activatable ripple-parent">
           <p class="accTypeName boxShadowed2">
@@ -58,20 +65,24 @@
             </ul>
           </div>
 
-          <div class="fieldHolder"  [class.hasErrors]="form.get('contactNumber').errors != null && form.get('contactNumber').touched">
+          <div class="fieldHolder"
+            [class.hasErrors]="form.get('contactNumber').errors != null && form.get('contactNumber').touched">
             <div class="inputLabel">Contact number
               <span>&nbsp;+63</span>
             </div>
-            <input class="inputField" type="number" autocomplete="off" (change)="completeNumber(form.get('contactNumber').value)"
-              name="contactNumber" [value]="number" formControlName="contactNumber">
+            <input class="inputField" type="number" autocomplete="off"
+              (change)="completeNumber(form.get('contactNumber').value)" name="contactNumber" [value]="number"
+              formControlName="contactNumber">
             <ul class="validationError"
               *ngIf="(form.get('contactNumber').dirty || form.get('contactNumber').touched) && form.get('contactNumber').errors != null">
               <li *ngFor="let error of form.get('contactNumber').errors.validations">
-                {{ error.type == 'required' ? error.message : 'Invalid number' }}
+                {{ error.type == 'required' || error.type == 'availability' ? error.type == 'availability'? 'This number
+                is already taken': error.message : 'Invalid number' }}
               </li>
             </ul>
           </div>
-          <div class="fieldHolder"  [class.hasErrors]="form.get('password').errors != null && form.get('password').touched">
+          <div class="fieldHolder"
+            [class.hasErrors]="form.get('password').errors != null && form.get('password').touched">
             <div class="inputLabel">Password</div>
             <input class="inputField" name="password" type="password" autocomplete="off" formControlName="password">
             <ul class="validationError"
@@ -81,7 +92,8 @@
               </li>
             </ul>
           </div>
-          <div class="fieldHolder"  [class.hasErrors]="form.get('confirmPassword').errors != null && form.get('confirmPassword').touched">
+          <div class="fieldHolder"
+            [class.hasErrors]="form.get('confirmPassword').errors != null && form.get('confirmPassword').touched">
             <div class="inputLabel">Confirm password</div>
             <input class="inputField" type="password" name="confirmPassword" (change)="checkPasswordConfirmation()"
               formControlName="confirmPassword">
