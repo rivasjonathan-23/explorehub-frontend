@@ -135,7 +135,7 @@
   width:500px;
   height: 500px;
   position: absolute;
-  background-color: rgba(56, 135, 231, 0.2);
+  background-color: rgba(56, 135, 231, 0.3);
   transform: rotate(45deg);
   border-radius: 15px;
   top:250px;
@@ -143,6 +143,7 @@
 }
 .appTitle {
   color: white;
+  font-size: 22px;
   z-index: 9999999;
   font-weight: bold;
   text-align: center;
