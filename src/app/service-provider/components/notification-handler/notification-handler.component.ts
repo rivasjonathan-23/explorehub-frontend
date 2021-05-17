@@ -36,16 +36,13 @@ export class NotificationHandlerComponent {
         console.log(data);
 
         if (data.receiver.includes(this.mainService.user._id) || data.receiver.includes("all")) {
-          // console.log("notification:", data)
-          // console.log("user:", this.user)
-          // if (data.user._id != this.user._id && !data.receiver.includes("all")) {
-          //   this.showToast(data.message);
-          // }
-          // this.mainService.receiveNotification(data)
+
           this.receiveData(data)
-        } else if (!this.mainService.user) {
+        } else if (!this.user) {
           this.authService.getCurrentUser().then((user: any) => {
+            this.user = user;
             this.mainService.user = this.user
+
             this.receiveData(data);
           })
         }
@@ -54,9 +51,8 @@ export class NotificationHandlerComponent {
   }
 
   receiveData(data) {
-    if (data.receiver.includes(this.mainService.user._id) || data.receiver.includes("all")) {
+    if (data.receiver.includes(this.user._id) || data.receiver.includes("all")) {
       console.log("notification:", data)
-      console.log("user:", this.user)
       if (data.user._id != this.user._id && !data.receiver.includes("all")) {
         this.showToast(data.message);
       }
