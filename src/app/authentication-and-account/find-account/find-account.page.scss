@@ -7,29 +7,91 @@
 ion-label {
   color: "dodgerblue" !important;
 }
+.headerCustom{
+  box-shadow: none !important;
+}
 
+.backBtn {
+  font-size: 20px;
+  padding:10px;
+}
 .backIcon {
   margin-left: 5px !important;
   font-size: 23px;
+}
+.searchAccLogos{//rgb(5, 92, 179),rgb(6, 174, 235)
+  // width:200px;
+  // height: 200px;
+  // border-radius: 50%;
+  // display: flex;
+  // align-items: center;
+  // justify-content: center;
+  // background-color: white;
+  .userIcon {
+    margin: auto;
+    position: relative;
+    width: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100px;
+    border-radius: 50%;
+    background-color: rgb(176, 204, 243);
+    ion-icon {
+      color: white;
+      font-size: 40px;
+    }
+
+    .searchIcon {
+      position: absolute;
+      width: 50px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: rgb(5, 92, 179);
+      border-radius: 50%;
+      border:3px solid white;
+      bottom:-10px;
+      right:-10px;
+      height: 50px;
+      ion-icon {
+        font-size: 30px;
+        color: white;
+      }
+    }
+  }
 }
 
 .btn {
   margin:10px 0 !important;
 }
 
+.pageBody2 {
+  z-index: 999999999;
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+
+}
+
 .formCard {
   max-width: 300px;
+  flex-shrink: 0;
   padding:10px 20px;
-  background-color: #ffff;
+  // padding-top: 40px;
+  // background-color: #ffff;
+
   position: relative;
+  background-color: rgb(240, 247, 255) !important;
   width: 100%;
   border-radius: 5px;
   overflow: hidden;
-  margin-top:20px;
+  margin-top:70px;
+  margin-bottom: 200px;
 
-  .header {
+  .header2 {
     background-image: $gradient;
-    padding:5px;
+    height: 5px !important;
     position: absolute;
     left:0;
     top:0;

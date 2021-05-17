@@ -27,15 +27,33 @@
       </form>
       <!-- </div> -->
     </div>
-    <ion-progress-bar *ngIf="loading" type="indeterminate"></ion-progress-bar>
+    <ion-progress-bar [ngStyle]="{'opacity': loading? 1: 0}" type="indeterminate"></ion-progress-bar>
+
+    <div class="searchPic" *ngIf="pages.length == 0">
+
+      <div class="searchAccLogos">
+        <div class="userIcon">
+          <ion-icon name="location-outline"></ion-icon>
+          <div class="searchIcon">
+            <ion-icon name="search-outline"></ion-icon>
+          </div>
+        </div>
+
+      </div>
+      <div class="searchText">
+        <h4>Search for the tourist destination that you would love</h4>
+      </div>
+    </div>
     <div class="searchResults">
-      <p *ngIf="loading" class="loading">Loading...</p>
-      <app-page-list-card *ngFor="let page of pages" [page]="page" [searchResult]="true" (viewPage)="viewPage($event)"></app-page-list-card>
+      <!-- <p *ngIf="loading" class="loading">Loading...</p> -->
+      <app-page-list-card *ngFor="let page of pages" [page]="page" [searchResult]="true" (viewPage)="viewPage($event)">
+      </app-page-list-card>
       <div *ngIf="noResult" class="noResults">
         <p class="noPagesFound">No pages found</p>
         <p class="subText">The page you're looking for may be not operating this time, or you may have spelled the name
           above incorrectly.</p>
       </div>
     </div>
+
   </div>
 </ion-content>
