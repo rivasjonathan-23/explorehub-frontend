@@ -13,7 +13,7 @@ import { MainServicesService } from '../../provider-services/main-services.servi
 export class NotificationHandlerComponent {
   public user: any;
   public eventType: string;
-  public show: boolean; 
+  public show: boolean;
   public message: string;
   @Output() receiveNotification: EventEmitter<any> = new EventEmitter();
   constructor(private socket: Socket,
@@ -36,15 +36,32 @@ export class NotificationHandlerComponent {
         console.log(data);
 
         if (data.receiver.includes(this.mainService.user._id) || data.receiver.includes("all")) {
-          console.log("notification:", data)
-          console.log("user:", this.user)
-          if (data.user._id != this.user._id && !data.receiver.includes("all")) {
-            this.showToast(data.message);
-          }
-          this.mainService.receiveNotification(data)
+          // console.log("notification:", data)
+          // console.log("user:", this.user)
+          // if (data.user._id != this.user._id && !data.receiver.includes("all")) {
+          //   this.showToast(data.message);
+          // }
+          // this.mainService.receiveNotification(data)
+          this.receiveData(data)
+        } else if (!this.mainService.user) {
+          this.authService.getCurrentUser().then((user: any) => {
+            this.mainService.user = this.user
+            this.receiveData(data);
+          })
         }
       });
     })
+  }
+
+  receiveData(data) {
+    if (data.receiver.includes(this.mainService.user._id) || data.receiver.includes("all")) {
+      console.log("notification:", data)
+      console.log("user:", this.user)
+      if (data.user._id != this.user._id && !data.receiver.includes("all")) {
+        this.showToast(data.message);
+      }
+      this.mainService.receiveNotification(data)
+    }
   }
 
   disconnect() {
@@ -53,8 +70,15 @@ export class NotificationHandlerComponent {
 
   notify(data) {
     const date = new Date()
-    const notifId = "notif"+ date.getHours() + date.getMinutes() + date.getMilliseconds();
+    const notifId = "notif" + date.getHours() + date.getMinutes() + date.getMilliseconds();
     data["notifId"] = notifId
+    if (!data.user) {
+      this.authService.getCurrentUser().then((user: any) => {
+        this.mainService.user = this.user
+        data.user = user
+        
+      })
+    }
     this.socket.emit('notify', data)
   }
 
@@ -63,7 +87,7 @@ export class NotificationHandlerComponent {
     this.message = msg
     setTimeout(() => {
       this.show = false
-    },5000);
+    }, 5000);
   }
 
   goto(path) {
