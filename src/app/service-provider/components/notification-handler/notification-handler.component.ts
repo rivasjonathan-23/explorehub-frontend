@@ -38,7 +38,7 @@ export class NotificationHandlerComponent {
         if (data.receiver.includes(this.mainService.user._id) || data.receiver.includes("all")) {
 
           this.receiveData(data)
-        } else if (!this.user) {
+        } else if (!this.mainService.user) {
           this.authService.getCurrentUser().then((user: any) => {
             this.user = user;
             this.mainService.user = this.user
@@ -51,9 +51,9 @@ export class NotificationHandlerComponent {
   }
 
   receiveData(data) {
-    if (data.receiver.includes(this.user._id) || data.receiver.includes("all")) {
+    if (data.receiver.includes(this.mainService.user._id) || data.receiver.includes("all")) {
       console.log("notification:", data)
-      if (data.user._id != this.user._id && !data.receiver.includes("all")) {
+      if (data.user._id != this.mainService.user._id && !data.receiver.includes("all")) {
         this.showToast(data.message);
       }
       this.mainService.receiveNotification(data)
@@ -72,7 +72,7 @@ export class NotificationHandlerComponent {
       this.authService.getCurrentUser().then((user: any) => {
         this.mainService.user = this.user
         data.user = user
-        
+
       })
     }
     this.socket.emit('notify', data)
