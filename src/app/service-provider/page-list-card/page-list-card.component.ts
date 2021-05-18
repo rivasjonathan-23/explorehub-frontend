@@ -14,9 +14,36 @@ export class PageListCardComponent implements OnInit {
   @Output() viewPage: EventEmitter<any> = new EventEmitter();
   @Output() clickOption: EventEmitter<any> = new EventEmitter();
   @Input() searchResult: boolean;
+  public bookings: number = 0
+  public quantity: number = 0
+  public manuallyBooked: number = 0
+  public pending: number = 0
+  public available:number = 0
+  public processing: number = 0
   constructor(public router: Router, public mainService: MainServicesService, public authService: AuthService) { }
 
-  ngOnInit() { }
+  ngOnInit() { 
+    if (this.page) {
+      this.page['pageServices'].forEach(service => {
+        if (service.type == "item") {
+          console.log('servcie: ', service);
+          
+          this.bookings += service.booked? service.booked: 0
+          this.processing += service.toBeBooked? service.toBeBooked : 0
+          this.pending += service.pending?service.pending: 0
+          this.manuallyBooked = service.manuallyBooked? service.manuallyBooked: 0
+        
+          service.data.forEach(element => {
+            if (element.data.defaultName == "quantity") {
+              this.quantity += element.data.text ? parseInt(element.data.text): 0
+              
+            }
+          });
+        }
+      })
+      this.available = this.quantity - (this.bookings + this.pending + this.processing+ this.manuallyBooked)
+    }
+  }
 
 
   view(page) {

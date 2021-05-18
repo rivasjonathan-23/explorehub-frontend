@@ -87,14 +87,25 @@ div {
         text-overflow: ellipsis;  
     }
 
-    .description {
-        color:gray;
-        margin: 3px;
-        max-height: 48px;
-        overflow: hidden;
-        font-size: 13px;
-        overflow: hidden;   
-        text-overflow: ellipsis;  
+    .details {
+        display: flex;
+        flex-wrap: wrap;
+        .description {
+            color:gray;
+            margin:1px 2px;
+            border-radius: 1px;
+            flex-grow: 1;
+            padding:1px 2px;
+            background-color: rgb(242, 245, 250);
+            overflow: hidden;
+            font-size: 13px;
+            overflow: hidden;   
+            font-size: 11px;
+            
+            b {
+                font-size: 12px;
+            }
+        }
     }
 }
 .untitled {
