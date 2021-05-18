@@ -10,7 +10,8 @@
 <ion-content>
   <ion-slides #slides (ionSlideWillChange)="slideChanged()">
     <ion-slide *ngFor="let service of values.data">
-      <app-service-details [noAvailable]="service.noAvailable" [notOperating]="notOperating" [serviceInfo]="{pageId: pageId,serviceGroupName: serviceGroupName, serviceGroupId: serviceId,pageType: pageType, bookingId: bookingId}"
+      <app-service-details [noAvailable]="service.noAvailable" [notOperating]="notOperating"
+        [serviceInfo]="{pageId: pageId,serviceGroupName: serviceGroupName, serviceGroupId: serviceId,pageType: pageType, bookingId: bookingId}"
         [values]="service">
       </app-service-details>
     </ion-slide>
@@ -19,10 +20,10 @@
     <div (click)="slides.slidePrev()" [class.hidden]="start" class="ion-activatable ripple-parent">
       <ion-icon name="arrow-back-outline"></ion-icon>
       <ion-ripple-effect></ion-ripple-effect>
-      </div>
+    </div>
     <div (click)="slides.slideNext()" [class.hidden]="end" class="ion-activatable ripple-parent">
       <ion-icon name="arrow-forward-outline"></ion-icon>
       <ion-ripple-effect></ion-ripple-effect>
-      </div>
+    </div>
   </div>
 </ion-content>

@@ -25,10 +25,12 @@ export class SearchPage implements OnInit {
   }
 
   search() {
-    this.loading = true;
-    this.pages = []
-    if (this.form.value.pageName) {
-      this.mainService.searchTouristSpot({pageName: this.form.value.pageName})
+    
+    const text = this.form.controls['pageName'].value.trim()
+    if (text != "") {
+      this.loading = true;
+      this.pages = []
+      this.mainService.searchTouristSpot({pageName: text})
       .subscribe((pages: Page[]) => {
       
         this.pages = pages

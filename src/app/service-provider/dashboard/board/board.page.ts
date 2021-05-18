@@ -1,4 +1,4 @@
-import { AfterContentInit, AfterViewChecked, AfterViewInit, Component, OnDestroy, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
+import { AfterContentInit, AfterViewChecked, AfterViewInit, Component, ElementRef, OnDestroy, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
 import { Router } from '@angular/router';
 import { ViewWillEnter } from '@ionic/angular';
 import { MainServicesService } from '../../provider-services/main-services.service';
@@ -8,16 +8,33 @@ import { MainServicesService } from '../../provider-services/main-services.servi
   templateUrl: './board.page.html',
   styleUrls: ['./board.page.scss'],
 })
-export class BoardPage implements AfterViewInit {
+export class BoardPage implements OnInit {
   @ViewChild('tab', { read: ViewContainerRef }) tab: ViewContainerRef;
+  @ViewChild('tabmenu', { read: ViewContainerRef }) menu: ViewContainerRef;
+  @ViewChild('pending', { read: ViewContainerRef }) pending: ViewContainerRef;
+  @ViewChild('booked', { read: ViewContainerRef }) booked: ViewContainerRef;
+  @ViewChild('cancelled', { read: ViewContainerRef }) cancelled: ViewContainerRef;
+  @ViewChild('closed', { read: ViewContainerRef }) closed: ViewContainerRef;
+  @ViewChild('statistics', { read: ViewContainerRef }) statistics: ViewContainerRef;
+  @ViewChild('processing', { read: ViewContainerRef }) processing: ViewContainerRef;
+
   public clickedTab: string = 'Booked'
   public boxPosition: number;
   public height: any = window.innerHeight - 124;
 
   constructor(public router: Router, public mainService: MainServicesService) { }
 
-  ngAfterViewInit() {
+  // ngAfterViewInit() {
+  //   this.init()
+  // }
+
+  ngOnInit() {
     this.init()
+    this.mainService.goToCurrentTab.subscribe(currentTab => {
+      setTimeout(() => {
+        this.goToCurrentTab(currentTab)
+      }, 200);
+    })
   }
 
 
@@ -29,8 +46,34 @@ export class BoardPage implements AfterViewInit {
       currentTab = currentTab.includes("?") ? currentTab.split("?")[0] : currentTab;
       if (this.tab) {
         this.goToSection(currentTab, this.tab.element.nativeElement);
+        this.goToCurrentTab(currentTab)
       }
     }, 500);
+  }
+
+  goToCurrentTab(currentTab) {
+    switch (currentTab) {
+      case 'Closed':
+        this.closed.element.nativeElement.scrollIntoView()
+        break;
+      case 'Booked':
+        this.booked.element.nativeElement.scrollIntoView()
+        break;
+      case 'Processing':
+        this.processing.element.nativeElement.scrollIntoView()
+        break;
+      case 'Pending':
+        this.pending.element.nativeElement.scrollIntoView()
+        break;
+      case 'Cancelled':
+        this.cancelled.element.nativeElement.scrollIntoView()
+        break;
+      case 'Statistics':
+        this.statistics.element.nativeElement.scrollIntoView()
+        break;
+      default:
+        break;
+    }
   }
 
   goToSection(tab: string, div: HTMLElement, url = null) {
@@ -63,5 +106,11 @@ export class BoardPage implements AfterViewInit {
         break;
     }
   }
+
+  scrollTo(right = false) {
+    this.menu.element.nativeElement.scrollLeft = this.menu.element.nativeElement.scrollLeft + (right ? 250 : -250)
+    console.log(this.menu.element.nativeElement.scrollLeft)
+  }
+
 }
 

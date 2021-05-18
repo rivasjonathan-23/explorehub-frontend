@@ -8,39 +8,51 @@
 <div>
 
   <div>
-    <div class="csTabs">
-      <div class="csTab">
+    <div class="btnHolder">
+      <div class="scrollable prev ion-activatable ripple-parent" (click)="scrollTo()">
+        <ion-icon name="chevron-back-outline"></ion-icon>
+        <ion-ripple-effect></ion-ripple-effect>
+      </div>
+      <div class="scrollable next ion-activatable ripple-parent" (click)="scrollTo(true)">
+        <ion-icon name="chevron-forward-outline"></ion-icon>
+        <ion-ripple-effect></ion-ripple-effect>
+      </div>
+    </div>
+    <div #tabmenu class="csTabs">
+
+      <div #closed class="csTab">
         <span>
           Closed
         </span>
       </div>
-      <div class="csTab">
+      <div #booked class="csTab">
         <span>
           Booked
         </span>
       </div>
-      <div class="csTab">
+      <div #processing class="csTab">
         <span>
           Processing
         </span>
       </div>
-      <div class="csTab">
+      <div #pending class="csTab">
         <span>
           Pending
         </span>
       </div>
-      <div class="csTab">
+      <div #cancelled class="csTab">
         <span>
           Cancelled
         </span>
       </div>
-      <div class="csTab">
+      <div #statistics class="csTab">
         <span>
           Statistics
         </span>
       </div>
 
       <div class="activeIndicator">
+
         <div (click)="goToSection('Closed', tab, ['booking', 'Closed'])" class="csTab"></div>
         <div (click)="goToSection('Booked', tab, ['booking' , 'Booked'])" class="csTab">
           <div class="box" #tab [ngStyle]="{'left.px': boxPosition}">
@@ -53,6 +65,8 @@
         <div (click)="goToSection('Statistics', tab, ['statistics'])" class="csTab"></div>
       </div>
     </div>
+
+
   </div>
   <div class="content" [ngStyle]="{'height.px': height}">
     <router-outlet></router-outlet>

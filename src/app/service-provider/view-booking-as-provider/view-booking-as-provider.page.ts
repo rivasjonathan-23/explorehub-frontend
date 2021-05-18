@@ -120,7 +120,7 @@ export class ViewBookingAsProviderPage implements OnInit, AfterViewInit {
     if (this.fromNotification) {
       this.router.navigate(["/service-provider/notifications"])
     } else {
-
+      this.mainService.goToCurrentTab.emit(this.bookingStatus)
       this.router.navigate(["./service-provider/dashboard/" + this.pageType + "/" + this.pageId + "/board/booking/" + this.bookingStatus])
     }
   }

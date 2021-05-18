@@ -97,17 +97,17 @@ export class WeatherComponent implements OnInit {
   getDate() {
     let dateNow = new Date();
     let day = dateNow.getDay();
-    let month = dateNow.getMonth() + 1;
-    let date = dateNow.getDate();
-    let year = dateNow.getFullYear();
+    // let month = dateNow.getMonth() + 1;
+    // let date = dateNow.getDate();
+    // let year = dateNow.getFullYear();
 
-    let newDate = null;
-    if(date < 10) {
-      newDate = `0${date}`;
-    }
+    // let newDate = null;
+    // if(date < 10) {
+    //   newDate = `0${date}`;
+    // }
 
-    this.date = `0${month} - ${newDate} - ${year}`;
-    console.log("MONTH: ", month)
+    this.date = dateNow;
+    // console.log("MONTH: ", month)
 
     var days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
     this.today = days[day];
