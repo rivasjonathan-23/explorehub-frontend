@@ -121,6 +121,7 @@ export class DashboardPage implements OnInit {
 
   viewStats() {
     setTimeout(() => {
+      this.mainService.goToCurrentTab.emit("Statistics")
       this.router.navigate(["/service-provider/dashboard/" + this.page.pageType + "/" + this.page._id + "/board/statistics"])
     }, 200);
   }

@@ -59,6 +59,7 @@ export class ListOfPagesPage implements OnInit {
         const opts = page.status == "Unfinished" ? { queryParams: { fromDraft: true } } : {}
         setTimeout(() => {
           if (page.status != "Unfinished") {
+            this.mainService.goToCurrentTab.emit("Booked")
             this.router.navigate(["/service-provider/dashboard", type, page._id], opts)
           } else {
             this.router.navigate([`/service-provider/${pageTypge}`, page._id], opts)

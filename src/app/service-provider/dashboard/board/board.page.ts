@@ -20,7 +20,7 @@ export class BoardPage implements OnInit {
 
   public clickedTab: string = 'Booked'
   public boxPosition: number;
-  public height: any = window.innerHeight - 124;
+  public height: any = window.innerHeight - 177;
 
   constructor(public router: Router, public mainService: MainServicesService) { }
 
@@ -33,6 +33,9 @@ export class BoardPage implements OnInit {
     this.mainService.goToCurrentTab.subscribe(currentTab => {
       setTimeout(() => {
         this.goToCurrentTab(currentTab)
+        if (currentTab != this.clickedTab) {
+          this.goToSection(currentTab, this.tab.element.nativeElement);
+        }
       }, 200);
     })
   }
