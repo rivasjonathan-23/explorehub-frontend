@@ -2,7 +2,7 @@
   <div class="top">
     <div class="titleAndMenu">
       <div content-id="main-content" class="ion-activatable ripple-parent iconHolder nBg">
-        <ion-menu-button content-id="main-content"></ion-menu-button>
+        <ion-menu-button content-id="main-content" class="menuBtn"></ion-menu-button>
         <ion-ripple-effect></ion-ripple-effect>
       </div>
       <div class="title">ExploreHub</div>
@@ -29,11 +29,33 @@
     </div>
   </div>
   <div class="categories">
-    <div class="categoryTab ion-activatable ripple-parent" [class.currentTab]="currentCategory == 'all'" (click)="retrieveTouristSpotByCategory('all')">All
+    <div class="categoryTab ion-activatable ripple-parent" [class.currentTab]="currentCategory == 'all'" (click)="retrieveTouristSpotByCategory('all')">
+      <div class="name">
+        
+        All
+      </div>
+      <div class="categoryIcon">
+        1
+      </div>
       <ion-ripple-effect></ion-ripple-effect>
     </div>
-    <div class="categoryTab ion-activatable ripple-parent" [class.currentTab]="currentCategory == category.name" *ngFor="let category of categories"
-      (click)="retrieveTouristSpotByCategory(category.name)">{{category.name}}
+    <div class="categoryTab ion-activatable ripple-parent" [class.currentTab]="currentCategory == 'all'" (click)="retrieveTouristSpotByCategory('all')">
+      <div class="name">
+        
+        Mountains and picks aournd the world and more text to show here
+      </div>
+      <div class="categoryIcon">
+        1
+      </div>
+      <ion-ripple-effect></ion-ripple-effect>
+    </div>
+    <div class="categoryTab ion-activatable ripple-parent" [class.currentTab]="currentCategory == category.name" *ngFor="let category of categories;let i = index"
+      (click)="retrieveTouristSpotByCategory(category.name)">
+      <div class="name">
+        {{category.name}}
+      </div>
+     <div class="categoryIcon" [ngStyle]="{'background-image': 'url('+pic+')'}"></div>
+      
       <ion-ripple-effect></ion-ripple-effect>
     </div>
   </div>

@@ -48,13 +48,14 @@
     overflow: hidden;
     margin:0;
     padding:0;
+    background-color: rgb(181, 204, 235);
 }
 .item-spot {
     background-color: #ffff;
     margin:1px 5px;
     border-radius: 4px;
     overflow: hidden;
-
+    box-shadow: 0 1px 2px rgb(217, 220, 224);
 }
 .spot-image {
     width: 167px;
@@ -72,7 +73,7 @@
     height: 78px;
     overflow: hidden;
     color: #1c2c41;
-    margin:5px 4px;
+    margin:0 4px;
     // background-color: green;
     // display: flex;
 }
@@ -81,13 +82,31 @@
     max-height: 30px;
     overflow: hidden;
     font-weight: bold;
+    margin:0;
     font-size: 14px;
-    margin:2px 0;
+    overflow:hidden;
+    max-height: 8rem;
+    -webkit-box-orient: vertical;
+    display: block;
+    display: -webkit-box;
+    overflow: hidden !important;
+    text-overflow: ellipsis;
+    -webkit-line-clamp: 2;
+
 }
 
 .textDesc{
     font-size: 13px !important;
-    margin:3px 0;
+    margin:0;
+    color: rgb(122, 124, 128);
+    overflow:hidden;
+    max-height: 8rem;
+    -webkit-box-orient: vertical;
+    display: block;
+    display: -webkit-box;
+    overflow: hidden !important;
+    text-overflow: ellipsis;
+    -webkit-line-clamp: 3;
 }
 
 .spot-image-in-list {
@@ -132,7 +151,7 @@
     width: 85%;
     display: inline-block;
     text-align: left;
-    background-color: rgb(240, 240, 240);
+    background-color: rgb(255, 255, 255);
     padding: 13px;
     border-radius: 5px;
     overflow: auto;

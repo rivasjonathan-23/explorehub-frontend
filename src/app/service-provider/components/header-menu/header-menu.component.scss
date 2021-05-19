@@ -2,7 +2,8 @@
     position: fixed;
     width: 100%;
     z-index: 99999;
-    padding-top: 5px;
+    padding: 4px 2px;
+    padding-bottom: 0;
     top:0px;
     box-shadow: 0 1px 2px rgba(159, 168, 180, 0.5);
     background-color: #ffff;
@@ -10,6 +11,8 @@
     .top {
         display: flex;
         justify-content: space-between;
+        margin-bottom: 5px;
+        border-bottom: 1px solid rgb(226, 235, 248);
 
         .titleAndMenu {
             
@@ -33,7 +36,7 @@
 
         .menu {
             display: flex;
-            padding:8px;
+            padding:0 8px;
             align-items: center;
             
             ion-icon {
@@ -47,17 +50,59 @@
     .categories {
         overflow-y:scroll;
         display: flex;
-        padding:5px;
+        padding: 0 3px;
+        padding-bottom: 5px;
 
         .categoryTab {
-            padding:8px;
+            padding:0;
+            overflow: hidden;
+            padding-top: 5px;
+            width:85px; 
+            // height: 34px;
             border-radius: 5px;
             flex-shrink: 0;
-            color:rgb(34, 101, 168);
             margin:4px;
-            background-color: rgb(213, 225, 241);
+            margin-top: 0;
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            align-items: flex-start;
+            flex-direction: column;
+            
+            // background-color: rgb(222, 231, 243);
+            .categoryIcon {
+                width:85px; 
+                padding:0 10px;
+                background-size: cover;
+                background-position: center;
+                height: 85px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                // margin:4px;
+                background-color: rgb(188, 211, 236);
+                color:rgb(31, 71, 110);
+                border-radius: 5px;
+            }
+            
+            .name {
+                color:rgb(34, 101, 168);
+                // margin:0 5px;
+                font-size: 14px;
+                overflow:hidden;
+                max-height: 8rem;
+                -webkit-box-orient: vertical;
+                display: block;
+                display: -webkit-box;
+                overflow: hidden !important;
+                text-overflow: ellipsis;
+                -webkit-line-clamp: 2;
+            }
         }
     }
+}
+.menuBtn {
+    padding:0 !important;
 }
 
 .iconHolder {
@@ -67,6 +112,7 @@
     border-radius: 4px;
     align-items: center;
     margin:4px;
+
     overflow: visible;
     position: relative;
 
@@ -89,10 +135,19 @@
 }
 
 .nBg {
+    margin-right: 10px;
     background-color: #ffff !important;
 }
 
 .currentTab {
-    background-color: rgb(11, 123, 235) !important;
-    color: #ffff !important;
+    background-color: rgb(45, 144, 243) !important;
+    .categoryIcon {
+        background-color: rgb(25, 124, 223) !important;
+
+        color:rgb(213, 230, 247) !important;
+    }
+    .name {
+
+        color: #ffff !important;
+    }
 }

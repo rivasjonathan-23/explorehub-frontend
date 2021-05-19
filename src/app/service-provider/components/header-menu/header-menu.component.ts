@@ -14,6 +14,7 @@ export class HeaderMenuComponent implements OnInit {
   @Input() notificationsCount: number;
   @Input() categories: any[];
   @Input() currentCategory: string;
+  pic = "https://storage.googleapis.com/explorehub_photos/ExploreHub_1621218811350blob.jpg"
   @Output() changeCategory: EventEmitter<any> = new EventEmitter();
   public pages: Page[] =[]
 

@@ -29,11 +29,18 @@
 
 .pageName {
     padding:5px;
+    padding-bottom: 2px;
     margin:0;
-    max-height:38px;
-    overflow: auto;
+    
+    // overflow: auto;
     font-size: 14px;
     font-weight: 600;
+    -webkit-box-orient: vertical;
+    display: block;
+    display: -webkit-box;
+    overflow: hidden !important;
+    text-overflow: ellipsis;
+    -webkit-line-clamp: 2;
 }
 
 .status {

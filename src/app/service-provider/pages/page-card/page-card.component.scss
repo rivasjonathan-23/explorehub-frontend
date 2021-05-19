@@ -84,7 +84,13 @@ div {
     .description {
         color:rgb(108, 126, 134);
         margin: 3px;
-        overflow: hidden;
+        overflow:hidden;
+        -webkit-box-orient: vertical;
+        display: block;
+        display: -webkit-box;
+        overflow: hidden !important;
+        text-overflow: ellipsis;
+        -webkit-line-clamp: 10;
         font-size: 13px;
     }
 }
@@ -230,6 +236,13 @@ div {
         // width:50px;
 
         font-size: 11px;
+        overflow:hidden;
+        -webkit-box-orient: vertical;
+        display: block;
+        display: -webkit-box;
+        overflow: hidden !important;
+        text-overflow: ellipsis;
+        -webkit-line-clamp: 3;
     }
 }
 

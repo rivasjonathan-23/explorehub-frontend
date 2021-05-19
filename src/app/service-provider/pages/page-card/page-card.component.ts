@@ -38,7 +38,6 @@ export class PageCardComponent implements OnInit {
 
       const description = this.page.components.filter(comp => comp.data.defaultName == "description")
       this.pageDescription = description.length > 0 ? description[0].data.text : "No Description"
-      this.pageDescription = this.pageDescription.length > 350 ? this.pageDescription.substring(0, 350) : this.pageDescription
 
       this.page.otherServices = this.page["otherServicesData"].map(data => {
         if (data.status == "Online") {

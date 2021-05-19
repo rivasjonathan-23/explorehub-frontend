@@ -77,14 +77,18 @@ div {
 
     .title {
         font-size: 15px;
-        margin: 3px 25px 3px 3px;
+        margin: 3px;
         height: 19px;
         font-weight: bold;
         // width: 100%;
         color: $mediumLight;
-        overflow-x: auto;
-        overflow-y: hidden;
-        text-overflow: ellipsis;  
+        overflow:hidden;
+        -webkit-box-orient: vertical;
+        display: block;
+        display: -webkit-box;
+        overflow: hidden !important;
+        text-overflow: ellipsis;
+        -webkit-line-clamp: 1;
     }
 
     .details {
