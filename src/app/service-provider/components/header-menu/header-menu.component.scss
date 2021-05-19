@@ -68,7 +68,7 @@
             align-items: center;
             align-items: flex-start;
             flex-direction: column;
-            transition:.5s;
+            transition:.4s;
             background-color: rgb(222, 232, 245);
             .categoryIcon {
                 width:85px; 
@@ -143,11 +143,12 @@
     overflow: hidden !important;
     justify-content: center !important;
     // align-items: center !important;
+    // width:unset !important;
     width:unset !important;
-    font-size: 14px !important;
-    padding:8px !important;
+    max-width: 250px !important;
+    padding:5px !important;
     .name {
-        font-size: 17px !important;
+        font-size: 16px !important;
         -webkit-line-clamp: 1 !important;
     }
 }

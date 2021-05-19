@@ -147,6 +147,7 @@
     padding:8px !important;
 }
 .ripple-parent {
+    transition: .4s;
     position: relative;
     overflow: hidden;
   }
