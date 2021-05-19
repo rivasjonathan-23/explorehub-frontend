@@ -45,8 +45,14 @@ export class NotificationCardComponent implements OnInit {
         let deleted = "";
         if (type == "booking-tourist") {
           if (this.notificationGroup.booking) {
-            this.router.navigate(["/service-provider/view-booking", this.notificationGroup.booking._id],
-            { queryParams: { notification: true } })
+            let tab = "/booking-information"
+            let params: any = { notification: true }
+            if (this.notif["isMessage"])  {
+              tab = "/conversation"
+              params = { notification: true, bookingId: this.notificationGroup.booking._id ,pageId:this.notificationGroup.page._id ,receiverId: this.notif.receiver}
+            }
+            this.router.navigate(["/service-provider/view-booking/"+ this.notificationGroup.booking._id + tab],
+            { queryParams: params })
           } else {
             deleted = "booking"
           }
@@ -85,7 +91,9 @@ export class NotificationCardComponent implements OnInit {
   getName(conversation) {
     return conversation.receiver ? conversation.receiver.fullName : conversation["type"] == "admin_approval" ? "Admin" : "Unknown"
   }
-
+//conversation?bookingId=60a3821ec6a91c0004f99192&pageId=60a123f2f05ea4000430ae28&receiverId=60a092d143a2d8000416cdd5
+//conversation?bookingId=60a3821ec6a91c0004f99192&pageId=60a123f2f05ea4000430ae28&receiverId=60a092d143a2d8000416cdd5
+//conversation?bookingId=60a1cec61a8e1c00046da74e&pageId=609bc77fc4824b0004c30005&tourist=60a1cde61a8e1c00046da74c
   async presentAlert(message) {
     const alert = await this.alert.create({
       cssClass: "my-custom-class",

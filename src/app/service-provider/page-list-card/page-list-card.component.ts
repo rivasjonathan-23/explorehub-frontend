@@ -24,14 +24,14 @@ export class PageListCardComponent implements OnInit {
 
   ngOnInit() { 
     if (this.page) {
-      if (this.page['pageServies']) {
+      if (this.page['pageServices']) {
 
         this.page['pageServices'].forEach(service => {
           if (service.type == "item") {
             this.bookings += service.booked? service.booked: 0
             this.processing += service.toBeBooked? service.toBeBooked : 0
             this.pending += service.pending?service.pending: 0
-            this.manuallyBooked = service.manuallyBooked? service.manuallyBooked: 0
+            this.manuallyBooked += service.manuallyBooked? service.manuallyBooked: 0
         
             service.data.forEach(element => {
               if (element.data.defaultName == "quantity") {
