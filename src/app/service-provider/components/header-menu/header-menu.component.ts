@@ -16,17 +16,20 @@ export class HeaderMenuComponent implements OnInit {
   public height: number = 95;
   public opacity: number = 12;
   public size: number = 30;
+  public small: boolean = false;
 
   @Input() currentCategory: string;
   pic = "https://storage.googleapis.com/explorehub_photos/ExploreHub_1621218811350blob.jpg"
   @Output() changeCategory: EventEmitter<any> = new EventEmitter();
-  public pages: Page[] =[]
+  public pages: Page[] = []
 
 
-  constructor(public mainService:MainServicesService, public router: Router, public modalCtrl: ModalController) { }
+  constructor(public mainService: MainServicesService, public router: Router, public modalCtrl: ModalController) { }
 
   ngOnInit() {
     this.mainService.scrollDown.subscribe(data => {
+      console.log(data)
+      this.small = data >= 95
       this.height = 95 - data
       this.opacity = 12 - data
       this.size = 30 - data
@@ -35,7 +38,7 @@ export class HeaderMenuComponent implements OnInit {
 
   goTo(path, fromHome = false) {
     setTimeout(() => {
-      const params = fromHome? {queryParams: {formDashboard: true}}: {}
+      const params = fromHome ? { queryParams: { formDashboard: true } } : {}
       this.router.navigate(path, params)
     }, 300);
   }
@@ -50,8 +53,8 @@ export class HeaderMenuComponent implements OnInit {
 
   retrieveTouristSpotByCategory(category) {
     this.currentCategory = category
-    this.router.navigate(["/service-provider/online-pages-list"], {queryParams: {category: category}})
+    this.router.navigate(["/service-provider/online-pages-list"], { queryParams: { category: category } })
   }
 
-  
+
 }
