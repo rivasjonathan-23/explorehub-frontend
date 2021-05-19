@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ViewWillEnter } from '@ionic/angular';
 import { Page } from 'src/app/modules/elementTools/interfaces/page';
@@ -14,6 +14,8 @@ export class OnlinePagesListPage implements OnInit, ViewWillEnter {
   notificationsCount = 0
   public category: string = "all"
   public loading: boolean = true
+  @HostListener('scroll', ['$event', 'list'])
+    
   public categories = []
   constructor(public router: Router, public route: ActivatedRoute, public mainService: MainServicesService) { }
 
@@ -35,8 +37,12 @@ export class OnlinePagesListPage implements OnInit, ViewWillEnter {
         }
       )
     })
+    
   }
-  
+  scrollHandler(event, list) {
+    this.mainService.scrollDown.emit(list.scrollTop)
+  }
+
   ionViewWillEnter() {
     this.getAllCategories()
     this.getNotificationCount()

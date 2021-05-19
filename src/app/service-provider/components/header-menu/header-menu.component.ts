@@ -13,6 +13,10 @@ import { environment } from 'src/environments/environment';
 export class HeaderMenuComponent implements OnInit {
   @Input() notificationsCount: number;
   @Input() categories: any[];
+  public height: number = 95;
+  public opacity: number = 12;
+  public size: number = 30;
+
   @Input() currentCategory: string;
   pic = "https://storage.googleapis.com/explorehub_photos/ExploreHub_1621218811350blob.jpg"
   @Output() changeCategory: EventEmitter<any> = new EventEmitter();
@@ -22,6 +26,11 @@ export class HeaderMenuComponent implements OnInit {
   constructor(public mainService:MainServicesService, public router: Router, public modalCtrl: ModalController) { }
 
   ngOnInit() {
+    this.mainService.scrollDown.subscribe(data => {
+      this.height = 95 - data
+      this.opacity = 12 - data
+      this.size = 30 - data
+    })
   }
 
   goTo(path, fromHome = false) {

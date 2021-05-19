@@ -20,6 +20,7 @@ export class MainServicesService {
   public hasUnfinishedBooking: boolean = false;
   public socket: any;
   public user: any;
+  public scrollDown: EventEmitter<any> = new EventEmitter();
   public goToCurrentTab: EventEmitter<any> = new EventEmitter();
   public notify: any;
   public checkCurrentUser: EventEmitter<any> = new EventEmitter();

@@ -21,41 +21,43 @@
         <ion-ripple-effect></ion-ripple-effect>
       </div>
       <!-- <div class="weather iconHolder"> -->
-        <!-- <ion-icon name="sunny-outline"></ion-icon>
+      <!-- <ion-icon name="sunny-outline"></ion-icon>
           <ion-icon name="thunderstorm-outline"></ion-icon> -->
-        <!-- <ion-icon name="rainy-outline" (click)="checkWeather()"></ion-icon> -->
-        <!-- <ion-icon name="cloudy-outline"></ion-icon> -->
+      <!-- <ion-icon name="rainy-outline" (click)="checkWeather()"></ion-icon> -->
+      <!-- <ion-icon name="cloudy-outline"></ion-icon> -->
       <!-- </div> -->
     </div>
   </div>
   <div class="categories">
-    <div class="categoryTab ion-activatable ripple-parent" [class.currentTab]="currentCategory == 'all'" (click)="retrieveTouristSpotByCategory('all')">
+    <div class="categoryTab ion-activatable ripple-parent" [class.currentTab]="currentCategory == 'all'"
+      (click)="retrieveTouristSpotByCategory('all')">
       <div class="name">
-        
+
         All
       </div>
-      <div class="categoryIcon">
-        1
+      <div class="categoryIcon" [ngStyle]="{'height.px': height}">
+        <div class="total" [ngStyle]="{'width.px': size,'height.px': size, 'display': 5 >= size? 'none': 'block'}">
+          <ion-icon name="location-outline"></ion-icon>
+        </div>
+        <p [ngStyle]="{'font-size.px': opacity, 'display': 1 >= opacity? 'none': 'block'}">
+
+          All categories of tourist spot
+        </p>
       </div>
       <ion-ripple-effect></ion-ripple-effect>
     </div>
-    <div class="categoryTab ion-activatable ripple-parent" [class.currentTab]="currentCategory == 'all'" (click)="retrieveTouristSpotByCategory('all')">
-      <div class="name">
-        
-        Mountains and picks aournd the world and more text to show here
-      </div>
-      <div class="categoryIcon">
-        1
-      </div>
-      <ion-ripple-effect></ion-ripple-effect>
-    </div>
-    <div class="categoryTab ion-activatable ripple-parent" [class.currentTab]="currentCategory == category.name" *ngFor="let category of categories;let i = index"
-      (click)="retrieveTouristSpotByCategory(category.name)">
+
+    <div class="categoryTab ion-activatable ripple-parent" [class.currentTab]="currentCategory == category.name"
+      *ngFor="let category of categories;let i = index" (click)="retrieveTouristSpotByCategory(category.name)">
       <div class="name">
         {{category.name}}
       </div>
-     <div class="categoryIcon" [ngStyle]="{'background-image': 'url('+pic+')'}"></div>
-      
+      <div class="categoryIcon" [ngStyle]="{'background-image': 'url('+pic+')', 'height.px': height}">
+        <div class="total" [ngStyle]="{'width.px': size,'height.px': size, 'display': 5 >= size? 'none': 'block'}">
+          <ion-icon name="location-outline"></ion-icon>
+        </div>
+      </div>
+
       <ion-ripple-effect></ion-ripple-effect>
     </div>
   </div>
