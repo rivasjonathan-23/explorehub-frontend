@@ -13,7 +13,7 @@ import { environment } from 'src/environments/environment';
 export class HeaderMenuComponent implements OnInit {
   @Input() notificationsCount: number;
   @Input() categories: any[];
-  public height: number = 95;
+  public height: number = 80;
   public opacity: number = 12;
   public size: number = 30;
   public small: boolean = false;
@@ -28,8 +28,8 @@ export class HeaderMenuComponent implements OnInit {
 
   ngOnInit() {
     this.mainService.scrollDown.subscribe(data => {
-      this.small = data >= 95
-      this.height = 95 - data
+      this.small = data >= 80
+      this.height = 80 - data
       this.opacity = 12 - data
       this.size = 30 - data
     })
