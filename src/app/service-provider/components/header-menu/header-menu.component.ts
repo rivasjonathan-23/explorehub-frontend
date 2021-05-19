@@ -52,7 +52,7 @@ export class HeaderMenuComponent implements OnInit {
   }
 
   retrieveTouristSpotByCategory(category) {
-    this.currentCategory = category
+    this.currentCategory = category 
     this.router.navigate(["/service-provider/online-pages-list"], { queryParams: { category: category } })
   }
 

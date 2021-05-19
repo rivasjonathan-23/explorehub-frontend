@@ -15,7 +15,7 @@ export class OnlinePagesListPage implements OnInit, ViewWillEnter {
   public category: string = "all"
   public loading: boolean = true
   @HostListener('scroll', ['$event', 'list'])
-    
+
   public categories = []
   constructor(public router: Router, public route: ActivatedRoute, public mainService: MainServicesService) { }
 
@@ -37,7 +37,7 @@ export class OnlinePagesListPage implements OnInit, ViewWillEnter {
         }
       )
     })
-    
+
   }
   scrollHandler(event, list) {
     this.mainService.scrollDown.emit(list.scrollTop)
@@ -59,7 +59,30 @@ export class OnlinePagesListPage implements OnInit, ViewWillEnter {
   getAllCategories() {
     this.mainService.getAllCategories().subscribe(
       (response: any) => {
-        this.categories = response.categories
+        this.categories = response.categories.filter(category => category.touristSpots.length > 0)
+        console.log(this.categories);
+
+        this.categories = this.categories.map(category => {
+          const touristSpots = category.touristSpots
+          if (touristSpots.length > 0) {
+            console.log(category.name, category.touristSpots);
+            
+            // const spot = touristSpots[Math.floor(Math.random() * (touristSpots.length - 1))];
+            let index = Math.floor(Math.random() * touristSpots.length)
+            console.log('index: ',touristSpots.length, touristSpots[index]);
+            let spot = touristSpots[index]
+            if (spot && spot.components) {
+              
+
+              spot.components.forEach(element => {
+                if (element.type == "photo") {
+                  if (!category["coverPhoto"]) category["coverPhoto"] = element.data[0].url
+                }
+              });
+            }
+          }
+          return category
+        })
       }
     )
   }

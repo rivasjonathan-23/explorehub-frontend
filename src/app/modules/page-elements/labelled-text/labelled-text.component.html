@@ -20,7 +20,7 @@
 
         <ng-template #textInput>
           <ion-textarea auto-grow="true" (focusin)="showDefaults = true" (focusout)="focusOut()"
-            (change)="renderText(true)" (keyup)="detectTyping()" [readonly]="footerData.saving"
+            (change)="renderText(true)" (keyup)="detectTyping(); values.data['referenceId'] = null" [readonly]="footerData.saving"
             [(ngModel)]="values.data.text" class="text" rows="1" placeholder="Enter text here">
           </ion-textarea>
         </ng-template>
@@ -28,7 +28,7 @@
         <div *ngIf="defaults && defaults.length > 0 && showDefaults" class="options">
           <div class="innerHolder">
             <div class="option ion-activatable ripple-parent" *ngFor="let option of defaults"
-              (click)="values.data.text = option.name;values.data.referenceId = option._id ;renderText(true)">
+              (click)="values.data.text = option.name; values.data.referenceId = option._id ;renderText(true)">
               {{option.name}}
               <ion-ripple-effect type="unbounded"></ion-ripple-effect>
             </div>

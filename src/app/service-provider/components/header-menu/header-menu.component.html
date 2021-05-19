@@ -40,7 +40,6 @@
           <ion-icon name="location-outline"></ion-icon>
         </div>
         <p [ngStyle]="{'font-size.px': opacity, 'display': 1 >= opacity? 'none': 'block'}">
-
           All categories of tourist spot
         </p>
       </div>
@@ -53,7 +52,7 @@
       <div class="name">
         {{category.name}}
       </div>
-      <div class="categoryIcon" *ngIf="!small"  [ngStyle]="{'background-image': 'url('+pic+')', 'height.px': height}">
+      <div class="categoryIcon" *ngIf="!small"  [ngStyle]="{'background-image': 'url('+category.coverPhoto+')', 'height.px': height}">
         <div class="total" [ngStyle]="{'width.px': size,'height.px': size, 'display': 5 >= size? 'none': 'block'}">
           <ion-icon name="location-outline"></ion-icon>
         </div>
