@@ -60,16 +60,13 @@ export class OnlinePagesListPage implements OnInit, ViewWillEnter {
     this.mainService.getAllCategories().subscribe(
       (response: any) => {
         this.categories = response.categories.filter(category => category.touristSpots.length > 0)
-        console.log(this.categories);
 
         this.categories = this.categories.map(category => {
           const touristSpots = category.touristSpots
           if (touristSpots.length > 0) {
-            console.log(category.name, category.touristSpots);
             
             // const spot = touristSpots[Math.floor(Math.random() * (touristSpots.length - 1))];
             let index = Math.floor(Math.random() * touristSpots.length)
-            console.log('index: ',touristSpots.length, touristSpots[index]);
             let spot = touristSpots[index]
             if (spot && spot.components) {
               
@@ -92,7 +89,6 @@ export class OnlinePagesListPage implements OnInit, ViewWillEnter {
   }
 
   onChangeCategory(data) {
-    console.log(data)
     this.pages = data.pages
   }
 

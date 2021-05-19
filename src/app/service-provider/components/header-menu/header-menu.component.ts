@@ -28,7 +28,6 @@ export class HeaderMenuComponent implements OnInit {
 
   ngOnInit() {
     this.mainService.scrollDown.subscribe(data => {
-      console.log(data)
       this.small = data >= 95
       this.height = 95 - data
       this.opacity = 12 - data

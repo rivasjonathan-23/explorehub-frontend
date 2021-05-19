@@ -36,7 +36,6 @@ export class WeatherComponent implements OnInit {
   ionViewWillEnter() {
     this.getDate();
     this.getWeather();
-    console.log("WEATHER TODAY: ", this.getCelciusTemp(this.weatherToday.temp));
   }
 
   getWeather() {
@@ -47,7 +46,6 @@ export class WeatherComponent implements OnInit {
          return weather.json();
       }).then(weatherCondition => {
         this.loading = false;
-        console.log("WEATHER CONDITION: ", weatherCondition)
         let weatherNow = weatherCondition.weather[0].description;
         let temp = weatherCondition.main.temp;
         let sunrise = weatherCondition.sys.sunrise;
@@ -107,7 +105,6 @@ export class WeatherComponent implements OnInit {
     // }
 
     this.date = dateNow;
-    // console.log("MONTH: ", month)
 
     var days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
     this.today = days[day];

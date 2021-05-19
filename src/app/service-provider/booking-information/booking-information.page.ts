@@ -13,6 +13,8 @@ export class BookingInformationPage implements OnInit {
   public photo: string = "";
   public address: string = "------ ------ ------";
   public booking: bookingData;
+  public creator:string = "------ ------"
+  public contactNumber:string = "-------"
   constructor(public route: ActivatedRoute, public router: Router, public mainService: MainServicesService) {
     this.booking =  {
       _id: "",
@@ -55,6 +57,8 @@ export class BookingInformationPage implements OnInit {
       if (comp && comp.type == "text" && comp.data.defaultName && comp.data.defaultName == "pageName") {
         this.name = comp.data && comp.data.text ? comp.data.text : "Untitled"
       }
+      this.creator = this.booking.pageId.creator.fullName
+      this.contactNumber = this.booking.pageId.creator.contactNumber
     });
   }
 

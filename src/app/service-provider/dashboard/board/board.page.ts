@@ -112,7 +112,6 @@ export class BoardPage implements OnInit {
 
   scrollTo(right = false) {
     this.menu.element.nativeElement.scrollLeft = this.menu.element.nativeElement.scrollLeft + (right ? 250 : -250)
-    console.log(this.menu.element.nativeElement.scrollLeft)
   }
 
 }

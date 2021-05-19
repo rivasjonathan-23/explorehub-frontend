@@ -102,7 +102,6 @@ export class PageSettingsPage implements OnInit {
 
 
   clicked(action) {
-    console.log(action);
 
     if (action == "yes") {
       if (this.popupData.type == "change_page_status") {

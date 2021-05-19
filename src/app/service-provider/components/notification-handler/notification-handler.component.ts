@@ -27,13 +27,11 @@ export class NotificationHandlerComponent {
     this.eventType = eventType
     this.authService.getCurrentUser().then((user: any) => {
       this.user = user;
-      console.log(this.user)
       this.socket.connect();
       this.mainService.socket = this.socket;
       this.mainService.user = this.user
       this.mainService.notify = this.notify
       this.socket.fromEvent('send-notification').subscribe((data: any) => {
-        console.log(data);
 
         if (data.receiver.includes(this.mainService.user._id) || data.receiver.includes("all")) {
 

@@ -67,7 +67,6 @@ export class PageCardComponent implements OnInit {
       })
       this.pageServicesPhotos = this.pageServicesPhotos.filter((data: any) => data.photo)
 
-      console.log(this.pageServicesPhotos)
     }
   }
 

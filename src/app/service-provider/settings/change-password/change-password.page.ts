@@ -113,7 +113,6 @@ export class ChangePasswordPage implements OnInit {
 
   changePass() {
     this.submitClicked = true;
-    console.log(this.submitClicked)
 
     if((this.newPassword && this.confirmPassword) && ( this.newPassword == this.confirmPassword )) {
       if(this.currentPassword) {
@@ -139,10 +138,8 @@ export class ChangePasswordPage implements OnInit {
   compare() {
     if(this.comparePassword() == true) {
       this.correctOldPassword = true;
-      console.log(this.correctOldPassword)
     }else{
       this.correctOldPassword = false;
-      console.log(this.correctOldPassword)
     }
   }
 
@@ -194,7 +191,6 @@ export class ChangePasswordPage implements OnInit {
     if(bcrypt.compareSync(this.newPassword, this.myPassword)){
       this.presentAlertConfirm();
     }
-    // console.log(this.currentPassword !== this.newPassword)
     // return(this.currentPassword !== this.newPassword)
   }
 

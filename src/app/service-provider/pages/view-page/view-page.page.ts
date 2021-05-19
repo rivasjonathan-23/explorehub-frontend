@@ -123,7 +123,6 @@ export class ViewPagePage implements OnInit {
           // this.page.services = this.page.services.filter(service =>  service)
 
           
-          console.log(this.page.services);
           
           this.otherServices = this.page.otherServices
           this.mainService.currentPage = this.page;
@@ -245,7 +244,6 @@ export class ViewPagePage implements OnInit {
 
   viewItem(data) {
     const serviceList = this.page.services.filter(service => service._id == data.serviceId)
-    console.log(serviceList)
     const params = this.page.status == "Not Operating"? {queryParams: {notOperating: true, inputQuantity: serviceList[0]['inputQuantity']}}: {queryParams: {inputQuantity: serviceList[0]['inputQuantity']}}
 
     this.router.navigate(["/service-provider/view-item", this.page._id, data.serviceId, data.itemId, this.pageType, "create_new"], params)
@@ -347,7 +345,6 @@ export class ViewPagePage implements OnInit {
          return weather.json();
       }).then(weatherCondition => {
         this.loadingWeather = false
-        console.log("WEATHER CONDITION: ", weatherCondition)
         let weatherNow = weatherCondition.weather[0].description;
         let temp = weatherCondition.main.temp;
 

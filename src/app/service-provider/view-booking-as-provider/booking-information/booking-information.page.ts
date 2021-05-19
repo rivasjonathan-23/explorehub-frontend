@@ -12,7 +12,8 @@ import { MainServicesService } from '../../provider-services/main-services.servi
 export class BookingInformationPage implements OnInit {
   public name: string = "";
   public photo: string = "";
-  public address: string = "";
+  public address: string = ""
+  public touristAddress: string = ""
   public booking: bookingData = {
     _id: "",
     tourist: "",
@@ -36,6 +37,8 @@ export class BookingInformationPage implements OnInit {
         this.booking = response;
         if (this.booking && this.booking.pageId) {
           this.getPageInfo();
+          const tourist = this.booking.tourist
+          this.touristAddress = `${tourist.address} ${tourist.address2}, ${tourist.city}, ${tourist.stateOrProvince}, ${tourist.country}`
           this.getAddress();
         }
       }

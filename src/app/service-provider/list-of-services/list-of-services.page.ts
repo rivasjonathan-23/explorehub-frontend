@@ -25,7 +25,6 @@ export class ListOfServicesPage implements OnInit, ViewWillEnter {
   //       this.mainService.getPage(this.pageId).subscribe(
   //         (data: any) => {
   //           this.services = data.otherServices
-  //           console.log(this.services)
 
   //         }
   //       )
@@ -47,7 +46,6 @@ export class ListOfServicesPage implements OnInit, ViewWillEnter {
         this.mainService.getPage(this.pageId).subscribe(
           (data: any) => {
             this.services = data.otherServices
-            console.log(this.services)
             this.services.forEach(service => {
               service.components.forEach(com => {
                 if (com.data.defaultName && com.data.defaultName == "category") {

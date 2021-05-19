@@ -103,7 +103,6 @@ export class ServiceDetailsComponent implements OnInit {
   }
 
   selectService() {
-    console.log(this.values)
     if (this.values["inputQuantity"]) {
       this.enterQuant = this.values._id;
     } else {

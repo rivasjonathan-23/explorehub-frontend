@@ -71,7 +71,6 @@ export class ViewItemPage implements OnInit {
             return item
           });
 
-          console.log(this.values.data)
           this.values.data = this.values.data.filter(item => item.type == "item")
           for (let i = 0; i < this.values.data.length; i++) {
             const element = this.values.data[i];

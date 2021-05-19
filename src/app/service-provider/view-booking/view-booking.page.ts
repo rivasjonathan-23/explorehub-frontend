@@ -141,7 +141,7 @@ export class ViewBookingPage implements AfterViewInit {
           updateBookingCount = true;
         }
         const notificationData: any = {
-          receiver: curBooking.pageId.creator,
+          receiver: curBooking.pageId.creator._id,
           page: curBooking.pageId._id,
           selectedServices: selectedServices,
           booking: curBooking._id,
@@ -155,7 +155,7 @@ export class ViewBookingPage implements AfterViewInit {
           (response: any) => {
             this.booking.status = "Cancelled"
             this.bookingStatus = this.booking.status
-            this.mainService.notify({ user: this.mainService.user, booking: this.formatData(this.booking), type: "cancel_booking-fromTourist", receiver: [this.booking.pageId.creator, "admin"], message: `${this.mainService.user.fullName} cancelled ${this.mainService.user.gender == 'Male' ? `his` : `her`} booking` })
+            this.mainService.notify({ user: this.mainService.user, booking: this.formatData(this.booking), type: "cancel_booking-fromTourist", receiver: [this.booking.pageId.creator._id, "admin"], message: `${this.mainService.user.fullName} cancelled ${this.mainService.user.gender == 'Male' ? `his` : `her`} booking` })
             this.getBookingInfo()
             // this.router.navigate(["/service-provider/view-booking", this.booking._id, this.bookingStatus], { queryParams: { resubmit: new Date() } })
           }
@@ -181,7 +181,7 @@ export class ViewBookingPage implements AfterViewInit {
       selectedServices = this.selectedServices
     }
     const notificationData = {
-      receiver: this.booking.pageId.creator,
+      receiver: this.booking.pageId.creator._id,
       page: this.booking.pageId._id,
       booking: this.booking._id,
       resubmitted: true,
@@ -191,7 +191,7 @@ export class ViewBookingPage implements AfterViewInit {
       (response: any) => {
         this.booking.status = this.booking.isManual ? "Booked" : "Pending"
         this.bookingStatus = this.booking.status
-        this.mainService.notify({ user: this.mainService.user, booking: this.formatData(this.booking), type: "resubmit-fromTourist", receiver: [this.booking.pageId.creator, "admin"], message: `${this.mainService.user.fullName} resubmit ${this.mainService.user.gender == 'Male' ? `his` : `her`} booking` })
+        this.mainService.notify({ user: this.mainService.user, booking: this.formatData(this.booking), type: "resubmit-fromTourist", receiver: [this.booking.pageId.creator._id, "admin"], message: `${this.mainService.user.fullName} resubmit ${this.mainService.user.gender == 'Male' ? `his` : `her`} booking` })
         this.getBookingInfo()
         // this.router.navigate(["/service-provider/view-booking", this.booking._id, this.bookingStatus], { queryParams: { resubmit: new Date() } })
         // this.mainService.canLeave = true;

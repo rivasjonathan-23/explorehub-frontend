@@ -160,7 +160,6 @@ export class RegisterPage implements OnInit {
       strNum = "63" + strNum;
     }
     if (strNum.length == 12) this.number = parseInt(strNum)
-    console.log(strNum);
   }
 
   completeNum(num) {

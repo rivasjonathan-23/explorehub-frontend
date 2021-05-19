@@ -70,7 +70,6 @@ export class BookPage implements OnInit, ViewWillEnter {
         (response: any) => {
           this.bookingInfo = response.bookingInfo;
           this.makeInputValueCont()
-          console.log(this.inputValue)
           this.booking = response.booking
           this.noServices = this.booking.pageId.services.length == 0
           if (response.booking) {
@@ -147,7 +146,6 @@ export class BookPage implements OnInit, ViewWillEnter {
   catchEvent(data) {
     if (data.userInput) {
       let updated = false;
-      console.log(data)
       this.inputValue = this.inputValue.map((val: InputValue) => {
         if (val.inputId == data.data.inputId) {
           val = data.data
@@ -159,12 +157,10 @@ export class BookPage implements OnInit, ViewWillEnter {
         this.inputValue.push(data.data);
       }
     }
-    console.log(this.inputValue);
     
   }
 
   submitBooking() {
-    console.log("at submit: ", this.inputValue)
     const requiredFields = []
     const requiredInputs = []
     let hasError: boolean = false;

@@ -289,7 +289,6 @@ export class StatisticsPage implements OnInit {
         processingPercent: this.getProcessingPercent(item),
         pendingPercent: this.getPendingPercent(item)
       }
-      console.log(this.modalData)
     }, 100);
   }
 

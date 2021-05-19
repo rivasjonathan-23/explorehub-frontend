@@ -191,7 +191,6 @@ export class EditAccountInfoPage implements OnInit {
         {
           text: "Log",
           handler: () => {
-            console.log("Clicked Log. Do not Dismiss.");
             return false;
           },
         },
@@ -208,7 +207,6 @@ export class EditAccountInfoPage implements OnInit {
 
   ionViewWillEnter() {
     this.getUserInfo();
-    console.log(this.updateUserForm.valid)
   }
 
   onSubmit() {
@@ -241,7 +239,6 @@ export class EditAccountInfoPage implements OnInit {
     }
 
 
-    // console.log("FORMVALUES: ", formValuesNoUpdatePassword)
     // if (this.checkIfValuesChange() == true) {
     //   let updated = this.settingsService.updateUserInfo(
     //     formValuesNoUpdatePassword
@@ -289,7 +286,6 @@ export class EditAccountInfoPage implements OnInit {
 
   getUserInfo() {
     this.settingsService.getUserInfo().subscribe((userInfo: any) => {
-      console.log("UserInfo: ", userInfo)
       this.user.userId = userInfo._id;
       this.user.userAccountType = userInfo.accountType;
       this.user.userFirstname = userInfo.firstName;
@@ -308,7 +304,6 @@ export class EditAccountInfoPage implements OnInit {
         "yyyy-MM-dd"
       );
       this.user.profile = userInfo.profile;
-      console.log("USE: ", this.user)
 
       this.userId = userInfo._id;
       this.userAccountType = userInfo.accountType;
@@ -332,7 +327,6 @@ export class EditAccountInfoPage implements OnInit {
   }
 
   changeGender(event) {
-    console.log(event);
     this.userGender = event.target.value;
   }
 
@@ -399,7 +393,6 @@ export class EditAccountInfoPage implements OnInit {
         }
       );
     } catch (err) {
-      console.log(err);
     }
   }
 
@@ -435,7 +428,6 @@ export class EditAccountInfoPage implements OnInit {
 
       this.mainService.checkCurrentUser.emit()
     }, (error) => {
-      console.log(error)
     })
     this.settingsService.deleteProfile(this.profile);
     this.getUserInfo();

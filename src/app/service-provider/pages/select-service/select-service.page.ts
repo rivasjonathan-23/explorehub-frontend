@@ -143,7 +143,6 @@ export class SelectServicePage implements AfterViewInit, ViewWillEnter {
       //           return data
       //         }
       //       })
-      //       console.log(quantity[0].data.text, item);
       //       if (quantity[0].data.text > 0) return item;
       //     } else { 
       //       return item
@@ -151,7 +150,6 @@ export class SelectServicePage implements AfterViewInit, ViewWillEnter {
       //   })
       //   return itemList
       // })
-      // console.log(services);
 
       services.forEach(service => {
         const factory = this.componentFactoryResolver.resolveComponentFactory(ItemListDisplayComponent);
@@ -257,7 +255,6 @@ export class SelectServicePage implements AfterViewInit, ViewWillEnter {
     if (this.fromReviewBooking) params.queryParams["fromReviewBooking"] = true
     const itemList = this.pageServices.filter(service => service._id == data.serviceId)
     params.queryParams["inputQuantity"] = itemList[0]["inputQuantity"] //to be fixed
-    console.log(params)
     this.router.navigate(["/service-provider/view-item", this.pageId, data.serviceId, data.itemId, this.booking.bookingType, this.booking._id], params)
   }
 

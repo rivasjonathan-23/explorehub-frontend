@@ -149,7 +149,6 @@ export class LoginPage implements OnInit {
     } else if (num.length == 10) {
       num = "63" + num;
     }
-    console.log(num);
     
     return parseInt(num);
   }
