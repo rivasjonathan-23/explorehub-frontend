@@ -52,7 +52,7 @@ export class ForgotPasswordPage implements OnInit, OnDestroy {
         .findAccountById({ _id: id, purpose: userTokenType.passwordReset })
         .subscribe(
           (resp) => {
-            this.fullName = resp.fullName;
+            this.fullName = resp.firstName + " "+ resp.lastName;
             this.contactNumber = "+" + resp.contactNumber;
             this.email = resp.email;
             if (resp.codeSent.length > 0) {

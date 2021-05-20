@@ -1,5 +1,5 @@
 <div #messagesCont [ngStyle]="{'height.px': screenHeight}" class="pageContainer withTwoUser">
-  <div class="convos">
+  <div  *ngIf="mainService.user._id != receiver.owner"class="convos">
     
     <div [class.otherConvo]="conReceiver != receiver.admin" class="currentConvo" (click)="getConversation(receiver.admin)">
       <div class="ccPicture">

@@ -34,13 +34,15 @@ export class AppComponent implements OnDestroy, ViewWillEnter, OnInit {
       (data: any) => {
         this.authService.getCurrentUser().then(
           (data:any) => {
-            this.mainService.user = data            
+            this.mainService.user = data       
+            console.log(data)  
           }
         )
       }
     )
     this.mainService.checkCurrentUser.subscribe(
       (data: any) => {
+        this.authService.checkCurrentUser.emit()
         this.authService.getCurrentUser().then(
           (data:any) =>{
             this.mainService.user = data            

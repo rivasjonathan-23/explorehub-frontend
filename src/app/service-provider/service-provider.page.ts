@@ -17,7 +17,7 @@ import { MainServicesService } from './provider-services/main-services.service';
 
 export class ServiceProviderPage implements OnInit {
   public active: string = ''
-  public currentUser: any = {fullName: "", profile: ""}
+  public currentUser: any = {fullName: "", firstName: "", lastName:"", profile: ""}
   public defaultType: any = accountType;
   public appLogo: string = 'assets/explorehub.png'
   public api: string = environment.apiUrl

@@ -57,7 +57,7 @@ export class BookingInformationPage implements OnInit {
       if (comp && comp.type == "text" && comp.data.defaultName && comp.data.defaultName == "pageName") {
         this.name = comp.data && comp.data.text ? comp.data.text : "Untitled"
       }
-      this.creator = this.booking.pageId.creator.fullName
+      this.creator = this.booking.pageId.creator.firstName + " "+this.booking.pageId.creator.lastName
       this.contactNumber = this.booking.pageId.creator.contactNumber
     });
   }

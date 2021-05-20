@@ -232,6 +232,7 @@ export class EditAccountInfoPage implements OnInit {
       );
       updated.subscribe((user: any) => {
         this.getUserInfo();
+        this.mainService.checkCurrentUser.emit()
         return user;
       });
     } else if (this.checkIfValuesChange() == false) {
@@ -444,7 +445,9 @@ export class EditAccountInfoPage implements OnInit {
         this.parent
       )
       .subscribe(
-        (response) => { },
+        (response) => {
+          this.mainService.checkCurrentUser.emit()
+         },
         (error) => {
           this.presentAlert(
             "Oops! Something went wrong. Please try again later!"

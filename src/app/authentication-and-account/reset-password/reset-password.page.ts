@@ -25,7 +25,7 @@ export class ResetPasswordPage implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.authService.getUserInfo().subscribe((resp) => {
-      this.fullName = resp.fullName;
+      this.fullName = resp.firstName + " " + resp.lastName;
     });
     this.route.queryParams.subscribe((params) => {
       if (params["action"] == "reuse-old-password") {
@@ -103,6 +103,7 @@ export class ResetPasswordPage implements OnInit, OnDestroy {
       const reset = this.authService.changePassword(this.form.value);
       reset.subscribe(
         (resp) => {
+          this.authService.checkCurrentUser.emit()
           this.router.navigate(["/service-provider"]);
         },
         (error) => {

@@ -41,7 +41,7 @@ export class ConversationCardComponent implements OnInit {
         let receiver = this.conversation["participants"].filter(par => par._id != this.mainService.user._id)
         if (receiver.length > 0) {
           this.receiver = receiver[0]._id
-          this.receiverName = receiver[0].fullName
+          this.receiverName = receiver[0].firstName +" "+ receiver[0].lastName
           this.photo = receiver[0].profile ? receiver[0].profile: ""
         }
         if (this.conversation.page) {
@@ -54,7 +54,7 @@ export class ConversationCardComponent implements OnInit {
           this.pageName += "(Page was deleted)"
         }
       } else {
-        this.name = this.conversation.receiver ? this.conversation.receiver.fullName : this.conversation["type"] == "admin_approval" ? "Admin" : "Unknown"
+        this.name = this.conversation.receiver ? this.conversation.receiver.firstName +" "+this.conversation.receiver.lastName : this.conversation["type"] == "admin_approval" ? "Admin" : "Unknown"
       }
     }
   }
