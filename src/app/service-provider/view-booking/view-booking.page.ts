@@ -48,9 +48,12 @@ export class ViewBookingPage implements AfterViewInit {
 
   ngOnInit() {
     this.route.queryParams.subscribe(params => {
-      if (params && params.notification) {
+      if (params.notification) {
         this.fromNotification = true;
+        
       }
+      if (params.noLoadingInd) this.loading = false
+
     });
 
     this.route.paramMap.subscribe(param => {

@@ -49,7 +49,7 @@ export class NotificationCardComponent implements OnInit {
             let params: any = { notification: true }
             if (this.notif["isMessage"])  {
               tab = "/conversation"
-              params = { notification: true, bookingId: this.notificationGroup.booking._id ,pageId:this.notificationGroup.page._id ,receiverId: this.notificationGroup.page.creator}
+              params = { notification: true, bookingId: this.notificationGroup.booking._id ,pageId:this.notificationGroup.page._id ,receiverId: this.notificationGroup.page.creator, noLoadingInd:true}
               if (this.notificationGroup.page.creator == this.notif["sender"]) params["fromOwner"] = true
             }
             this.router.navigate(["/service-provider/view-booking/"+ this.notificationGroup.booking._id + tab],
