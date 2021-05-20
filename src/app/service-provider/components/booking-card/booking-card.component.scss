@@ -1,5 +1,5 @@
 .cardBody {
-    min-height: 110px;
+    min-height: 95px;
     border-radius: 4px;
     display: flex;
     overflow: hidden;
@@ -12,8 +12,8 @@
     position: relative;
     
     .cardPhotoHolder {
-        height: 100px;
-        width: 110px;
+        height: 85px;
+        width: 100px;
         border-radius: 4px;
         flex-shrink: 0;
         overflow:hidden;
@@ -63,13 +63,23 @@
             -webkit-line-clamp: 1;
             // color: rgb(47, 62, 77);
         }
-        .cardDate {
-            font-size: 13px;
-            color:rgb(130, 146, 163);
-        }
     }
 }
-
+.cardDate {
+    font-size: 12px;
+    color:rgb(130, 146, 163);
+    margin-right: 10px;
+    margin-left: 5px;
+}
+.spaceBetween {
+    position: unset !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+}
+.bookingDetails {
+    flex-grow: 1;
+}
 .hasOption {
     padding-right: 35px !important;
 }
@@ -105,29 +115,36 @@
 
     .selectedServices {
         margin:0 !important;
-        overflow-y: hidden;
-        overflow-x:auto;
+        // overflow-y: hidden;
+        // overflow-x:auto;
         padding:0 !important;
-        margin-right: 10px;
-        width: 85%;
-        flex-wrap: nowrap;
+        align-items: center;
+        flex-wrap: wrap;
         display: flex;
         .service {
             
-            // background-color: rgb(234, 241, 250);
-            border-left: 1px solid rgb(169, 182, 199);
-            padding:1px 5px !important;
-            color:rgb(136, 172, 219);
+    
+            background-color: rgb(239, 242, 248);
+            border-radius: 3px;
+            padding:5px 8px !important;
+            color:rgb(89, 111, 150);
             flex-shrink: 0;
-            font-size: 15px;
-            margin:0;
-            // display: flex;
-            // flex-wrap: nowrap;
-            height: 20px;
-            // overflow:hidden;
+            font-size: 12px;
+            // font-weight: bold;
+            margin:3px;
+            display: flex;
+            align-items: center;
+            align-items: center;
+
+            ion-icon {
+                margin-right: 6px;
+                font-size: 16px !important;
+            }
+            // height: 20px;
         }
 
         .noAvailed {
+            background-color: rgb(244, 245, 248);
             color:rgb(194, 186, 186);
         }
     }

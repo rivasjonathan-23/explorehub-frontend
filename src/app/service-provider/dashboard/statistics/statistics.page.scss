@@ -11,6 +11,7 @@
 
 .itemList {
     margin:8px;
+    padding-top: 10px;
     // height: 300px;
     margin-bottom: 30px;
     border-radius:5px;
@@ -139,11 +140,12 @@
 }
 
 .totalPercentage {
-    width:100% !important;
+    // width:100% !important;
+    display: block;
     border-radius: unset !important;
     position: unset !important;
-
-   
+    margin:0 10px;
+    box-sizing: border-box;
 }
 .itemsPercent {
     height:9px !important;

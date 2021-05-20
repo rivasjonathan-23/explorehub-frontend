@@ -309,7 +309,7 @@ export class ViewPagePage implements OnInit {
   }
 
   getPageName(page: any = null) {
-    let name = "Untitled"
+    let name = ""
     const pageData:Page = page? page: this.page
     pageData.components.forEach(comp => {
       if (comp.data && comp.data.defaultName == "pageName") {

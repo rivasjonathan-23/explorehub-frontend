@@ -2,8 +2,8 @@
 
   <div class="notifPicHolder" [class.unreadsPic]="!notif.opened">
     <div class="notifPic">
-      <ion-icon name="notifications-outline" *ngIf="!notif.isMessage"></ion-icon>
-      <ion-icon *ngIf="notif.isMessage" name="mail-outline"></ion-icon>
+      <ion-icon name="notifications-outline" *ngIf="!notif['isMessage']"></ion-icon>
+      <ion-icon *ngIf="notif['isMessage']" name="mail-outline"></ion-icon>
     </div>
   </div>
 
