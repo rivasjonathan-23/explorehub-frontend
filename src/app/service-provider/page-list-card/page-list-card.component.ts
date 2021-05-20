@@ -20,10 +20,14 @@ export class PageListCardComponent implements OnInit {
   public pending: number = 0
   public available:number = 0
   public processing: number = 0
+  public pageName: string = "--------"
+  public pageDescription: string = ""
   constructor(public router: Router, public mainService: MainServicesService, public authService: AuthService) { }
 
   ngOnInit() { 
     if (this.page) {
+      this.pageName = this.getValue("pageName")
+      this.pageDescription = this.getValue("description")
       if (this.page['pageServices']) {
 
         this.page['pageServices'].forEach(service => {
@@ -44,6 +48,17 @@ export class PageListCardComponent implements OnInit {
         this.available = this.quantity - (this.bookings + this.pending + this.processing+ this.manuallyBooked)
       }
     }
+  }
+
+  getValue(type) {
+    let value = "";
+    this.page.components.forEach(comp => {
+
+      if (comp.data.defaultName == type) {
+        value = comp.data.text
+      }
+    })
+    return value
   }
 
 

@@ -69,6 +69,19 @@ div {
     flex-direction: row;
 
 }
+
+.pageDescription {
+    overflow:hidden;
+    -webkit-box-orient: vertical;
+    display: block;
+    display: -webkit-box;
+    font-size: 12px;
+    margin:0 3px;
+    color:rgb(131, 141, 151);
+    overflow: hidden !important;
+    text-overflow: ellipsis;
+    -webkit-line-clamp: 3;
+}
 .pageInfo {
     position: relative;
     padding:5px;
