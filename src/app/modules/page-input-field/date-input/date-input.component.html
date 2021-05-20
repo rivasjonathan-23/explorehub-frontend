@@ -7,13 +7,13 @@
     <ion-textarea class="inputLabel otherInfo" [(ngModel)]="values.data.instructions" (change)="saveChanges()"
       auto-grow="true" rows="1" placeholder="Enter other info or instructions here (optional)">
     </ion-textarea>
-
+<!-- 
       <div class="inputLabel">
         <ion-datetime class="defaultValue" displayFormat="DDDD MMM D, YYYY"
         placeholder="Enter default value here (optional)"
         [(ngModel)]="values.data.defaultValue"
          ></ion-datetime>
-      </div>
+      </div> -->
 
     <div class="settings">
       <div class="options" (click)="values.data.required = !values.data.required; saveChanges()" slot="end">Required for submission<ion-toggle [checked]="values.data.required"></ion-toggle>
