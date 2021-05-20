@@ -50,6 +50,7 @@
           <div class="box" (click)="goTo('Conversation','conversation', tab, {queryParams: {bookingId: booking._id, pageId: booking.pageId._id, tourist: booking.tourist._id}})"></div>
         </div>
       </div>
+      <ion-progress-bar *ngIf="loading" type="indeterminate"></ion-progress-bar>
     </div>
     <div class="dateAndStatus">
       <div class="dateCreated">
@@ -62,7 +63,6 @@
         </b>
       </div>
     </div>
-    <ion-progress-bar *ngIf="loading" type="indeterminate"></ion-progress-bar>
 
     <router-outlet></router-outlet>
   </div>

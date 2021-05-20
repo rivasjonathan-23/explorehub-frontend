@@ -41,6 +41,7 @@ export class TransactionPage implements OnInit {
   public receiver = { owner: "", admin: this.mainService.user.admin }
   public conReceiver: string;
   public screenHeight: number;
+  public loading: boolean = false
   public conversation: conversation;
   public messages: any[] = []
   constructor(public route: ActivatedRoute, public mainService: MainServicesService) { }
@@ -82,6 +83,7 @@ export class TransactionPage implements OnInit {
   }
 
   fetchConversation() {
+    this.loading = true
     this.mainService.getConversation(this.bookingId, this.pageId, this.conReceiver).subscribe(
       (response: any) => {
         if (!response.noConversation) {
@@ -95,7 +97,9 @@ export class TransactionPage implements OnInit {
         setTimeout(() => {
           this.scrollToBottom()
         }, 400)
-
+        this.loading = false
+      }, () => {
+        this.loading = false
       }
     )
   }

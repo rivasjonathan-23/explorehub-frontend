@@ -10,7 +10,7 @@
       </b>
     </div>
   </div> -->
-  <div class="page">
+  <div class="page ion-activatable ripple-parent" (click)="viewPage()">
     <div class="cardPhotoHolder">
       <div *ngIf="photo" class="cardPhoto" [ngStyle]="{'background-image': 'url('+photo+')' }">
       </div>
@@ -24,6 +24,7 @@
       <div class="ownerText">Owner:</div>
       <div class="address creator">{{creator}}</div>
       <div class="address creator number">{{contactNumber}}</div>
+      <ion-ripple-effect></ion-ripple-effect>
     </div>
   </div>
   <div *ngIf="booking.selectedServices.length > 0" class="selectedServices mainLightBg2">

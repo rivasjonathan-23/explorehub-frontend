@@ -132,7 +132,7 @@ export class MainServicesService {
   }
 
   getConversation(bookingId, pageId, receiver) {  
-    return this.http.get(`${this.apiUrl}/getConversation/${bookingId}/${pageId}/${receiver}`)
+    return this.http.get(`${this.apiUrl}/getConversation/${bookingId}/${pageId}/${receiver}`, { headers: { hideLoadingIndicator: "true" }})
   }
 
   sendMessage(data: any) {

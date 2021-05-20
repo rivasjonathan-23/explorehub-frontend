@@ -62,6 +62,12 @@ export class BookingInformationPage implements OnInit {
     });
   }
 
+  viewPage() {
+    setTimeout(() => {
+      this.router.navigate(["/service-provider/view-page", this.booking.pageId._id, this.booking.pageId.pageType])
+    }, 200);
+  }
+
   getAddress() {
     let add = ["barangay", "municipality", "province"]
     let address = []
