@@ -31,20 +31,21 @@
             <div class="title">{{getTitle(notif)}}</div>
             <div *ngIf="getTotalUnread(notif) > 0" class="numberOfNotif">{{getTotalUnread(notif)}}</div>
           </div>
-          <div class="options groupOption ion-activatable ripple-parent" (click)="displayOption(notif._id)">
+          <div class="options groupOption ion-activatable ripple-parent" (click)="displayOption(notif._id); notifGroupOption = notif">
             <ion-icon name="ellipsis-vertical-outline"></ion-icon>
             <ion-ripple-effect></ion-ripple-effect>
           </div>
         </div>
         <div *ngFor="let ntf of notif.notifications; let i = index">
 
-          <app-notification-card *ngIf="hideOther || 3 > i" (displayOption)="displayOption($event)" [notificationGroup]="notif"
+          <app-notification-card *ngIf="showOther == notif._id || 3 > i" (displayOption)="displayOption($event)" [notificationGroup]="notif"
             [notif]="ntf"></app-notification-card>
         </div>
-        <div class="otherNotifications ion-activatable ripple-parent" (click)="hideOther = !hideOther" *ngIf="notif.notifications.length - 3 > 0">
-          <ion-icon name="chevron-down-outline"></ion-icon>
+        <div class="otherNotifications ion-activatable ripple-parent" (click)="showOther = showOther? showOther = null: showOther = notif._id" *ngIf="notif.notifications.length - 3 > 0">
+          <ion-icon *ngIf="showOther != notif._id" name="chevron-down-outline"></ion-icon>
+          <ion-icon *ngIf="showOther == notif._id" name="chevron-up-outline"></ion-icon>
           <ion-ripple-effect></ion-ripple-effect>
-          Show other&nbsp;{{notif.notifications.length - 3}}&nbsp;notification{{notif.notifications.length - 3 > 1? "s": ""}}</div>
+          {{showOther != notif._id? "Show": "Hide"}}&nbsp;other&nbsp;{{notif.notifications.length - 3}}&nbsp;notification{{notif.notifications.length - 3 > 1? "s": ""}}</div>
       </div>
     </div>
   </div>

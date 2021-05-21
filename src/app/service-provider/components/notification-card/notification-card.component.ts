@@ -29,10 +29,10 @@ export class NotificationCardComponent implements OnInit {
     }
   }
 
-  viewNotification(notif, notificationGroup) {
+  viewNotification(notif, notificationGroup, allNotif = false) {
     setTimeout(() => {
 
-      this.mainService.viewNotification({ notifId: notif["isMessage"] ? notif._id : notificationGroup._id, isMessage: notif["isMessage"] }).subscribe(
+      this.mainService.viewNotification({ notifId: notif["isMessage"] && !allNotif ? notif._id : notificationGroup._id, isMessage: notif["isMessage"] }).subscribe(
         response => {
           if (notif["isMessage"]) {
             notif.opened = true

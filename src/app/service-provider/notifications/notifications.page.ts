@@ -18,9 +18,10 @@ export class NotificationsPage implements OnInit {
   @ViewChild(NotificationCardComponent) notificationCard: NotificationCardComponent;
   public formDashboard: boolean;
   public showOption: boolean = false;
-  public hideOther:boolean = true
+  public showOther: string = null
+  public notifGroupOption: any = null;
   public notifClicked: string;
-  constructor(public mainService: MainServicesService,public alert: AlertController, public route: ActivatedRoute) { }
+  constructor(public mainService: MainServicesService, public alert: AlertController, public route: ActivatedRoute) { }
 
   ngOnInit() {
     this.getNotifications();
@@ -132,25 +133,33 @@ export class NotificationsPage implements OnInit {
   clickOpt(type) {
     setTimeout(() => {
       if (type == "delete") {
-        this.deleteNotifConfirmation()
+        console.log(this.notifGroupOption)
+        if (this.notifGroupOption) {
+          this.deleteNotificationGroupCon(this.getTitle(this.notifGroupOption))
+        } else {
+
+          this.deleteNotifConfirmation()
+        }
       }
       else if (type == "edit") {
-        // const booking = this.bookings.filter(item => item._id == this.bookingClicked)
-        // if (booking.length > 0) {
-        //   this.viewBooking(booking[0])
-        // }
-        this.notifications.forEach(notificationGroup => {
-          notificationGroup.notifications.forEach(notif => {
-            if (notif._id == this.notifClicked) {
-              this.notificationCard.viewNotification(notif, notificationGroup)
-            }
-          });
-        })
+        if (this.notifGroupOption) {
+          this.notificationCard.viewNotification(this.notifGroupOption.notifications[0], this.notifGroupOption, true)
+        } else {
+
+          this.notifications.forEach(notificationGroup => {
+            notificationGroup.notifications.forEach(notif => {
+
+              if (notif._id == this.notifClicked) {
+                this.notificationCard.viewNotification(notif, notificationGroup)
+              }
+            });
+          })
+        }
       } else {
         this.notifClicked = "";
       }
       this.showOption = false;
-
+      this.notifGroupOption = null
     }, 100);
   }
 
@@ -161,7 +170,7 @@ export class NotificationsPage implements OnInit {
         if (notif._id == this.notifClicked) {
           notifData = notif
         }
-        
+
       });
     })
     const alert = await this.alert.create({
@@ -177,6 +186,34 @@ export class NotificationsPage implements OnInit {
                   notifGroup.notifications = notifGroup.notifications.filter(notif => notif._id != this.notifClicked)
                   return notifGroup
                 })
+                this.notifClicked = ""
+              }
+            )
+          },
+        },
+        {
+          text: "No",
+          handler: () => {
+          },
+        },
+      ],
+    });
+    await alert.present();
+  }
+
+  async deleteNotificationGroupCon(name) {
+
+    const alert = await this.alert.create({
+      cssClass: "my-custom-class",
+      header: `Are you sure you want to delete all the notifications about "${name}"?`,
+      buttons: [
+        {
+          text: "Yes",
+          handler: () => {
+            this.mainService.deleteNotificationGroup(this.notifClicked).subscribe(
+              (response) => {
+                this.notifications = this.notifications.filter(notif => notif._id != this.notifClicked)
+                this.notifGroupOption = null
                 this.notifClicked = ""
               }
             )
