@@ -183,6 +183,14 @@ export class MainServicesService {
   deleteConfirmedPage(data) {
     return this.http.post(`${this.apiUrl}/deleteConfirmedPage/${data.pageId}/${data.pageType}`, data)
   } 
+
+  deleteNotification(notificationId) {
+    return this.http.delete(`${this.apiUrl}/deleteNotification/${notificationId}`)
+  } 
+
+  deleteNotificationGroup(notificationGroupId) {
+    return this.http.delete(`${this.apiUrl}/deleteNotificationGroup/${notificationGroupId}`)
+  }
   
   getPageActiveBookings(pageId: string) {
     return this.http.get(`${this.apiUrl}/getPageActiveBookings/${pageId}`)

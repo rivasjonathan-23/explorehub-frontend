@@ -54,7 +54,7 @@ export class BookingInformationPage implements OnInit {
     //     this.name = comp.data && comp.data.text ? comp.data.text : "Untitled"
     //   }
     // });
-    this.photo = environment.apiUrl +this.booking.tourist.profile
+    this.photo = this.booking.tourist.profile
   }
 
   getAddress() {

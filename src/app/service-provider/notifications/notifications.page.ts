@@ -18,6 +18,7 @@ export class NotificationsPage implements OnInit {
   @ViewChild(NotificationCardComponent) notificationCard: NotificationCardComponent;
   public formDashboard: boolean;
   public showOption: boolean = false;
+  public hideOther:boolean = true
   public notifClicked: string;
   constructor(public mainService: MainServicesService,public alert: AlertController, public route: ActivatedRoute) { }
 
@@ -106,13 +107,27 @@ export class NotificationsPage implements OnInit {
     }
     return title
   }
+
+  getTotalUnread(notif) {
+    let count = 0;
+    notif.notifications.forEach(ntf => {
+      if (!ntf.opened) count++
+    });
+    return count;
+  }
+
+  getNotifs(notif, num) {
+    if (notif.length > 3) {
+      return notif.splice(0, num)
+    }
+    return notif
+  }
+
   displayOption(id) {
     setTimeout(() => {
-      
       this.showOption = true;
       this.notifClicked = id
     }, 200);
-    
   }
   clickOpt(type) {
     setTimeout(() => {
@@ -127,12 +142,8 @@ export class NotificationsPage implements OnInit {
         this.notifications.forEach(notificationGroup => {
           notificationGroup.notifications.forEach(notif => {
             if (notif._id == this.notifClicked) {
-              console.log(notificationGroup);
-              console.log(notif);
-              
               this.notificationCard.viewNotification(notif, notificationGroup)
             }
-            
           });
         })
       } else {
@@ -160,16 +171,16 @@ export class NotificationsPage implements OnInit {
         {
           text: "Yes",
           handler: () => {
-            // this.mainService.deleteBooking(this.notifClicked).subscribe(
-            //   (response) => {
+            this.mainService.deleteNotification(this.notifClicked).subscribe(
+              (response) => {
                 this.notifications = this.notifications.map((notifGroup: any) => {
                   notifGroup.notifications = notifGroup.notifications.filter(notif => notif._id != this.notifClicked)
                   return notifGroup
                 })
                 this.notifClicked = ""
               }
-          //   )
-          // },
+            )
+          },
         },
         {
           text: "No",
