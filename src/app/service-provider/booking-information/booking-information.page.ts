@@ -15,6 +15,7 @@ export class BookingInformationPage implements OnInit {
   public booking: bookingData;
   public creator:string = "------ ------"
   public contactNumber:string = "-------"
+  public email:string = "-------"
   constructor(public route: ActivatedRoute, public router: Router, public mainService: MainServicesService) {
     this.booking =  {
       _id: "",
@@ -59,6 +60,7 @@ export class BookingInformationPage implements OnInit {
       }
       this.creator = this.booking.pageId.creator.firstName + " "+this.booking.pageId.creator.lastName
       this.contactNumber = this.booking.pageId.creator.contactNumber
+      this.email = this.booking.pageId.creator.email
     });
   }
 
