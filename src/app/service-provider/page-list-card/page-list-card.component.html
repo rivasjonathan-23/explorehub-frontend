@@ -22,7 +22,7 @@
       </div>
         
     <div class="bottomRow">
-      <div class="type spotPage" [class.servicePage]="page.hostTouristSpot">{{page.hostTouristSpot? 'Service':
+      <div class="type spotPage" [ngClass]="{'servicePage': page.hostTouristSpot, 'noMarginRight': searchResult }">{{page.hostTouristSpot? 'Service':
         'Tourist Spot'}}</div>
       <div class="status" [ngClass]="getStatus(page)" *ngIf="!searchResult">
         <div class="statusCircle"></div>

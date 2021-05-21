@@ -41,7 +41,7 @@ export class ConversationCardComponent implements OnInit {
         let receiver = this.conversation["participants"].filter(par => par._id != this.mainService.user._id)
         if (receiver.length > 0) {
           this.receiver = receiver[0]._id
-          this.receiverName = receiver[0].firstName +" "+ receiver[0].lastName
+          this.receiverName = receiver[0].fullName
           this.photo = receiver[0].profile ? receiver[0].profile: ""
         }
         if (this.conversation.page) {

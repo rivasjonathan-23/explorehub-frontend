@@ -6,7 +6,8 @@
 
     <ng-template #backBtn>
       <ion-buttons slot="start">
-        <ion-back-button defaultHref="/service-provider/online-pages-list" icon="chevron-back-outline"></ion-back-button>
+        <ion-back-button defaultHref="/service-provider/online-pages-list" icon="chevron-back-outline">
+        </ion-back-button>
       </ion-buttons>
     </ng-template>
     <ion-title>Notifications</ion-title>
@@ -21,12 +22,17 @@
     <p>There's nothing here.</p>
   </div>
   <div class="cont lightBackground">
-    <div class="notifGroup" *ngFor="let notif of notifications">
-      <div class="notifHeader">
-        <div class="title">{{getTitle(notif)}}</div>
-        <div class="numberOfNotif">{{notif.notifications.length}}</div>
+    <div *ngFor="let notif of notifications">
+      <div class="notifGroup" *ngIf="notif.notifications.length > 0 ">
+
+        <div class="notifHeader">
+          <div class="title">{{getTitle(notif)}}</div>
+          <div class="numberOfNotif">{{notif.notifications.length}}</div>
+        </div>
+        <app-notification-card (displayOption)="displayOption($event)" *ngFor="let ntf of notif.notifications"
+          [notificationGroup]="notif" [notif]="ntf"></app-notification-card>
       </div>
-      <app-notification-card *ngFor="let ntf of notif.notifications" [notificationGroup]="notif" [notif]="ntf"></app-notification-card>
     </div>
   </div>
+  <app-option-popup [show]="showOption" (clickOpt)="clickOpt($event)"></app-option-popup>
 </ion-content>

@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { ViewWillEnter } from '@ionic/angular';
+import { AlertController, ViewWillEnter } from '@ionic/angular';
+import { NotificationCardComponent } from '../components/notification-card/notification-card.component';
 import { NotificationHandlerComponent } from '../components/notification-handler/notification-handler.component';
 import { notification } from '../provider-services/interfaces/notification';
 import { notificationGroup } from '../provider-services/interfaces/notificationGroup';
@@ -14,8 +15,11 @@ import { MainServicesService } from '../provider-services/main-services.service'
 export class NotificationsPage implements OnInit {
   public notifications: notificationGroup[] = []
   public loading: boolean = true;
+  @ViewChild(NotificationCardComponent) notificationCard: NotificationCardComponent;
   public formDashboard: boolean;
-  constructor(public mainService: MainServicesService, public route: ActivatedRoute) { }
+  public showOption: boolean = false;
+  public notifClicked: string;
+  constructor(public mainService: MainServicesService,public alert: AlertController, public route: ActivatedRoute) { }
 
   ngOnInit() {
     this.getNotifications();
@@ -101,5 +105,79 @@ export class NotificationsPage implements OnInit {
       }
     }
     return title
+  }
+  displayOption(id) {
+    setTimeout(() => {
+      
+      this.showOption = true;
+      this.notifClicked = id
+    }, 200);
+    
+  }
+  clickOpt(type) {
+    setTimeout(() => {
+      if (type == "delete") {
+        this.deleteNotifConfirmation()
+      }
+      else if (type == "edit") {
+        // const booking = this.bookings.filter(item => item._id == this.bookingClicked)
+        // if (booking.length > 0) {
+        //   this.viewBooking(booking[0])
+        // }
+        this.notifications.forEach(notificationGroup => {
+          notificationGroup.notifications.forEach(notif => {
+            if (notif._id == this.notifClicked) {
+              console.log(notificationGroup);
+              console.log(notif);
+              
+              this.notificationCard.viewNotification(notif, notificationGroup)
+            }
+            
+          });
+        })
+      } else {
+        this.notifClicked = "";
+      }
+      this.showOption = false;
+
+    }, 100);
+  }
+
+  async deleteNotifConfirmation() {
+    let notifData = ""
+    this.notifications.forEach(notificationGroup => {
+      notificationGroup.notifications.forEach(notif => {
+        if (notif._id == this.notifClicked) {
+          notifData = notif
+        }
+        
+      });
+    })
+    const alert = await this.alert.create({
+      cssClass: "my-custom-class",
+      header: `Are you sure you want to delete this notification?`,
+      buttons: [
+        {
+          text: "Yes",
+          handler: () => {
+            // this.mainService.deleteBooking(this.notifClicked).subscribe(
+            //   (response) => {
+                this.notifications = this.notifications.map((notifGroup: any) => {
+                  notifGroup.notifications = notifGroup.notifications.filter(notif => notif._id != this.notifClicked)
+                  return notifGroup
+                })
+                this.notifClicked = ""
+              }
+          //   )
+          // },
+        },
+        {
+          text: "No",
+          handler: () => {
+          },
+        },
+      ],
+    });
+    await alert.present();
   }
 }

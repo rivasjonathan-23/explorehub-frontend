@@ -1,4 +1,4 @@
-<div class="notifCard ion-activatable ripple-parent" [class.unread]="!notif.opened" (click)="viewNotification()">
+<div class="notifCard ion-activatable ripple-parent" [class.unread]="!notif.opened" (click)="viewNotification(notif, notificationGroup)">
 
   <div class="notifPicHolder" [class.unreadsPic]="!notif.opened">
     <div class="notifPic">
@@ -10,10 +10,11 @@
   <div class="notifInfo">
     <div class="notifTitle" [innerHtml]="notif.message">
     </div>
+    <ion-ripple-effect></ion-ripple-effect>
     <div class="notifDate">{{notif.createdAt | date:'short'}}</div>
   </div>
-  <div class="options">
+  <div class="options ion-activatable ripple-parent" (click)="clickOption($event)">
     <ion-icon name="ellipsis-vertical-outline"></ion-icon>
+    <ion-ripple-effect></ion-ripple-effect>
   </div>
-  <ion-ripple-effect></ion-ripple-effect>
 </div>

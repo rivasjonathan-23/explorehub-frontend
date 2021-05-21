@@ -10,7 +10,7 @@ export class LabelledTextDisplayComponent implements OnInit {
   @Input() values: ElementValues;
   @Input() parent: string;
   @Input() isDate: boolean = false;
-  value: string = ""
+  value: any = ""
   constructor() { }
 
   ngOnInit() {
@@ -21,7 +21,11 @@ export class LabelledTextDisplayComponent implements OnInit {
       if (this.values.data.text) {
 
         const date = this.values.data.text;
-        this.value = date.month.text+". "+date.day.text+", "+date.year.text;
+        if (typeof date == "string") {
+          this.value = new Date(date)
+        } else {
+          this.value = new Date(date.month.text+". "+date.day.text+", "+date.year.text)
+        }
       }
     } else {
       this.value = this.values.data.text

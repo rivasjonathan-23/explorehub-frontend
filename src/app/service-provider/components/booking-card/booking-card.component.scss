@@ -56,7 +56,7 @@
 
         .cardTitle {
             font-size: 16px;
-            margin:3px 1px;
+            margin:1px;
             overflow:hidden;
             -webkit-box-orient: vertical;
             display: block;
@@ -82,6 +82,9 @@
 }
 .bookingDetails {
     flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 .hasOption {
     padding-right: 35px !important;

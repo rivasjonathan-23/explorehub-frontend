@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
 import { Page } from 'src/app/modules/elementTools/interfaces/page';
@@ -19,82 +19,92 @@ export class NotificationCardComponent implements OnInit {
     message: "",
     opened: false,
   }
+  @Output() displayOption: EventEmitter<any> = new EventEmitter();
   @Input() notificationGroup: any;
 
-  constructor(public router: Router,public alert: AlertController, public mainService: MainServicesService) { }
+  constructor(public router: Router, public alert: AlertController, public mainService: MainServicesService) { }
 
   ngOnInit() {
     if (this.notif && this.notif.createdAt) {
     }
   }
 
-  viewNotification() {
-    this.mainService.viewNotification({ notifId:  this.notif["isMessage"]? this.notif._id: this.notificationGroup._id, isMessage: this.notif["isMessage"] }).subscribe(
-      response => {
-        if (this.notif["isMessage"]) {
-          this.notif.opened = true
-        } else {
-          this.notificationGroup.notifications = this.notificationGroup.notifications.map(notif => {
-            if (!notif.isMessage) {
-              notif.opened = true
-            }
-            return notif
-          })
-        }
-        const type = this.notificationGroup.type
-        let deleted = "";
-        if (type == "booking-tourist" || this.notificationGroup.booking.tourist == this.mainService.user._id ) {
-          if (this.notificationGroup.booking) {
-            let tab = "/booking-information"
-            let params: any = { notification: true }
-            if (this.notif["isMessage"])  {
-              tab = "/conversation"
-              params = { notification: true, bookingId: this.notificationGroup.booking._id ,pageId:this.notificationGroup.page._id ,receiverId: this.notificationGroup.page.creator, noLoadingInd:true}
-              if (this.notificationGroup.page.creator == this.notif["sender"]) params["fromOwner"] = true
-            }
-            this.router.navigate(["/service-provider/view-booking/"+ this.notificationGroup.booking._id + tab],
-            { queryParams: params })
-          } else {
-            deleted = "booking"
-          }
-        } else if (type == "page-provider") {
-          
-          const page =  this.notificationGroup.page
-          if (page) {
-            if (this.notif["isMessage"]) {
-              this.router.navigate(['/service-provider/page-chat'], { queryParams: {pageId: page._id, conversationId: this.notif["conversation"] } })
-            } else {
-              if (page.creator == this.mainService.user._id) {
-                this.router.navigate([`/service-provider/dashboard/${page.pageType}/${page._id}/board/booking/Booked`], {queryParams: {fromNotification: true}})
-              } else {
-                this.router.navigate(["/service-provider/view-page",page._id, page.pageType], {queryParams: {fromHostedList: true, parentPageCreator: this.mainService.user._id}})
-              }
-            }
-          } else {
-            deleted = "page"
-          }
-        }
-        else if (type == "booking-provider") {
-          if (this.notificationGroup.booking) {
-            let tab = "/booking-information"
-            let params: any = { notification: true }
+  viewNotification(notif, notificationGroup) {
+    setTimeout(() => {
 
-            if (this.notif["isMessage"])  {
-              tab = "/conversation"
-              params = { notification: true, bookingId: this.notificationGroup.booking._id ,pageId:this.notificationGroup.page._id ,tourist: this.notificationGroup.booking.tourist}
-            }
-            this.router.navigate(["./service-provider/view-booking-as-provider/"+ this.notificationGroup.booking.pageId+"/"+ this.notificationGroup.booking.bookingType+"/"+ this.notificationGroup.booking._id +"/" +this.notificationGroup.booking.status+ tab],
-            { queryParams: params })
+      this.mainService.viewNotification({ notifId: notif["isMessage"] ? notif._id : notificationGroup._id, isMessage: notif["isMessage"] }).subscribe(
+        response => {
+          if (notif["isMessage"]) {
+            notif.opened = true
           } else {
+            notificationGroup.notifications = notificationGroup.notifications.map(notif => {
+              if (!notif.isMessage) {
+                notif.opened = true
+              }
+              return notif
+            })
+          }
+          const type = notificationGroup.type
+          let deleted = "";
+          
+          if (type == "booking-tourist") {
+            if (notificationGroup.booking) {
+              let tab = "/booking-information"
+              let params: any = { notification: true }
+              if (notif["isMessage"]) {
+                tab = "/conversation"
+                params = { notification: true, bookingId: notificationGroup.booking._id, pageId: notificationGroup.page._id, receiverId: notificationGroup.page.creator, noLoadingInd: true }
+                if (notificationGroup.page.creator == notif["sender"]) params["fromOwner"] = true
+              }
+              this.router.navigate(["/service-provider/view-booking/" + notificationGroup.booking._id + tab],
+                { queryParams: params })
+            } else {
               deleted = "booking"
-            
+            }
+          }
+          else if (type.includes("booking") && !notificationGroup.booking) {
+            this.presentAlert(`The booking is already deleted.`)
+          
+          } else if (type == "page-provider") {
+
+            const page = notificationGroup.page
+            if (page) {
+              if (notif["isMessage"]) {
+                this.router.navigate(['/service-provider/page-chat'], { queryParams: { pageId: page._id, conversationId: notif["conversation"] } })
+              } else {
+                if (page.creator == this.mainService.user._id) {
+                  this.router.navigate([`/service-provider/dashboard/${page.pageType}/${page._id}/board/booking/Booked`], { queryParams: { fromNotification: true } })
+                } else {
+                  this.router.navigate(["/service-provider/view-page", page._id, page.pageType], { queryParams: { fromHostedList: true, parentPageCreator: this.mainService.user._id } })
+                }
+              }
+            } else {
+              deleted = "page"
+            }
+          }
+          else if (type == "booking-provider") {
+            if (notificationGroup.booking) {
+              let tab = "/booking-information"
+              let params: any = { notification: true }
+
+              if (notif["isMessage"]) {
+                tab = "/conversation"
+                params = { notification: true, bookingId: notificationGroup.booking._id, pageId: notificationGroup.page._id, tourist: notificationGroup.booking.tourist }
+              }
+              this.router.navigate(["./service-provider/view-booking-as-provider/" + notificationGroup.booking.pageId + "/" + notificationGroup.booking.bookingType + "/" + notificationGroup.booking._id + "/" + notificationGroup.booking.status + tab],
+                { queryParams: params })
+            } else {
+              deleted = "booking"
+
+            }
+          }
+          if (deleted != "") {
+            this.presentAlert(`The ${deleted} is already deleted.`)
           }
         }
-        if (deleted != "") {
-            this.presentAlert(`The ${deleted} is already deleted.`)
-        }
-      }
-    )
+      )
+    }, 300);
+
   }
   getName(conversation) {
     return conversation.receiver ? conversation.receiver.fullName : conversation["type"] == "admin_approval" ? "Admin" : "Unknown"
@@ -109,4 +119,10 @@ export class NotificationCardComponent implements OnInit {
     await alert.present();
   }
 
+  clickOption(e) {
+    e.stopPropagation()
+    setTimeout(() => {
+      this.displayOption.emit(this.notif._id);
+    }, 200);
+  }
 }
