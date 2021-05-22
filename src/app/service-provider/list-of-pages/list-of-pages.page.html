@@ -1,40 +1,43 @@
-<!-- <ion-header>
+<ion-header *ngIf="pagesStatus == 'unfinished'; else header">
   <ion-toolbar>
     <ion-buttons slot="start">
       <ion-menu-button content-id="main-content"></ion-menu-button>
     </ion-buttons>
 
-    <ion-title>{{pagesStatus == 'submitted' ? 'My Pages': 'Drafts'}}</ion-title>
+    <ion-title>Draft Pages</ion-title>
   </ion-toolbar>
-</ion-header> -->
-<div class="headerMenu">
-  <div class="top">
-    <div class="titleAndMenu">
-      <div content-id="main-content" class="ion-activatable ripple-parent iconHolder nBg">
-        <ion-menu-button content-id="main-content" class="menuBtn"></ion-menu-button>
-        <ion-ripple-effect></ion-ripple-effect>
-      </div>
-      <div class="title">ExploreHub</div>
-    </div>
+</ion-header>
 
-    <div class="menu">
-      <div class="ion-activatable ripple-parent iconHolder" (click)="goTo(['/service-provider/notifications'], true)">
-        <ion-icon name="notifications-outline">
-        </ion-icon>
-        <ion-ripple-effect></ion-ripple-effect>
-        <div *ngIf="notificationsCount || notificationsCount != 0" class="notifCount">{{notificationsCount}}</div>
+<ng-template #header>
+  <div class="headerMenu">
+    <div class="top">
+      <div class="titleAndMenu">
+        <div content-id="main-content" class="ion-activatable ripple-parent iconHolder nBg">
+          <ion-menu-button content-id="main-content" class="menuBtn"></ion-menu-button>
+          <ion-ripple-effect></ion-ripple-effect>
+        </div>
+        <div class="title">ExploreHub</div>
       </div>
-      <!-- <div class="ion-activatable ripple-parent iconHolder" (click)="goTo(['/service-provider/search'])">
-        <ion-icon name="search-outline">
-        </ion-icon>
-        <ion-ripple-effect></ion-ripple-effect>
-      </div> -->
+      
+      <div class="menu">
+        <div class="ion-activatable ripple-parent iconHolder" (click)="goTo(['/service-provider/notifications'], true)">
+          <ion-icon name="notifications-outline">
+          </ion-icon>
+          <ion-ripple-effect></ion-ripple-effect>
+          <div *ngIf="notificationsCount || notificationsCount != 0" class="notifCount">{{notificationsCount}}</div>
+        </div>
+        <!-- <div class="ion-activatable ripple-parent iconHolder" (click)="goTo(['/service-provider/search'])">
+          <ion-icon name="search-outline">
+          </ion-icon>
+          <ion-ripple-effect></ion-ripple-effect>
+        </div> -->
+      </div>
     </div>
   </div>
-</div>
-
+</ng-template>
+  
 <ion-content>
-  <div class="outerWrapper lightBackground">
+  <div class="outerWrapper lightBackground" [class.noMarginTop]="pagesStatus == 'unfinished'">
     <div class="empty" *ngIf="pages.length == 0 && !loading">
       <div class="iholder">
         <ion-icon name="folder-open-outline"></ion-icon>
