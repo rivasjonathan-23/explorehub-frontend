@@ -1,4 +1,4 @@
-<ion-header>
+<!-- <ion-header>
   <ion-toolbar>
     <ion-buttons slot="start">
       <ion-menu-button content-id="main-content"></ion-menu-button>
@@ -6,7 +6,33 @@
 
     <ion-title>{{pagesStatus == 'submitted' ? 'My Pages': 'Drafts'}}</ion-title>
   </ion-toolbar>
-</ion-header>
+</ion-header> -->
+<div class="headerMenu">
+  <div class="top">
+    <div class="titleAndMenu">
+      <div content-id="main-content" class="ion-activatable ripple-parent iconHolder nBg">
+        <ion-menu-button content-id="main-content" class="menuBtn"></ion-menu-button>
+        <ion-ripple-effect></ion-ripple-effect>
+      </div>
+      <div class="title">ExploreHub</div>
+    </div>
+
+    <div class="menu">
+      <div class="ion-activatable ripple-parent iconHolder" (click)="goTo(['/service-provider/notifications'], true)">
+        <ion-icon name="notifications-outline">
+        </ion-icon>
+        <ion-ripple-effect></ion-ripple-effect>
+        <div *ngIf="notificationsCount || notificationsCount != 0" class="notifCount">{{notificationsCount}}</div>
+      </div>
+      <!-- <div class="ion-activatable ripple-parent iconHolder" (click)="goTo(['/service-provider/search'])">
+        <ion-icon name="search-outline">
+        </ion-icon>
+        <ion-ripple-effect></ion-ripple-effect>
+      </div> -->
+    </div>
+  </div>
+</div>
+
 <ion-content>
   <div class="outerWrapper lightBackground">
     <div class="empty" *ngIf="pages.length == 0 && !loading">
@@ -16,9 +42,10 @@
       <p>There's nothing here.</p>
     </div>
     <div class="list">
-      <app-page-list-card *ngFor="let page of pages" [page]="page" (clickOption)="clickOption($event)" (viewPage)="goToDashBoard($event)"></app-page-list-card>
+      <app-page-list-card *ngFor="let page of pages" [page]="page" (clickOption)="clickOption($event)"
+        (viewPage)="goToDashBoard($event)"></app-page-list-card>
     </div>
-  </div>  
+  </div>
   <app-option-popup [show]="showOption" (clickOpt)="clickOpt($event)"></app-option-popup>
   <div *ngIf="pagesStatus !='unfinished'" (click)="createPage()" class="createPage ion-activatable ripple-parent">
     <div class="text">

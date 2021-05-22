@@ -16,6 +16,7 @@ export class ListOfPagesPage implements OnInit {
   public pagesStatus: string;
   public loading:boolean = true;
   public showOption: boolean = false;
+  public notificationsCount: number = 0
   public pageClicked: string =""
   constructor(
     public creator: PageCreatorService,
@@ -39,6 +40,15 @@ export class ListOfPagesPage implements OnInit {
         }
       )
     })
+    this.mainService.getNotificationsCount().subscribe((data: number) => this.notificationsCount = data)
+    this.mainService.notificationCount.subscribe(count => {
+      if (count == 1) {
+        this.notificationsCount -= count 
+      } else {
+        count.subscribe(num => this.notificationsCount = num)
+      }
+    })
+    
   }
 
 
