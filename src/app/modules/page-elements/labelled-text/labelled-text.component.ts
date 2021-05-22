@@ -114,9 +114,11 @@ export class LabelledTextComponent implements OnInit {
     }
   }
 
-  filterCategory(value = null) {
-    if (value) {
-      this.searchCategory = value
+  filterCategory(value = false) {
+    if (value && this.newCategory) {
+      this.searchCategory = this.newCategory
+    } else if (!this.newCategory && value) {
+      this.searchCategory = ""
     }
     if (this.searchCategory.trim() != "") {
       this.defaults = this.categories.filter(category => category.name.toLowerCase().includes(this.searchCategory.toLocaleLowerCase()))

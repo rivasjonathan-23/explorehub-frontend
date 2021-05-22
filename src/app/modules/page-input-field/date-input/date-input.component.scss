@@ -9,7 +9,9 @@
     font-size: 18px;
     background-color: none;
 }
-
+ion-textarea, ion-input, input, textarea {
+    border: 1px solid rgb(186, 194, 204) !important;
+}
 .inputWrapper {
     margin:10px 0;
     padding: 5px 10px 0px 10px;

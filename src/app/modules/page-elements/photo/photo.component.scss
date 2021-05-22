@@ -12,7 +12,9 @@
     justify-content: center;
     align-items: center;
 }
-
+ion-textarea, ion-input, input, textarea {
+    border: 1px solid rgb(186, 194, 204) !important;
+}
 .imgWrapper {
     // background-color: rgb(124, 122, 122);
     background-color: rgb(233, 232, 232);

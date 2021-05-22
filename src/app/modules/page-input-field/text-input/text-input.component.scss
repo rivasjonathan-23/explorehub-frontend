@@ -15,7 +15,9 @@
     font-size: 18px;
     background-color: none;
 }
-
+ion-textarea, ion-input, input, textarea {
+    border: 1px solid rgb(186, 194, 204) !important;
+}
 .ion-item {
     background-color: transparent !important;
 }
