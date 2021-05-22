@@ -22,6 +22,7 @@ export class ServiceProviderPage implements OnInit {
   public appLogo: string = 'assets/explorehub.png'
   public api: string = environment.apiUrl
   public accountType: string = accountType.tourist;
+  public count: number = 0
   constructor(public loadingService: LoadingService,
     public router: Router,
     public creator: PageCreatorService,
@@ -32,6 +33,9 @@ export class ServiceProviderPage implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.mainService.getNotificationsCount().subscribe((data: number) => {
+        this.count = data
+    })
     this.authService.getAccountType().then((type: string) => {
       this.accountType = type;
     })
@@ -47,6 +51,13 @@ export class ServiceProviderPage implements OnInit {
         )
       }
     )
+    this.mainService.notificationCount.subscribe(count => {
+      if (count == 1) {
+        this.count -= count 
+      } else {
+        count.subscribe(num => this.count = num)
+      }
+    })
   }
 
 

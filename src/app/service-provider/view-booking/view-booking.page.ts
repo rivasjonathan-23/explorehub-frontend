@@ -165,6 +165,13 @@ export class ViewBookingPage implements AfterViewInit {
         )
       } else if (this.popupData.type == 'resubmit') {
         this.resubmit()
+      } else if (this.popupData.type == 'delete') {
+        this.mainService.deleteBooking(this.booking._id).subscribe(
+          (response) => {
+            // this.deleted = true;
+            this.router.navigate(["/service-provider/bookings", "Pending"])
+          }
+        )
       }
     }
     else {
@@ -213,6 +220,18 @@ export class ViewBookingPage implements AfterViewInit {
       }
     }, 200);
   }
+
+  delete() {
+    setTimeout(() => {
+      this.popupData = {
+        title: "Are you sure you want to deleted this booking?",
+        type: 'delete',
+        otherInfo: "You cannot restore this once deleted",
+        show: true
+      }
+    }, 200);
+  }
+
 
   resubmitConf() {
     setTimeout(() => {

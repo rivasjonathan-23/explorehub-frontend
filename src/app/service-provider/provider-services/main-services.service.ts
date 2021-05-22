@@ -21,6 +21,7 @@ export class MainServicesService {
   public socket: any;
   public user: any;
   public scrollDown: EventEmitter<any> = new EventEmitter();
+  public notificationCount: EventEmitter<any> = new EventEmitter()
   public goToCurrentTab: EventEmitter<any> = new EventEmitter();
   public notify: any;
   public checkCurrentUser: EventEmitter<any> = new EventEmitter();
@@ -120,7 +121,10 @@ export class MainServicesService {
   }
 
   getNotificationsCount() {
-    return this.http.get(`${this.apiUrl}/getNotificationsCount`, { headers: { hideLoadingIndicator: "true" } })
+    return this.http.get(`${this.apiUrl}/getNotificationsCount`, { headers: { hideLoadingIndicator: "true" } }).pipe(count => {
+      this.notificationCount.emit(count)
+      return count
+    })
   }
 
   createConversation(data) {

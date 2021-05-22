@@ -36,10 +36,12 @@ export class NotificationCardComponent implements OnInit {
         response => {
           if (notif["isMessage"]) {
             notif.opened = true
+            this.mainService.notificationCount.emit(1)
           } else {
             notificationGroup.notifications = notificationGroup.notifications.map(notif => {
               if (!notif.isMessage) {
                 notif.opened = true
+                this.mainService.notificationCount.emit(1)
               }
               return notif
             })

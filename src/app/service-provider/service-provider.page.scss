@@ -114,9 +114,27 @@
         padding-left: 0px;
         margin-bottom: 5px;
         margin-left: 0;
+        position: relative;
         font-size: 18px;
         font-weight: bold;
         color: rgb(106, 127, 158);
+
+        .count{
+            position: absolute;
+            right:0;
+            height: 100%;
+            display: flex;
+            padding:0 10px;
+            align-items: center;
+
+            div {
+                padding: 2px 5px;
+                border-radius: 3px;
+                color: white;
+                font-size: 13px;
+                background-color: rgb(0, 102, 255);
+            }
+        }
     }
 
   
@@ -157,7 +175,7 @@
 }
 
 .divider {
-    border-top: 1px solid rgb(189, 207, 216) !important;
+    border-top: .5px solid rgb(189, 207, 216) !important;
 }
 .profilePic {
     width: 43px;

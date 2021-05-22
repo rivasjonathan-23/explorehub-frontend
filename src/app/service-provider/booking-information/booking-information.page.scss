@@ -6,7 +6,24 @@
     .sectionTitle {
         // font-size: 19px;
         padding:5px;
+        padding-bottom: 0;
+        margin-bottom: 0;
+        position: relative;
+        bottom:-5px;
         color: rgb(72, 91, 109);
+        .textHolder {
+            display: flex;
+            align-items: center;
+            ion-icon {
+                margin-right: 8px;
+            }
+        }
+
+        .th2 {
+            ion-icon {
+                margin-bottom: 0;
+            }
+        }
     }
 }
 

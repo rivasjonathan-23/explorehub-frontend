@@ -39,7 +39,7 @@
           <div class="fieldHolder"
             [class.hasErrors]="form.get('birthday').errors != null && form.get('birthday').touched">
             <div class="inputLabel">Birthday</div>
-            <ion-datetime id="birthday" class="inputField inputF" displayFormat="MM/DD/YYYY" min="1950-01-01"
+            <ion-datetime id="birthday" class="inputField inputF" displayFormat="DDDD MMM D, YYYY" min="1950-01-01"
               formControlName="birthday" name="birthday"></ion-datetime>
             <ul class="validationError"
               *ngIf=" (form.get('birthday').dirty || form.get('birthday').touched) && form.get('birthday').errors !=null">

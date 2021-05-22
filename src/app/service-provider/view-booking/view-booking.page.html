@@ -10,6 +10,10 @@
             <ion-ripple-effect></ion-ripple-effect>
             <ion-icon name="create-outline"></ion-icon>
           </div>
+          <div *ngIf="bookingStatus =='Rejected' || bookingStatus == 'Cancelled' || bookingStatus == 'Closed' || bookingStatus == 'Unfinished'" (click)="delete()" class="cancel ion-activatable ripple-parent">Delete
+            <ion-ripple-effect></ion-ripple-effect>
+            <ion-icon name="trash-outline"></ion-icon>
+          </div>
           <div *ngIf="bookingStatus == 'Cancelled' || bookingStatus == 'Rejected'" (click)="resubmitConf()" class="cancel ion-activatable ripple-parent edit">Resubmit
             <ion-ripple-effect></ion-ripple-effect>&nbsp;
             <ion-icon name="send-outline"></ion-icon>

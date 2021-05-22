@@ -6,7 +6,7 @@
       <div class="logo" [ngStyle]="{'background-image': 'url('+appLogo + ')'}"></div>
       <ion-label>
         <h2>ExploreHub</h2>
-        <p class="serve">Explore the Wonders <br/> of Nature</p>
+        <p class="serve">Explore the Wonders <br /> of Nature</p>
       </ion-label>
     </div>
     <!-- <div class="divDesign"></div>
@@ -69,6 +69,11 @@
                 Notifications
               </p>
             </ion-label>
+          </div>
+          <div *ngIf="count > 0" class="count">
+            <div>
+              {{count}}
+            </div>
           </div>
           <ion-ripple-effect></ion-ripple-effect>
         </ion-item>

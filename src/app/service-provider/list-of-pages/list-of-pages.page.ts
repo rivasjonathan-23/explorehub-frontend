@@ -66,7 +66,6 @@ export class ListOfPagesPage implements OnInit {
           }
         }, 200);
       } else {
-        alert("not allowed")
       }
     })
   }

@@ -11,7 +11,11 @@
   <div class="container mainLightBg2">
     <div class="descText">Please review your booking before submitting.</div>
     <div *ngIf="!noServices" class="selectedServices mainLightBg2">
-      <div class="sectionTitle">Selected Services
+      <div class="sectionTitle">
+        <div class="textHolder">
+          <ion-icon name="briefcase-outline"></ion-icon>
+          <span>Selected Services</span>
+        </div>
         <div (click)="editSelectedServices()" class="editBtn">
           <ion-icon name="create-outline"></ion-icon>{{booking.selectedServices .length > 0 ? "Edit":"Add"}}
         </div>
@@ -23,7 +27,12 @@
     </div>
     <div class="inputValueDisplay">
       <div class="editBtnHolder">
-        Booking Info
+        <div class="textHolder">
+          <ion-icon name="person-outline"></ion-icon>
+          <span>
+            Booking Info
+          </span>
+        </div>
         <div (click)="editBookingInfo()" class="editBtn">
           <ion-icon name="create-outline"></ion-icon>{{booking.bookingInfo.length > 0 ? "Edit":"Add"}}
         </div>
@@ -38,5 +47,5 @@
       </div>
     </div>
   </div>
-  <app-confirm-popup [popupData]="popupData"  (clicked)="clicked($event)"></app-confirm-popup>
+  <app-confirm-popup [popupData]="popupData" (clicked)="clicked($event)"></app-confirm-popup>
 </ion-content>
