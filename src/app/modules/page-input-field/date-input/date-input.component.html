@@ -1,6 +1,6 @@
 <div *ngIf="!footerData.deleted">
   <div *ngIf="!footerData.done  && !creator.preview; else display" class="inputWrapper boxShadowed2 mainLightBg">
-
+    <div class="inputType">Date Input Field</div>
     <ion-textarea class="inputLabel" (keyup)="footerData.hasValue = values.data.label ? true : false" [(ngModel)]="values.data.label" (change)="saveChanges()" auto-grow="true" rows="1"
       placeholder="Enter label here">
     </ion-textarea>

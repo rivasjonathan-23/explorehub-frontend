@@ -1,5 +1,5 @@
 
-import { Component, ComponentFactoryResolver, ElementRef, Input, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
+import { Component, ComponentFactoryResolver, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild, ViewContainerRef } from '@angular/core';
 import { AlertController, IonSlides, ModalController, ToastController } from '@ionic/angular';
 import { ElementComponent } from '../../elementTools/interfaces/element-component';
 import { ElementValues } from '../../elementTools/interfaces/ElementValues';
@@ -35,6 +35,7 @@ export class ItemListComponent implements OnInit {
   @ViewChild('pageElement', { read: ViewContainerRef }) pageElement: ViewContainerRef;
   @ViewChild('listInfo', { read: ViewContainerRef }) listInfo: ViewContainerRef;
   @ViewChild('itemList') itemList;
+  @Output() emitEvent: EventEmitter<any> = new EventEmitter();
   @Input() values: serviceValues;
   @ViewChild(IonSlides) slides: IonSlides;
   @ViewChild('slider', { static: false }) slider: IonSlides;
@@ -240,6 +241,7 @@ export class ItemListComponent implements OnInit {
       this.footerData.saving = true;
       this.creator.deleteServiceComponent(this.parentId, this.values._id).subscribe(
         (response) => {
+          this.emitEvent.emit({deleteService: true})
           this.footerData.deleted = true;
         },
         (error) => {

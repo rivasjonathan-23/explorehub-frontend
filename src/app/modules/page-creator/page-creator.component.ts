@@ -1,4 +1,4 @@
-import { Component, ComponentFactoryResolver, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
+import { Component, ComponentFactoryResolver, EventEmitter, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
 import { Router } from '@angular/router';
 import { Filesystem } from '@capacitor/core';
 import { AlertController, ModalController } from '@ionic/angular';
@@ -35,6 +35,7 @@ export class PageCreatorComponent implements OnInit {
   public loading: boolean = false;
   public submitting: boolean = false;
   public popupData: popupData;
+  public servicesCount: number = 0
   public active: string = 'info';
   public showUnfilled: boolean = false;
   public unfilledFields = { components: [], services: [], bookingInfo: [] }
@@ -58,7 +59,7 @@ export class PageCreatorComponent implements OnInit {
     public mainService: MainServicesService,
     public router: Router,
   ) {
-    this.page = { _id: null, creator: null, status: "",initialStatus: "",pageType: "",otherServices: [], components: [], services: [], bookingInfo: [], hostTouristSpot: null, createdAt: "" }
+    this.page = { _id: null, creator: null, status: "", initialStatus: "", pageType: "", otherServices: [], components: [], services: [], bookingInfo: [], hostTouristSpot: null, createdAt: "" }
     this.popupData = {
       title: "",
       otherInfo: "",
@@ -171,17 +172,26 @@ export class PageCreatorComponent implements OnInit {
   }
 
   clicked(action) {
-      this.popupData.show = false
-      this.router.navigate([`/service-provider/dashboard`, this.creator.pageType, this.page._id])
+    this.popupData.show = false
+    this.router.navigate([`/service-provider/dashboard`, this.creator.pageType, this.page._id])
   }
 
   renderComponent(type: ViewContainerRef, componentValues: any, parent) {
     if (componentValues.type) {
+      if(componentValues.type == "item-list") this.servicesCount++
       const factory = this.componentFactoryResolver.resolveComponentFactory<ElementComponent>(this.components[componentValues.type]);
       const comp = type.createComponent<ElementComponent>(factory);
       comp.instance.values = componentValues.unSaved ? null : componentValues;
       comp.instance.parentId = this.page._id;
       comp.instance.parent = parent;
+      comp.instance.emitEvent = new EventEmitter();
+      comp.instance.emitEvent.subscribe(data => this.catchEvent(data))
+    }
+  }
+
+  catchEvent(data) {
+    if (data.deleteService) {
+      this.servicesCount--
     }
   }
 
@@ -223,37 +233,42 @@ export class PageCreatorComponent implements OnInit {
   }
 
   async submit() {
-    this.submitting = true;
-    const result = await this.validatePage()
+    if (this.servicesCount > 0) {
 
-    if (result) {
-      let notificationData = null;
-      if (this.page.hostTouristSpot) {
-        notificationData = {
-          receiver:  this.page.hostTouristSpot["creator"],
-          mainReceiver: this.mainService.user._id,
-          page: this.page._id,
-          booking: null,
-          sender: this.mainService.user._id,
-          subject: this.page._id,
-          message: `<b>${this.mainService.user.fullName}</b> created a service under your page`,
-          type: "page-provider",
+      this.submitting = true;
+      const result = await this.validatePage()
+
+      if (result) {
+        let notificationData = null;
+        if (this.page.hostTouristSpot) {
+          notificationData = {
+            receiver: this.page.hostTouristSpot["creator"],
+            mainReceiver: this.mainService.user._id,
+            page: this.page._id,
+            booking: null,
+            sender: this.mainService.user._id,
+            subject: this.page._id,
+            message: `<b>${this.mainService.user.fullName}</b> created a service under your page`,
+            type: "page-provider",
+          }
         }
+        this.creator.submitPage(notificationData).subscribe(
+          (response) => {
+            this.creator.canLeave = true;
+            const creator = this.page.hostTouristSpot ? this.page.hostTouristSpot["creator"] : ""
+            this.mainService.notify({ user: this.mainService.user, receiver: [creator, "admin"], type: "page-submission", message: "A service is submitted under your page" })
+            this.creator.preview = false;
+            this.presentInfo()
+
+          },
+          error => {
+            this.presentAlert("Unexpected error occured! Please try again later.")
+            this.router.navigate(["/service-provider"])
+          }
+        )
       }
-      this.creator.submitPage(notificationData).subscribe(
-        (response) => {
-          this.creator.canLeave = true;
-          const creator = this.page.hostTouristSpot? this.page.hostTouristSpot["creator"]: ""
-          this.mainService.notify({user: this.mainService.user, receiver:[creator, "admin"], type: "page-submission", message: "A service is submitted under your page"})
-          this.creator.preview = false;
-          this.presentInfo()
-
-        },
-        error => {
-          this.presentAlert("Unexpected error occured! Please try again later.")
-          this.router.navigate(["/service-provider"])
-        }
-      )
+    } else {
+      this.presentAlert("Page must have at least one service")
     }
   }
 
@@ -288,8 +303,20 @@ export class PageCreatorComponent implements OnInit {
 
             if (self.page.services.length > 0) {
               self.page.services.forEach(item_list => {
-                if (item_list.data.length == 1) {
+                let itemCount = 0
+                item_list.data.forEach(item => {
+                  if (item.type == "item") {
+                    itemCount++
+                  }
+                });
+                if (itemCount == 0) {
                   valid.push(false)
+                  self.unfilledFields.services.push("Empty service list")
+                  self.getUnfilledFields()
+                }
+                else if (item_list.data.length == 1) {
+                  valid.push(false)
+                  self.unfilledFields.services.push("Service List")
                   self.getUnfilledFields()
                 } else {
                   item_list.data.forEach(item => {
@@ -298,6 +325,7 @@ export class PageCreatorComponent implements OnInit {
                       data = [item]
                     }
                     valid.push(self.creator.checkIfHasValue(data, true))
+
                     self.getUnfilledFields()
                   });
                 }

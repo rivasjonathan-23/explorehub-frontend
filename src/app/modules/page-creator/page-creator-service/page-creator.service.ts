@@ -223,56 +223,56 @@ export class PageCreatorService {
           if (item.data.text) {
             items.push(item.data);
           } else {
-            this.addUnfilledField(onService, "Text")
+            this.addUnfilledField(onService, "Undone text component")
           }
           break;
         case "photo":
           if (item.data.length > 0) {
             items.push(item.data);
           } else {
-            this.addUnfilledField(onService, "Photo")
+            this.addUnfilledField(onService, "Undone photo component")
           }
           break;
         case "bullet-form-text":
           if (item.data.list.length > 0 && item.data.label) {
             items.push(item.data);
           } else {
-            this.addUnfilledField(onService, "List")
+            this.addUnfilledField(onService, "Undone List component")
           }
           break;
         case "labelled-text":
           if (item.data.label && item.data.text) {
             items.push(item.data);
           } else {
-            this.addUnfilledField(onService, "Labelled Text")
+            this.addUnfilledField(onService, "Undone Labelled Text component")
           }
           break;
         case "text-input":
           if (item.data.label) {
             items.push(item.data);
           } else {
-            this.unfilledFields.bookingInfo.push("Text Input")
+            this.unfilledFields.bookingInfo.push("Undone Text Input")
           }
           break;
         case "date-input":
           if (item.data.label) {
             items.push(item.data);
           } else {
-            this.unfilledFields.bookingInfo.push("Date Input")
+            this.unfilledFields.bookingInfo.push("Undone Date Input")
           }
           break;
         case "number-input":
           if (item.data.label) {
             items.push(item.data);
           } else {
-            this.unfilledFields.bookingInfo.push("Number Input")
+            this.unfilledFields.bookingInfo.push("Undone Number Input")
           }
           break;
         case "choices-input":
           if (item.data.label) {
             items.push(item.data);
           } else {
-            this.unfilledFields.bookingInfo.push("Choices Input")
+            this.unfilledFields.bookingInfo.push("Undone Choice Input")
           }
           break;
         default:
