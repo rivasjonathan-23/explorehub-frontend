@@ -35,19 +35,42 @@
     }
 }
 
-.options {
-    position: absolute;
+.optionHolder {
+    position: fixed;
     left:0;
-    margin-bottom: 30px;
-    width:100%;
-    z-index: 999999;
-    background-color: #ffff;
-    box-shadow: 0px 2px 5px #505050;
-    top:60px;
-    
-    .option {
-        padding:10px;
-        border-top: 1px solid lightgray;
+    overflow: auto;
+    right:0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 999999999;
+    height: 100%;
+    background-color: rgba(255, 255, 255, .6);
+    top:0;
+    .options {
+        max-width: 310px;
+        // margin-bottom: 30px;
+        width:100%;
+        display: inline-block;
+        border-radius: 4px;
+        z-index: 999999;
+        background-color: #ffff;
+        box-shadow: 0px 2px 5px #505050;
+        
+        
+        .option {
+            padding:10px;
+            // border-top: .5px solid lightgray;
+            
+            display: flex;
+            align-items: center;
+            p {
+                margin:8px 5px !important;
+            }
+            ion-checkbox {
+                margin-right: 8px;
+            }
+        }
     }
 }
 
