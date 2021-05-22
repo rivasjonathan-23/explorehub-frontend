@@ -50,6 +50,12 @@ export class ListOfPagesPage implements OnInit {
     })
     
   }
+  goTo(path, fromHome = false) {
+    setTimeout(() => {
+      const params = fromHome ? { queryParams: { formDashboard: true } } : {}
+      this.router.navigate(path, params)
+    }, 300);
+  }
 
 
   async presentAlert(message) {
