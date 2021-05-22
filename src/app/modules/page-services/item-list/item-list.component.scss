@@ -83,3 +83,41 @@ ion-slide {
     background-color: red;
     padding:10px;
 }
+
+.sliderHolder {
+    position: relative;
+}
+.hidden {
+    visibility:hidden;
+}
+
+.prevAndNext {
+    position: absolute;
+    z-index: 999999;
+    height: 0;
+    overflow: visible;
+    width:100%;
+    background: rgba(115, 115, 115, 0.5);
+    display: flex;
+    bottom:50%;
+    align-items: flex-end;
+    justify-content: space-between;
+
+    div {
+        height: 35px;
+        width:35px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        box-shadow: 0 1px 5px rgb(153, 163, 173);
+        margin:5px;
+        font-size: 20px;
+        border-radius: 50%;
+        color:rgb(245, 249, 255);
+        background-color: rgba(11, 103, 207, .8);
+    }
+
+    .hidden {
+        visibility:hidden;
+    }
+}

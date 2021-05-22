@@ -6,8 +6,8 @@
     </p>
 
 
-    <div #newItem>
-      <ion-slides pager="true" [options]="slideOpts">
+    <div #newItem class="sliderHolder">
+      <ion-slides #slider [options]="slideOpts" (ionSlideWillChange)="slideChanged()">
         <ion-slide *ngFor="let item of items; let i = index" [class.deleted]="deletedItem.includes(item._id)">
           <app-item (passDataToParent)="getItemData($event)" (onDelete)="deleteItem($event)" [values]="item"
             [parentId]="values._id" [parent]="'component'"></app-item>
@@ -18,6 +18,16 @@
           </div>
         </ion-slide>
       </ion-slides>
+      <div class="prevAndNext" *ngIf="items.length > 1">
+        <div (click)="slider.slidePrev()" [class.hidden]="start" class="ion-activatable ripple-parent">
+          <ion-icon name="chevron-back-outline"></ion-icon>
+          <ion-ripple-effect></ion-ripple-effect>
+        </div>
+        <div (click)="slider.slideNext()" [class.hidden]="end" class="ion-activatable ripple-parent">
+          <ion-icon name="chevron-forward-outline"></ion-icon>
+          <ion-ripple-effect></ion-ripple-effect>
+        </div>
+      </div>
     </div>
 
     <br>
@@ -49,6 +59,7 @@
       </div>
     </div>
 
+   
     <app-element-footer class="listFooter" [data]="footerData" (render)="renderItemList()" (delete)="delete()">
     </app-element-footer>
   </div>

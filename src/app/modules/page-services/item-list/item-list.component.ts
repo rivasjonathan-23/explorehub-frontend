@@ -37,12 +37,15 @@ export class ItemListComponent implements OnInit {
   @ViewChild('itemList') itemList;
   @Input() values: serviceValues;
   @ViewChild(IonSlides) slides: IonSlides;
+  @ViewChild('slider', { static: false }) slider: IonSlides;
   @ViewChild('newItem') newItemAdded: ElementRef;
   @Input() parentId: string;
   public footerData: FooterData;
   public items: ElementValues[] = [];
   public newlyAdded: number;
   public deletedItem: string[] = []
+  start = false;
+  end = false;
 
   slideOpts = {
     initialSlide: 0,
@@ -301,6 +304,13 @@ export class ItemListComponent implements OnInit {
       duration: 1000
     });
     toast.present();
+  }
+
+  slideChanged() {
+    this.slider.getActiveIndex().then(id => {
+      this.start = id == 0;
+      this.end = id == this.items.length - 1
+    });
   }
 
 }

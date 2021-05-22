@@ -29,9 +29,9 @@ ion-slides {
         box-shadow: 0 1px 5px rgb(153, 163, 173);
         margin:5px;
         font-size: 20px;
-        border-radius: 5px;
+        border-radius: 50%;
         color:rgb(245, 249, 255);
-        background-color: rgb(64, 90, 119);
+        background-color: rgba(64, 90, 119, .9);
     }
 
     .hidden {
