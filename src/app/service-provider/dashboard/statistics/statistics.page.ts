@@ -178,6 +178,7 @@ export class StatisticsPage implements OnInit {
   async presentToast(message) {
     const toast = await this.toastController.create({
       message: message,
+      
       duration: 1000
     });
     toast.present();

@@ -35,22 +35,63 @@ textarea {
     padding:0;
     padding-top:5px;
 }
+.createNewCat{
+    display: flex;
+    align-items: center;
+    span {
+        color:dodgerblue;
+        height: 42px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0 10px;
+        border-radius: 5px;
+    }
+}
+.creatingCategoryIns{
+    font-size: 13px;
+    margin:5px;
+    color:lightslategray;
+}
 
-.options {
-    position: absolute;
+.optionHolder {
+    position: fixed;
     left:0;
-    padding:0 10px;
-    width:100%;
-    z-index: 99;
-    background-color: none;
-    // box-shadow: 0px 2px 5px #505050;
-    top:78px;
-    
-    .option {
-        padding:10px;
-        background-color:#ffff;
+    overflow: auto;
+    right:0;
+    display: flex;
+    padding-top:40px;
+    justify-content: center;
+    align-items: flex-start;
+    z-index: 999999999;
+    height: 100%;
+    background-color: rgba(255, 255, 255, .6);
+    top:0;
+    .options {
+        max-width: 310px;
+        // margin-bottom: 30px;
+        width:100%;
+        display: inline-block;
+        border-radius: 4px;
+        margin-bottom: 50px;
+        z-index: 999999;
+        background-color: #ffff;
+        box-shadow: 0px 2px 5px #505050;
         
-        border-top: 1px solid lightgray;
+        
+        .option {
+            padding:10px;
+            // border-top: .5px solid lightgray;
+            
+            display: flex;
+            align-items: center;
+            p {
+                margin:8px 5px !important;
+            }
+            ion-checkbox {
+                margin-right: 8px;
+            }
+        }
     }
 }
 

@@ -19,9 +19,13 @@ export class LabelledTextComponent implements OnInit {
   public defaults: any[];
   public hasChanges: boolean = false;
   public clickOtherFunction: boolean = false
+  public newCategory: string = ""
   public clickedDone: boolean = false;
   public pending: boolean = false;
   public showDefaults: boolean = false;
+  public categories: any[]
+  public creatingNewCategory: boolean =false
+  public searchCategory: string = ''
 
   constructor(
     public creator: PageCreatorService,
@@ -52,6 +56,7 @@ export class LabelledTextComponent implements OnInit {
         this.creator.getDefaultCategories().subscribe(
           (response: any[]) => {
             this.defaults = response;
+            this.categories = response
           }
         )
       }
@@ -65,14 +70,75 @@ export class LabelledTextComponent implements OnInit {
   }
 
 
-  detectTyping() {
+  detectTyping(newCategory = false) {
     let data = this.values.data;
     this.footerData.hasValue = data.label && data.text ? true : false;
+    if (newCategory) {
+      if (this.newCategory.length > 3) {
+        this.categories.forEach(option => {
+          const newCategory = this.newCategory.toLowerCase()
+          const name = option.name.toLowerCase()
+          if (name.includes(newCategory)) {
+            this.presentToast(`Is it "${option.name}" that you are about to enter? It is already in the list. Just simply select it.`)
+          }
+          if (name == newCategory) {
+            this.values.data.text = option.name
+            this.values.data['referenceId'] = option._id
+          }
+        })
+      }
+    }
+  }
+  createNewCategory() {
+    if (this.newCategory.trim() != "") {
+
+      setTimeout(() => {
+        let existing = false
+        this.defaults.forEach(option => {
+          const newCategory = this.newCategory.toLowerCase()
+          const name = option.name.toLowerCase()
+          if (name == newCategory) {
+            this.values.data.text = option.name
+            this.values.data['referenceId'] = option._id
+            existing = true
+          }
+        })
+        if (!existing) {
+          this.values.data.text = this.newCategory.trim()
+          this.values.data['referenceId'] = null
+        } 
+        this.showDefaults = false;
+        this.searchCategory = null
+        this.renderText(true)
+      }, 300);
+    }
+  }
+
+  filterCategory(value = null) {
+    if (value) {
+      this.searchCategory = value
+    }
+    if (this.searchCategory.trim() != "") {
+      this.defaults = this.categories.filter(category => category.name.toLowerCase().includes(this.searchCategory.toLocaleLowerCase()))
+    } else {
+      this.defaults = this.categories
+    }
+  }
+
+  selectOption(option) {
+    this.values.data.text = option.name;
+    setTimeout(() => {
+
+      this.values.data['referenceId'] = option._id;
+      this.showDefaults = false
+      this.newCategory = null
+      this.renderText(true)
+    }, 300);
   }
 
   enterOtherCategory() {
     setTimeout(() => {
-      this.showDefaults = false;
+      // this.showDefaults = false;
       this.values.data.text = null;
     }, 300);
   }
@@ -85,7 +151,10 @@ export class LabelledTextComponent implements OnInit {
       this.values.data.label = label ? label.trim() : null;
       this.values.data.text = text ? text.trim() : null;
     }
-    
+    this.defaults = this.categories
+    this.creatingNewCategory = false
+    this.searchCategory = null
+    this.newCategory = null
     this.footerData.hasValue = (label || text) || (label && text)
     this.pending = true;
     if (this.footerData.hasValue) {
@@ -193,7 +262,8 @@ export class LabelledTextComponent implements OnInit {
     if (message == 'Preview') message = "You are in preview mode, click 'edit' button to edit page"
     const toast = await this.toastController.create({
       message: message,
-      duration: 1000
+      position: 'top',
+      duration: 5000
     });
     toast.present();
   }
@@ -212,10 +282,14 @@ export class LabelledTextComponent implements OnInit {
     }
   }
 
+  clickOut(e) {
+    e.stopPropagation()
+  }
+
   focusOut() {
     setTimeout(() => {
 
-      this.showDefaults = false
+      // this.showDefaults = false
     }, 300);
   }
 }

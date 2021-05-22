@@ -20,19 +20,67 @@
 
         <ng-template #textInput>
           <ion-textarea auto-grow="true" (focusin)="showDefaults = true" (focusout)="focusOut()"
-            (change)="renderText(true)" (keyup)="detectTyping(); values.data['referenceId'] = null" [readonly]="footerData.saving"
-            [(ngModel)]="values.data.text" class="text" rows="1" placeholder="Enter text here">
+            (change)="renderText(true)" (keyup)="detectTyping(); values.data['referenceId'] = null"
+            [readonly]="footerData.saving || values.data.defaultName == 'category'" [(ngModel)]="values.data.text"
+            class="text" rows="1"
+            [placeholder]="values.data.defaultName == 'category' ? 'Choose category': 'Enter text here'">
           </ion-textarea>
         </ng-template>
 
-        <div *ngIf="defaults && defaults.length > 0 && showDefaults" class="options">
-          <div class="innerHolder">
-            <div class="option ion-activatable ripple-parent" *ngFor="let option of defaults"
-              (click)="values.data.text = option.name; values.data.referenceId = option._id ;renderText(true)">
-              {{option.name}}
-              <ion-ripple-effect type="unbounded"></ion-ripple-effect>
-            </div>
-            <div class="option otherCategory"><b>Others</b>| Create new category
+        <div *ngIf="values.data.defaultName == 'category' && showDefaults" class="optionHolder">
+          <div class="options">
+            <div class="innerHolder">
+              <div class="createNewCat" *ngIf="!creatingNewCategory">
+
+                <ion-textarea auto-grow="true" (keyup)="filterCategory()" clearOnEdit="true"
+                  [(ngModel)]="searchCategory" class="text" rows="1" placeholder="Search category">
+                </ion-textarea>
+
+              </div>
+              <div class="option" *ngIf="defaults.length == 0 && !creatingNewCategory">
+                <p>
+                  There's no category called <b>{{searchCategory}}</b> yet.
+                </p>
+              </div>
+              <div *ngIf="!creatingNewCategory">
+
+                <div class="option ion-activatable ripple-parent" *ngFor="let option of defaults"
+                  (click)="selectOption(option)">
+                  <ion-checkbox [checked]="values.data.text.toLowerCase()  == option.name.toLowerCase()"></ion-checkbox>
+                  <p>
+                    {{option.name}}
+                  </p>
+                  <ion-ripple-effect></ion-ripple-effect>
+                </div>
+              </div>
+              <div class="option otherCategory" (click)="clickOut($event);showDefaults = true">
+                <div>
+                  <div class="creatingCategoryIns">If the category of your page is not the list yet, Enter it below
+                  </div>
+                  <div class="createNewCat">
+
+                    <ion-textarea auto-grow="true" (keyup)="detectTyping(true); filterCategory(newCategory)" (focusin)="creatingNewCategory = true; defaults = categories"  [readonly]="footerData.saving"
+                      [(ngModel)]="newCategory" class="text" rows="1" placeholder="Enter new category here">
+                    </ion-textarea>
+                    <span class="ion-activatable ripple-parent" (click)="createNewCategory()">Done
+                      <ion-ripple-effect></ion-ripple-effect>
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+              <div *ngIf="creatingNewCategory">
+
+                <div class="option ion-activatable ripple-parent" *ngFor="let option of defaults"
+                  (click)="selectOption(option)">
+                  <ion-checkbox [checked]="values.data.text.toLowerCase()  == option.name.toLowerCase()"></ion-checkbox>
+                  <p>
+                    {{option.name}}
+                  </p>
+                  <ion-ripple-effect></ion-ripple-effect>
+                </div>
+              </div>
+
             </div>
           </div>
         </div>
