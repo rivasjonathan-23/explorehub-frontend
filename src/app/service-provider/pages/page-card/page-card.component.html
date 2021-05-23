@@ -39,7 +39,7 @@
               <div class="statusCircle"></div>
               {{page.status == "Online"? "Operating": "Not Operating"}}
             </div>
-            <div *ngIf="page.status == 'Not Operating' && page.beBackOn" class="dateBack">
+            <div *ngIf="page.status == 'Not Operating' && page['beBackOn']" class="dateBack">
 
               Until {{page["beBackOn"] | date:"longDate"}}
             </div>
