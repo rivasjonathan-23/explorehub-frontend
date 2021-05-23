@@ -196,7 +196,7 @@
 
   .contents {
      width: 100%;
-
+    z-index: 9999999;
     max-width: 280px;
     flex-shrink: 0;
   }
@@ -237,6 +237,7 @@
 
 .forgotPass {
   margin-top: 5px !important;
+  z-index: 9999999;
   margin-bottom: 0;
 }
 
