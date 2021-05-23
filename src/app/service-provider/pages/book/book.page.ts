@@ -61,7 +61,7 @@ export class BookPage implements OnInit, ViewWillEnter {
         // if (params.noServices) this.noServices = true
       }
     })
- 
+
     this.route.paramMap.subscribe(params => {
       this.pageId = params.get('pageId');
       this.pageType = params.get('pageType');
@@ -71,13 +71,17 @@ export class BookPage implements OnInit, ViewWillEnter {
           this.bookingInfo = response.bookingInfo;
           this.makeInputValueCont()
           this.booking = response.booking
-          this.noServices = this.booking.pageId.services.length == 0
-          if (response.booking) {
-            this.update = response.booking.bookingInfo.length > 0;
-            if (response.booking.bookingInfo.length > 0) this.inputValue = response.booking.bookingInfo;
-            this.setValues();
+          if (this.booking.status != "Unfinished" && this.booking.status != "Cancelled" && this.booking.status != "Rejected") {
+            this.router.navigate(["/service-provider/bookings/Pending"])
+          } else {
+            this.noServices = this.booking.pageId.services.length == 0
+            if (response.booking) {
+              this.update = response.booking.bookingInfo.length > 0;
+              if (response.booking.bookingInfo.length > 0) this.inputValue = response.booking.bookingInfo;
+              this.setValues();
+            }
+            this.setPage();
           }
-          this.setPage();
         }
       )
     })
@@ -131,7 +135,7 @@ export class BookPage implements OnInit, ViewWillEnter {
 
   makeInputValueCont() {
     this.bookingInfo.forEach(data => {
-      let value:InputValue;
+      let value: InputValue;
       value = {
         inputFieldType: data.type,
         inputId: data._id,
@@ -157,7 +161,7 @@ export class BookPage implements OnInit, ViewWillEnter {
         this.inputValue.push(data.data);
       }
     }
-    
+
   }
 
   submitBooking() {

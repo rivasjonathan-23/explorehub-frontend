@@ -1,5 +1,5 @@
 import { Component, ComponentFactoryResolver, EventEmitter, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Filesystem } from '@capacitor/core';
 import { AlertController, ModalController } from '@ionic/angular';
 import { PhotoComponent } from 'src/app/modules/page-elements/photo/photo.component';
@@ -36,6 +36,7 @@ export class PageCreatorComponent implements OnInit {
   public submitting: boolean = false;
   public popupData: popupData;
   public servicesCount: number = 0
+  public editing: boolean = false
   public active: string = 'info';
   public showUnfilled: boolean = false;
   public unfilledFields = { components: [], services: [], bookingInfo: [] }
@@ -56,6 +57,7 @@ export class PageCreatorComponent implements OnInit {
     public componentFactoryResolver: ComponentFactoryResolver,
     public creator: PageCreatorService,
     public alert: AlertController,
+    public route: ActivatedRoute,
     public mainService: MainServicesService,
     public router: Router,
   ) {
@@ -69,6 +71,14 @@ export class PageCreatorComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.route.queryParams.subscribe(params => {
+      if (params) {
+        if (params.editing) {
+          this.editing = true
+          this.editingNote()
+        }
+      }
+    })
   }
 
   setPage(page, pageType) {
@@ -171,9 +181,22 @@ export class PageCreatorComponent implements OnInit {
     }, 200);
   }
 
+  editingNote() {
+    setTimeout(() => {
+      this.popupData = {
+        title: "Every changes you make in the page will be authomatically saved",
+        type: 'info',
+        otherInfo: ``,
+        show: true
+      }
+    }, 200);
+  }
+
   clicked(action) {
     this.popupData.show = false
-    this.router.navigate([`/service-provider/dashboard`, this.creator.pageType, this.page._id])
+    if (!this.editing) {
+      this.router.navigate([`/service-provider/dashboard`, this.creator.pageType, this.page._id])
+    } 
   }
 
   renderComponent(type: ViewContainerRef, componentValues: any, parent) {

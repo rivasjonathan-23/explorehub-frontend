@@ -36,6 +36,7 @@ export class ServiceDetailsComponent implements OnInit {
   @Input() notOperating: boolean;
   public pageWidth: number;
   public pageHeight: number;
+  public itemName: string = ""
   public fromReviewBooking: boolean = false;
   public fromDraft: boolean = false;
   public editing: boolean = false;
@@ -131,6 +132,15 @@ export class ServiceDetailsComponent implements OnInit {
     }
   }
 
+  getName() {
+    this.values.data.forEach(com => {
+      if (com.data.defaultName == "name") {
+        this.itemName = com.data.text
+      }
+    });
+    return this.itemName
+  }
+
   submitSelected() {
     const firstServiceSelected = { service: this.values._id, serviceGroupName: this.serviceInfo.serviceGroupName, quantity: this.quantity, serviceGroupId: this.serviceInfo.serviceGroupId }
     const data = { pageId: this.serviceInfo.pageId, pageType: this.serviceInfo.pageType, firstService: firstServiceSelected, bookingId: this.serviceInfo.bookingId ? this.serviceInfo.bookingId : null };
@@ -146,6 +156,7 @@ export class ServiceDetailsComponent implements OnInit {
   }
 
   renderComponent(componentValues: any, parent) {
+  
     const factory = this.componentFactoryResolver.resolveComponentFactory<ElementComponent>(this.components[componentValues.type]);
     const comp = this.pageElement.createComponent<ElementComponent>(factory);
     comp.instance.values = componentValues.unSaved ? null : componentValues;

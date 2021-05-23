@@ -171,7 +171,7 @@
 
 .header {
   padding: 40px 0;
-  overflow:hidden;
+  overflow:visible;
   min-height: 175px;
   padding-bottom: 30px;
   position: relative;
@@ -189,6 +189,7 @@
   width: 100%;
   // flex:1;
   display: flex;
+  background-image:linear-gradient(to top, #f4f6f8, #f4f6f8,#f4f6f8, transparent) !important;
   justify-content: center;
   align-items: center;
   margin:20px 0;

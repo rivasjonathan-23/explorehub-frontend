@@ -3,6 +3,7 @@ import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree, Rout
 import { AlertController } from '@ionic/angular';
 import { Observable } from 'rxjs';
 import { PageCreatorService } from 'src/app/modules/page-creator/page-creator-service/page-creator.service';
+import { MainServicesService } from '../../provider-services/main-services.service';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +13,8 @@ export class PageCreatorRouteManagerGuard implements CanActivate {
     private creator: PageCreatorService,
     private router: Router,
     private route: ActivatedRoute,
-    public alert: AlertController
+    public alert: AlertController,
+    public mainService: MainServicesService
   ) { }
 
   canActivate(
@@ -33,8 +35,7 @@ export class PageCreatorRouteManagerGuard implements CanActivate {
     if (this.creator.canLeave) {
       return true;
     }
-    this.alertAtLeave();
-    return false;
+    return this.alertAtLeave();
   }
 
   async alertAtLeave() {
@@ -44,29 +45,39 @@ export class PageCreatorRouteManagerGuard implements CanActivate {
         url = ["/service-provider/list-of-pages", "unfinished"]
       }
     })
-    const alert = await this.alert.create({
-      cssClass: "my-custom-class",
-      header:
-        "Do you want to save this to 'Draft' and finish it later?",
-      buttons: [
-        {
-          text: "Save",
-          handler: () => {
-            this.creator.canLeave = true;
-            this.creator.preview = false;
-            this.router.navigate(url)
-          },
-        },
-        {
-          text: "Delete",
-          handler: () => {
-            this.creator.canLeave = false;
-            this.discardPage(url)
-          },
-        },
-      ],
-    });
-    await alert.present();
+    let curUrl = this.router.url.split("?")[0]
+    curUrl = curUrl.split("/").reverse()[0]
+    return this.mainService.getPage(curUrl).toPromise().then(async (data: any) => {
+      if (data.status == "Unfinished" || data.status == "Rejected" || data.status == "Cancelled") {
+
+        const alert = await this.alert.create({
+          cssClass: "my-custom-class",
+          header:
+            "Do you want to save this to 'Draft' and finish it later?",
+          buttons: [
+            {
+              text: "Save",
+              handler: () => {
+                this.creator.canLeave = true;
+                this.creator.preview = false;
+                this.router.navigate(url)
+              },
+            },
+            {
+              text: "Delete",
+              handler: () => {
+                this.creator.canLeave = false;
+                this.discardPage(url)
+              },
+            },
+          ],
+        });
+        await alert.present();
+        return false
+      } else {
+        return true
+      }
+    })
   }
 
   async discardPage(url) {

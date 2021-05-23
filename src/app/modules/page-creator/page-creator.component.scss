@@ -74,7 +74,7 @@
 
 .bookingInfoSection {
     background-color: rgb(244, 246, 248) !important;
-    border-bottom: 1px solid rgb(167, 167, 167);
+    border-bottom: .3px solid rgb(224, 224, 224);
     padding:20px 15px;
     // display: flex;
     // justify-content: center;
@@ -310,12 +310,18 @@
 }
 
 .btnHolder {
-    padding:50px 20px;
+    padding:20px 20px;
     
     .submitPage {
         color:#ffff;
+        padding:10px;
         background-color: rgb(10, 122, 233);
     }
+}
+.pageIns{
+    text-align: left !important;
+    font-size: 14px;
+    color: rgb(111, 131, 151);
 }
 
 .submitted {

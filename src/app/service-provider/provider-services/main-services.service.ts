@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
   import { EventEmitter, Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { Page } from 'src/app/modules/elementTools/interfaces/page';
 import { environment } from 'src/environments/environment';
 import { bookingData } from './interfaces/bookingData';
@@ -23,6 +23,7 @@ export class MainServicesService {
   public scrollDown: EventEmitter<any> = new EventEmitter();
   public notificationCount: EventEmitter<any> = new EventEmitter()
   public goToCurrentTab: EventEmitter<any> = new EventEmitter();
+  public noNetwork = new Subject<boolean>();
   public notify: any;
   public checkCurrentUser: EventEmitter<any> = new EventEmitter();
   constructor(

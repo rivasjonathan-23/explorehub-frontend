@@ -94,7 +94,7 @@ export class PageSettingsPage implements OnInit {
   editPage() {
     setTimeout(() => {
       const type = this.page.pageType == 'service' ? "create-service-page" : "create-tourist-spot-page";
-      this.router.navigate([`/service-provider/${type}`, this.page._id])
+      this.router.navigate([`/service-provider/${type}`, this.page._id], {queryParams: {editing: true}})
     }, 200);
   }
 

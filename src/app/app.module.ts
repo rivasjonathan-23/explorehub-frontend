@@ -38,14 +38,14 @@ import { DateInputDisplayComponent } from "./modules/page-input-field-display/da
 import { ChoicesInputComponent } from "./modules/page-input-field/choices-input/choices-input.component";
 import { ChoicesInputDisplayComponent } from "./modules/page-input-field-display/choices-input-display/choices-input-display.component";
 import { BulletFormTextComponent } from "./modules/page-elements/bullet-form-text/bullet-form-text.component";
-import { StatisticsPage } from "./service-provider/dashboard/statistics/statistics.page";
-import { BookingPage } from "./service-provider/dashboard/booking/booking.page";
+// import { StatisticsPage } from "./service-provider/dashboard/statistics/statistics.page";
+// import { BookingPage } from "./service-provider/dashboard/booking/booking.page";
 import { ComponentsModulePageModule } from "./components-module/components-module.module";
 import { DatePipe } from "@angular/common";
 import { environment } from "src/environments/environment";
 import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
-import { ConfirmPopupComponent } from "./service-provider/components/confirm-popup/confirm-popup.component";
-import { BookingCardComponent } from "./service-provider/components/booking-card/booking-card.component";
+// import { ConfirmPopupComponent } from "./service-provider/components/confirm-popup/confirm-popup.component";
+// import { BookingCardComponent } from "./service-provider/components/booking-card/booking-card.component";
 const config: SocketIoConfig = { url: environment.apiUrl, options: {} };
 
 @NgModule({
@@ -76,6 +76,7 @@ const config: SocketIoConfig = { url: environment.apiUrl, options: {} };
     DateInputDisplayComponent,
     ChoicesInputComponent,
     ChoicesInputDisplayComponent,
+    // ConfirmPopupComponent
     // BookingCardComponent,
     // StatisticsPage,
     // BookingPage,

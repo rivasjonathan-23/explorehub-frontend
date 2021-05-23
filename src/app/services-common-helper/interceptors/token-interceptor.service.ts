@@ -13,6 +13,7 @@ import { tap, map, switchMap, catchError } from "rxjs/operators";
 import { Router } from "@angular/router";
 import { AlertController } from "@ionic/angular";
 import { LoadingService } from "../loadingService/loading-service.service";
+import { MainServicesService } from "src/app/service-provider/provider-services/main-services.service";
 
 @Injectable({
   providedIn: "root",
@@ -22,6 +23,7 @@ export class TokenInterceptorService implements HttpInterceptor {
     public loadingService: LoadingService,
     public authServices: AuthService,
     public route: Router,
+    public mainService: MainServicesService,
     public alertController: AlertController
   ) { }
 
@@ -86,7 +88,7 @@ export class TokenInterceptorService implements HttpInterceptor {
             }
 
             else if (!error.status) {
-              this.presentAlert("Please connect to a network!")
+              this.mainService.noNetwork.next(true)
             }
             // if (error.status == 0) {
             //   this.presentAlert("Network error!");

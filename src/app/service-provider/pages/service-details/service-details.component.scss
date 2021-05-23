@@ -33,12 +33,19 @@
     color:red;
 }
 
+.hiddenSection {
+    height: 0 !important;
+    padding:0 !important;  
+    overflow: hidden !important;
+}
+
 .inputQuant {
-    background-color: rgba(0, 0, 0, .3);    
-    position: absolute;
+    background-color: rgba(235, 235, 235, 0.3);        
+    // position: absolute;
     height:100%;
     width:100%;
     top:0;
+    bottom:0;
     z-index: 999999;
     left:0;
     right:0;
@@ -48,7 +55,8 @@
 
     .inputCont {
         // min-width: 270px;
-        max-width: 270px;
+        max-width: 300px;
+        width: 100%;
         border-radius: 3px;
         padding:15px;
         background-color: white;
@@ -61,6 +69,7 @@
 
         .inputField {
             width: 100%;
+            display: block;
             padding:10px;
             box-sizing: border-box;
             border-radius: 5px;
@@ -75,7 +84,7 @@
               .cancel {
                   margin-right: 10px;
                   color: rgb(76, 82, 87) !important;
-                  background-color: rgb(230, 233, 236) !important;
+                  background-color: rgb(244, 245, 247) !important;
               }
           }
 

@@ -30,10 +30,15 @@
         <div *ngIf="values.data.defaultName == 'category' && showDefaults" class="optionHolder">
           <div class="options">
             <div class="innerHolder">
-              <div *ngIf="!creatingNewCategory" class="option ion-activatable ripple-parent opt2" (click)="creatingNewCategory = true">
-                <ion-icon name="add-outline"></ion-icon>
-                <p style="color: dodgerblue">Create New Category</p>
-                <ion-ripple-effect></ion-ripple-effect>
+              <div *ngIf="!creatingNewCategory" class="option opt2" (click)="creatingNewCategory = true">
+                <div  class="createBtn ion-activatable ripple-parent">  
+                  <ion-icon name="add-outline"></ion-icon>
+                  <p style="color: dodgerblue">Create New Category</p>
+                  <ion-ripple-effect></ion-ripple-effect>
+                </div>
+                <div class="closeCategoryList ion-activatable ripple-parent" (click)="showDefaults = false">
+                  <ion-icon name="close-outline"></ion-icon>
+                </div>
               </div>
               <div class="createNewCat" *ngIf="!creatingNewCategory">
 
@@ -50,7 +55,11 @@
       
               <div *ngIf="creatingNewCategory" class="option otherCategory" (click)="clickOut($event);showDefaults = true">
                 <div>
-                  <div class="creatingCategoryIns">If the category of your page is not the list yet, Enter it below
+                  <div class="creatingCategoryIns">
+                    <div>If the category of your page is not the list yet, Enter it below</div>
+                    <div class="closeCategoryList ion-activatable ripple-parent" (click)="showDefaults = false">
+                      <ion-icon name="close-outline"></ion-icon>
+                    </div>
                   </div>
                   <div class="createNewCat">
 
@@ -68,7 +77,7 @@
                 
                 <div class="option ion-activatable ripple-parent" *ngFor="let option of defaults"
                   (click)="selectOption(option)">
-                  <ion-checkbox [checked]="values.data.text.toLowerCase()  == option.name.toLowerCase()"></ion-checkbox>
+                  <ion-checkbox [checked]="values.data.text && option.name && values.data.text.toLowerCase()  == option.name.toLowerCase()"></ion-checkbox>
                   <p>
                     {{option.name}}
                   </p>

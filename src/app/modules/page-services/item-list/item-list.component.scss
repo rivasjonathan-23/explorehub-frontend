@@ -73,10 +73,17 @@ ion-slide {
 .addComp {
     padding:10px;
     border-radius: 4px;
+    display: flex;align-items: center;justify-content: center;
     background: rgba(244, 247, 250, 0.5);
     color:rgb(5, 104, 204);
     text-align: center;
     margin: 0 10px;
+
+    ion-icon {
+        color: dodgerblue;
+        font-size: 20px;
+        margin-right: 10px;
+    }
 }
 
 .newItem {
@@ -93,7 +100,7 @@ ion-slide {
 
 .prevAndNext {
     position: absolute;
-    z-index: 999999;
+    z-index: 9999;
     height: 0;
     overflow: visible;
     width:100%;

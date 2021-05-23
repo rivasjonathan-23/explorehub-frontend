@@ -55,9 +55,14 @@ export class SelectServicePage implements AfterViewInit, ViewWillEnter {
       this.mainService.getBooking(this.bookingId).subscribe(
         (response: any) => {
           this.booking = response.bookingData;
-          this.pageServices = response.services;
-          this.checkAvailedServices();
-          this.renderServices(this.notSelected);
+          if (this.booking.status != "Unfinished" && this.booking.status != "Cancelled" && this.booking.status != "Rejected") {
+            this.router.navigate(["/service-provider/bookings/Pending"])
+          } else {
+
+            this.pageServices = response.services;
+            this.checkAvailedServices();
+            this.renderServices(this.notSelected);
+          }
         },
         error => {
           if (error.status == 404) {

@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { CanActivate, CanDeactivate, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree, Router, ActivatedRoute } from '@angular/router';
 import { AlertController } from '@ionic/angular';
 import { Observable } from 'rxjs';
+import { bookingData } from '../../provider-services/interfaces/bookingData';
 import { MainServicesService } from '../../provider-services/main-services.service';
 
 @Injectable({
@@ -51,46 +52,58 @@ export class CreateBookingGuardGuard implements CanActivate {
     if (this.mainService.canLeave) {
       return true;
     }
-    this.alertAtLeave();
-    return false;
+    return this.alertAtLeave();
 
   }
 
   async alertAtLeave() {
-    const alert = await this.alert.create({
-      cssClass: "my-custom-class",
-      header:
-        "Do you want to save this to 'Draft' and finish it later?",
-      buttons: [
-        {
-          text: "Save",
-          handler: () => {
-            this.mainService.canLeave = true;
+    let bookingId = this.router.url.split("?")[0]
+    bookingId = bookingId.split("/").reverse()[0]
 
-            if (this.fromDraft) {
-              this.router.navigate(["/service-provider/bookings", "Unfinished"])
 
-            } else if (this.isManual) {
-              this.router.navigate(["/service-provider/dashboard/" + this.pageType + "/" + this.pageId + "/board/statistics"])
-            } else {
-              if (this.mainService.currentPage) {
-                this.router.navigate(["/service-provider/view-page", this.pageId, this.pageType])
-              } else {
-                this.router.navigate(["/service-provider/online-pages-list"])
-              }
-            }
-          },
-        },
-        {
-          text: "Delete",
-          handler: () => {
-            this.mainService.canLeave = false;
-            this.discardBooking()
-          },
-        },
-      ],
-    });
-    await alert.present();
+    return this.mainService.viewBooking(bookingId).toPromise().then(async (data: bookingData) => {
+      if (data.status == "Unfinished" || data.status == "Cancelled" || data.status == "Rejected") {
+
+
+        const alert = await this.alert.create({
+          cssClass: "my-custom-class",
+          header:
+            "Do you want to save this to 'Draft' and finish it later?",
+          buttons: [
+            {
+              text: "Save",
+              handler: () => {
+                this.mainService.canLeave = true;
+
+                if (this.fromDraft) {
+                  this.router.navigate(["/service-provider/bookings", "Unfinished"])
+
+                } else if (this.isManual) {
+                  this.router.navigate(["/service-provider/dashboard/" + this.pageType + "/" + this.pageId + "/board/statistics"])
+                } else {
+                  if (this.mainService.currentPage) {
+                    this.router.navigate(["/service-provider/view-page", this.pageId, this.pageType])
+                  } else {
+                    this.router.navigate(["/service-provider/online-pages-list"])
+                  }
+                }
+              },
+            },
+            {
+              text: "Delete",
+              handler: () => {
+                this.mainService.canLeave = false;
+                this.discardBooking()
+              },
+            },
+          ],
+        });
+        await alert.present();
+        return false
+      } 
+      return true
+    })
+
   }
 
   async discardBooking() {

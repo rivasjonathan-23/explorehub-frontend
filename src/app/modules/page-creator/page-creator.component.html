@@ -55,10 +55,13 @@
             </div>
         </div>
         
-        <div class="btnHolder" *ngIf="page && page.status == 'Unfinished'; else submitted">
-            <div (click)="submit()" class="submitPage btnStyle ion-activatable ripple-parent">
+        <div class="btnHolder bookSectionCont" *ngIf="page && page.status == 'Unfinished'; else submitted">
+            <div (click)="submit()" class="submitPage bookSection ion-activatable ripple-parent">
                 Submit Page
                 <ion-ripple-effect></ion-ripple-effect>
+            </div>
+            <div class="pageIns">
+                This page will be visible online once approved by the ExploreHub Admin
             </div>
         </div>
         <ng-template #submitted>

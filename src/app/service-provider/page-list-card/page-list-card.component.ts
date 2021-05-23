@@ -51,11 +51,11 @@ export class PageListCardComponent implements OnInit {
   }
 
   getValue(type) {
-    let value = "";
+    let value = "Untitled";
     this.page.components.forEach(comp => {
 
       if (comp.data.defaultName == type) {
-        value = comp.data.text
+        value = comp.data.text? comp.data.text: value
       }
     })
     return value

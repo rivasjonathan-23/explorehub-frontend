@@ -24,14 +24,14 @@ import { PageListCardComponent } from '../service-provider/page-list-card/page-l
 import { ConversationCardComponent } from '../service-provider/components/conversation-card/conversation-card.component';
 import { OtherServiceCardComponent } from '../service-provider/pages/other-service-card/other-service-card.component';
 import { GroupOfServicesComponent } from '../service-provider/components/group-of-services/group-of-services.component';
-import { ListOfPagesPage } from '../service-provider/list-of-pages/list-of-pages.page';
+// import { ListOfPagesPage } from '../service-provider/list-of-pages/list-of-pages.page';
 import { AllServicesComponent } from '../service-provider/pages/all-services/all-services.component';
 import { CodeHandlerComponent } from '../authentication-and-account/code-handler/code-handler.component';
 import { PageCreatorComponent } from '../modules/page-creator/page-creator.component';
 import { PageElementListComponent } from '../modules/page-element-list/page-element-list.component';
 import { WeatherComponent } from '../modules/common-components/weather/weather.component';
 import { PageInputFieldListComponent } from '../modules/page-input-field-list/page-input-field-list.component';
-import { BrowserModule } from '@angular/platform-browser';
+// import { BrowserModule } from '@angular/platform-browser';
 
 @NgModule({
   imports: [

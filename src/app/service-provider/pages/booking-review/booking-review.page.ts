@@ -75,8 +75,12 @@ export class BookingReviewPage implements OnInit {
       this.mainService.getBooking(this.bookingId, "booking_review").subscribe(
         (response: any) => {
           this.booking = response.bookingData;
-          this.noServices = this.booking.pageId.services.length == 0
-          this.isManual = this.booking.isManual
+          if (this.booking.status != "Unfinished" && this.booking.status != "Cancelled" && this.booking.status != "Rejected") {
+            this.router.navigate(["/service-provider/bookings/Pending"])
+          } else {
+            this.noServices = this.booking.pageId.services.length == 0
+            this.isManual = this.booking.isManual
+          }
         }
       )
     })
@@ -146,7 +150,7 @@ export class BookingReviewPage implements OnInit {
   }
 
   sendRequest(selectedServices = null) {
-    if (this.booking.selectedServices.length == 0 && this.booking.isManual 
+    if (this.booking.selectedServices.length == 0 && this.booking.isManual
       || this.booking.bookingInfo.length == 0) {
 
     } else {
@@ -167,7 +171,7 @@ export class BookingReviewPage implements OnInit {
                 this.router.navigate(["/service-provider/dashboard/" + this.pageType + "/" + this.pageId + "/board/booking/Booked"])
               } else {
                 // if (!this.editing) {
-                  this.presentInfo()
+                this.presentInfo()
                 // } else {
                 //   this.router.navigate(['/service-provider/view-booking', this.booking._id])
                 // }
