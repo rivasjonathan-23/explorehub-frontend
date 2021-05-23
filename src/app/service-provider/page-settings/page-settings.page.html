@@ -51,7 +51,6 @@
   <app-confirm-popup [popupData]="popupData" (clicked)="clicked($event)">
   </app-confirm-popup>
   <div *ngIf="confirmDelete" class="confirmDeletion">
-
     <div class="inputPassword">
       <div class="insText">Enter password to confirm</div>
       <input class="inputField" [(ngModel)]="password" type="password" />
@@ -60,6 +59,31 @@
           <ion-ripple-effect></ion-ripple-effect>
         </button>
         <button class="appBtn ion-activatable ripple-parent" (click)="deleteConfirmedPage()">Confirm
+          <ion-ripple-effect></ion-ripple-effect>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="confirmDeletion" *ngIf="inputDate">
+    <div class="inputPassword">
+      <div class="insText">Enter date when you will operate back</div>
+      <div class="ripple ion-activatable ripple-parent">
+        <ion-datetime [class.hasError]="hasError" displayFormat="DDDD MMM D, YYYY" [pickerOptions]="customPickerOptions" [(ngModel)]="date" class="inputField">
+        </ion-datetime>
+        <ion-ripple-effect type="unbounded"></ion-ripple-effect>
+      </div>
+      <div  class="notSure ion-activatable ripple-parent" (click)="notSure()">Not sure when
+        <ion-ripple-effect></ion-ripple-effect>
+      </div>
+      <div  class="notSure hidePage ion-activatable ripple-parent" (click)="notSure(true)">Hide page while not operating
+        <ion-ripple-effect></ion-ripple-effect>
+      </div>
+      <div class="btnHolder"> 
+        <button (click)="cancelDelete()" class="appBtn cancel ion-activatable ripple-parent">Cancel
+          <ion-ripple-effect></ion-ripple-effect>
+        </button>
+        <button (click)="submitDate()" class="appBtn ion-activatable ripple-parent" >Submit
           <ion-ripple-effect></ion-ripple-effect>
         </button>
       </div>

@@ -128,6 +128,7 @@ export class ItemListComponent implements OnInit {
           this.renderComponent(component.type, component)
         })
       }
+      this.slideChanged()
     }, 1000);
   }
 

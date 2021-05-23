@@ -14,6 +14,7 @@ export class PageCardComponent implements OnInit {
   public pageCreatorPic: string = ''
   public pagePhoto: string = ''
   public pageTitle: string = ''
+  public pageStatus: string = ''
   public pageServicesPhotos: string[] = []
   public pageLocation: string = ''
   public pageDescription: string = ''
@@ -80,5 +81,15 @@ export class PageCardComponent implements OnInit {
 
   shorten(text) {
     return text.length > 500 ? text.substring(0, 500) + "..." : text;
+  }
+
+  getStatus(status) {
+    return {
+      'onlineBg': status == 'Online',
+      'pendingBg': status == 'Pending',
+      'unfinishedBg': status == 'Not Operating',
+      'processingBg': status == 'Processing',
+      'rejectedBg': status == 'Rejected' || status == 'Cancelled'
+    }
   }
 }

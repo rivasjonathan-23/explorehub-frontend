@@ -1,3 +1,4 @@
+import { ThrowStmt } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Page } from 'src/app/modules/elementTools/interfaces/page';
@@ -15,8 +16,14 @@ export class PageSettingsPage implements OnInit {
   public page: Page;
   public cannotDeleted: boolean = false
   public online: boolean;
+  public enteringDate: boolean = false
   public password: string;
   public confirmDelete: boolean;
+  public hidePage: boolean = false;
+  public inputDate: boolean = false;
+  public date: any;
+  public customPickerOptions: any;
+  public valid: boolean = false;
   public showOtherServicesGroup: boolean;
   public popupData: popupData;
   constructor(public route: ActivatedRoute,
@@ -39,6 +46,29 @@ export class PageSettingsPage implements OnInit {
       otherServices: [],
       bookingInfo: [], initialStatus: "",
       createdAt: null
+    }
+    this.customPickerOptions = {
+      buttons: [{
+        text: 'Cancel',
+        handler: () => { }
+
+      }, {
+        text: 'Clear',
+        handler: () => {
+          this.date = null;
+          return false
+        }
+      }, {
+        text: 'Done',
+        handler: (date) => {
+          this.date = new Date(date.year.value, date.month.value - 1, date.day.value)
+          const currentDate = new Date()
+
+          this.valid = this.date > currentDate
+
+
+        }
+      }]
     }
   }
 
@@ -76,7 +106,7 @@ export class PageSettingsPage implements OnInit {
       this.popupData = {
         type: 'change_page_status',
         title: this.page.status == "Online" ? `Are you sure you want to set page status to <b>Not Operating</b>` : `Are you sure want set the page status to <b>Online</b>?`,
-        otherInfo: this.page.status == "Online" ? 'The page will no longer be visible online.' : 'The page will be visible online by the tourist and other service providers',
+        otherInfo: this.page.status == "Online" ? "The page will remain visible online but tourists can't book." : 'Tourists can book to this page online',
         show: true
       }
     }, 200);
@@ -94,11 +124,53 @@ export class PageSettingsPage implements OnInit {
   editPage() {
     setTimeout(() => {
       const type = this.page.pageType == 'service' ? "create-service-page" : "create-tourist-spot-page";
-      this.router.navigate([`/service-provider/${type}`, this.page._id], {queryParams: {editing: true}})
+      this.router.navigate([`/service-provider/${type}`, this.page._id], { queryParams: { editing: true } })
     }, 200);
   }
 
 
+  submitDate()  {
+    this.enteringDate = false
+    this.hidePage = false
+    setTimeout(() => {
+      if (this.valid) {
+        this.inputDate = false
+        this.changeStatus(this.online ? "Not Operating" : "Online", this.date)
+      } else {
+        this.inputDate = false
+        this.enteringDate = true
+        this.popupData = {
+          type: "info",
+          title: "Invalid date.",
+          otherInfo: "Please enter future date when you will operate your page back",
+          show: true
+        }
+      }
+    }, 300);
+  }
+
+  notSure(hidePage = false) {
+    setTimeout(() => {
+      this.enteringDate = false;
+      this.inputDate = false
+      this.hidePage = hidePage;
+      this.date = null
+      this.changeStatus(this.online ? "Not Operating" : "Online", null)
+    }, 300);
+  }
+
+
+  changeStatus(status, date) {
+    this.mainService.changePageStatus({ pageId: this.page._id, status,date: date, hidePage: this.hidePage }).subscribe(
+      (response: any) => {
+        this.date = null
+
+        this.page.status = status;
+        this.online = this.page.status == "Online"
+        this.mainService.notify({ user: this.mainService.user, receiver: ["admin", "all"], pageId: this.page._id, status: status, type: "page-status-edit", message: `${this.mainService.user.fullName} change his page status` })
+      }
+    )
+  }
 
 
   clicked(action) {
@@ -107,16 +179,21 @@ export class PageSettingsPage implements OnInit {
       if (this.popupData.type == "change_page_status") {
         let status = this.online ? "Not Operating" : "Online"
         if (this.page.creator == this.mainService.user._id) {
-          this.mainService.changePageStatus({ pageId: this.page._id, status }).subscribe(
-            (response: any) => {
-              this.page.status = status;
-              this.online = this.page.status == "Online"
-              this.mainService.notify({ user: this.mainService.user, receiver: ["admin", "all"], pageId: this.page._id, status: status, type: "page-status-edit", message: `${this.mainService.user.fullName} change his page status` })
-            }
-          )
+          if (this.online) {
+            this.inputDate = true;
+          } else {
+
+            this.changeStatus(status, null)
+          }
         }
       } else {
-        this.confirmDelete = !this.cannotDeleted;
+        if (this.enteringDate) {
+          this.inputDate = true
+        } else {
+
+          this.confirmDelete = !this.cannotDeleted;
+        }
+
       }
     }
 
@@ -156,8 +233,9 @@ export class PageSettingsPage implements OnInit {
   cancelDelete() {
     setTimeout(() => {
       this.confirmDelete = false
+      this.enteringDate = false
       this.showOtherServicesGroup = false;
-
+      this.inputDate = false
     }, 300);
   }
 

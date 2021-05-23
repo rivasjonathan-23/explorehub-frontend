@@ -3,7 +3,7 @@
 .pageBody {
   height: 100%;
   width: 100%;
-  overflow: auto;
+  overflow: hidden !important;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;

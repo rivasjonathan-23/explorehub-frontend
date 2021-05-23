@@ -23,19 +23,27 @@
           </div>
         </div>
       </div>
-
     </div>
 
     <div class="pageInfo">
       <div class="titleHolder">
         <p class="title" [class.untitled]="!page.components[1].data.text">{{pageTitle}}</p>
-        <!-- <div class="stars">
+          <!-- <ion-icon name="star" class="filledStar"></ion-icon>
           <ion-icon name="star" class="filledStar"></ion-icon>
-          <ion-icon name="star" class="filledStar"></ion-icon>
           <ion-icon name="star-outline"></ion-icon>
           <ion-icon name="star-outline"></ion-icon>
-          <ion-icon name="star-outline"></ion-icon>
-        </div> -->
+          <ion-icon name="star-outline"></ion-icon> -->
+          <div class="pageStatusWrapper">
+            <div class="pageStatus" [ngClass]="getStatus(page.status)">
+
+              <div class="statusCircle"></div>
+              {{page.status == "Online"? "Operating": "Not Operating"}}
+            </div>
+            <div *ngIf="page.status == 'Not Operating' && page.beBackOn" class="dateBack">
+
+              Until {{page["beBackOn"] | date:"longDate"}}
+            </div>
+        </div>
       </div>
       <div class="location">
         <ion-icon name="location-outline"></ion-icon>

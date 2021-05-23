@@ -24,6 +24,7 @@ export class MainServicesService {
   public notificationCount: EventEmitter<any> = new EventEmitter()
   public goToCurrentTab: EventEmitter<any> = new EventEmitter();
   public noNetwork = new Subject<boolean>();
+  public validatePage: EventEmitter<any> = new EventEmitter()
   public notify: any;
   public checkCurrentUser: EventEmitter<any> = new EventEmitter();
   constructor(

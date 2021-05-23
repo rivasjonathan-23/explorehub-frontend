@@ -104,7 +104,7 @@
 
     .inputPassword {
         // min-width: 270px;
-        max-width: 270px;
+        max-width: 300px;
         border-radius: 3px;
         padding:15px;
         background-color: white;
@@ -121,28 +121,52 @@
             box-sizing: border-box;
             border-radius: 5px;
             border: 1px solid rgb(106, 128, 158);
-          } 
+        } 
 
 
-          .btnHolder {
-              text-align: right;
-              padding-top: 10px;
+        .btnHolder {
+            text-align: right;
+            padding-top: 10px;
+           
 
-              .cancel {
-                  margin-right: 10px;
-                  color: rgb(76, 82, 87) !important;
-                  background-color: rgb(230, 233, 236) !important;
-              }
-          }
+            .cancel {
+                margin-right: 10px;
+                color: rgb(76, 82, 87) !important;
+                background-color: rgb(230, 233, 236) !important;
+            }
+
+            
+        }
+        .listOfPages {
+            background-color: rgb(226, 232, 236) !important;
+            padding:10px 0;
+        }
+
+        .btnh2 {
+           display: flex;
+           justify-content: space-between;
+        }
+                
+        
 
           
     }
   }
 
+  .notSure {
+    color:dodgerblue !important;
+    padding: 11px 0;
+    border-radius: 4px;
+    margin-top: 10px;
+    text-align: center;
+    background-color: rgb(236, 237, 238) !important; 
+}
 
-  .listOfPages {
-    background-color: rgb(226, 232, 236) !important;
-    padding:10px 0;
-  }
+.hidePage {
+    color: red !important;
+}
+
+
+ 
   
   

@@ -75,7 +75,8 @@ export class PageCreatorRouteManagerGuard implements CanActivate {
         await alert.present();
         return false
       } else {
-        return true
+        this.mainService.validatePage.emit()
+        return false
       }
     })
   }

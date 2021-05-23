@@ -79,6 +79,15 @@ export class PageCreatorComponent implements OnInit {
         }
       }
     })
+
+    this.mainService.validatePage.subscribe(async () => {
+      const result = await this.validatePage();
+        if (result) {
+          this.creator.canLeave = true;
+          this.creator.preview = false;
+          this.router.navigate(["/service-provider/dashboard", this.creator.pageType, this.page._id])
+        }
+    })
   }
 
   setPage(page, pageType) {
