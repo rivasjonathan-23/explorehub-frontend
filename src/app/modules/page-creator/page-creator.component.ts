@@ -193,7 +193,7 @@ export class PageCreatorComponent implements OnInit {
   editingNote() {
     setTimeout(() => {
       this.popupData = {
-        title: "Every changes you make in the page will be authomatically saved",
+        title: "Every changes you make in the page will be automatically saved",
         type: 'info',
         otherInfo: ``,
         show: true
