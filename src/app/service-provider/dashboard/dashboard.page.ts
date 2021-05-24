@@ -16,8 +16,10 @@ export class DashboardPage implements OnInit {
   public clickedTab: string = 'Booked'
   public boxPosition: number;
   public pageType: string;
+
   public name: string;
   public notificationsCount: number;
+  public bookings: any = { Booked: 0, Processing: 0, Pending: 0 }
   public fromNotification: boolean = false;
 
   constructor(
@@ -40,9 +42,14 @@ export class DashboardPage implements OnInit {
       const pageId = params.get('pageId');
       this.pageType = params.get('pageType');
       if (pageId && this.pageType) {
-        this.mainService.getPage(pageId, { headers: { hideLoadingIndicator: "true" } }).subscribe(
-          (response: Page) => {
-            this.page = response;
+        this.mainService.getPageWithBookingStats(pageId).subscribe(
+          (response: any) => {
+            this.page = response.page;
+            const stats = response.bookings
+            stats.forEach(stat => {
+              this.bookings[stat._id] = stat.count
+              console.log(this.bookings[stat._id])
+            });
             this.mainService.currentPage = this.page;
             this.getName();
           },

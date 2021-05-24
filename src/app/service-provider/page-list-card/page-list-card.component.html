@@ -1,5 +1,5 @@
 <div [class.searchResultMode]="!searchResult" class="page ion-activatable ripple-parent" (click)="view(page)">
-  <div class="photoHolder">
+  <div class="photoHolder bordered">
     <div class="pagePhoto" *ngIf="page.components[0].data.length > 0"
       [ngStyle]="{'background-image': page.components[0].data.length > 0? 'url('+page.components[0].data[0].url+')' : '' }">
     </div>
@@ -13,9 +13,10 @@
     
       <div class="details" *ngIf="!searchResult">
 
-        <div class="description">Bookings: <b>{{bookings+manuallyBooked}}</b></div>
+        <div class="description">Booked: <b>{{bookings+manuallyBooked}}</b></div>
         <div class="description">On Process: <b>{{processing}}</b></div>
-        <div class="description">Available Services: <b>{{available}}</b></div>
+        <div class="description">Pending: <b>{{pending}}</b></div>
+        <div class="description">Available: <b>{{available}}</b></div>
       </div>
       <div class="details" *ngIf="searchResult">
         <div class="pageDescription">{{pageDescription}}</div>

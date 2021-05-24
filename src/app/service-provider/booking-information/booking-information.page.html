@@ -11,7 +11,7 @@
     </div>
   </div> -->
   <div class="page ion-activatable ripple-parent" (click)="viewPage()">
-    <div class="cardPhotoHolder">
+    <div class="cardPhotoHolder bordered">
       <div *ngIf="photo" class="cardPhoto" [ngStyle]="{'background-image': 'url('+photo+')' }">
       </div>
       <div  *ngIf="!photo" class="cardPhoto">

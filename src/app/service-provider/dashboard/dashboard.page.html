@@ -30,7 +30,7 @@
       </div>
     </div>
     <div class="boardHeader ion-activatable ripple-parent" (click)="viewPage()">
-      <div class="boardPhotoHolder">
+      <div class="boardPhotoHolder bordered">
         <div class="boardPhoto"
           [ngStyle]="{'background-image': page.components.length > 0 && page.components[0].data.length > 0? 'url('+page.components[0].data[0].url+')' : '' }">
         </div>
@@ -46,9 +46,9 @@
           
         </div>
         <div class="dashboardStats">
-            <div>Booked: <b>23</b></div>
-            <div>Processing: <b>23</b></div>
-            <div>Pending: <b>23</b></div>
+            <div>Bookings: <b>{{bookings.Booked}}</b></div>
+            <div>Processing: <b>{{bookings.Processing}}</b></div>
+            <div>Pending: <b>{{bookings.Pending}}</b></div>
           </div>
       </div>
       <ion-ripple-effect></ion-ripple-effect>

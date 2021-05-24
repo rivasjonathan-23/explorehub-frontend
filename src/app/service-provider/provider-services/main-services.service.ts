@@ -208,4 +208,8 @@ export class MainServicesService {
   getPageActiveBookings(pageId: string) {
     return this.http.get(`${this.apiUrl}/getPageActiveBookings/${pageId}`)
   }
+
+  getPageWithBookingStats(pageId: string) {
+    return this.http.get(`${this.apiUrl}/getPageWithBookingStats/${pageId}`, { headers: { hideLoadingIndicator: "true" } })
+  }
 }

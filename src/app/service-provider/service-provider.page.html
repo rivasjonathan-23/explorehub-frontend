@@ -16,7 +16,7 @@
         <ion-item style="position:relative;" [class.active]="active == 'settings'" (click)="gotTo($event, 'settings')"
           class="ion-activatable ripple-parent accHolder">
           <div style="overflow: visible;">
-            <div class="profilePic">
+            <div class="profilePic bordered">
               <div class="pic" *ngIf="mainService.user && mainService.user.profile"
                 [ngStyle]="{'background-image' : 'url(' + mainService.user.profile + ')'}">
               </div>
@@ -25,7 +25,7 @@
               </div>
             </div>
             <ion-label>
-              <p class="sbText">
+              <p class="sbText" *ngIf="mainService.user">
                 {{mainService.user.firstName + " " + mainService.user.lastName}}
               </p>
             </ion-label>

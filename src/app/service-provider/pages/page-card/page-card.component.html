@@ -2,7 +2,7 @@
   class="pageCard ion-activatable ripple-parent">
   <div class="pageMain">
     <div class="creator">
-      <div class="creatorPhotoHolder">
+      <div class="creatorPhotoHolder bordered">
         <div  *ngIf="pageCreatorPic" class="creatorPhoto" [ngStyle]="{'background-image': 'url(' + pageCreatorPic + ')'}">
         </div>
         <div class="creatorPhoto" *ngIf="!pageCreatorPic">
@@ -14,7 +14,7 @@
         <div class="dateCreated">{{page.createdAt | date:'short'}}</div>
       </div>
     </div>
-    <div class="photoHolder">
+    <div class="photoHolder bordered">
       <div class="pagePhoto" [ngStyle]="{'background-image': 'url('+pagePhoto+')'}">
         <p *ngIf="page.components[0].data.length == 0" class="noPhoto">No Picture</p>
         <div class="pageServices">
