@@ -20,10 +20,20 @@
             <ion-ripple-effect></ion-ripple-effect>
             <ion-icon class="editIcon" name="checkmark-outline"></ion-icon>
           </div>
-            <!-- <div class="cancel ion-activatable ripple-parent" (click)="cancel()">Cancel
-              <ion-ripple-effect></ion-ripple-effect>
-              <ion-icon class="cancelIcon" name="close-outline"></ion-icon>
-            </div> -->
+          <div *ngIf="booking['isManual']" class="cancel ion-activatable ripple-parent" (click)="cancel()">Cancel
+            <ion-ripple-effect></ion-ripple-effect>
+            <ion-icon class="cancelIcon" name="close-outline"></ion-icon>
+          </div>
+
+
+        </div>
+        <div *ngIf="bookingStatus == 'Closed'" class="optionsTop">
+
+          <div class="rebook ion-activatable ripple-parent" (click)="returnToBooked()">
+            Rebook
+            <ion-ripple-effect></ion-ripple-effect>
+            <ion-icon class="cancelIcon" name="arrow-redo-outline"></ion-icon>
+          </div>
         </div>
       </div>
       <div class="header" *ngIf="!isManual">
@@ -47,7 +57,9 @@
               </div>
             </div>
           </div>
-          <div class="box" (click)="goTo('Conversation','conversation', tab, {queryParams: {bookingId: booking._id, pageId: booking.pageId._id, tourist: booking.tourist._id}})"></div>
+          <div class="box"
+            (click)="goTo('Conversation','conversation', tab, {queryParams: {bookingId: booking._id, pageId: booking.pageId._id, tourist: booking.tourist._id}})">
+          </div>
         </div>
       </div>
       <ion-progress-bar *ngIf="loading" type="indeterminate"></ion-progress-bar>
@@ -66,6 +78,6 @@
 
     <router-outlet></router-outlet>
   </div>
-  <app-confirm-popup [popupData]="popupData"  (clicked)="clicked($event)">
+  <app-confirm-popup [popupData]="popupData" (clicked)="clicked($event)">
   </app-confirm-popup>
 </ion-content>

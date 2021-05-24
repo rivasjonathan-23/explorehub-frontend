@@ -21,7 +21,7 @@
     <div class="inputCont">
       <div class="insText">Enter quantity of <b>{{getName()}}</b> that you want to book</div>
       <input class="inputField" min="1" [(ngModel)]="quantity" type="number" />
-      <div class="invalidQuantity" *ngIf="invalidQuantity">Cannot book less than or more than the available items</div>
+      <div class="invalidQuantity" *ngIf="invalidQuantity">{{0 > quantity ? "Invalid value" : "Cannot book more than the available items"}}</div>
       <div class="btnHolder">
         <button (click)="cancelSelection()" class="appBtn cancel ion-activatable ripple-parent">Cancel
           <ion-ripple-effect></ion-ripple-effect>

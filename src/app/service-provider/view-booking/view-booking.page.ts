@@ -18,6 +18,7 @@ export class ViewBookingPage implements AfterViewInit {
   public bookingId: string = '';
   public bookingStatus: string = '';
   public clickedTab: string = 'Booking Info';
+  public hasError: boolean = false
   public boxPosition: number;
   loading = true;
   public popupData: popupData;
@@ -172,6 +173,8 @@ export class ViewBookingPage implements AfterViewInit {
             this.router.navigate(["/service-provider/bookings", "Pending"])
           }
         )
+      } else if (this.popupData.type == "info") {
+        this.popupData.show = false
       }
     }
     else {
@@ -206,6 +209,18 @@ export class ViewBookingPage implements AfterViewInit {
         // this.router.navigate(["/service-provider/view-booking", this.booking._id, this.bookingStatus], { queryParams: { resubmit: new Date() } })
         // this.mainService.canLeave = true;
         // this.router.navigate(['/service-provider/bookings', "Pending"])
+      },(error) => {
+        if (error.status == 400 && error.error.type == "item_availability_issue") {
+          this.hasError = true
+          setTimeout(() => {
+            this.popupData = {
+              title: error.error.message,
+              type: 'info',
+              otherInfo: "",
+              show: true
+            }
+          }, 200);
+        }
       }
     )
   }
@@ -231,6 +246,7 @@ export class ViewBookingPage implements AfterViewInit {
       }
     }, 200);
   }
+
 
 
   resubmitConf() {

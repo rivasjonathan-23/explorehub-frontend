@@ -31,7 +31,7 @@ export class ViewBookingAsProviderPage implements OnInit, AfterViewInit {
   public popupData: popupData;
   loading = true
   constructor(public alert: AlertController, public route: ActivatedRoute, public router: Router, public mainService: MainServicesService) {
-    
+
     this.popupData = {
       title: "",
       otherInfo: "",
@@ -79,7 +79,7 @@ export class ViewBookingAsProviderPage implements OnInit, AfterViewInit {
       )
     })
 
-    this.mainService.notification.subscribe(  
+    this.mainService.notification.subscribe(
       (data: any) => {
         const notifType = data.type.split("-")[1];
         if (notifType == "fromTourist" || notifType == "fromAdmin" && data.booking) {
@@ -203,7 +203,7 @@ export class ViewBookingAsProviderPage implements OnInit, AfterViewInit {
           }
         )
       } else if (this.popupData.type == "done") {
-      const notificationData: any = {
+        const notificationData: any = {
           receiver: curBooking.tourist._id,
           page: curBooking.pageId._id,
           booking: curBooking._id,
@@ -219,6 +219,35 @@ export class ViewBookingAsProviderPage implements OnInit, AfterViewInit {
           (response: any) => {
             this.mainService.notify({ user: this.mainService.user, bookingId: this.booking._id, type: "Closed_booking-fromServiceProvider", receiver: [notificationData.receiver, "admin"], message: notificationData.message })
             this.goBack()
+          }
+        )
+
+      } else if (this.popupData.type == "return_to_booked") {
+        const notificationData: any = {
+          receiver: curBooking.tourist._id,
+          page: curBooking.pageId._id,
+          booking: curBooking._id,
+          isManual: curBooking.isManual,
+          mainReceiver: curBooking.tourist._id,
+          updateBookingCount: true,
+          increment: true,
+          type: "booking-tourist",
+          messageForAdmin: `<b>${curBooking.tourist.fullName}</b>'s booking status has been set back to <b>Booked</b>`,
+          message: `The status of your booking to <b>${this.getName(this.booking.pageId.components)}</b> was set back to <b>Booked</b>`,
+        }
+        this.mainService.changeBookingStatus("Booked", notificationData).subscribe(
+          (response: any) => {
+            this.mainService.notify({ user: this.mainService.user, bookingId: this.booking._id, type: "Closed_booking-fromServiceProvider", receiver: [notificationData.receiver, "admin"], message: notificationData.message })
+            this.goBack()
+          }, (error) => {
+            if (error.status == 400 && error.error.type == "item_availability_issue") {
+              this.popupData = {
+                type: 'info',
+                title: error.error.message,
+                otherInfo: '',
+                show: true
+              }
+            }
           }
         )
 
@@ -246,6 +275,17 @@ export class ViewBookingAsProviderPage implements OnInit, AfterViewInit {
         type: 'cancel',
         title: "Are you sure you want to cancel this booking?",
         otherInfo: "This booking will be moved to the <b>Cancelled</b> bookings list.",
+        show: true
+      }
+    }, 200);
+  }
+
+  returnToBooked() {
+    setTimeout(() => {
+      this.popupData = {
+        type: 'return_to_booked',
+        title: "Are you sure you want to set the status of this booking back to <b>Booked</b>?",
+        otherInfo: "This booking will be moved to the <b>Booked</b> bookings list.",
         show: true
       }
     }, 200);

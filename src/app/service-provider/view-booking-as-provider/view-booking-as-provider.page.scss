@@ -3,3 +3,19 @@
     color:rgb(253, 254, 255);;
 }
 
+
+.rebook {
+    color: rgb(0, 214, 0) !important;
+    padding:5px 10px !important;
+    padding: 6px !important;
+    border-radius: 3px;
+    margin:0 5px;
+    background-color: rgb(241, 245, 248);
+    display: flex;
+    align-items: center;
+
+    ion-icon {
+        color: rgb(0, 214, 0);
+        padding:0;
+    }
+}
