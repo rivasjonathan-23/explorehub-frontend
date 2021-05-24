@@ -16,6 +16,10 @@
     background-position: center;
 }
 
+.pageInfos {
+    flex-grow: 1;
+}
+
 .boardHeader {
     background-color: #ffff;
     z-index: 99999;
@@ -24,6 +28,7 @@
     display: flex;
     flex-direction: row;
     padding:2px;
+    justify-content: space-between;
     align-items: center;
 }
 
@@ -40,24 +45,42 @@
     display: -webkit-box;
     overflow: hidden !important;
     text-overflow: ellipsis;
-    -webkit-line-clamp: 2;
+    -webkit-line-clamp: 1;
 }
 
-.status {
-    font-size: 15px;
-    background: #ffff;
+.pageStatusAndStats {
     display: flex;
-    margin:5px;
-    align-items: center;
+    justify-content: space-between;
+    .status {
+        font-size: 12px;
+        background: #ffff;
+        display: flex;
+        margin:3px 5px;
+        align-items: center;
 
-    .circle {
-        width:11px;
-        height: 11px;
-        border-radius: 50%;
-        margin-right: 5px;
-        background-color: green;
+        .circle {
+            width:11px;
+            height: 11px;
+            border-radius: 50%;
+            margin-right: 5px;
+            background-color: green;
+        }
     }
 }
+
+    .dashboardStats {
+        background: #ffff;
+        // width:100%;
+        display: flex;
+        margin:0 5px;
+        align-items: center;
+        justify-content: space-between;
+
+        div {
+            color:rgb(172, 179, 187);
+            font-size: 12px;
+        }
+    }
 .topMenu {
     padding:5px;
     background-color: none;

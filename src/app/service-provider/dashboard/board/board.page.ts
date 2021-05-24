@@ -20,6 +20,9 @@ export class BoardPage implements OnInit {
 
   public clickedTab: string = 'Booked'
   public boxPosition: number;
+  public tabWidth: number;
+  public hideLeft: boolean = false;
+  public hideRight: boolean = false;
   public height: any = window.innerHeight - 177;
 
   constructor(public router: Router, public mainService: MainServicesService) { }
@@ -35,6 +38,9 @@ export class BoardPage implements OnInit {
         this.goToCurrentTab(currentTab)
         if (currentTab != this.clickedTab) {
           this.goToSection(currentTab, this.tab.element.nativeElement);
+          this.tabWidth = this.menu.element.nativeElement.scrollLeft
+          console.log(this.tabWidth);
+          
         }
       }, 200);
     })
@@ -111,7 +117,9 @@ export class BoardPage implements OnInit {
   }
 
   scrollTo(right = false) {
-    this.menu.element.nativeElement.scrollLeft = this.menu.element.nativeElement.scrollLeft + (right ? 250 : -250)
+    this.menu.element.nativeElement.scrollLeft = this.menu.element.nativeElement.scrollLeft + (right ? 340 : -340)
+    this.hideLeft = this.menu.element.nativeElement.scrollLeft == 0
+    this.hideRight = this.menu.element.nativeElement.scrollLeft == 340
   }
 
 }

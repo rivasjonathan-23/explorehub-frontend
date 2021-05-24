@@ -6,20 +6,24 @@
         <ion-ripple-effect></ion-ripple-effect>
       </div>
       <div class="topCol">
-        <div class="ion-activatable ripple-parent smIcon" (click)="goTo(['/service-provider/notifications'], {queryParams: {formDashboard: true}})">
-          <ion-icon  name="notifications-outline"></ion-icon>
+        <div class="ion-activatable ripple-parent smIcon"
+          (click)="goTo(['/service-provider/notifications'], {queryParams: {formDashboard: true}})">
+          <ion-icon name="notifications-outline"></ion-icon>
           <ion-ripple-effect></ion-ripple-effect>
           <div *ngIf="notificationsCount && notificationsCount != 0" class="notifCount">{{notificationsCount}}</div>
         </div>&nbsp;&nbsp;
-        <div (click)="goTo(['/service-provider/page-conversations'], {queryParams: {pageId: page._id, creator: page.creator}})" class="ion-activatable ripple-parent smIcon">
+        <div
+          (click)="goTo(['/service-provider/page-conversations'], {queryParams: {pageId: page._id, creator: page.creator}})"
+          class="ion-activatable ripple-parent smIcon">
           <ion-icon name="chatbubble-ellipses-outline"></ion-icon>
           <ion-ripple-effect></ion-ripple-effect>
         </div>&nbsp;&nbsp;
         <div (click)="viewStats()" class="ion-activatable ripple-parent smIcon">
           <ion-icon name="stats-chart-outline"></ion-icon>
           <ion-ripple-effect></ion-ripple-effect>
-        </div>  &nbsp;&nbsp;
-        <div class="ion-activatable ripple-parent smIcon" (click)="goTo(['/service-provider/page-settings', page._id], {queryParams: {test: true}})">
+        </div> &nbsp;&nbsp;
+        <div class="ion-activatable ripple-parent smIcon"
+          (click)="goTo(['/service-provider/page-settings', page._id], {queryParams: {test: true}})">
           <ion-icon name="settings-outline"></ion-icon>
           <ion-ripple-effect></ion-ripple-effect>
         </div>
@@ -31,12 +35,21 @@
           [ngStyle]="{'background-image': page.components.length > 0 && page.components[0].data.length > 0? 'url('+page.components[0].data[0].url+')' : '' }">
         </div>
       </div>
-      <div>
+      <div class="pageInfos">
         <div class="pageName">{{name}}</div>
-        <div class="status" [ngClass]="getStatus()">
-          <div class="statusCircle"></div>
-          {{page.status}}
+        <div class="pageStatusAndStats"> 
+
+          <div class="status" [ngClass]="getStatus()">
+            <div class="statusCircle"></div>
+            {{page.status}}
+          </div>
+          
         </div>
+        <div class="dashboardStats">
+            <div>Booked: <b>23</b></div>
+            <div>Processing: <b>23</b></div>
+            <div>Pending: <b>23</b></div>
+          </div>
       </div>
       <ion-ripple-effect></ion-ripple-effect>
     </div>
@@ -57,7 +70,7 @@
             <div [routerLink]="['statistics']" (click)="goToSection('Statistics', tab)" class="csTab"></div>
           </div>
         </div> -->
-    <div class="" >
+    <div class="">
       <router-outlet></router-outlet>
     </div>
 
