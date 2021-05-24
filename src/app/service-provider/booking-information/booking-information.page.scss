@@ -19,11 +19,23 @@
             }
         }
 
-        .th2 {
-            ion-icon {
-                margin-bottom: 0;
-            }
-        }
+        
+    }
+}
+
+.th2 {
+    ion-icon {
+        margin-bottom: 0;
+    }
+}
+.th3 {
+    margin-bottom: 5px;
+    ion-icon {
+        position: relative;
+        bottom:-1.5px;
+        margin-left: 1px !important;
+        margin-right: 2px !important;
+        
     }
 }
 

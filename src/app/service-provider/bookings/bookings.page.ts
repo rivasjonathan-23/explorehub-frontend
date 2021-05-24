@@ -74,7 +74,8 @@ export class BookingsPage implements OnInit {
         if (typeof comp.service == 'object' && comp.service) {
           comp.service.data.forEach(element => {
             if (element.data.defaultName == "name") {
-              selectedServices.push(element.data.text);
+              selectedServices.push({serviceName: element.data.text, quantity: comp.quantity});
+
             }
           })
         }

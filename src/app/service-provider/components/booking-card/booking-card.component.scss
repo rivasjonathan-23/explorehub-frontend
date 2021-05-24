@@ -132,12 +132,15 @@
     
             background-color: rgb(239, 242, 248);
             border-radius: 3px;
-            padding:5px 8px !important;
+            // padding:5px 8px !important;
+            // padding-right: 8px;
             color:rgb(89, 111, 150);
             flex-shrink: 0;
             font-size: 12px;
             // font-weight: bold;
             margin:3px;
+            overflow: hidden;
+
             display: flex;
             align-items: center;
             align-items: center;
@@ -146,6 +149,10 @@
                 margin-right: 6px;
                 margin-bottom: 3px;
                 font-size: 16px !important;
+            }
+
+            span {
+                margin:8px;
             }
             // height: 20px;
         }
@@ -161,4 +168,13 @@
     color:rgb(0, 97, 224);
 }
 
-
+.itemQuantity {
+    padding:8px;
+    margin:0 !important;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    // background-color: rgb(209, 216, 226);
+    background-color: rgb(221, 225, 231);
+}

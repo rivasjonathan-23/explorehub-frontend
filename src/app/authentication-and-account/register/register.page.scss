@@ -57,7 +57,7 @@ flex-direction: column;
   position: absolute;
   height: 100%;
   width: 100%;
-  z-index: 999999;
+  z-index: 999999999;
   box-sizing: border-box;
   padding:10px;
   background: white;
@@ -79,6 +79,7 @@ flex-direction: column;
   border-radius: 50%;
   display: flex;
   justify-content: center;
+  border: .5px solid rgb(159, 171, 187);
   align-items: center;
   margin:0 auto;
   position: relative;
@@ -184,5 +185,14 @@ flex-direction: column;
     font-size: 15px;
     border-radius: 4px;
   }
+}
+.pageBody2 {
+  overflow: scroll !important;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
 }
 

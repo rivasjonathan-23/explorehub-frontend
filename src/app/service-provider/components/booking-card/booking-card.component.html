@@ -20,9 +20,10 @@
 
         <div class="selectedServices">
           <div class="service" *ngFor="let item of booking.selectedServices">
-            <ion-icon name="briefcase-outline"></ion-icon>
+            <!-- <ion-icon name="briefcase-outline"></ion-icon> -->
+            <div class="itemQuantity">{{item.quantity}}</div>
             <span>
-              {{item}}
+              {{item.serviceName}}
             </span>
           </div>
           <div class="service noAvailed"
