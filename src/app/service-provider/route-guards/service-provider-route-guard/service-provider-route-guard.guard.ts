@@ -3,12 +3,13 @@ import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree, Rout
 import { Observable } from 'rxjs';
 import accountType from 'src/app/services-common-helper/constantValue/accountType';
 import { AuthService } from 'src/app/services/auth-services/auth-service.service';
+import { MainServicesService } from '../../provider-services/main-services.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ServiceProviderRouteGuardGuard implements CanActivate {
-  constructor(public authservice: AuthService, public router: Router) {}
+  constructor(public authservice: AuthService, public router: Router, public mainService: MainServicesService) {}
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
@@ -18,6 +19,7 @@ export class ServiceProviderRouteGuardGuard implements CanActivate {
       }
       else if (!type) {
         this.authservice.logOut();
+        this.mainService.logOut()
         this.router.navigate(["/login"])
       }
       else {

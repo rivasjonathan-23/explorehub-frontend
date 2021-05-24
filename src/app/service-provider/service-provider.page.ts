@@ -109,6 +109,7 @@ export class ServiceProviderPage implements OnInit {
           role: "OK",
           handler: () => {
             this.authService.logOut();
+            this.mainService.logOut()
             this.loadingService.hide();
             this.router.navigate(["/login"])
           },

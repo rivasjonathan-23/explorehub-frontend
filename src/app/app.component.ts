@@ -35,6 +35,7 @@ export class AppComponent implements OnDestroy, ViewWillEnter, OnInit {
         this.authService.getCurrentUser().then(
           (data:any) => {
             this.mainService.user = data       
+            this.notifHandler.init();
             console.log(data)  
           }
         )
@@ -45,11 +46,18 @@ export class AppComponent implements OnDestroy, ViewWillEnter, OnInit {
         this.authService.checkCurrentUser.emit()
         this.authService.getCurrentUser().then(
           (data:any) =>{
+            this.notifHandler.init();
             this.mainService.user = data            
           }
         )
       }
     )
+
+    this.mainService.logOutUser.subscribe(data => {
+      this.notifHandler.user = null
+      this.notifHandler.notify = null
+      this.notifHandler.disconnect();
+    })
   }
 
   ngOnDestroy() {

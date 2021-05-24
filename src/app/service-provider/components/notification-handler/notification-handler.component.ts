@@ -26,25 +26,28 @@ export class NotificationHandlerComponent {
   init(eventType = "") {
     this.eventType = eventType
     this.authService.getCurrentUser().then((user: any) => {
-      this.user = user;
-      this.socket.connect();
-      this.mainService.socket = this.socket;
-      this.mainService.user = this.user
-      this.mainService.notify = this.notify
-      this.socket.fromEvent('send-notification').subscribe((data: any) => {
-
-        if (data.receiver.includes(this.mainService.user._id) || data.receiver.includes("all")) {
-
-          this.receiveData(data)
-        } else if (!this.mainService.user) {
-          this.authService.getCurrentUser().then((user: any) => {
-            this.user = user;
-            this.mainService.user = this.user
-
-            this.receiveData(data);
-          })
-        }
-      });
+      if (user && user.type == "accountAccess") {
+        this.user = user;
+        this.socket.connect();
+        this.mainService.socket = this.socket;
+        this.mainService.user = this.user
+        this.mainService.notify = this.notify
+        this.socket.fromEvent('send-notification').subscribe((data: any) => {
+          if (this.mainService.user) {
+            if (data.receiver.includes(this.mainService.user._id) || data.receiver.includes("all")) {
+              
+              this.receiveData(data)
+            } else if (!this.mainService.user) {
+              this.authService.getCurrentUser().then((user: any) => {
+                this.user = user;
+                this.mainService.user = this.user
+                
+                this.receiveData(data);
+              })
+            }
+          }
+        });
+      }
     })
   }
 

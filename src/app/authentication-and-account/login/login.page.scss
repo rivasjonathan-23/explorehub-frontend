@@ -114,7 +114,7 @@
   height: 500px;
   position: absolute;
   // background-color: rgba(6, 174, 235, .1);//rgb(6, 174, 235));
-  background-image: linear-gradient(to right, rgba(6, 174, 235, .1), transparent,transparent, transparent);
+  background-image: linear-gradient(to right, rgba(6, 174, 235, .1), transparent, transparent,transparent, transparent);
   transform: rotate(45deg);
   border-radius: 15px;
   top:-100px;
@@ -122,7 +122,7 @@
 }
 
 .design1 {
-  background-color: rgba(6, 174, 235, 0.2) !important;
+  background-color: rgba(6, 174, 235, 0.1) !important;
   top: -540px;
   right: -180px;
 }
@@ -143,7 +143,7 @@
   width:500px;
   height: 500px;
   position: absolute;
-  background-color: rgba(56, 135, 231, 0.2);
+  background-color: rgba(56, 135, 231, 0.1);
   transform: rotate(45deg);
   border-radius: 15px;
   top:-200px;
@@ -154,7 +154,7 @@
   width: 300px;
   height: 300px;
   position: absolute;
-  background-image: linear-gradient(to right, rgba(56, 135, 231, 0.1), transparent, transparent, transparent);
+  background-image: linear-gradient(to right, rgba(56, 135, 231, 0.1), transparent, transparent);
   transform: rotate(
 45deg
 );

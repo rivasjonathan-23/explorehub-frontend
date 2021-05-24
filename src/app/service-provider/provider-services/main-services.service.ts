@@ -23,6 +23,7 @@ export class MainServicesService {
   public scrollDown: EventEmitter<any> = new EventEmitter();
   public notificationCount: EventEmitter<any> = new EventEmitter()
   public goToCurrentTab: EventEmitter<any> = new EventEmitter();
+  public logOutUser: EventEmitter<any> = new EventEmitter();
   public noNetwork = new Subject<boolean>();
   public validatePage: EventEmitter<any> = new EventEmitter()
   public notify: any;
@@ -37,6 +38,12 @@ export class MainServicesService {
 
   receiveNotification(data) {
     this.notification.emit(data);
+  }
+
+  logOut() {
+    this.user = null
+    this.socket = null
+    this.logOutUser.emit()
   }
   
   checkUser() {
