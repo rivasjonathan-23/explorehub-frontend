@@ -43,7 +43,7 @@
               <div class="createNewCat" *ngIf="!creatingNewCategory">
 
                 <ion-textarea auto-grow="true" (keyup)="filterCategory()" clearOnEdit="true"
-                  [(ngModel)]="searchCategory" class="text" rows="1" placeholder="Search category">
+                  [(ngModel)]="searchCategory" class="text newCatInput" rows="1" placeholder="Search category">
                 </ion-textarea>
 
               </div>

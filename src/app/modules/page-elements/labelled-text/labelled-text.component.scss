@@ -92,6 +92,11 @@ textarea {
     }
 }
 
+.newCatInput {
+    margin-top: 0 !important;
+    border-radius: 0  !important;
+}
+
 .optionHolder {
     position: fixed;
     left:0;
@@ -110,7 +115,8 @@ textarea {
         // margin-bottom: 30px;
         width:100%;
         display: inline-block;
-        border-radius: 4px;
+        border-radius: 7px;
+        overflow: hidden;
         margin-bottom: 50px;
         z-index: 999999;
         background-color: #ffff;

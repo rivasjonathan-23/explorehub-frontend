@@ -93,6 +93,7 @@ export class PageCreatorComponent implements OnInit {
   setPage(page, pageType) {
     this.pageElement.clear()
     this.pageService.clear();
+    if (this.editing) this.editingNote()
     this.pageInputField.clear()
     setTimeout(() => {
 
@@ -113,7 +114,6 @@ export class PageCreatorComponent implements OnInit {
       this.page.bookingInfo.forEach((component: any) => {
         this.renderComponent(this.pageInputField, component, "page_booking_info")
       })
-      if (this.editing) this.editingNote()
     }, 100);
 
   }

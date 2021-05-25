@@ -8,6 +8,7 @@
 
   <div *ngIf="showChoices && creator.preview" class="optionHolder">
     <div class="options">
+      <div class="option optionsLabel">{{values.data.label}}</div>
       <div class="option ion-activatable ripple-parent" (click)="select(option)"
         *ngFor="let option of values.data.choices">
         <ion-checkbox [checked]="selected[0]  == option.text"></ion-checkbox>
