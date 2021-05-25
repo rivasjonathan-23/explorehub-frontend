@@ -55,7 +55,6 @@ export class AppComponent implements OnDestroy, ViewWillEnter, OnInit {
 
     this.mainService.logOutUser.subscribe(data => {
       this.notifHandler.user = null
-      this.notifHandler.notify = null
       this.notifHandler.disconnect();
     })
   }
