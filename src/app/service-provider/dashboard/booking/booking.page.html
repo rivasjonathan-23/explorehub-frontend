@@ -12,6 +12,7 @@
     <p>There's nothing here.</p>
   </div>
   <ion-progress-bar *ngIf="loading" type="indeterminate"></ion-progress-bar>
+  <app-search-bar (search)="search($event)" [placeHolder]="'Search for tourist or item'" *ngIf="!loading && allBooking.length > 5"></app-search-bar>
   <app-booking-card (view)="viewBooking($event)" [hideOption]="true" [forDashboard]="true" *ngFor="let booking of bookings"
     [booking]="booking"></app-booking-card>
 

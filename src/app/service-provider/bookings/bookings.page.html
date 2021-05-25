@@ -15,13 +15,8 @@
       </div>
       <p>There's nothing here.</p>
     </div>
-    <!-- <div class="topTab boxShadowed2" *ngIf="status != 'Unfinished'">
-      <p [routerLink]="['/service-provider/bookings', 'Pending']">Pending</p>
-      <p [routerLink]="['/service-provider/bookings', 'Booked']">Booked</p>
-      <p [routerLink]="['/service-provider/bookings', 'Closed']">Closed</p>
-    </div> -->
     <app-option-popup [show]="showOption" [cantDelete]="cantDelete" (clickOpt)="clickOpt($event)"></app-option-popup>
-
+    <app-search-bar (search)="search($event)" [placeHolder]="'Search for tourist spot or service item'" *ngIf="!loading && allBooking.length > 5"></app-search-bar>
     <app-booking-card (displayOption)="displayOption($event)" (view)="viewBooking($event)" *ngFor="let booking of bookings" [booking]="booking">
     </app-booking-card>
   </div>

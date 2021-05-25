@@ -14,6 +14,7 @@ export class BookingsPage implements OnInit {
   public loading: boolean = true;
   public showOption: boolean = false;
   public bookingClicked: string;
+  public allBooking: any[] = []
   public cantDelete: boolean;
   public bookings: bookingData[] = [];
   constructor(
@@ -35,8 +36,10 @@ export class BookingsPage implements OnInit {
       this.mainService.getBookings(this.status).subscribe(
         (response: bookingData[]) => {
           this.loading = false;
-        
+          
           this.bookings = response.reverse();
+          this.bookings = this.bookings.filter(booking => !booking.isManual)
+          this.allBooking = this.bookings
           this.bookings = this.bookings.map(booking => {
             booking.page = booking.page[0]
             if (booking.services.length > 0) {
@@ -198,5 +201,28 @@ export class BookingsPage implements OnInit {
       ],
     });
     await alert.present();
+  }
+
+  search(text) {
+    if (text) {
+      text = text.toLowerCase()
+      this.bookings = this.allBooking
+      this.bookings = this.bookings.filter(booking => {
+        let hasMatched = false
+        booking.selectedServices.forEach((item) => {
+          if (item.serviceName.toLowerCase().includes(text)) {
+            hasMatched = true
+          }
+        })
+        if(this.getName(booking).toLowerCase().includes(text)) {
+          hasMatched = true
+        }
+        if (hasMatched) {
+          return booking
+        } 
+      })
+    } else {
+      this.bookings = this.allBooking
+    }
   }
 }

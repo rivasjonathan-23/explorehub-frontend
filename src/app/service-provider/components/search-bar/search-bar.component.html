@@ -1,0 +1,7 @@
+<div class="searchWrapper">
+  <ion-icon class="search" name="search-outline"></ion-icon>
+  <ion-icon *ngIf="textSearch" (click)="reset()" class="close ion-activatable ripple-parent" name="close-outline">
+    <ion-ripple-effect></ion-ripple-effect>
+  </ion-icon>
+  <input type="text" [(ngModel)]="textSearch" (keyup)="typing()" [placeholder]="placeHolder">
+</div>

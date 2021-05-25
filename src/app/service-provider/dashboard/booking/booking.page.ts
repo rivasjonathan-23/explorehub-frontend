@@ -14,6 +14,7 @@ export class BookingPage implements OnInit {
   public bookings: bookingData[] = [];
   public notifId: string;
   public loading: boolean = true;
+  public allBooking: any[] = []
   public pageType: string = "";
   public pageId: string = "";
   constructor(public router: Router,
@@ -56,6 +57,7 @@ export class BookingPage implements OnInit {
       (response: bookingData[]) => {
         this.loading = false;
         this.bookings = response;
+        this.allBooking = response
         this.bookings = this.bookings.map((booking) => {
           return this.formatData(booking)
         })
@@ -106,6 +108,29 @@ export class BookingPage implements OnInit {
     booking["photo"] = photo
     return booking;
 
+  }
+
+  search(text) {
+    if (text) {
+      text = text.toLowerCase()
+      this.bookings = this.allBooking
+      this.bookings = this.bookings.filter(booking => {
+        if (booking.tourist.fullName.toLowerCase().includes(text)) {
+          return booking
+        }
+        let hasMatched = false
+        booking.selectedServices.forEach(item => {
+          if (item.serviceName.toLowerCase().includes(text)) {
+            hasMatched = true
+          }
+        })
+        if (hasMatched) {
+          return booking
+        } 
+      })
+    } else {
+      this.bookings = this.allBooking
+    }
   }
 
   getName(booking) {

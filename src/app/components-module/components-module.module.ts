@@ -31,6 +31,7 @@ import { PageCreatorComponent } from '../modules/page-creator/page-creator.compo
 import { PageElementListComponent } from '../modules/page-element-list/page-element-list.component';
 import { WeatherComponent } from '../modules/common-components/weather/weather.component';
 import { PageInputFieldListComponent } from '../modules/page-input-field-list/page-input-field-list.component';
+import { SearchBarComponent } from '../service-provider/components/search-bar/search-bar.component';
 // import { BrowserModule } from '@angular/platform-browser';
 
 @NgModule({
@@ -65,6 +66,7 @@ import { PageInputFieldListComponent } from '../modules/page-input-field-list/pa
     WeatherComponent,
     PageElementListComponent,
     CodeHandlerComponent,
+    SearchBarComponent,
     SelectedServiceCardComponent],
   exports: [
     BookingInfoDisplayComponent,
@@ -85,7 +87,8 @@ import { PageInputFieldListComponent } from '../modules/page-input-field-list/pa
     GroupOfServicesComponent,
     ConversationCardComponent,
     SelectedServiceCardComponent,
-   CodeHandlerComponent,
+    CodeHandlerComponent,
+    SearchBarComponent,
     MessageBoxComponent,
     OptionPopupComponent,
     PageListCardComponent
