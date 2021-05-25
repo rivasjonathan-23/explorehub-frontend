@@ -70,7 +70,7 @@ export class ViewItemPage implements OnInit {
             }
             return item
           });
-
+       
           this.values.data = this.values.data.filter(item => item.type == "item")
           for (let i = 0; i < this.values.data.length; i++) {
             const element = this.values.data[i];
@@ -79,7 +79,21 @@ export class ViewItemPage implements OnInit {
             }
 
           }
-
+          
+          if (this.bookingId != "create_new") {
+            this.mainService.getBooking(this.bookingId).subscribe((bookingData: any) => {
+              this.values.data = this.values.data.filter(booking => {
+                let selected = false
+                bookingData.bookingData.selectedServices.forEach(item => {
+                  if (item.service._id == booking._id) { 
+                    selected = true
+                  }
+                });
+                if (!selected) return booking
+              })
+              console.log(this.values.data)
+            })
+          }
 
           response.forEach(item => {
 
