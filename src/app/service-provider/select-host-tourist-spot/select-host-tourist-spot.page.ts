@@ -34,6 +34,7 @@ interface SpotCategory {
 
 export class SelectHostTouristSpotPage implements OnInit {
   touristSpotPages: Page[] = [];
+  allPages = []
   selectedPage:Page;
   keyupValues = "";
   showMore:boolean = false;
@@ -55,8 +56,7 @@ export class SelectHostTouristSpotPage implements OnInit {
   allSpotsName = [];
   show = false;
   buttonSelectWord = "Select";
-  searchInput: string;
-  
+  searchInput: string =""
   ngOnInit() {
     this.retrieveAllTouristSpotsPage();
   }
@@ -65,11 +65,41 @@ export class SelectHostTouristSpotPage implements OnInit {
     this.creator.retrieveAllTouristSpotsPage().subscribe(
       (response: Page[]) => {
         this.touristSpotPages = response;
+        this.allPages = response
       },
       error => {
         
       }
     )
+  }
+
+  onSearch() {
+    if (this.searchInput.trim()) {
+      this.searchInput = this.searchInput.toLowerCase().trim()
+      this.touristSpotPages = this.allPages
+      this.touristSpotPages = this.allPages.filter(page => {
+        let hasMatched = false
+   
+        if(this.getName(page).toLowerCase().includes(this.searchInput)) {
+          hasMatched = true
+        }
+        if (hasMatched) {
+          return page
+        } 
+      })
+    } else {
+      this.touristSpotPages = this.allPages
+    }
+  }
+
+  getName(page) {
+     let title =""
+     page.components.forEach(element => {
+       if (element.data.defaultName == "pageName") {
+         title = element.data.text
+       }
+     });
+     return title
   }
 
   onKey(event: any) { // without type info
