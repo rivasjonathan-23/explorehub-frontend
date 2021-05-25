@@ -75,7 +75,7 @@ export class PageCreatorComponent implements OnInit {
       if (params) {
         if (params.editing) {
           this.editing = true
-          this.editingNote()
+          
         }
       }
     })
@@ -113,6 +113,7 @@ export class PageCreatorComponent implements OnInit {
       this.page.bookingInfo.forEach((component: any) => {
         this.renderComponent(this.pageInputField, component, "page_booking_info")
       })
+      if (this.editing) this.editingNote()
     }, 100);
 
   }

@@ -57,7 +57,7 @@ export class DateInputComponent implements OnInit {
       this.footerData.hasId = true;
       this.footerData.isDefault = this.values.default;
     } else {
-      this.values = { _id: "", type: "date-input", styles: [], data: { label: null, instructions: null, required: true, defaultValue: null, value: null, customYears: [this.currentYear+1, this.currentYear], customMonths: [], customDays: [], customDates: [] }, default: false };
+      this.values = { _id: "", type: "date-input", styles: [], data: { label: null, instructions: null, setAs: null, required: true, defaultValue: null, value: null, customYears: [this.currentYear + 1, this.currentYear], customMonths: [], customDays: [], customDates: [] }, default: false };
       this.footerData.message = "Adding Field..."
       this.footerData.saving = true;
       this.creator.saveInputField(this.values, this.grandParentId, this.parentId, this.parent).subscribe(
@@ -73,7 +73,7 @@ export class DateInputComponent implements OnInit {
         }
       )
     }
-    
+
     this.showYears = this.values.data.customYears.length > 0;
     this.showMonths = this.values.data.customMonths.length > 0;
     this.showDays = this.values.data.customDays.length > 0;

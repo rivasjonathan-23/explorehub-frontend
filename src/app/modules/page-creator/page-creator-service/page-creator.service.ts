@@ -189,7 +189,7 @@ export class PageCreatorService {
   }
 
   getDefaultCategories() {
-    return this.http.get(`${this.apiUrl}/getDefaultCategories/${this.pageType}`)
+    return this.http.get(`${this.apiUrl}/getDefaultCategories/${this.pageType}`, { headers: { hideLoadingIndicator: "true" } })
   }
 
   submitPage(notificationData = null) {
