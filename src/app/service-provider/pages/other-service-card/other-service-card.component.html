@@ -1,5 +1,5 @@
 <div (click)="view()"  [class.bigCard]="bigCard" class="card">
-  <div class="photoHolder">
+  <div class="photoHolder bordered">
     <div class="photo"
       [ngStyle]="{'background-image': service.components[0].data.length > 0? 'url('+service.components[0].data[0].url+')' : '' }">
     </div>

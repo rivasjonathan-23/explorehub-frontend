@@ -6,13 +6,15 @@
 
 .categoryName {
     margin:8px 5px;
-    font-size: 16   px;
-    color: rgb(45, 54, 63);
+    font-size: 17px;
+    text-align: center;
+    font-weight:bold;
+    color: rgb(64, 68, 73);
 }
 
 .section {
     padding-top: 8px;
-    border-bottom:1px solid lightsteelblue;
+    border-bottom:.5px solid rgb(151, 164, 180);
     padding-bottom: 10px;
     border-top: 2px solid #ffff;
 }
