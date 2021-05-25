@@ -22,7 +22,21 @@ export class CreateBookingGuardGuard implements CanActivate {
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    return true;
+
+      let bookingId = state.url.split("?")[0]
+      bookingId = bookingId.split("/").reverse()[0]
+
+    if (bookingId != "create_new") {
+      return this.mainService.viewBooking(bookingId).toPromise().then(async (data: bookingData) => {
+        if (data.status == "Unfinished" || data.status == "Cancelled" || data.status == "Rejected") {
+          return true
+        } else {
+          return false
+        }
+      })
+    } else {
+      return true
+    }
   }
   canDeactivate(
     next: ActivatedRouteSnapshot,

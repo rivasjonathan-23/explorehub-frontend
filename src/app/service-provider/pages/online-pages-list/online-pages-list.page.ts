@@ -20,7 +20,6 @@ export class OnlinePagesListPage implements OnInit, ViewWillEnter {
   constructor(public router: Router, public route: ActivatedRoute, public mainService: MainServicesService) { }
 
   ngOnInit() {
-    this.mainService.activeTab.emit("online-pages-list")
     this.route.queryParams.subscribe(params => {
       this.category = params && params.category ? params.category : "all"
       this.mainService.getOnlinePages(this.category).subscribe(
@@ -38,6 +37,7 @@ export class OnlinePagesListPage implements OnInit, ViewWillEnter {
         }
       )
     })
+    this.mainService.activeTab.emit("online-pages-list")
 
   }
   scrollHandler(event, list) {

@@ -70,16 +70,19 @@ const routes: Routes = [
         path: 'select-service/:pageId/:bookingId',
         loadChildren: () => import('./pages/select-service/select-service.module').then(m => m.SelectServicePageModule),
         canDeactivate: [CreateBookingGuardGuard],
+        canActivate: [CreateBookingGuardGuard],
       },
       {
         path: 'book/:pageId/:pageType/:bookingId',
         loadChildren: () => import('./pages/book/book.module').then(m => m.BookPageModule),
         canDeactivate: [CreateBookingGuardGuard],
+        canActivate: [CreateBookingGuardGuard],
       },
       {
         path: 'booking-review/:pageId/:pageType/:bookingId',
         loadChildren: () => import('./pages/booking-review/booking-review.module').then(m => m.BookingReviewPageModule),
         canDeactivate: [CreateBookingGuardGuard],
+        canActivate: [CreateBookingGuardGuard],
       },
       {
         path: 'bookings/:bookingStatus',

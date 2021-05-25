@@ -75,12 +75,12 @@ export class SelectHostTouristSpotPage implements OnInit {
 
   onSearch() {
     if (this.searchInput.trim()) {
-      this.searchInput = this.searchInput.toLowerCase().trim()
-      this.touristSpotPages = this.allPages
-      this.touristSpotPages = this.allPages.filter(page => {
+      let searchInput = this.searchInput.toLowerCase()
+      this.touristSpotPages =this.allPages
+      this.touristSpotPages = this.touristSpotPages.filter(page => {
         let hasMatched = false
    
-        if(this.getName(page).toLowerCase().includes(this.searchInput)) {
+        if(this.getName(page).toLowerCase().includes(searchInput)) {
           hasMatched = true
         }
         if (hasMatched) {
@@ -90,6 +90,10 @@ export class SelectHostTouristSpotPage implements OnInit {
     } else {
       this.touristSpotPages = this.allPages
     }
+  }
+
+  clearSearch() {
+    this.touristSpotPages = this.allPages
   }
 
   getName(page) {
