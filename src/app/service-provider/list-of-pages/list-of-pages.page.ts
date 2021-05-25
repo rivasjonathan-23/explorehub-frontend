@@ -29,6 +29,11 @@ export class ListOfPagesPage implements OnInit {
   ngOnInit() {
     this.route.paramMap.subscribe(params => {
       this.pagesStatus = params.get('status');
+      if (this.pagesStatus == "submitted") {
+        this.mainService.activeTab.emit("list-of-pages-submitted")
+      } else {
+        this.mainService.activeTab.emit("list-of-pages-unfinished")
+      }
       this.mainService.getPages(this.pagesStatus).subscribe(
         (response: Page[]) => {
           this.pages = response;

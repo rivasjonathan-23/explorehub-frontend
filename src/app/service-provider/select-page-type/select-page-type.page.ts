@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Page } from 'src/app/modules/elementTools/interfaces/page';
 import { PageCreatorService } from 'src/app/modules/page-creator/page-creator-service/page-creator.service';
+import { MainServicesService } from '../provider-services/main-services.service';
 
 @Component({
   selector: 'app-select-page-type',
@@ -10,9 +11,10 @@ import { PageCreatorService } from 'src/app/modules/page-creator/page-creator-se
 })
 export class SelectPageTypePage implements OnInit {
 
-  constructor(public router: Router, public creator: PageCreatorService) { }
+  constructor(public router: Router, public creator: PageCreatorService, public mainService: MainServicesService) { }
 
   ngOnInit() {
+    this.mainService.activeTab.emit("select-page-type")
   }
 
 

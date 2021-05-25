@@ -24,8 +24,14 @@ export class BookingsPage implements OnInit {
   ) { }
 
   ngOnInit() {
+    
     this.route.paramMap.subscribe(path => {
       this.status = path.get("bookingStatus")
+      if (this.status == "Pending") {
+        this.mainService.activeTab.emit("bookings-Pending")
+      } else {
+        this.mainService.activeTab.emit("bookings-Unfinished")
+      }
       this.mainService.getBookings(this.status).subscribe(
         (response: bookingData[]) => {
           this.loading = false;

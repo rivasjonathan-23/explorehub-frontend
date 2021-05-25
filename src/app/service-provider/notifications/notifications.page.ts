@@ -24,6 +24,7 @@ export class NotificationsPage implements OnInit {
   constructor(public mainService: MainServicesService, public alert: AlertController, public route: ActivatedRoute) { }
 
   ngOnInit() {
+    this.mainService.activeTab.emit("notifications")
     this.getNotifications();
     this.mainService.notification.subscribe(
       (data: any) => {

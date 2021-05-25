@@ -58,6 +58,10 @@ export class ServiceProviderPage implements OnInit {
         count.subscribe(num => this.count = num)
       }
     })
+
+    this.mainService.activeTab.subscribe(tab => {
+      this.active = tab
+    })
   }
 
 
