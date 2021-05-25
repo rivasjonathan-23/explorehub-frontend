@@ -21,8 +21,27 @@
       </div>
     </div>
 
+    <div class="dateInputType">
+      <p><b>
+          Date Input Type:
+        </b>&nbsp;
+      </p>
+      <span class="type">{{type[values.data.type? values.data.type: 'none']}}</span>
+    </div>
+
+    <div (click)="showOptions()" class="settings optBtn inputType2">
+      <div class="optionBtn ion-activatable ripple-parent" slot="end">
+        <span>
+          Change Date Input Type
+        </span>
+        <ion-ripple-effect></ion-ripple-effect>
+      </div>
+    </div>
+
     <div (click)="customize = !customize" class="settings optBtn">
-      <div class="optionBtn" slot="end">{{customize ? 'Save and close': 'Customize date option'}}
+      <div class="optionBtn ion-activatable ripple-parent" slot="end">{{customize ? 'Save and close': 'Customize date
+        option'}}
+        <ion-ripple-effect></ion-ripple-effect>
       </div>
     </div>
 
@@ -51,6 +70,14 @@
                 {{month}}
               </div>
             </div>
+
+            <div *ngIf="showMonths || values.data.customMonths.length > 0" class="optList">
+              <div *ngFor="let month of months" (click)="selectMonth(month); saveChanges()" class="opt">
+                <ion-checkbox [checked]="values.data.customMonths.includes(month)"></ion-checkbox>
+                {{month}}
+              </div>
+            </div>
+            
           </div>
         </div>
 
@@ -131,6 +158,35 @@
               </div>
             </div>
           </div>
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf="selectDateInputType" class="optionHolder" (click)="clickOut($event)">
+      <div class="options">
+        <div class="option optionsLabel">Date Input Type</div>
+        <div class="option ion-activatable ripple-parent" (click)="select($event, 'startDate')">
+          <ion-checkbox [checked]="values.data.type == 'startDate'"></ion-checkbox>
+          <p>
+            Starting date of the booking
+          </p>
+          <ion-ripple-effect type="unbounded"></ion-ripple-effect>
+        </div>
+
+        <div class="option ion-activatable ripple-parent" (click)="select($event, 'endDate')">
+          <ion-checkbox [checked]="values.data.type == 'endDate'"></ion-checkbox>
+          <p>
+            End date of the booking
+          </p>
+          <ion-ripple-effect type="unbounded"></ion-ripple-effect>
+        </div>
+
+        <div class="option ion-activatable ripple-parent" (click)="select($event, null)">
+          <ion-checkbox [checked]="values.data.type == null"></ion-checkbox>
+          <p>
+            None (Ordinary date input)
+          </p>
+          <ion-ripple-effect type="unbounded"></ion-ripple-effect>
         </div>
       </div>
     </div>

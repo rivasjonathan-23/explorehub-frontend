@@ -1,18 +1,59 @@
 <div *ngIf="!footerData.deleted">
   <div class="inputWrapper   mainLightBg" *ngIf="!footerData.done  && !creator.preview; else textInputDisplay">
     <div class="inputType">Text Input Field</div>
-    <ion-textarea class="inputLabel" (keyup)="footerData.hasValue = values.data.label ? true : false" (change)="saveChanges()" [(ngModel)]="values.data.label" auto-grow="true" rows="1"
-      placeholder="Enter label here">
+    <ion-textarea class="inputLabel" (keyup)="footerData.hasValue = values.data.label ? true : false"
+      (change)="saveChanges()" [(ngModel)]="values.data.label" auto-grow="true" rows="1" placeholder="Enter label here">
     </ion-textarea>
     <ion-textarea class="inputLabel otherInfo" (change)="saveChanges()" [(ngModel)]="values.data.instructions"
       auto-grow="true" rows="1" placeholder="Enter other info or instructions here (optional)">
     </ion-textarea>
     <!-- <ion-textarea class="inputLabel otherInfo" (change)="saveChanges()" [(ngModel)]="values.data.defaultValue"
     auto-grow="true" rows="1" placeholder="Enter default value here (optional)"> -->
-  <!-- </ion-textarea> -->
+    <!-- </ion-textarea> -->
     <div class="required">
-      <div (click)="values.data.required = !values.data.required; saveChanges()" [class.off]="!values.data.required" class="options" slot="end">Required for submission<ion-toggle (click)="saveChanges()"
+      <div (click)="values.data.required = !values.data.required; saveChanges()" [class.off]="!values.data.required"
+        class="options" slot="end">Required for submission<ion-toggle (click)="saveChanges()"
           [checked]="values.data.required"></ion-toggle>
+      </div>
+    </div>
+
+    <div class="dateInputType">
+      <p><b>
+          Text Input Type:
+        </b>&nbsp;
+      </p>
+      <span class="type">{{type[values.data.type? values.data.type: 'none']}}</span>
+    </div>
+
+    <div (click)="showOptions()" class="settings optBtn inputType2">
+      <div class="optionBtn ion-activatable ripple-parent" slot="end">
+        <span>
+          Change Text Input Type
+        </span>
+        <ion-ripple-effect></ion-ripple-effect>
+      </div>
+    </div>
+
+    <div *ngIf="selectDateInputType" class="optionHolder" (click)="clickOut($event)">
+      <div class="options">
+        <div class="option optionsLabel">Text Input Type</div>
+        <div class="option ion-activatable ripple-parent" (click)="select($event, 'gmail')">
+          <ion-checkbox [checked]="values.data.type == 'gmail'"></ion-checkbox>
+          <p>
+            Gmail
+          </p>
+          <ion-ripple-effect type="unbounded"></ion-ripple-effect>
+        </div>
+
+        <div class="option ion-activatable ripple-parent" (click)="select($event, null)">
+          <ion-checkbox [checked]="values.data.type == null"></ion-checkbox>
+          <p>
+            Ordinary Text
+          </p>
+          <ion-ripple-effect type="unbounded"></ion-ripple-effect>
+        </div>
+
+
       </div>
     </div>
     <app-element-footer [data]="footerData" (openDeleteCon)="clickOtherFunction = true" (render)="render()"
@@ -21,9 +62,11 @@
   </div>
   <ng-template #textInputDisplay>
     <div class="componentWrapper">
-      <app-edit-or-delete-popup *ngIf="creator.clickedComponent == values._id && !creator.preview" [isDefault]="values.default" (edit)="edit()" (delete)="delete()"
-        (close)="creator.clickedComponent = null" [deleting]="footerData.saving" class="componentPopup"></app-edit-or-delete-popup>
-      <app-text-input-display [values]="values" (click)="creator.clickedComponent = !creator.preview? values._id: null"></app-text-input-display>
+      <app-edit-or-delete-popup *ngIf="creator.clickedComponent == values._id && !creator.preview"
+        [isDefault]="values.default" (edit)="edit()" (delete)="delete()" (close)="creator.clickedComponent = null"
+        [deleting]="footerData.saving" class="componentPopup"></app-edit-or-delete-popup>
+      <app-text-input-display [values]="values" (click)="creator.clickedComponent = !creator.preview? values._id: null">
+      </app-text-input-display>
     </div>
   </ng-template>
 </div>

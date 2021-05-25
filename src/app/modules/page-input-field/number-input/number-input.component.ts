@@ -16,6 +16,8 @@ export class NumberInputComponent implements OnInit {
   @Input() parentId: string;
   @Input() parent: string;
   @Input() grandParentId: string;
+  type = {mobileNumber: "Mobile Phone Number", none: "Amount", otherType: "Others (With specified length)"}
+  selectDateInputType = false
   public pending: boolean = false;
   public clickedDone: boolean = false;
   public rangeError: boolean = false;
@@ -43,7 +45,7 @@ export class NumberInputComponent implements OnInit {
       this.footerData.hasId = true;
       this.footerData.isDefault = this.values.default;
     } else {
-      this.values = { _id: "", type: "number-input", styles: [], data: { label: null, instructions: null, defaultValue: null, required: true, value: null, min: 0, max: null }, default: false };
+      this.values = { _id: "", type: "number-input", styles: [], data: { label: null, instructions: null, type: null, defaultValue: null, required: true, value: null, min: 0, max: null }, default: false };
       this.footerData.message = "Adding Field..."
       this.footerData.saving = true;
       this.creator.saveInputField(this.values, this.grandParentId, this.parentId, this.parent).subscribe(
@@ -102,6 +104,24 @@ export class NumberInputComponent implements OnInit {
     return true
   }
 
+  select(e,type) {
+    e.stopPropagation()
+    this.values.data.type = type
+    setTimeout(() => {
+      this.selectDateInputType = false
+      this.saveChanges()
+    }, 300);
+  }
+  clickOut(e) {
+    e.stopPropagation()
+    this.selectDateInputType = false
+  }
+
+  showOptions() {
+    setTimeout(() => {
+      this.selectDateInputType = !this.selectDateInputType
+    }, 200);
+  }
   done(done: boolean = true) {
     if (this.clickedDone) {
 

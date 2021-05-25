@@ -71,6 +71,20 @@ ion-textarea, ion-input, input, textarea {
 
 }
 
+.limitOpt2 {
+    display: flex;
+    width:100%;
+    flex-direction: row;
+    justify-content: space-between;
+    box-sizing: border-box;
+    padding: 15px;
+    margin:2px 0;
+    flex-flow: 1;
+
+    background-color: rgb(191, 200, 207);
+
+}
+
 .switchLimit {
     display: flex;
     flex-direction: row;
@@ -98,4 +112,101 @@ ion-textarea, ion-input, input, textarea {
     border-radius: 4px !important;
     padding:5px;
     background-color: rgb(191, 200, 207);
+}
+
+
+.dateInputType {
+    margin-top: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-top-right-radius: 3px;
+    border-top-left-radius: 3px;
+    p, span {
+        margin:0;
+        font-weight: bold;
+    }
+     p {
+        color:rgb(43, 60, 78)
+     }
+    span {
+        color:rgb(90, 119, 150)
+    }
+    border-bottom: 1px solid rgb(162, 176, 190);
+    padding: 8px;
+    background-color: rgb(216, 225, 231);
+}
+
+.inputType2 {
+    margin-top: 0 !important;
+    margin-bottom: 10px;
+
+    div {
+        span {
+            font-size: 16px;
+        }
+    }
+}
+
+.optionBtn {
+    padding:7px;
+    text-align: center;
+    color: rgb(13, 124, 235);
+    width: 100%;
+    font-size: 18px;
+}
+
+.optBtn{
+    background-color: rgb(216, 225, 231);
+
+    div {
+        font-size: 16px;
+    }
+}
+
+.optionHolder {
+    position: fixed;
+    left:0;
+    overflow: auto;
+    right:0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 999999999;
+    height: 100%;
+    background-color: rgba(255, 255, 255, .6);
+    top:0;
+    .options {
+        max-width: 310px;
+        // margin-bottom: 30px;
+        width:100%;
+        display: inline-block;
+        border-radius: 4px;
+        z-index: 999999;
+        background-color: #ffff;
+        box-shadow: 0px 2px 5px #505050;
+        
+        
+        .option {
+            padding:10px;
+            // border-top: .5px solid lightgray;
+            
+            display: flex;
+            font-size: 17px !important;
+            align-items: center;
+            p {
+                margin:8px 5px !important;
+            }
+            ion-checkbox {
+                margin-right: 8px;
+            }
+        }
+    }
+}
+
+
+.optionsLabel{
+    font-weight: bold;
+    font-size: 18px;
+    padding-top: 20px !important;
 }

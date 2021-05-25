@@ -10,10 +10,57 @@
     <!-- <ion-input type="number" class="inputLabel otherInfo default" (change)="saveChanges()"
       [(ngModel)]="values.data.defaultValue" placeholder="Enter default value here (optional)">
     </ion-input> -->
-    <div class="row">
+
+    <div class="dateInputType">
+      <p><b>
+        Number Input Type:
+      </b>&nbsp;
+    </p>
+      <span class="type">{{type[values.data.type? values.data.type: 'none']}}</span>
+    </div>
+      
+    <div (click)="showOptions()" class="settings optBtn inputType2">
+      <div class="optionBtn ion-activatable ripple-parent" slot="end">
+        <span>
+          Change Number Input Type
+        </span>
+        <ion-ripple-effect></ion-ripple-effect>
+      </div>
+    </div>
+
+    <div *ngIf="selectDateInputType" class="optionHolder" (click)="clickOut($event)">
+      <div class="options">
+        <div class="option optionsLabel">Number Input Type</div>
+        <div class="option ion-activatable ripple-parent" (click)="select($event, 'mobileNumber')">
+          <ion-checkbox [checked]="values.data.type == 'mobileNumber'"></ion-checkbox>
+          <p>
+            Mobile Phone Number
+          </p>
+          <ion-ripple-effect type="unbounded"></ion-ripple-effect>
+        </div>
+
+        <div class="option ion-activatable ripple-parent" (click)="select($event, null)">
+          <ion-checkbox [checked]="values.data.type == null"></ion-checkbox>
+          <p>
+            Amount
+          </p>
+          <ion-ripple-effect type="unbounded"></ion-ripple-effect>
+        </div>
+
+        <div class="option ion-activatable ripple-parent" (click)="select($event, 'otherType')">
+          <ion-checkbox [checked]="values.data.type == 'otherType'"></ion-checkbox>
+          <p>
+            Others (With specified length)
+          </p>
+          <ion-ripple-effect type="unbounded"></ion-ripple-effect>
+        </div>
+      </div>
+    </div>
+
+    <div class="row" *ngIf="values.data.type == 'otherType'">
       <div class="limitOpt">
         <div class="options">
-          Minimum
+          Min Length
         </div>
         <ion-input [class.error]="rangeError" (change)="saveChanges()" type="number" class="limitValue"
           [(ngModel)]="values.data.min" placeholder="Enter minimum">
@@ -22,13 +69,33 @@
       </div>
       <div class="limitOpt">
         <div class="options">
-          Maximum
+          Max Length
         </div>
         <ion-input [class.error]="rangeError" (change)="saveChanges()" type="number" class="limitValue"
           [(ngModel)]="values.data.max" placeholder="Enter maximum"></ion-input>
       </div>
-
     </div>
+
+    <div class="row" *ngIf="!values.data.type">
+      <div class="limitOpt">
+        <div class="options">
+          Min Value
+        </div>
+        <ion-input [class.error]="rangeError" (change)="saveChanges()" type="number" class="limitValue"
+          [(ngModel)]="values.data.min" placeholder="Enter minimum">
+        </ion-input>
+
+      </div>
+      <div class="limitOpt">
+        <div class="options">
+          Max Value
+        </div>
+        <ion-input [class.error]="rangeError" (change)="saveChanges()" type="number" class="limitValue"
+          [(ngModel)]="values.data.max" placeholder="Enter maximum"></ion-input>
+      </div>
+    </div>
+
+
     <div class="required">
       <div [class.off]="!values.data.required" (click)="values.data.required = !values.data.required; saveChanges()" class="options" slot="end">Required for submission<ion-toggle [checked]="values.data.required"></ion-toggle>
       </div>

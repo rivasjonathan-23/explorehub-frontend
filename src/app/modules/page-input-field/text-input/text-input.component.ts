@@ -17,7 +17,9 @@ export class TextInputComponent implements OnInit {
   @Input() parent: string;
   @Input() grandParentId: string;
   public pending: boolean = false;
+  public selectDateInputType: boolean = false
   public clickedDone: boolean = false;
+  type = {gmail: "Gmail", none: "Ordinary Text"}
 
   constructor(public creator: PageCreatorService, public alert: AlertController) {
     this.footerData = {
@@ -116,6 +118,24 @@ export class TextInputComponent implements OnInit {
     }
   }
 
+  select(e,type) {
+    e.stopPropagation()
+    this.values.data.type = type
+    setTimeout(() => {
+      this.selectDateInputType = false
+      this.saveChanges()
+    }, 300);
+  }
+  clickOut(e) {
+    e.stopPropagation()
+    this.selectDateInputType = false
+  }
+
+  showOptions() {
+    setTimeout(() => {
+      this.selectDateInputType = !this.selectDateInputType
+    }, 200);
+  }
   async presentAlert(message) {
     const alert = await this.alert.create({
       cssClass: "my-custom-class",

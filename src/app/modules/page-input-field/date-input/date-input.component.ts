@@ -18,11 +18,13 @@ export class DateInputComponent implements OnInit {
   days = ["Sun", "Mon", "Tue", "Wed", "Thur", "Fri", "Sat"];
   months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Oct", "Sep", "Nov", "Dec"];
   years = [];
+  type = {startDate: "Booking Starting Date", endDate: "Booking End Date", none: "Ordinary Date Input"}
   public footerData: FooterData;
   erroredAlready = false;
   clickedDone = false;
   clickOtherFunction = false
   customize = false
+  selectDateInputType = false
   showYears = false;
   showMonths = false;
   showDays = false;
@@ -57,7 +59,7 @@ export class DateInputComponent implements OnInit {
       this.footerData.hasId = true;
       this.footerData.isDefault = this.values.default;
     } else {
-      this.values = { _id: "", type: "date-input", styles: [], data: { label: null, instructions: null, setAs: null, required: true, defaultValue: null, value: null, customYears: [this.currentYear + 1, this.currentYear], customMonths: [], customDays: [], customDates: [] }, default: false };
+      this.values = { _id: "", type: "date-input", styles: [], data: { label: null, instructions: null, type: null, required: true, defaultValue: null, value: null, customYears: [this.currentYear + 1, this.currentYear], customMonths: [], customDays: [], customDates: [] }, default: false };
       this.footerData.message = "Adding Field..."
       this.footerData.saving = true;
       this.creator.saveInputField(this.values, this.grandParentId, this.parentId, this.parent).subscribe(
@@ -89,6 +91,19 @@ export class DateInputComponent implements OnInit {
     this.erroredAlready = false;
   }
 
+  select(e,type) {
+    e.stopPropagation()
+    this.values.data.type = type
+    setTimeout(() => {
+      this.selectDateInputType = false
+      this.saveChanges()
+    }, 300);
+  }
+  clickOut(e) {
+    e.stopPropagation()
+    this.selectDateInputType = false
+  }
+
   saveChanges() {
     this.pending = true;
     this.footerData.hasValue = this.values.data.label ? true : false;
@@ -113,6 +128,11 @@ export class DateInputComponent implements OnInit {
     this.values.data.customMonths = this.addOrRemove(this.values.data.customMonths, item)
   }
 
+  showOptions() {
+    setTimeout(() => {
+      this.selectDateInputType = !this.selectDateInputType
+    }, 200);
+  }
   selectDay(item) {
     this.values.data.customDays = this.addOrRemove(this.values.data.customDays, item)
   }
