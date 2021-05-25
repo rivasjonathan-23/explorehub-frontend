@@ -371,6 +371,10 @@ export class PageCreatorComponent implements OnInit {
                 valid.push(result)
                 self.getUnfilledFields()
               }
+            } else {
+              valid.push(false)
+              self.unfilledFields.bookingInfo.push("No input fields for booking")
+              self.getUnfilledFields()
             }
             valid = valid.filter(i => !i);
 
