@@ -194,58 +194,63 @@ export class SelectServicePage implements AfterViewInit, ViewWillEnter {
     let valid = true;
     let selectedservices = []
     this.mainService.getBooking(this.bookingId, "booking_review").subscribe((data: any) => {
-      this.booking.selectedServices = data.bookingData.selectedServices
-      this.booking.selectedServices.forEach(data => {
-        const service = data.service
-        service.booked = service.booked ? service.booked : 0;
-        service.manuallyBooked = service.manuallyBooked ? service.manuallyBooked : 0
-        if (service.booked + service.toBeBooked + service.manuallyBooked + data.quantity + service.pending > this.getValue(service.data, "quantity")) {
-          this.presentAlert(this.getValue(service.data, "name") + " has no more available item")
-          valid = false
-        }
-        let updateData = { _id: service._id, manuallyBooked: service.manuallyBooked + 1 }
-        
-        selectedservices.push(updateData)
-      })
-      if (valid) {
-        let hasRequired = false;
-        let requiredServices = ""
-        this.pageServices.forEach((service: any) => {
+      if (this.booking.selectedServices.length > 0) {
 
-          if (service.required) {
-            const servQuant = this.getTotalValue(service)
-            if (servQuant > 0) {
-              let hasSelected = false;
-              this.booking.selectedServices.forEach(selected => {
-                if (selected.serviceGroupId == service._id) {
-                  hasSelected = true
+        this.booking.selectedServices = data.bookingData.selectedServices
+        this.booking.selectedServices.forEach(data => {
+          const service = data.service
+          service.booked = service.booked ? service.booked : 0;
+          service.manuallyBooked = service.manuallyBooked ? service.manuallyBooked : 0
+          if (service.booked + service.toBeBooked + service.manuallyBooked + data.quantity + service.pending > this.getValue(service.data, "quantity")) {
+            this.presentAlert(this.getValue(service.data, "name") + " has no more available item")
+            valid = false
+          }
+          let updateData = { _id: service._id, manuallyBooked: service.manuallyBooked + 1 }
+
+          selectedservices.push(updateData)
+        })
+        if (valid) {
+          let hasRequired = false;
+          let requiredServices = ""
+          this.pageServices.forEach((service: any) => {
+
+            if (service.required) {
+              const servQuant = this.getTotalValue(service)
+              if (servQuant > 0) {
+                let hasSelected = false;
+                this.booking.selectedServices.forEach(selected => {
+                  if (selected.serviceGroupId == service._id) {
+                    hasSelected = true
+                  }
+                })
+                if (!hasSelected) {
+                  requiredServices = requiredServices.includes("|and|") ? requiredServices.split("|and|").join(", ") : requiredServices
+                  requiredServices += requiredServices != "" ? "|and|" : ""
+                  requiredServices += this.getValue(service.data, "name")
+                  hasRequired = true;
                 }
-              })
-              if (!hasSelected) {
-                requiredServices = requiredServices.includes("|and|") ? requiredServices.split("|and|").join(", ") : requiredServices
-                requiredServices += requiredServices != "" ? "|and|" : ""
-                requiredServices += this.getValue(service.data, "name")
-                hasRequired = true;
               }
             }
+          })
+          if (hasRequired) {
+            this.presentAlert(`Please select from ${requiredServices.split("|and|").join(", and ")}.`)
+          } else {
+            setTimeout(() => {
+              this.mainService.canLeave = true;
+              let params = { queryParams: {} }
+              if (this.isManual) params.queryParams["manual"] = true
+              if (this.fromDraft) params.queryParams["draft"] = true
+              if (this.editing) params.queryParams["edit"] = true
+              if (!this.fromReviewBooking) {
+                this.router.navigate(["/service-provider/book", this.pageId, this.booking.bookingType, this.booking._id], params)
+              } else {
+                this.router.navigate(["/service-provider/booking-review", this.pageId, this.booking.bookingType, this.booking._id], params)
+              }
+            }, 200);
           }
-        })
-        if (hasRequired) {
-          this.presentAlert(`Please select from ${requiredServices.split("|and|").join(", and ")}.`)
-        } else {
-          setTimeout(() => {
-            this.mainService.canLeave = true;
-            let params = { queryParams: {} }
-            if (this.isManual) params.queryParams["manual"] = true
-            if (this.fromDraft) params.queryParams["draft"] = true
-            if (this.editing) params.queryParams["edit"] = true
-            if (!this.fromReviewBooking) {
-              this.router.navigate(["/service-provider/book", this.pageId, this.booking.bookingType, this.booking._id], params)
-            } else {
-              this.router.navigate(["/service-provider/booking-review", this.pageId, this.booking.bookingType, this.booking._id], params)
-            }
-          }, 200);
         }
+      } else {
+        this.presentAlert("Please select services")
       }
     })
 
