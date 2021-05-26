@@ -43,7 +43,7 @@ export class SelectedServiceCardComponent implements OnInit {
 
       data.data.forEach(comp => {
         if (comp.type == "photo") {
-          photo = comp.data.length > 0 ? comp.data[0].url : "";
+          photo = !photo? comp.data.length > 0 ? comp.data[0].url : "": photo
         }
       });
     }

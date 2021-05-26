@@ -107,7 +107,6 @@ export class BookingPage implements OnInit {
 
     booking["photo"] = !booking["photo"]? photo: booking["photo"]
     return booking;
-
   }
 
   search(text) {
