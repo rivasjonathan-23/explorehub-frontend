@@ -105,7 +105,7 @@ export class BookingPage implements OnInit {
       booking.selectedServices = selectedServices
     }
 
-    booking["photo"] = photo
+    booking["photo"] = !booking["photo"]? photo: booking["photo"]
     return booking;
 
   }

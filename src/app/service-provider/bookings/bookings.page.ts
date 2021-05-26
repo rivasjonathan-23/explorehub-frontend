@@ -96,7 +96,7 @@ export class BookingsPage implements OnInit {
 
       booking.page.components.forEach(comp => {
         if (comp.type == "photo") {
-          booking["photo"] = comp.data && comp.data.length > 0 ? comp.data[0].url : ""
+          booking["photo"] = !booking["photo"] ? comp.data && comp.data.length > 0 ? comp.data[0].url : "": booking["photo"]
         }
       });
     }
