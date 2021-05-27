@@ -15,7 +15,7 @@ export class NumberInputDisplayComponent implements OnInit {
   @Output() emitEvent: EventEmitter<any> = new EventEmitter();
   min = null;
   max = null;
-  number = null;
+  number: number = null;
   hasErrors = false;
   message = null
   constructor(
@@ -28,35 +28,77 @@ export class NumberInputDisplayComponent implements OnInit {
     this.min = data.min != null ? data.min : null;
     this.max = data.max != null ? data.max : null;
     this.number = this.values.data.defaultValue
-    this.message = "Only accepts value";
-    if (this.min && this.max) {
-      this.message += ` between ${this.min} and ${this.max}`
-    } else if (this.min) {
-      this.message += ` above ${this.min}`
-    } else if (this.max) {
-      this.message += ` below ${this.max}`
+    if (this.values.data.type == "otherType") {
+      this.message = "Only accepts value";
+      if (this.min && this.max && this.min == this.max) {
+        this.message += ` with the length of ${this.max}`
+
+      } else if (this.min && this.max && this.min != this.max) {
+        this.message += ` with the length not less than ${this.min} and not more ${this.max}`
+      } else if (this.min) {
+        this.message += ` with the length not less than ${this.min}`
+      } else if (this.max) {
+        this.message += ` with the length not more than ${this.min}`
+      }
+    } else if (this.values.data.type == "mobileNumber") {
+      this.message = "Invalid Phone Number"
+    } else {
+      this.message = "Only accepts value";
+      if (this.min && this.max) {
+        this.message += ` between ${this.min} and ${this.max}`
+      } else if (this.min) {
+        this.message += ` above ${this.min}`
+      } else if (this.max) {
+        this.message += ` below ${this.max}`
+      }
     }
 
   }
 
 
-  validate() {
-    if ((this.max != null && this.number > this.max) || (this.min != null && this.number < this.min)) {
-      this.presentToast(this.message)
-      this.hasErrors = true;
-    }
-    else {
-      this.hasErrors = false
-    }
+  validate() { 
+    // if (!this.values.data.type) {
+    //   if ((this.max != null && this.number > this.max) || (this.min != null && this.number < this.min)) {
+    //     this.hasErrors = true;
+    //   }
+    //   else {
+    //     this.hasErrors = false
+    //   }
+    // } else if (this.values.data.type == "otherType") {
+
+    // }
   }
 
   finalValidation() {
-    if ((this.max != null && this.number > this.max) || (this.min != null && this.number < this.min)) {
-      this.presentAlert(this.message)
-      this.hasErrors = true;
+    if (!this.values.data.type) {
+
+      if ((this.max != null && this.number > this.max) || (this.min != null && this.number < this.min)) {
+        this.presentAlert(this.message)
+        this.hasErrors = true;
+      } else {
+        this.hasErrors = false;
+        this.passData();
+      }
+    } else if (this.values.data.type == "mobileNumber") {
+      const number = (this.number +"").split("")
+   
+      if ((number.length == 11 && number[0] == "0") || (number.length == 12 && number[0] != "0")) {
+        this.hasErrors = false
+        this.passData();
+      } else {
+        this.hasErrors = true
+        this.presentAlert(this.message)
+      }
     } else {
-      this.hasErrors = false;
-      this.passData();
+      console.log(this.number);
+      const number = (this.number +"").split("")
+      if ((this.max != null && number.length > this.max) || (this.min != null && number.length < this.min)) {
+        this.hasErrors = true
+        this.presentAlert(this.message)
+      } else {
+        this.hasErrors = false
+        this.passData();
+      }
     }
   }
 
