@@ -53,10 +53,13 @@ export class NumberInputDisplayComponent implements OnInit {
       }
     }
 
+    if (this.number) {
+      this.finalValidation()
+    }
   }
 
 
-  validate() { 
+  validate() {
     // if (!this.values.data.type) {
     //   if ((this.max != null && this.number > this.max) || (this.min != null && this.number < this.min)) {
     //     this.hasErrors = true;
@@ -74,34 +77,43 @@ export class NumberInputDisplayComponent implements OnInit {
 
       if ((this.max != null && this.number > this.max) || (this.min != null && this.number < this.min)) {
         this.presentAlert(this.message)
-        this.hasErrors = true;
       } else {
         this.hasErrors = false;
         this.passData();
       }
-    } else if (this.values.data.type == "mobileNumber") {
-      const number = (this.number +"").split("")
-   
-      if ((number.length == 11 && number[0] == "0") || (number.length == 12 && number[0] != "0")) {
-        this.hasErrors = false
-        this.passData();
-      } else {
-        this.hasErrors = true
-        this.presentAlert(this.message)
-      }
     } else {
-      console.log(this.number);
-      const number = (this.number +"").split("")
-      if ((this.max != null && number.length > this.max) || (this.min != null && number.length < this.min)) {
-        this.hasErrors = true
+      const number = (this.number + "").split("")
+      let hasAlpha = false
+      number.forEach(char => {
+        if (char.toLowerCase() != char.toUpperCase()) {
+          hasAlpha = true
+        }
+      })
+      if (hasAlpha) {
+        this.message = "Invalid value"
         this.presentAlert(this.message)
       } else {
-        this.hasErrors = false
-        this.passData();
+        if (this.values.data.type == "mobileNumber") {
+          if ((number.length == 11 && number[0] == "0") || (number.length == 12 && number[0] != "0")) {
+            this.hasErrors = false
+            this.passData();
+          } else {
+            this.presentAlert(this.message)
+          }
+
+        } else {
+          console.log(this.number);
+          const number = (this.number + "").split("")
+          if ((this.max != null && number.length > this.max) || (this.min != null && number.length < this.min)) {
+            this.presentAlert(this.message)
+          } else {
+            this.hasErrors = false
+            this.passData();
+          }
+        }
       }
     }
   }
-
   async presentToast(message) {
     const toast = await this.toastController.create({
       message: message,
@@ -112,17 +124,21 @@ export class NumberInputDisplayComponent implements OnInit {
 
 
   async presentAlert(message) {
-    const alert = await this.alert.create({
-      cssClass: "my-custom-class",
-      header: message,
-      buttons: ["OK"],
-    });
-    await alert.present();
+    // const alert = await this.alert.create({
+    //   cssClass: "my-custom-class",
+    //   header: message,
+    //   buttons: ["OK"],
+    // });
+    // await alert.present();
+    this.hasErrors = true;
+    this.passData(true)
   }
 
-  passData() {
+  passData(validationError = false) {
     this.emitEvent.emit({
       userInput: true,
+      validationError: validationError,
+      message: this.message,
       data: {
         inputId: this.values._id,
         inputFieldType: "number-input",

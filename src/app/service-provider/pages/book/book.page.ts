@@ -24,6 +24,8 @@ export class BookPage implements OnInit, ViewWillEnter {
   public booking: any;
   public isManual: boolean = false;
   public pageId: string;
+  public invalidInputs: string[] =[]
+  public hasError: boolean = false
   public requiredInputs: string[] = []
   public fromDraft: boolean = false
   public update: boolean = false;
@@ -149,6 +151,21 @@ export class BookPage implements OnInit, ViewWillEnter {
 
   catchEvent(data) {
     if (data.userInput) {
+      
+      if (data.validationError) {
+        this.invalidInputs = this.invalidInputs.filter(input => data.data.inputId != input)
+        this.invalidInputs.push(data.data.inputId)
+      } else {
+        if (this.invalidInputs.includes(data.data.inputId)) {
+
+          this.invalidInputs = this.invalidInputs.filter(input => {
+            console.log(input != data.data.inputId, "checking")
+            if (input != data.data.inputId) {
+              return input
+            }
+          })
+        }
+      }
       let updated = false;
       this.inputValue = this.inputValue.map((val: InputValue) => {
         if (val.inputId == data.data.inputId) {
@@ -160,6 +177,7 @@ export class BookPage implements OnInit, ViewWillEnter {
       if (!updated) {
         this.inputValue.push(data.data);
       }
+    
     }
 
   }
@@ -189,8 +207,7 @@ export class BookPage implements OnInit, ViewWillEnter {
     if (endDateValue) {
       endDateValue = new Date(endDateValue.month.text+". "+endDateValue.day.text+", "+endDateValue.year.text)
     }
-    
-    console.log(startDateValue, endDateValue);
+
 
     if (startDateValue && startDateValue < curDate) {
       this.presentAlert(`Invalid value for "${startDate.data.label}"`)
@@ -212,7 +229,7 @@ export class BookPage implements OnInit, ViewWillEnter {
   submitBooking() {
     const requiredFields = []
     const requiredInputs = []
-    let hasError: boolean = false;
+    let hasError = false
     this.bookingInfo.forEach(data => {
       if (data.data.required) {
         let hasValue = false;
@@ -236,8 +253,11 @@ export class BookPage implements OnInit, ViewWillEnter {
     })
     this.requiredInputs = requiredInputs
     let inValidDates = this.validateStateAndEndDate()
-    console.log(inValidDates)
+    console.log("hassError:",hasError) 
+    console.log("invalid inputs:",this.invalidInputs) 
     hasError = inValidDates ? inValidDates : hasError
+    if (this.invalidInputs.length > 0) hasError = true
+    
     if (!hasError) {
       setTimeout(() => {
         this.mainService.canLeave = true;
@@ -256,8 +276,10 @@ export class BookPage implements OnInit, ViewWillEnter {
         const error = "Required field" + (requiredFields.length > 1 ? "s" : "") + ": " + requiredFields.join(", ");
         this.presentAlert(error);
       }
-      this.setValues();
-      this.setPage();
+      // if (this.invalidInputs.length == 0) {
+        this.setValues();
+        this.setPage();
+      // }
     }
 
   }
