@@ -310,10 +310,13 @@ export class ItemListComponent implements OnInit {
   }
 
   slideChanged() {
-    this.slider.getActiveIndex().then(id => {
-      this.start = id == 0;
-      this.end = id == this.items.length - 1
-    });
+    if (this.slider) {
+
+      this.slider.getActiveIndex().then(id => {
+        this.start = id == 0;
+        this.end = id == this.items.length - 1
+      });
+    }
   }
 
 }
