@@ -1,5 +1,5 @@
 <div *ngIf="values.data.text == 0 || values.data.text && values.data.label" class="container whiteBg" [class.onItemStyleLabelledText]="parent == 'component'">
   <p class="label">{{values.data.label+":"}}</p>
   <p class="text" *ngIf="!isDate">{{values.data.defaultName && values.data.defaultName == 'price'? 'P '+value:values.data.text}}</p>
-  <p class="text" *ngIf="isDate">{{value | date:'longDate'}}</p>
+  <p class="text" *ngIf="isDate">{{value | date:'medium'}}</p>
 </div>

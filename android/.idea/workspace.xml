@@ -1,8 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="147b14f0-3cfa-4593-8a73-2dfa9d7950f3" name="Default Changelist" comment="">
+    <list default="true" id="bf243805-6aae-4fdc-855f-f66159387e67" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/app/modules/page-input-field-display/number-input-display/number-input-display.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../src/app/modules/page-input-field-display/number-input-display/number-input-display.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/app/modules/page-input-field-display/text-input-display/text-input-display.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../src/app/modules/page-input-field-display/text-input-display/text-input-display.component.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -15,22 +19,10 @@
       <ProjectState />
     </projectState>
   </component>
-  <component name="ExternalProjectsManager">
-    <system id="GRADLE">
-      <state>
-        <projects_view>
-          <tree_state>
-            <expand />
-            <select />
-          </tree_state>
-        </projects_view>
-      </state>
-    </system>
-  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
-  <component name="ProjectId" id="1t3b7wpc98xwocTgcxPH1qLAU5k" />
+  <component name="ProjectId" id="1t77Z89X23LPxMBlYlqzrVhQJse" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -113,11 +105,11 @@
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="147b14f0-3cfa-4593-8a73-2dfa9d7950f3" name="Default Changelist" comment="" />
-      <created>1622000556487</created>
+      <changelist id="bf243805-6aae-4fdc-855f-f66159387e67" name="Default Changelist" comment="" />
+      <created>1622108326907</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1622000556487</updated>
+      <updated>1622108326907</updated>
     </task>
     <servers />
   </component>

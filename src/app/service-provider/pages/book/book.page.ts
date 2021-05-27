@@ -201,10 +201,11 @@ export class BookPage implements OnInit, ViewWillEnter {
     })
 
     if (startDateValue) {
-      startDateValue = new Date(startDateValue.month.text+". "+startDateValue.day.text+", "+startDateValue.year.text)
+      console.log(startDateValue)
+      startDateValue = new Date(startDateValue.month.text+". "+startDateValue.day.text+", "+startDateValue.year.text+", "+ startDateValue.hour.text+":"+startDateValue.minute.text+" "+startDateValue.ampm.text)
     }
     if (endDateValue) {
-      endDateValue = new Date(endDateValue.month.text+". "+endDateValue.day.text+", "+endDateValue.year.text)
+      endDateValue = new Date(endDateValue.month.text+". "+endDateValue.day.text+", "+endDateValue.year.text+", "+ endDateValue.hour.text+":"+endDateValue.minute.text+" "+endDateValue.ampm.text)
     }
 
 
@@ -214,7 +215,7 @@ export class BookPage implements OnInit, ViewWillEnter {
     } if (endDateValue && endDateValue < curDate) {
       hasError = true
       this.requiredInputs.push({ _id: endDate._id, errorMessage: `Invalid date`})
-    } else if (startDateValue && endDateValue && startDateValue > endDateValue) {
+    } else if (startDateValue && endDateValue && startDateValue >= endDateValue) {
       hasError = true
 
       this.requiredInputs.push({_id: startDate._id, errorMessage: "Invalid date range"})
