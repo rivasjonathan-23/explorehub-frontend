@@ -101,8 +101,9 @@ export class MainServicesService {
     return this.http.get(`${this.apiUrl}/getBookings/${status}`, {})
   }
 
-  viewBooking(bookingId) {
-    return this.http.get(`${this.apiUrl}/viewBooking/${bookingId}`, { headers: { hideLoadingIndicator: "true" } })
+  viewBooking(bookingId, hideLoading = true) {
+    let headers = hideLoading? { headers: { hideLoadingIndicator: "true" } }: {}
+    return this.http.get(`${this.apiUrl}/viewBooking/${bookingId}`, headers)
   }
 
   getPageBooking(bookingStatus, pageId) {

@@ -237,7 +237,7 @@ export class SelectServicePage implements AfterViewInit, ViewWillEnter {
           } else {
             setTimeout(() => {
               this.mainService.canLeave = true;
-              let params = { queryParams: {} }
+              let params = { queryParams: {'create-a-booking':true} }
               if (this.isManual) params.queryParams["manual"] = true
               if (this.fromDraft) params.queryParams["draft"] = true
               if (this.editing) params.queryParams["edit"] = true

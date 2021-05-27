@@ -12,18 +12,19 @@ import { PageCreatorService } from '../../page-creator/page-creator-service/page
 export class NumberInputDisplayComponent implements OnInit {
   @Input() values: ElementValues;
   @Input() hasError: boolean = false;
+  @Input() errorMessage: string = "";
   @Output() emitEvent: EventEmitter<any> = new EventEmitter();
   min = null;
+  message = null
   max = null;
   number: number = null;
-  hasErrors = false;
-  message = null
   constructor(
     public toastController: ToastController,
     public alert: AlertController,
     public creator: PageCreatorService) { }
 
   ngOnInit() {
+
     let data = this.values.data;
     this.min = data.min != null ? data.min : null;
     this.max = data.max != null ? data.max : null;
@@ -52,9 +53,11 @@ export class NumberInputDisplayComponent implements OnInit {
         this.message += ` below ${this.max}`
       }
     }
-
     if (this.number) {
       this.finalValidation()
+    }
+    if (this.errorMessage) {
+      this.message = this.errorMessage
     }
   }
 
@@ -78,7 +81,7 @@ export class NumberInputDisplayComponent implements OnInit {
       if ((this.max != null && this.number > this.max) || (this.min != null && this.number < this.min)) {
         this.presentAlert(this.message)
       } else {
-        this.hasErrors = false;
+        this.hasError = false;
         this.passData();
       }
     } else {
@@ -95,19 +98,18 @@ export class NumberInputDisplayComponent implements OnInit {
       } else {
         if (this.values.data.type == "mobileNumber") {
           if ((number.length == 11 && number[0] == "0") || (number.length == 12 && number[0] != "0")) {
-            this.hasErrors = false
+            this.hasError = false
             this.passData();
           } else {
             this.presentAlert(this.message)
           }
 
         } else {
-          console.log(this.number);
           const number = (this.number + "").split("")
           if ((this.max != null && number.length > this.max) || (this.min != null && number.length < this.min)) {
             this.presentAlert(this.message)
           } else {
-            this.hasErrors = false
+            this.hasError = false
             this.passData();
           }
         }
@@ -130,7 +132,7 @@ export class NumberInputDisplayComponent implements OnInit {
     //   buttons: ["OK"],
     // });
     // await alert.present();
-    this.hasErrors = true;
+    this.hasError = true;
     this.passData(true)
   }
 
@@ -138,7 +140,7 @@ export class NumberInputDisplayComponent implements OnInit {
     this.emitEvent.emit({
       userInput: true,
       validationError: validationError,
-      message: this.message,
+      errorMessage: this.errorMessage,
       data: {
         inputId: this.values._id,
         inputFieldType: "number-input",

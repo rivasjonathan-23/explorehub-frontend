@@ -397,3 +397,18 @@
     border: .5px solid rgb(194, 207, 219) !important;
 
 }
+
+.inputErrorMessage {
+    color: red;
+    font-size:12px;
+}
+
+.inputHasError {
+    .label, ion-label {
+        color: red !important;
+    }
+
+    ion-input, ion-datetime , ion-textarea, input {
+        border-color: red !important;
+    }
+}

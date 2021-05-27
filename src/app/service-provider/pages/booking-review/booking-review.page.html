@@ -16,8 +16,9 @@
           <ion-icon name="briefcase-outline"></ion-icon>
           <span>Selected Services</span>
         </div>
-        <div (click)="editSelectedServices()" class="editBtn">
+        <div (click)="editSelectedServices()" class="editBtn ion-activatable ripple-parent">
           <ion-icon name="create-outline"></ion-icon>{{booking.selectedServices .length > 0 ? "Edit":"Add"}}
+          <ion-ripple-effect></ion-ripple-effect>
         </div>
 
       </div>
@@ -33,8 +34,9 @@
             Booking Info
           </span>
         </div>
-        <div (click)="editBookingInfo()" class="editBtn">
+        <div (click)="editBookingInfo()" class="editBtn ion-activatable ripple-parent">
           <ion-icon name="create-outline"></ion-icon>{{booking.bookingInfo.length > 0 ? "Edit":"Add"}}
+          <ion-ripple-effect></ion-ripple-effect>
         </div>
       </div>
       <app-booking-info-display [inputValues]="booking.bookingInfo"></app-booking-info-display>

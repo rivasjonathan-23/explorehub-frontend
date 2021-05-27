@@ -12,6 +12,7 @@ export class DateInputDisplayComponent implements OnInit {
   @Input() values: ElementValues;
   @Output() emitEvent: EventEmitter<any> = new EventEmitter();
   @Input() hasError: boolean = false;
+  @Input() errorMessage: string = '';
   currentYear = new Date().getFullYear()
   allDays = ["Sun", "Mon", "Tue", "Wed", "Thur", "Fri", "Sat"];
   daysName = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
@@ -27,7 +28,7 @@ export class DateInputDisplayComponent implements OnInit {
     this.customPickerOptions = {
       buttons: [{
         text: 'Cancel',
-        handler: () => {}
+        handler: () => { }
 
       }, {
         text: 'Clear',
@@ -40,12 +41,29 @@ export class DateInputDisplayComponent implements OnInit {
         handler: (date) => {
           const datepicked = new Date(date.year.value, date.month.value - 1, date.day.value)
 
+          if (this.values.data.type) {
+            if (datepicked < new Date()) {
+              this.passData(true)
+              this.hasError = true;
+              this.errorMessage = "Invalid date"
+            } else {
+              this.hasError = false
+              this.errorMessage = ""
+            }
+          }
+
           const day = datepicked.getDay();
           if (this.values.data.customDays.length > 0) {
             if (!this.values.data.customDays.includes(this.allDays[day])) {
               this.presentAlert("Service is only available every " + this.customDaysDisplay)
+              this.errorMessage = "Service is only available every " + this.customDaysDisplay
               this.date = null;
+              this.hasError = true
               return false;
+            }
+            else {
+              this.hasError = false;
+              this.errorMessage = ""
             }
           }
 
@@ -57,10 +75,11 @@ export class DateInputDisplayComponent implements OnInit {
   }
 
   ngOnInit() {
+    console.log('date has error:', this.hasError)
     this.customDaysDisplay = this.values.data.customDays.map(day => {
-      let name = " "+this.daysName[this.allDays.indexOf(day)];
+      let name = " " + this.daysName[this.allDays.indexOf(day)];
       if (this.values.data.customDays.indexOf(day) == this.values.data.customDays.length - 1) {
-        name = " and "+name;
+        name = " and " + name;
       }
       return name
     });
@@ -96,9 +115,11 @@ export class DateInputDisplayComponent implements OnInit {
     await alert.present();
   }
 
-  passData() {
+  passData(validationError = false) {
     this.emitEvent.emit({
       userInput: true,
+      validationError: validationError,
+      errorMessage: this.errorMessage,
       data: {
         inputId: this.values._id,
         inputFieldType: "date-input",

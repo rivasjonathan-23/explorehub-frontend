@@ -8,4 +8,5 @@ export interface ElementComponent {
     grandParentId: string;
     emitEvent: EventEmitter<any>;
     hasError: boolean;
+    errorMessage: string
 }

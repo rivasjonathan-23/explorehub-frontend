@@ -22,19 +22,25 @@ export class CreateBookingGuardGuard implements CanActivate {
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-
-      let bookingId = state.url.split("?")[0]
+      let url = state.url
+      
+      let bookingId = url.split("?")[0]
       bookingId = bookingId.split("/").reverse()[0]
 
     if (bookingId != "create_new") {
-      return this.mainService.viewBooking(bookingId).toPromise().then(async (data: bookingData) => {
-        if (data.status == "Unfinished" || data.status == "Cancelled" || data.status == "Rejected") {
-          return true
-        } else {
-          this.router.navigate(['/service-provider/bookings', "Pending"])
-          return false
-        }
-      })
+      if (url.includes("create-a-booking")) {
+        return true
+      } else {
+
+        return this.mainService.viewBooking(bookingId, false).toPromise().then(async (data: bookingData) => {
+          if (data.status == "Unfinished" || data.status == "Cancelled" || data.status == "Rejected") {
+            return true
+          } else {
+            this.router.navigate(['/service-provider/bookings', "Pending"])
+            return false
+          }
+        })
+      }
     } else {
       return true
     }
@@ -76,7 +82,7 @@ export class CreateBookingGuardGuard implements CanActivate {
     bookingId = bookingId.split("/").reverse()[0]
 
 
-    return this.mainService.viewBooking(bookingId).toPromise().then(async (data: bookingData) => {
+    return this.mainService.viewBooking(bookingId, false).toPromise().then(async (data: bookingData) => {
       if (data.status == "Unfinished" || data.status == "Cancelled" || data.status == "Rejected") {
 
 
