@@ -164,6 +164,51 @@ export class BookPage implements OnInit, ViewWillEnter {
 
   }
 
+  validateStateAndEndDate() {
+    let startDate = null
+    let endDate = null
+    let curDate = new Date()
+    this.bookingInfo.forEach(data => {
+      if (data.type == "date-input") {
+        if (data.data.type == "startDate") startDate = startDate ? startDate : data
+        if (data.data.type == "endDate") endDate = endDate ? endDate : data
+
+      }
+    })
+
+    let startDateValue = null
+    let endDateValue = null
+    this.inputValue.forEach(value => {
+      if (startDate && value.inputId == startDate._id) startDateValue = value.value
+      if (endDate && value.inputId == endDate._id) endDateValue = value.value
+    })
+
+    if (startDateValue) {
+      startDateValue = new Date(startDateValue.month.text+". "+startDateValue.day.text+", "+startDateValue.year.text)
+    }
+    if (endDateValue) {
+      endDateValue = new Date(endDateValue.month.text+". "+endDateValue.day.text+", "+endDateValue.year.text)
+    }
+    
+    console.log(startDateValue, endDateValue);
+
+    if (startDateValue && startDateValue < curDate) {
+      this.presentAlert(`Invalid value for "${startDate.data.label}"`)
+      this.requiredInputs.push(startDate._id)
+    } else if (endDateValue && endDateValue < curDate) {
+      this.requiredInputs.push(endDate._id)
+      this.presentAlert(`Invalid value for "${endDate.data.label}"`)
+    } else if (startDateValue && endDateValue && startDateValue > endDateValue) {
+      this.requiredInputs.push(startDate._id)
+      this.requiredInputs.push(endDate._id)
+      this.presentAlert(`Invalid date range for "${startDate.data.label}" and "${endDate.data.label}"`)
+    } else {
+      return false
+    }
+    return true
+
+  }
+
   submitBooking() {
     const requiredFields = []
     const requiredInputs = []
@@ -190,6 +235,9 @@ export class BookPage implements OnInit, ViewWillEnter {
       }
     })
     this.requiredInputs = requiredInputs
+    let inValidDates = this.validateStateAndEndDate()
+    console.log(inValidDates)
+    hasError = inValidDates ? inValidDates : hasError
     if (!hasError) {
       setTimeout(() => {
         this.mainService.canLeave = true;
@@ -203,8 +251,11 @@ export class BookPage implements OnInit, ViewWillEnter {
         )
       }, 100);
     } else {
-      const error = "Required field" + (requiredFields.length > 1 ? "s" : "") + ": " + requiredFields.join(", ");
-      this.presentAlert(error);
+      if (requiredFields.length > 0) {
+
+        const error = "Required field" + (requiredFields.length > 1 ? "s" : "") + ": " + requiredFields.join(", ");
+        this.presentAlert(error);
+      }
       this.setValues();
       this.setPage();
     }
