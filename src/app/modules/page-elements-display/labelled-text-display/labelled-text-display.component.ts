@@ -24,7 +24,9 @@ export class LabelledTextDisplayComponent implements OnInit {
         if (typeof date == "string") {
           this.value = new Date(date)
         } else {
-          this.value = new Date(date.month.text+". "+date.day.text+", "+date.year.text+", "+ date.hour.text+":"+date.minute.text+" "+date.ampm.text)
+          let time = ""
+          if (date.hour && date.minute && date.ampm) time =  date.hour.text+":"+date.minute.text+" "+date.ampm.text
+          this.value = new Date(date.month.text+". "+date.day.text+", "+date.year.text+", "+ time)
         }
       }
     } else {
