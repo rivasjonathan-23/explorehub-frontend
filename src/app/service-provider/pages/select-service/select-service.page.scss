@@ -60,14 +60,23 @@
 
         .changeItem {
             position: absolute;
-            font-size: 14px;
+            font-size: 14px !important;
             right: 0;
             bottom: 0;
-            color: rgb(0, 123, 247);
+            color: rgb(0, 123, 247) !important;
         }
     }
 }
 
+
+.changeItem2 {
+    font-size: 14px !important;
+    right: 0;
+    bottom: 0;
+    padding:8px;
+    text-align: right;
+    color: rgb(0, 123, 247) !important;
+}
 .photoHolder {
     height: 70px;
     border-radius: 4px;

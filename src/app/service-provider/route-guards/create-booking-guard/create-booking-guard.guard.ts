@@ -31,6 +31,7 @@ export class CreateBookingGuardGuard implements CanActivate {
         if (data.status == "Unfinished" || data.status == "Cancelled" || data.status == "Rejected") {
           return true
         } else {
+          this.router.navigate(['/service-provider/bookings', "Pending"])
           return false
         }
       })

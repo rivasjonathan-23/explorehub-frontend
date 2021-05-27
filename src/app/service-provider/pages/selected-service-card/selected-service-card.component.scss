@@ -15,6 +15,9 @@
 .none {
     text-align: center;
     padding:10px;
+    display: flex; 
+    justify-content: space-evenly;
+    align-items: center;
     color:rgb(137, 142, 146);
     margin:5px 0;
     background-color: rgb(213, 219, 223);

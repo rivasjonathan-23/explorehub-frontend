@@ -18,6 +18,7 @@ export class BookingReviewPage implements OnInit {
   public pageType: string = "";
   public pageId: string = "";
   public editing: boolean = false
+  public hasError: boolean = false
   public isManual: boolean = false
   public noServices: boolean;
   public popupData: popupData;
@@ -150,9 +151,10 @@ export class BookingReviewPage implements OnInit {
   }
 
   sendRequest(selectedServices = null) {
-    if (this.booking.selectedServices.length == 0 && this.booking.isManual
-      || this.booking.bookingInfo.length == 0) {
-
+    if (this.booking.selectedServices.length == 0) {
+      this.presentInfo2("Please select a <b>service</b>", "Click <b>Add</b> in the <b>Selected Services</b> section")
+    } else if (this.booking.bookingInfo.length == 0) {
+      this.presentInfo2("Please add <b>booking information</b>", "Click <b>Add</b> in the <b>Booking Info</b> section")
     } else {
 
       const notificationData = {
@@ -202,11 +204,25 @@ export class BookingReviewPage implements OnInit {
     }, 200);
   }
 
+  presentInfo2(message,message2) {
+    this.hasError = true
+    setTimeout(() => {
+      this.popupData = {
+        title: message,
+        type: 'info',
+        otherInfo: message2,
+        show: true
+      }
+    }, 200);
+  }
+
   clicked(action) {
-    // if (action == "yes") {
-    this.popupData.show = false
-    this.router.navigate(['/service-provider/view-booking', this.booking._id])
-    // }
+    if(!this.hasError) {
+
+      this.popupData.show = false
+      this.router.navigate(['/service-provider/view-booking', this.booking._id])
+    } 
+    this.hasError = false
   }
 
   async presentAlert(message) {

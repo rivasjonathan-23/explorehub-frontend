@@ -23,8 +23,12 @@
   </div>
 </div>
 <ng-template #none>
+
   <div class="none">
 
-    Service no longer available
+    <div>
+      Service no longer available
+    </div>
+    <div *ngIf="editable" (click)="changeService()" class="changeItem2">Remove</div>
   </div>
 </ng-template>

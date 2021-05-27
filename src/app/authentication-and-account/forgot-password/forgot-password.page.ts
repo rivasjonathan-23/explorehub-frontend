@@ -8,7 +8,7 @@ import {
 } from "@angular/core";
 import { Router } from "@angular/router";
 import { AuthService } from "../../services/auth-services/auth-service.service";
-import { AlertController } from "@ionic/angular";
+import { AlertController, ToastController } from "@ionic/angular";
 import { PusherService } from "../../services-common-helper/PushNotification/pusher.service";
 import { FormBuilder } from "@angular/forms";
 import { CValidator } from "../validators/validation";
@@ -35,6 +35,7 @@ export class ForgotPasswordPage implements OnInit, OnDestroy {
     public alert: AlertController,
     public router: Router,
     public pusher: PusherService,
+    public toastController: ToastController,
     public formBuilder: FormBuilder
   ) { }
 
@@ -52,7 +53,7 @@ export class ForgotPasswordPage implements OnInit, OnDestroy {
         .findAccountById({ _id: id, purpose: userTokenType.passwordReset })
         .subscribe(
           (resp) => {
-            this.fullName = resp.firstName + " "+ resp.lastName;
+            this.fullName = resp.firstName + " " + resp.lastName;
             this.contactNumber = "+" + resp.contactNumber;
             this.email = resp.email;
             if (resp.codeSent.length > 0) {
@@ -145,5 +146,15 @@ export class ForgotPasswordPage implements OnInit, OnDestroy {
       buttons: ["OK"],
     });
     await alert.present();
+  }
+
+  async showNote() {
+
+      const toast = await this.toastController.create({
+        message: "Sorry, that feature is not yet avaible. We are still working on it.",
+        duration: 1000
+      });
+      toast.present();
+    
   }
 }
