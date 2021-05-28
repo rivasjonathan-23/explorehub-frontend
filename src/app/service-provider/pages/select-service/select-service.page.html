@@ -14,7 +14,7 @@
 
           <ion-icon name="briefcase-outline"></ion-icon>
           <span>
-            Selected Services
+            Selected Products/Services
           </span>
         </div>
       </div>
@@ -22,7 +22,7 @@
       <div class="notItemSelected" *ngIf="booking.selectedServices.length == 0">Not item selected</div>
     </div>
     <div class="notSelected">
-      <div *ngIf="notSelected.length > 0" class="sectionTitle selectMore">Select {{booking.selectedServices.length > 0 ? "other": ""}} services</div>
+      <div *ngIf="notSelected.length > 0" class="sectionTitle selectMore">Select {{booking.selectedServices.length > 0 ? "other": ""}} Products/services</div>
       <ng-template #services></ng-template>
     </div>
     <div class="bookSectionCont">

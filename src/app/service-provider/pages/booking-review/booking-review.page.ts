@@ -152,7 +152,7 @@ export class BookingReviewPage implements OnInit {
 
   sendRequest(selectedServices = null) {
     if (this.booking.selectedServices.length == 0) {
-      this.presentInfo2("Please select a <b>service</b>", "Click <b>Add</b> in the <b>Selected Services</b> section")
+      this.presentInfo2("Please select a <b>produc</b> or <b>service</b>", "Click <b>Add</b> in the <b>Selected Products/Services</b> section")
     } else if (this.booking.bookingInfo.length == 0) {
       this.presentInfo2("Please add <b>booking information</b>", "Click <b>Add</b> in the <b>Booking Info</b> section")
     } else {

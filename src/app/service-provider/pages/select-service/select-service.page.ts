@@ -250,7 +250,7 @@ export class SelectServicePage implements AfterViewInit, ViewWillEnter {
           }
         }
       } else {
-        this.presentAlert("Please select services")
+        this.presentAlert("Please select a product or service")
       }
     })
 
