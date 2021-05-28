@@ -28,6 +28,7 @@ export class SearchPage implements OnInit {
     
     const text = this.form.controls['pageName'].value.trim()
     if (text != "") {
+      this.pageName = text
       this.loading = true;
       this.pages = []
       this.mainService.searchTouristSpot({pageName: text})

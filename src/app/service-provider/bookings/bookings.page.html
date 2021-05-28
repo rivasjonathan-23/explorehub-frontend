@@ -9,7 +9,7 @@
 
 <ion-content>
   <div class="container lightBackground">
-    <div class="empty" *ngIf="bookings.length == 0 && !loading">
+    <div class="empty" *ngIf="allBooking.length == 0 && !loading">
       <div class="iholder">
         <ion-icon name="folder-open-outline"></ion-icon>
       </div>
@@ -17,6 +17,7 @@
     </div>
     <app-option-popup [show]="showOption" [cantDelete]="cantDelete" (clickOpt)="clickOpt($event)"></app-option-popup>
     <app-search-bar (search)="search($event)" [placeHolder]="'Search for tourist spot or service item'" *ngIf="!loading && allBooking.length > 5"></app-search-bar>
+    <div class="noResultsFor" *ngIf="searchText && bookings.length == 0">No results for "{{searchText}}"</div>
     <app-booking-card (displayOption)="displayOption($event)" (view)="viewBooking($event)" *ngFor="let booking of bookings" [booking]="booking">
     </app-booking-card>
   </div>

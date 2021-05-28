@@ -49,7 +49,7 @@
       <app-page-list-card *ngFor="let page of pages" [page]="page" [searchResult]="true" (viewPage)="viewPage($event)">
       </app-page-list-card>
       <div *ngIf="noResult" class="noResults">
-        <p class="noPagesFound">No pages found</p>
+        <p class="noPagesFound">No results for "{{pageName}}"</p>
         <p class="subText">The page you're looking for may be not operating this time, or you may have spelled the name
           above incorrectly.</p>
       </div>

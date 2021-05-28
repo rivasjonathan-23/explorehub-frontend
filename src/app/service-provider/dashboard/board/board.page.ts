@@ -39,7 +39,6 @@ export class BoardPage implements OnInit {
         if (currentTab != this.clickedTab) {
           this.goToSection(currentTab, this.tab.element.nativeElement);
           this.tabWidth = this.menu.element.nativeElement.scrollLeft
-          console.log(this.tabWidth);
           
         }
       }, 200);
@@ -114,10 +113,13 @@ export class BoardPage implements OnInit {
         this.boxPosition = width * 4
         break;
     }
+    console.log(this.menu.element.nativeElement.scrollLeft)
+    console.log(this.menu.element.nativeElement.scrollWidth)
   }
 
   scrollTo(right = false) {
     this.menu.element.nativeElement.scrollLeft = this.menu.element.nativeElement.scrollLeft + (right ? 340 : -340)
+    console.log(this.menu.element.nativeElement.scrollWidth)
     this.hideLeft = this.menu.element.nativeElement.scrollLeft == 0
     this.hideRight = this.menu.element.nativeElement.scrollLeft == 340
   }

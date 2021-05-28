@@ -156,14 +156,11 @@ export class BookPage implements OnInit, ViewWillEnter {
     if (data.userInput) {
       
       if (data.validationError) {
-        console.log("1")
         this.invalidInputs = this.invalidInputs.filter(input => data.data.inputId != input['_id'])
         this.invalidInputs.push({_id: data.data.inputId, errorMessage: data.errorMessage})
       } else {
-          console.log("2")
           this.invalidInputs = this.invalidInputs.filter(input => data.data.inputId != input['_id'])
       }
-      console.log(this.invalidInputs)
       let updated = false;
       this.inputValue = this.inputValue.map((val: InputValue) => {
         if (val.inputId == data.data.inputId) {
@@ -201,7 +198,6 @@ export class BookPage implements OnInit, ViewWillEnter {
     })
 
     if (startDateValue) {
-      console.log(startDateValue)
       startDateValue = new Date(startDateValue.month.text+". "+startDateValue.day.text+", "+startDateValue.year.text+", "+ startDateValue.hour.text+":"+startDateValue.minute.text+" "+startDateValue.ampm.text)
     }
     if (endDateValue) {
@@ -253,12 +249,9 @@ export class BookPage implements OnInit, ViewWillEnter {
     })
     this.requiredInputs = requiredInputs
     let inValidDates = this.validateStateAndEndDate()
-    console.log("hassError:",hasError) 
-    console.log("invalid inputs:",this.invalidInputs) 
     hasError = inValidDates ? inValidDates : hasError
     if (this.invalidInputs.length > 0) hasError = true
     this.requiredInputs = [...this.requiredInputs, ...this.invalidInputs]
-    console.log(this.requiredInputs)
     if (!hasError) {
       setTimeout(() => {
         this.mainService.canLeave = true;

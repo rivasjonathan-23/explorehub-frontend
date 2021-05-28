@@ -75,7 +75,6 @@ export class DateInputDisplayComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log('date has error:', this.hasError)
     this.customDaysDisplay = this.values.data.customDays.map(day => {
       let name = " " + this.daysName[this.allDays.indexOf(day)];
       if (this.values.data.customDays.indexOf(day) == this.values.data.customDays.length - 1) {

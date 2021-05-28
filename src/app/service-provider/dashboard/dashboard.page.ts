@@ -48,7 +48,6 @@ export class DashboardPage implements OnInit {
             const stats = response.bookings
             stats.forEach(stat => {
               this.bookings[stat._id] = stat.count
-              console.log(this.bookings[stat._id])
             });
             this.mainService.currentPage = this.page;
             this.getName();

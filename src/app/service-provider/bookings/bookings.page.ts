@@ -15,6 +15,7 @@ export class BookingsPage implements OnInit {
   public showOption: boolean = false;
   public bookingClicked: string;
   public allBooking: any[] = []
+  public searchText: string;
   public cantDelete: boolean;
   public bookings: bookingData[] = [];
   constructor(
@@ -205,6 +206,7 @@ export class BookingsPage implements OnInit {
 
   search(text) {
     if (text) {
+      this.searchText = text
       text = text.toLowerCase()
       this.bookings = this.allBooking
       this.bookings = this.bookings.filter(booking => {
@@ -223,6 +225,7 @@ export class BookingsPage implements OnInit {
       })
     } else {
       this.bookings = this.allBooking
+      this.searchText = null
     }
   }
 }

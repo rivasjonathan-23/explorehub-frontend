@@ -134,7 +134,6 @@ export class NotificationsPage implements OnInit {
   clickOpt(type) {
     setTimeout(() => {
       if (type == "delete") {
-        console.log(this.notifGroupOption)
         if (this.notifGroupOption) {
           this.deleteNotificationGroupCon(this.getTitle(this.notifGroupOption))
         } else {

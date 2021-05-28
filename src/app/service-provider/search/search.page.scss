@@ -34,13 +34,13 @@
         }
         .searchIcon {
             font-size: 25px;
-            border:none;
-            margin:0 5px;
-            padding:5px 9px;
+            border: none;
+            margin: 0 5px;
+            padding: 4.5px 8px;
+            padding-right: 11px;
             border-radius: 4px;
-            background-color: rgb(231, 236, 243);
-            // background-color: lightsteelblue;
-            color:rgb(62, 72, 83);
+            background-color: #e7ecf3;
+            color: #3e4853;
         }
     }
 }
@@ -66,6 +66,7 @@
     .noPagesFound {
         font-size: 23px;
         color:rgb(66, 82, 99);
+        font-weight:bold;
     }
 
     .subText {

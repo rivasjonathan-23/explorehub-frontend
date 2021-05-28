@@ -36,7 +36,6 @@ export class AppComponent implements OnDestroy, ViewWillEnter, OnInit {
           (data:any) => {
             this.mainService.user = data       
             this.notifHandler.init();
-            console.log(data)  
           }
         )
       }

@@ -19,10 +19,8 @@ export class TextInputDisplayComponent implements OnInit {
   }
 
   validate() {
-    console.log(this.values.data.type)
     if (this.values.data.defaultValue && this.values.data.type == "gmail") {
       const pt = new RegExp('^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+.[a-z]{2,4}$');
-      console.log(pt.test(this.values.data.defaultValue))
       if (!pt.test(this.values.data.defaultValue)) {
         this.hasError = true
         this.errorMessage = "Invalid Email"

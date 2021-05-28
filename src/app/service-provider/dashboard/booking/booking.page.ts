@@ -16,6 +16,7 @@ export class BookingPage implements OnInit {
   public loading: boolean = true;
   public allBooking: any[] = []
   public pageType: string = "";
+  public searchText: string;
   public pageId: string = "";
   constructor(public router: Router,
     public mainService: MainServicesService,
@@ -111,6 +112,7 @@ export class BookingPage implements OnInit {
 
   search(text) {
     if (text) {
+      this.searchText = text
       text = text.toLowerCase()
       this.bookings = this.allBooking
       this.bookings = this.bookings.filter(booking => {
@@ -129,6 +131,7 @@ export class BookingPage implements OnInit {
       })
     } else {
       this.bookings = this.allBooking
+      this.searchText = null
     }
   }
 

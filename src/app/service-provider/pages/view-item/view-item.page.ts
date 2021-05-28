@@ -91,7 +91,6 @@ export class ViewItemPage implements OnInit {
                 });
                 if (!selected) return booking
               })
-              console.log(this.values.data)
             })
           }
 
