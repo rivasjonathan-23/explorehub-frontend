@@ -236,7 +236,7 @@ export class EditAccountInfoPage implements OnInit {
         return user;
       });
     } else if (this.checkIfValuesChange() == false) {
-      this.presentAlert("You don't have changes of your personal information!");
+      this.presentAlert("You don't have any changes to your personal information!");
     }
 
 

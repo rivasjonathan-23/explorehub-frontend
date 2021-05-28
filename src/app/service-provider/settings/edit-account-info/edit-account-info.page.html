@@ -129,26 +129,26 @@
             <label class="inputLabel" for="birthday">Birthday</label>
             <ion-datetime id="birthday" displayFormat="MM/DD/YYYY" min="1950-01-01" formControlName="birthday" name="birthday" [(ngModel)]="userBirthday"></ion-datetime>
   
-            <label class="inputLabel" for="lname">Unit Number/House/Building/Street Number</label><br>
+            <label class="inputLabel" for="lname">Street</label><br>
             <input type="text" id="address" formControlName="address" name="address" [(ngModel)]="userAddress">
             <div *ngIf="address.invalid && (address.touched || address.dirty)">
               <p id="error" *ngIf="address.errors.required">This field is required</p>
             </div>
 
-            <label class="inputLabel" for="lname">Street Name/Barangay/District Name</label><br>
+            <label class="inputLabel" for="lname">Barangay / District</label><br>
             <input type="text" id="address2" formControlName="address2" name="address2" [(ngModel)]="userAddress2">
             <div *ngIf="address2.invalid && (address2.touched || address2.dirty)">
               <p id="error" *ngIf="address2.errors.required">This field is required</p>
             </div>
 
-            <label class="inputLabel" for="lname">City/Municipality</label><br>
+            <label class="inputLabel" for="lname">City / Municipality</label><br>
             <input type="text" id="city" formControlName="city" name="city" [(ngModel)]="userCity">
 
             <div *ngIf="city && city.invalid && (city.touched || city.dirty)">
               <p id="error" *ngIf="city.errors.required">This field is required</p>
             </div>
 
-            <label class="inputLabel" for="lname">State/Province</label><br>
+            <label class="inputLabel" for="lname">State / Province</label><br>
             <input type="text" id="stateOrProvince" formControlName="stateOrProvince" name="stateOrProvince" [(ngModel)]="userStateOrProvince">
             <div *ngIf="stateOrProvince.invalid && (stateOrProvince.touched || stateOrProvince.dirty)">
               <p id="error" *ngIf="stateOrProvince.errors.required">This field is required</p>
