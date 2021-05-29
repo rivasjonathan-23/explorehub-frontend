@@ -69,7 +69,7 @@
           <div class="fieldHolder"
             [class.hasErrors]="form.get('contactNumber').errors != null && form.get('contactNumber').touched">
             <div class="inputLabel">Contact number
-              <span>&nbsp;+63</span>
+              <!-- <span>&nbsp;+63</span> -->
             </div>
             <input class="inputField" type="number" autocomplete="off"
               (change)="completeNumber(form.get('contactNumber').value)" name="contactNumber" [value]="number"
