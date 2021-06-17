@@ -8,7 +8,7 @@
 </ion-header>
 
 <ion-content>
-  <div class="container mainLightBg2">
+  <div class="container mainLightBg2" *ngIf="!showPaypal">
     <div class="descText">Please review your booking before submitting.</div>
     <div *ngIf="!noServices" class="selectedServices mainLightBg2">
       <div class="sectionTitle">
@@ -41,13 +41,24 @@
       </div>
       <app-booking-info-display [inputValues]="booking.bookingInfo"></app-booking-info-display>
       <div class="bookSectionCont">
-        <div (click)="submitBooking()" class="bookSection ion-activatable ripple-parent boxShadowed2">
+        <div (click)="submitBooking()"  class="bookSection ion-activatable ripple-parent boxShadowed2">
           <p>Book Now</p>
           <ion-icon name="arrow-forward-outline"></ion-icon>
           <ion-ripple-effect></ion-ripple-effect>
         </div>
+
+     
       </div>
     </div>
   </div>
+
+  <div class="paypalButtons" *ngIf="showPaypal">
+    <div class="payText">Please pay to finalize your booking</div>
+    <div class="amount">Booking payment: $ 8.00</div>
+    <div class="payThru">Pay Through:</div>
+    <div #paypalRef></div>
+    <div class="appBtn cancelPayment" (click)="showPaypal = false">Cancel</div>
+  </div>
+
   <app-confirm-popup [popupData]="popupData" (clicked)="clicked($event)"></app-confirm-popup>
 </ion-content>

@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnDestroy, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
 import { AuthService } from 'src/app/services/auth-services/auth-service.service';
@@ -6,7 +6,7 @@ import { NotificationHandlerComponent } from '../../components/notification-hand
 import { bookingData } from '../../provider-services/interfaces/bookingData';
 import { MainServicesService } from '../../provider-services/main-services.service';
 import { popupData } from '../../view-booking-as-provider/view-booking-as-provider.page';
-
+import { render } from 'creditcardpayments/creditCardPayments'
 
 
 @Component({
@@ -15,6 +15,7 @@ import { popupData } from '../../view-booking-as-provider/view-booking-as-provid
   styleUrls: ['./booking-review.page.scss', '../select-service/select-service.page.scss'],
 })
 export class BookingReviewPage implements OnInit {
+  @ViewChild('paypalRef') paypalRef: ElementRef;
   public pageType: string = "";
   public pageId: string = "";
   public editing: boolean = false
@@ -23,6 +24,7 @@ export class BookingReviewPage implements OnInit {
   public noServices: boolean;
   public popupData: popupData;
   public bookingId: string = "";
+  public showPaypal: boolean = false;
   public fromDraft: boolean = false;
   public fromNotification: boolean = false;
   public booking: bookingData = {
@@ -118,12 +120,13 @@ export class BookingReviewPage implements OnInit {
 
 
   async submitBooking() {
+    this.showPaypal = true;
     if (!this.noServices && this.booking.selectedServices.length == 0) {
       // this.presentAlert()
     }
     let valid = true;
     let selectedservices = []
-    if (this.booking.isManual) {
+    // if (this.booking.isManual) {
       this.booking.status = "Booked"
       this.mainService.getBooking(this.bookingId, "booking_review").subscribe((data: any) => {
         this.booking.selectedServices = data.bookingData.selectedServices
@@ -135,19 +138,46 @@ export class BookingReviewPage implements OnInit {
             this.presentAlert(this.getValue(service.data, "name") + " has no more available item")
             valid = false
           }
-          let updateData = { _id: service._id, manuallyBooked: service.manuallyBooked + 1 }
+          let updateData = { _id: service._id, booked: service.booked + data.quantity }
 
           selectedservices.push(updateData)
         })
-        if (valid) this.sendRequest(selectedservices)
+        if (valid) this.pay(selectedservices)
       })
 
 
-    } else {
-      this.booking.status = "Pending"
-      this.sendRequest(this.booking.selectedServices)
-    }
+    // } else {
+    //   this.booking.status = "Pending"
+    //   this.pay(this.booking.selectedServices)
+    // }
 
+  }
+
+  pay(selectedServices) {
+    setTimeout(() => {
+      window.paypal.Buttons({
+        createOrder: (data, actions) => {
+          return actions.order.create({
+            purchase_units: [
+              {
+                amount: {
+                  value: '8.00',
+                  currency_code: 'USD'
+                }
+              }
+            ]
+          })
+        },
+        onApprove: (data, actions) => {
+          return actions.order.capture().then(details => {
+            this.sendRequest(selectedServices)
+          })
+        },
+        onError: error => {
+          console.log(error)
+        }
+      }).render(this.paypalRef.nativeElement)
+    }, 200);
   }
 
   sendRequest(selectedServices = null) {
@@ -204,7 +234,7 @@ export class BookingReviewPage implements OnInit {
     }, 200);
   }
 
-  presentInfo2(message,message2) {
+  presentInfo2(message, message2) {
     this.hasError = true
     setTimeout(() => {
       this.popupData = {
@@ -217,11 +247,11 @@ export class BookingReviewPage implements OnInit {
   }
 
   clicked(action) {
-    if(!this.hasError) {
+    if (!this.hasError) {
 
       this.popupData.show = false
       this.router.navigate(['/service-provider/view-booking', this.booking._id])
-    } 
+    }
     this.hasError = false
   }
 
