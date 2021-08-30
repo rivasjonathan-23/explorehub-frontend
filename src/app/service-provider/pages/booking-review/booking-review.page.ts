@@ -119,31 +119,33 @@ export class BookingReviewPage implements OnInit {
   }
 
 
-  async submitBooking() {
-    this.showPaypal = true;
+  async submitBooking() {  
     if (!this.noServices && this.booking.selectedServices.length == 0) {
       // this.presentAlert()
     }
     let valid = true;
     let selectedservices = []
     // if (this.booking.isManual) {
-      this.booking.status = "Booked"
-      this.mainService.getBooking(this.bookingId, "booking_review").subscribe((data: any) => {
-        this.booking.selectedServices = data.bookingData.selectedServices
-        this.booking.selectedServices.forEach(data => {
-          const service = data.service
-          service.booked = service.booked ? service.booked : 0;
-          service.manuallyBooked = service.manuallyBooked ? service.manuallyBooked : 0
-          if (service.booked + service.toBeBooked + service.manuallyBooked + data.quantity + service.pending > this.getValue(service.data, "quantity")) {
-            this.presentAlert(this.getValue(service.data, "name") + " has no more available item")
-            valid = false
-          }
-          let updateData = { _id: service._id, booked: service.booked + data.quantity }
+    this.booking.status = "Booked"
+    this.mainService.getBooking(this.bookingId, "booking_review").subscribe((data: any) => {
+      this.booking.selectedServices = data.bookingData.selectedServices
+      this.booking.selectedServices.forEach(data => {
+        const service = data.service
+        service.booked = service.booked ? service.booked : 0;
+        service.manuallyBooked = service.manuallyBooked ? service.manuallyBooked : 0
+        if (service.booked + service.toBeBooked + service.manuallyBooked + data.quantity + service.pending > this.getValue(service.data, "quantity")) {
+          this.presentAlert(this.getValue(service.data, "name") + " has no more available item")
+          valid = false
+        }
+        let updateData = { _id: service._id, booked: service.booked + data.quantity }
 
-          selectedservices.push(updateData)
-        })
-        if (valid) this.pay(selectedservices)
+        selectedservices.push(updateData)
       })
+      if (valid) {
+        this.showPaypal = true;
+        this.pay(selectedservices)
+      }
+    })
 
 
     // } else {
