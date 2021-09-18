@@ -21,19 +21,21 @@
 
         .closeIcon {
             position: absolute;
-            font-size: 30px;
+            font-size: 20px;
             top:-20px;
             color:rgb(84, 104, 124);
         }
     }
 
-    .title {
+    .title h1 {
         text-align: center;
-        margin-top: 0 !important;
+        font-size: 18px;
+        margin-bottom: 25px;
+        margin-top: 15px !important;
     }
 
     label {
-        font-size: 18px;
+        font-size: 14px;
         color: rgb(115, 126, 139);
         font-weight: bold;
     }
@@ -47,13 +49,20 @@
         border: 1px dashed rgb(190, 202, 212);
         flex-direction: column;
         text-align: center;
+        background-size: contain;
+        background-position: center;
+        background-repeat: no-repeat;
         display: flex;
         align-items: center;
         justify-content: center;
         
         p {
             color:rgb(11, 127, 243);
-            font-size: 19px;
+            font-size: 16px;
+        }
+
+        .cameraIcon {
+            font-size: 30px;
         }
     }
 

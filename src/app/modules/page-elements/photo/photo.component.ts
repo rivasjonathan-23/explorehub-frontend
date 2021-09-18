@@ -1,4 +1,3 @@
-import { nullSafeIsEquivalent } from '@angular/compiler/src/output/output_ast';
 import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { Plugins, CameraResultType, CameraSource } from '@capacitor/core';
 import { Platform, ActionSheetController, AlertController, IonSlides, ToastController } from '@ionic/angular';

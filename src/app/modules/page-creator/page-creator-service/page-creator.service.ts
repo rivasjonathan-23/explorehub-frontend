@@ -132,15 +132,34 @@ export class PageCreatorService {
     });
   }
 
+  addPageDocuments(type, blobData): Observable<any> {
+    const formData = new FormData();
+    formData.append('image', blobData);
+
+    return this.http.post(`${this.apiUrl}/addPageDocuments/${this.currentPageId}/${type}`, formData, {
+      headers: { hideLoadingIndicator: "", containsFiles: "" },
+    });
+  }
+
   uploadImageFile(grandParentId: string, parentId: string, childId: string, parent: string, file: File) {
     const ext = file.name.split('.').pop();
     const formData = new FormData();
-    formData.append('image', file, `myimage.${ext}`);
+    formData.append('image', file, `myimage.${ext}`); 
 
     const componentGroup = parent == "page" ? "addComponentImage" : "addItemChildComponentImage";
     const params = parent == "page" ? `${parentId}/${childId}/${this.pageType}` : `${this.currentPageId}/${grandParentId}/${parentId}/${childId}/${this.pageType}`;
 
     return this.http.post(`${this.apiUrl}/${componentGroup}/${params}`, formData, {
+      headers: { hideLoadingIndicator: "", containsFiles: "" },
+    });
+  }
+
+  addPageDocumentsFile(type, file: File) {
+    const ext = file.name.split('.').pop();
+    const formData = new FormData();
+    formData.append('image', file, `myimage.${ext}`); 
+
+    return this.http.post(`${this.apiUrl}/addPageDocuments/${this.currentPageId}/${type}`, formData, {
       headers: { hideLoadingIndicator: "", containsFiles: "" },
     });
   }
