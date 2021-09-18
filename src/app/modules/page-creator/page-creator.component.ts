@@ -272,7 +272,7 @@ export class PageCreatorComponent implements OnInit {
 
       this.submitting = true;
       const result = await this.validatePage()
-
+      this.pageValidation = false
       if (result) {
         let notificationData = null;
         if (this.page.hostTouristSpot) {
@@ -397,7 +397,6 @@ export class PageCreatorComponent implements OnInit {
               self.showUnfilled = false;
               result = true;
             }
-
             resolve(result);
           },
           (error) => {

@@ -16,6 +16,7 @@ export type PageDocuments = {
 })
 export class PageLegalityValidationComponent implements OnInit {
   @Output() cancel: EventEmitter<any> = new EventEmitter<any>();
+  @Output() submit: EventEmitter<any> = new EventEmitter<any>();
   public documentType: string;
  @Input() pageDocuments:PageDocuments = {busisnessPermit: null, ownerValidId: null}
   @ViewChild('fileInput', { static: false }) fileInput: ElementRef;

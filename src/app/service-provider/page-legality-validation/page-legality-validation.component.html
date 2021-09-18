@@ -9,7 +9,7 @@
     <input type="file" #fileInput (change)="uploadFile($event)" hidden="true" accept="image/*" />
     <label>Business Permit:</label>
     <div (click)="selectImageSource('businessPermit')" [ngStyle]="{'background-image': 'url('+pageDocuments.businessPermit+ ')'}" class="businessPermit ion-activatable ripple-parent">
-      <ion-icon  *ngIf="!pageDocuments || (pageDocuments && !pageDocuments.ownerValidId)" class="cameraIcon primColor" name="camera-outline"></ion-icon>
+      <ion-icon  *ngIf="!pageDocuments || (pageDocuments && !pageDocuments.businessPermit)" class="cameraIcon primColor" name="camera-outline"></ion-icon>
       <p *ngIf="!pageDocuments || (pageDocuments && !pageDocuments.businessPermit)">
         Upload Picture of your business permit
       </p>
@@ -27,8 +27,9 @@
     </div>
 
     <div class="buttonHolder">
-      <button class="appBtn dangerBtn" (click)="cancel.emit()">Cancel</button>&nbsp;&nbsp;&nbsp;
-      <button class="appBtn primary">Submit</button>
+      <button class="appBtn dangerBtn  ion-activatable ripple-parent" (click)="cancel.emit()">
+        <ion-ripple-effect></ion-ripple-effect>Cancel</button>&nbsp;&nbsp;&nbsp;
+      <button class="appBtn primary  ion-activatable ripple-parent" (click)="submit.emit()"><ion-ripple-effect></ion-ripple-effect>Submit</button>
     </div>
   </div>
 </div>

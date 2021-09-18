@@ -1,5 +1,5 @@
 <ion-content [scrollEvents]="true" (ionScroll)="onScroll($event, info, services, tab)">
-    <app-page-legality-validation *ngIf="pageValidation" [pageDocuments]="(page && page.pageDocuments)? page.pageDocuments: {}" (cancel)="pageValidation = false"></app-page-legality-validation>
+    <app-page-legality-validation *ngIf="pageValidation" [pageDocuments]="(page && page.pageDocuments)? page.pageDocuments: {}" (submit)="submit()" (cancel)="pageValidation = false"></app-page-legality-validation>
 
     <div class="creator mainLightBg2">
         <div #info>
