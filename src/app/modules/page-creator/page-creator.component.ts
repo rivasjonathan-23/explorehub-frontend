@@ -41,6 +41,7 @@ export class PageCreatorComponent implements OnInit {
   public showUnfilled: boolean = false;
   public unfilledFields = { components: [], services: [], bookingInfo: [] }
   boxPosition: number;
+  pageValidation: boolean = false;
   components = {
     'text': TextComponent,
     'bullet-form-text': BulletFormTextComponent,
@@ -264,6 +265,7 @@ export class PageCreatorComponent implements OnInit {
     }, 500);
 
   }
+
 
   async submit() {
     if (this.servicesCount > 0) {

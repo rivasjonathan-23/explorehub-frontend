@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-page-legality-validation',
@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./page-legality-validation.component.scss'],
 })
 export class PageLegalityValidationComponent implements OnInit {
-
+  @Output() cancel: EventEmitter<any> = new EventEmitter<any>();
   constructor() { }
 
   ngOnInit() {}

@@ -1,5 +1,5 @@
 <ion-content [scrollEvents]="true" (ionScroll)="onScroll($event, info, services, tab)">
-    <app-page-legality-validation></app-page-legality-validation>
+    <app-page-legality-validation *ngIf="pageValidation" (cancel)="pageValidation = false"></app-page-legality-validation>
 
     <div class="creator mainLightBg2">
         <div #info>
@@ -57,7 +57,7 @@
         </div>
         
         <div class="btnHolder bookSectionCont" *ngIf="page && page.status == 'Unfinished'; else submitted">
-            <div (click)="submit()" class="submitPage bookSection ion-activatable ripple-parent">
+            <div (click)="pageValidation = true" class="submitPage bookSection ion-activatable ripple-parent">
                 Submit Page
                 <ion-ripple-effect></ion-ripple-effect>
             </div>
