@@ -133,6 +133,13 @@
     }
 }
 
+.topCol div {
+    margin-right: 10px;
+
+}
+
+.topCol div:last-child {margin-right: 0 !important;}
+
 
 .backIcon {
     background-color: #ffff;
@@ -212,10 +219,67 @@
 }
 
 
-.tabsHolder {
-   
-}
 
+.paypalButtons {
+    display: flex;
+    height:100%;
+    align-items: stretch;
+    justify-content: flex-start;
+    flex-direction: column;
+    padding:15px;
+
+    
+    .payText {
+        padding: 10px 0;
+        text-align: left;
+        font-size: 21px;
+        color:rgb(57, 80, 104);
+    }
+
+    .amount {
+        padding: 15px;
+        text-align: center;
+        margin-bottom: 10px;
+        font-size: 24px;
+        border-radius: 5px;
+        background-color: rgb(236, 241, 245);
+        color: rgb(73, 97, 121);
+    }
+
+    .payThru {
+        font-size: 12px;
+        color:rgb(70, 91, 114);
+        padding: 5px 0;
+    }
+}
 .pageBody {
     height:100%;overflow: auto; 
 }
+
+.dashboardContent {
+    position: relative;
+}
+
+.pendingDashboardOverlay {
+    position: absolute;
+    right:0;
+    left: 0;
+    top:0;
+    border-top: 1px solid rgb(218, 218, 218);
+    bottom:0;
+    background-color: rgb(255, 255, 255);
+    z-index: 99999999;
+}
+
+.cancelPayment {
+    text-align: center;
+    border: 1px solid rgb(170, 78, 78) !important;
+    background: none !important;
+    color: rgb(182, 3, 3) !important;
+
+}
+
+.pendingDashboardOverlay {padding: 25px;}
+.pendingDashboardOverlay h2 {color: rgb(64, 70, 77);}
+.pendingDashboardOverlay p {color: rgb(129, 138, 146);}
+.disabledBtn { opacity: .4; cursor: not-allowed;}

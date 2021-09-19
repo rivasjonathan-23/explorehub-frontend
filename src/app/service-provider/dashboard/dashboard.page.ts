@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
 import { ComponentsModulePageModule } from 'src/app/components-module/components-module.module';
@@ -16,7 +16,8 @@ export class DashboardPage implements OnInit {
   public clickedTab: string = 'Booked'
   public boxPosition: number;
   public pageType: string;
-
+  @ViewChild('paypalRef') paypalRef: ElementRef;
+  public showPaypal: boolean = false;
   public name: string;
   public notificationsCount: number;
   public bookings: any = { Booked: 0, Processing: 0, Pending: 0 }
@@ -147,6 +148,34 @@ export class DashboardPage implements OnInit {
   getName() {
     const data = this.page.components[1];
     this.name = data.data.text ? data.data.text : "Untitled"
+  }
+
+  pay(selectedServices) {
+    this.showPaypal = true;
+    setTimeout(() => {
+      window.paypal.Buttons({
+        createOrder: (data, actions) => {
+          return actions.order.create({
+            purchase_units: [
+              {
+                amount: {
+                  value: '8.00',
+                  currency_code: 'USD'
+                }
+              }
+            ]
+          })
+        },
+        onApprove: (data, actions) => {
+          return actions.order.capture().then(details => {
+            // this.sendRequest(selectedServices)
+          })
+        },
+        onError: error => {
+          console.log(error)
+        }
+      }).render(this.paypalRef.nativeElement)
+    }, 200);
   }
 }
 

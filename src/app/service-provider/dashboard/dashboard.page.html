@@ -11,17 +11,17 @@
           <ion-icon name="notifications-outline"></ion-icon>
           <ion-ripple-effect></ion-ripple-effect>
           <div *ngIf="notificationsCount && notificationsCount != 0" class="notifCount">{{notificationsCount}}</div>
-        </div>&nbsp;&nbsp;
+        </div>
         <div
           (click)="goTo(['/service-provider/page-conversations'], {queryParams: {pageId: page._id, creator: page.creator}})"
           class="ion-activatable ripple-parent smIcon">
           <ion-icon name="chatbubble-ellipses-outline"></ion-icon>
           <ion-ripple-effect></ion-ripple-effect>
-        </div>&nbsp;&nbsp;
-        <div (click)="viewStats()" class="ion-activatable ripple-parent smIcon">
+        </div>
+        <div *ngIf="page.status == 'Online'" (click)="viewStats()" class="ion-activatable ripple-parent smIcon">
           <ion-icon name="stats-chart-outline"></ion-icon>
           <ion-ripple-effect></ion-ripple-effect>
-        </div> &nbsp;&nbsp;
+        </div> 
         <div class="ion-activatable ripple-parent smIcon"
           (click)="goTo(['/service-provider/page-settings', page._id], {queryParams: {test: true}})">
           <ion-icon name="settings-outline"></ion-icon>
@@ -45,7 +45,7 @@
           </div>
           
         </div>
-        <div class="dashboardStats">
+        <div class="dashboardStats" *ngIf="page.status == 'Online'">
             <div>Bookings: <b>{{bookings.Booked}}</b></div>
             <div>Processing: <b>{{bookings.Processing}}</b></div>
             <div>Pending: <b>{{bookings.Pending}}</b></div>
@@ -70,9 +70,33 @@
             <div [routerLink]="['statistics']" (click)="goToSection('Statistics', tab)" class="csTab"></div>
           </div>
         </div> -->
-    <div class="">
+    <div class="dashboardContent">
+      <div *ngIf="page.status == 'Pending' || page.status == 'Processing'" class="pendingDashboardOverlay">
+        <div *ngIf="!showPaypal">
+          <div *ngIf="page.status == 'Processing'" class="">
+            <h2>Waiting for the Administrator to approve your page.</h2>
+            <p>Once your page is approved, the <b>Pay</b> button below will be undisabled.</p>
+            <button class="appBtn primary disabledBtn">Pay</button>
+          </div>
+          <div *ngIf="page.status == 'Pending'" class="">
+            <h2>Your page is approved</h2>
+            <p>To make it visible online you need to pay an specific amount.</p><p>Click the <b>Pay</b> button to pay.</p>
+            <button (click)="pay()" class="appBtn primary ion-activatable ripple-parent">
+              <ion-ripple-effect></ion-ripple-effect>
+              Pay</button>
+          </div>
+        </div>
+        <div class="paypalButtons" *ngIf="showPaypal">
+          <div class="payText">Please pay to make your page visible online.</div>
+          <div class="amount">Amount: $ 8.00</div>
+          <div class="payThru">Pay Through:</div>
+          <div #paypalRef></div>
+          <div class="appBtn cancelPayment" (click)="showPaypal = false">Cancel</div>
+        </div>
+      </div>
       <router-outlet></router-outlet>
     </div>
 
   </div>
+ 
 </ion-content>
