@@ -150,7 +150,7 @@ export class DashboardPage implements OnInit {
     this.name = data.data.text ? data.data.text : "Untitled"
   }
 
-  pay(selectedServices) {
+  pay() {
     this.showPaypal = true;
     setTimeout(() => {
       window.paypal.Buttons({

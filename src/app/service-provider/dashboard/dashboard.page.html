@@ -73,12 +73,12 @@
     <div class="dashboardContent">
       <div *ngIf="page.status == 'Pending' || page.status == 'Processing'" class="pendingDashboardOverlay">
         <div *ngIf="!showPaypal">
-          <div *ngIf="page.status == 'Processing'" class="">
+          <div *ngIf="page.status == 'Pending'" class="">
             <h2>Waiting for the Administrator to approve your page.</h2>
             <p>Once your page is approved, the <b>Pay</b> button below will be undisabled.</p>
             <button class="appBtn primary disabledBtn">Pay</button>
           </div>
-          <div *ngIf="page.status == 'Pending'" class="">
+          <div *ngIf="page.status == 'Processing'" class="">
             <h2>Your page is approved</h2>
             <p>To make it visible online you need to pay an specific amount.</p><p>Click the <b>Pay</b> button to pay.</p>
             <button (click)="pay()" class="appBtn primary ion-activatable ripple-parent">

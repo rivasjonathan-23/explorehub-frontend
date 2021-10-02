@@ -5,7 +5,7 @@ import { PageCreatorService } from 'src/app/modules/page-creator/page-creator-se
 const { Camera } = Plugins;
 
 export type PageDocuments = {
-  busisnessPermit: string
+  businessPermit: string
   ownerValidId: string
 }
 
@@ -18,7 +18,7 @@ export class PageLegalityValidationComponent implements OnInit {
   @Output() cancel: EventEmitter<any> = new EventEmitter<any>();
   @Output() submit: EventEmitter<any> = new EventEmitter<any>();
   public documentType: string;
- @Input() pageDocuments:PageDocuments = {busisnessPermit: null, ownerValidId: null}
+ @Input() pageDocuments:PageDocuments = {businessPermit: null, ownerValidId: null}
   @ViewChild('fileInput', { static: false }) fileInput: ElementRef;
   constructor(private plt: Platform,private actionSheetCtrl: ActionSheetController,public creator: PageCreatorService, public alert: AlertController) { }
 

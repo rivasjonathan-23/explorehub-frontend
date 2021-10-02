@@ -1,3 +1,5 @@
+import { PageDocuments } from "src/app/service-provider/page-legality-validation/page-legality-validation.component";
+
 export interface Page {
     _id:string;
     status: string;
@@ -10,4 +12,5 @@ export interface Page {
     bookingInfo:any[];
     createdAt: any,
     initialStatus: string;
+    pageDocuments?: PageDocuments
 }
