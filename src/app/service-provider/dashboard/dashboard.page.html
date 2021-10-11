@@ -74,8 +74,8 @@
       <div *ngIf="page.status == 'Pending' || page.status == 'Processing'" class="pendingDashboardOverlay">
         <div *ngIf="!showPaypal">
           <div *ngIf="page.status == 'Pending'" class="">
-            <h2>Waiting for the Administrator to approve your page.</h2>
-            <p>Once your page is approved, the <b>Pay</b> button below will be undisabled.</p>
+            <h2>Waiting for the Administrator to review your page.</h2>
+            <p>Once your page is approved, the <b>Pay</b> button below will be enabled.</p>
             <button class="appBtn primary disabledBtn">Pay</button>
           </div>
           <div *ngIf="page.status == 'Processing'" class="">
