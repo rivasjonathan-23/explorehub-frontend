@@ -2,8 +2,9 @@
 
 .pageCard {
     background-color: #ffff;
-    margin:15px 7px;
+    margin:20px 7px;
     border-radius: 4px;
+    overflow: hidden;
     box-shadow: 0 1px 2px rgba(204, 209, 214, 0.7);
 }
 
@@ -119,8 +120,9 @@ div {
 .spotInfo {
     margin-top: 5px;
     // margin:5px; 
-    background-color: rgb(244, 246, 248);
-    border-top: 1px solid rgb(208, 218, 230);
+    // background-color: rgba(244, 246, 248, .5);
+    border-top: 1px solid rgb(228, 234, 241);
+    border-bottom:1px solid rgb(228, 234, 241);
 
     .infos {
         padding:8px 0;
@@ -203,7 +205,7 @@ div {
         padding-left: 8px;
 
         .creatorName {
-            font-size: 16px;
+            font-size: 15px;
             color:rgb(72, 84, 97);
 
 
@@ -231,11 +233,12 @@ div {
     flex-shrink: 0;
     width: 100px;
     // flex-direction: column;
+    
     margin:3px;
     height: 50px;
     overflow:hidden;
     border-radius: 4px;
-    background-color: rgb(255, 255, 255);
+    background-color: rgb(241, 247, 252);
     align-items: flex-start;
     .subServicePic {
         width: 50px;

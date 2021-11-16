@@ -160,7 +160,7 @@ export class DashboardPage implements OnInit {
               {
                 amount: {
                   value: '8.00',
-                  currency_code: 'USD'
+                  currency_code: 'PHP'
                 }
               }
             ]
@@ -169,6 +169,13 @@ export class DashboardPage implements OnInit {
         onApprove: (data, actions) => {
           return actions.order.capture().then(details => {
             // this.sendRequest(selectedServices)
+            this.mainService.changePageStatus({ pageId: this.page._id, status: "Online" ,date: null, hidePage: false }).subscribe(
+              (response: any) => {
+                this.showPaypal = false
+                this.page.status = "Online"
+                this.mainService.notify({ user: this.mainService.user, receiver: ["admin"], pageId: this.page._id, status: "Online", type: "page-status-edit", message: `${this.mainService.user.fullName} Posted his page` })
+              }
+            )
           })
         },
         onError: error => {

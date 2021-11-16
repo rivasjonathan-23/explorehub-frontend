@@ -164,7 +164,7 @@ export class BookingReviewPage implements OnInit {
               {
                 amount: {
                   value: '8.00',
-                  currency_code: 'USD'
+                  currency_code: 'PHP'
                 }
               }
             ]
