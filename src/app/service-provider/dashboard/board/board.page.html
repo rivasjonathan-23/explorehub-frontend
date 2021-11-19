@@ -20,14 +20,9 @@
     </div>
     <div #tabmenu class="csTabs">
       <div class="boxShadow"></div>
-      <div #closed class="csTab">
+      <div #pending class="csTab">
         <span>
-          Closed
-        </span>
-      </div>
-      <div #booked class="csTab">
-        <span>
-          Booked
+          Pending
         </span>
       </div>
       <div #processing class="csTab">
@@ -35,9 +30,14 @@
           Processing
         </span>
       </div>
-      <div #pending class="csTab">
+      <div #booked class="csTab">
         <span>
-          Pending
+          Booked
+        </span>
+      </div>
+      <div #closed class="csTab">
+        <span>
+          Closed
         </span>
       </div>
       <div #cancelled class="csTab">
@@ -53,14 +53,16 @@
 
       <div class="activeIndicator">
 
-        <div (click)="goToSection('Closed', tab, ['booking', 'Closed'])" class="csTab"></div>
-        <div (click)="goToSection('Booked', tab, ['booking' , 'Booked'])" class="csTab">
+        <div (click)="goToSection('Pending', tab, ['booking', 'Pending'])" class="csTab">
           <div class="box" #tab [ngStyle]="{'left.px': boxPosition}">
             <div class="shadow">{{clickedTab}}</div>
           </div>
         </div>
         <div (click)="goToSection('Processing', tab, ['booking', 'Processing'])" class="csTab"></div>
-        <div (click)="goToSection('Pending', tab, ['booking', 'Pending'])" class="csTab"></div>
+        <div (click)="goToSection('Booked', tab, ['booking' , 'Booked'])" class="csTab">
+
+        </div>
+        <div (click)="goToSection('Closed', tab, ['booking', 'Closed'])" class="csTab"></div>
         <div (click)="goToSection('Cancelled', tab, ['booking', 'Cancelled'])" class="csTab"></div>
         <div (click)="goToSection('Statistics', tab, ['statistics'])" class="csTab"></div>
       </div>

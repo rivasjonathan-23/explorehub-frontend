@@ -18,7 +18,7 @@ export class BoardPage implements OnInit {
   @ViewChild('statistics', { read: ViewContainerRef }) statistics: ViewContainerRef;
   @ViewChild('processing', { read: ViewContainerRef }) processing: ViewContainerRef;
 
-  public clickedTab: string = 'Booked'
+  public clickedTab: string = 'Pending'
   public boxPosition: number;
   public tabWidth: number;
   public hideLeft: boolean = false;
@@ -39,7 +39,7 @@ export class BoardPage implements OnInit {
         if (currentTab != this.clickedTab) {
           this.goToSection(currentTab, this.tab.element.nativeElement);
           this.tabWidth = this.menu.element.nativeElement.scrollLeft
-          
+
         }
       }, 200);
     })
@@ -94,23 +94,23 @@ export class BoardPage implements OnInit {
       this.router.navigate(route)
     }
     switch (tab) {
-      case 'Closed':
-        this.boxPosition = -width;
-        break;
-      case 'Booked':
+      case 'Pending':
         this.boxPosition = 0;
         break;
       case 'Processing':
         this.boxPosition = width;
         break;
-      case 'Pending':
+      case 'Booked':
         this.boxPosition = width * 2;
         break;
-      case 'Cancelled':
+      case 'Closed':
         this.boxPosition = width * 3;
         break;
+      case 'Cancelled':
+        this.boxPosition = width * 4;
+        break;
       default:
-        this.boxPosition = width * 4
+        this.boxPosition = width * 5
         break;
     }
   }

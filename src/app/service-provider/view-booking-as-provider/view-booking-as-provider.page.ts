@@ -218,7 +218,7 @@ export class ViewBookingAsProviderPage implements OnInit, AfterViewInit {
 
         this.mainService.changeBookingStatus("Rejected", notificationData).subscribe(
           (response: any) => {
-            this.mainService.notify({ user: this.mainService.user, bookingId: this.booking._id, type: "Reject_booking-fromServiceProvider", receiver: [notificationData.receiver, "admin"], message: notificationData.message })
+            this.mainService.notify({ user: this.mainService.user, bookingId: this.booking._id, type: "Rejected_booking-fromServiceProvider", receiver: [notificationData.receiver, "admin"], message: notificationData.message })
             this.goBack()
           }
         )
@@ -257,7 +257,7 @@ export class ViewBookingAsProviderPage implements OnInit, AfterViewInit {
         }
         this.mainService.changeBookingStatus("Processing", notificationData).subscribe(
           (response: any) => {
-            this.mainService.notify({ user: this.mainService.user, bookingId: this.booking._id, type: "Approve_booking-fromServiceProvider", receiver: [notificationData.receiver, "admin"], message: notificationData.message })
+            this.mainService.notify({ user: this.mainService.user, bookingId: this.booking._id, type: "Processing_booking-fromServiceProvider", receiver: [notificationData.receiver, "admin"], message: notificationData.message })
             this.goBack()
           }
         )
@@ -333,8 +333,8 @@ export class ViewBookingAsProviderPage implements OnInit, AfterViewInit {
     setTimeout(() => {
       this.popupData = {
         type: 'approve',
-        title: "Are you sure you want to approve this booking?",
-        otherInfo: "This booking will be moved to the <b>Booked</b> bookings list.",
+        title: "Are you sure you want to accept this booking?",
+        otherInfo: "This booking will be moved to the <b>Processing</b> bookings list.",
         show: true
       }
     }, 200);
