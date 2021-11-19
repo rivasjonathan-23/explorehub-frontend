@@ -1,5 +1,5 @@
 <ion-content>
-  <div [class.noHeader]="booking.isManual" class="container mainLightBg2 pageContent">
+  <div [class.noHeader]="booking.isManual" class="container mainLightBg2 pageContent" *ngIf="!showPaypal">
     <div class="headerHolder">
       <div class="header topHead">
         <div (click)="goBack()" class="backBtn">
@@ -56,9 +56,17 @@
       <div [ngClass]="getStatus(booking.status)" class="bookingStatus">
         Status:
         <b>
-          {{booking.status}}
+          {{booking.status == 'Processing'? "Accepted": booking.status}}
         </b>
       </div>
+    </div>
+    <div class="payButton" *ngIf="booking.status == 'Pending'">
+      <p> Once this booking is <b>Accepted</b>, you need to pay to make it officially <b>Booked</b></p>
+      <button class="appBtn disabledBtn">Pay</button>&nbsp;<b style="color: gray">&#8369; 200.00</b>
+    </div>
+    <div class="payButton" *ngIf="booking.status == 'Processing'">
+      <p> <b>Please pay to finalize this booking.</b><br> If you will not be able to pay within 24 hours this booking request will be rejected.</p>
+      <button class="appBtn" (click)="pay()">Pay Now</button> &#8369; <b>200.00</b>
     </div>
     <ion-progress-bar *ngIf="loading" type="indeterminate"></ion-progress-bar>
     <router-outlet></router-outlet>
@@ -66,4 +74,12 @@
  
   <app-confirm-popup [popupData]="popupData"  (clicked)="clicked($event)">
   </app-confirm-popup>
+
+  <div class="paypalButtons" *ngIf="showPaypal">
+    <div class="payText">Please pay to finalize your booking</div>
+    <div class="amount">Booking payment: &#8369; 200.00</div>
+    <div class="payThru">Pay Through:</div>
+    <div #paypalRef></div>
+    <div class="appBtn cancelPayment" (click)="showPaypal = false">Cancel</div>
+  </div>
 </ion-content>

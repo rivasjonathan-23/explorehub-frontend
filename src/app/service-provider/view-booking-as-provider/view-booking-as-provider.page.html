@@ -16,6 +16,7 @@
           <ion-icon class="back" name="chevron-back-outline"></ion-icon>Back
         </div>
         <div *ngIf="bookingStatus == 'Booked'" class="optionsTop">
+          
           <div class="cancel edit ion-activatable ripple-parent" (click)="done()">Close
             <ion-ripple-effect></ion-ripple-effect>
             <ion-icon class="editIcon" name="checkmark-outline"></ion-icon>
@@ -24,8 +25,17 @@
             <ion-ripple-effect></ion-ripple-effect>
             <ion-icon class="cancelIcon" name="close-outline"></ion-icon>
           </div>
-
-
+        </div>
+        <div *ngIf="bookingStatus == 'Pending' || bookingStatus == 'Processing'" class="optionsTop">
+          
+          <div class="cancel ion-activatable ripple-parent" (click)="reject()">Reject
+            <ion-ripple-effect></ion-ripple-effect>
+            <ion-icon class="cancelIcon" name="close-outline"></ion-icon>
+          </div>
+          <div *ngIf=" bookingStatus != 'Processing'" class="cancel edit ion-activatable ripple-parent" (click)="approve()">Approve
+            <ion-ripple-effect></ion-ripple-effect>
+            <ion-icon class="editIcon" name="checkmark-outline"></ion-icon>
+          </div>
         </div>
         <div *ngIf="bookingStatus == 'Closed'" class="optionsTop">
 

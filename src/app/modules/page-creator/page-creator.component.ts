@@ -186,7 +186,7 @@ export class PageCreatorComponent implements OnInit {
       this.popupData = {
         title: "Your Page was successfully submitted",
         type: 'info',
-        otherInfo: `The <b>Explorehub admin</b> will communicate with you for the <b>payment</b>. Please see <b>Messages</b> page. Thank you.`,
+        otherInfo: `The <b>Explorehub admin</b> will review your page, once your page is approve you need to pay <b>200 Pesos</b> to make it visible online.`,
         show: true
       }
     }, 200);

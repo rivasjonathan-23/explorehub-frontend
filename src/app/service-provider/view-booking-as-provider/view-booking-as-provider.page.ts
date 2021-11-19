@@ -202,6 +202,27 @@ export class ViewBookingAsProviderPage implements OnInit, AfterViewInit {
             this.goBack()
           }
         )
+      } else if (this.popupData.type == "reject") {
+        const notificationData: any = {
+          receiver: curBooking.tourist._id,
+          page: curBooking.pageId._id,
+          booking: curBooking._id,
+          mainReceiver: curBooking.tourist._id,
+          isManual: curBooking.isManual,
+          updateBookingCount: true,
+          increment: false,
+          type: "booking-tourist",
+          messageForAdmin: `<b>${curBooking.tourist.fullName}</b>'s booking was <b>rejected</b>`,
+          message: `Your booking to <b>${this.getName(this.booking.pageId.components)}</b> was rejected.`
+        }
+
+        this.mainService.changeBookingStatus("Rejected", notificationData).subscribe(
+          (response: any) => {
+            this.mainService.notify({ user: this.mainService.user, bookingId: this.booking._id, type: "Reject_booking-fromServiceProvider", receiver: [notificationData.receiver, "admin"], message: notificationData.message })
+            this.goBack()
+          }
+        )
+      
       } else if (this.popupData.type == "done") {
         const notificationData: any = {
           receiver: curBooking.tourist._id,
@@ -221,7 +242,25 @@ export class ViewBookingAsProviderPage implements OnInit, AfterViewInit {
             this.goBack()
           }
         )
-
+      } else if (this.popupData.type == "approve") {
+        const notificationData: any = {
+          receiver: curBooking.tourist._id,
+          page: curBooking.pageId._id,
+          booking: curBooking._id,
+          isManual: curBooking.isManual,
+          mainReceiver: curBooking.tourist._id,
+          updateBookingCount: true,
+          increment: true,
+          type: "booking-tourist",
+          messageForAdmin: `<b>${curBooking.tourist.fullName}</b> booking has been accepted`,
+          message: `Your booking to <b>${this.getName(this.booking.pageId.components)}</b> is accepted`,
+        }
+        this.mainService.changeBookingStatus("Processing", notificationData).subscribe(
+          (response: any) => {
+            this.mainService.notify({ user: this.mainService.user, bookingId: this.booking._id, type: "Approve_booking-fromServiceProvider", receiver: [notificationData.receiver, "admin"], message: notificationData.message })
+            this.goBack()
+          }
+        )
       } else if (this.popupData.type == "return_to_booked") {
         const notificationData: any = {
           receiver: curBooking.tourist._id,
@@ -275,6 +314,27 @@ export class ViewBookingAsProviderPage implements OnInit, AfterViewInit {
         type: 'cancel',
         title: "Are you sure you want to cancel this booking?",
         otherInfo: "This booking will be moved to the <b>Cancelled</b> bookings list.",
+        show: true
+      }
+    }, 200);
+  }
+
+  reject() {
+    setTimeout(() => {
+      this.popupData = {
+        type: 'reject',
+        title: "Are you sure you want to reject this booking?",
+        otherInfo: "This booking will be moved to the <b>Rejected</b> bookings list.",
+        show: true
+      }
+    }, 200);
+  }
+  approve() {
+    setTimeout(() => {
+      this.popupData = {
+        type: 'approve',
+        title: "Are you sure you want to approve this booking?",
+        otherInfo: "This booking will be moved to the <b>Booked</b> bookings list.",
         show: true
       }
     }, 200);

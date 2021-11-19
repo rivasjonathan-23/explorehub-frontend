@@ -126,7 +126,7 @@ export class BookingReviewPage implements OnInit {
     let valid = true;
     let selectedservices = []
     // if (this.booking.isManual) {
-    this.booking.status = "Booked"
+    this.booking.status = "Pending"
     this.mainService.getBooking(this.bookingId, "booking_review").subscribe((data: any) => {
       this.booking.selectedServices = data.bookingData.selectedServices
       this.booking.selectedServices.forEach(data => {
@@ -142,8 +142,8 @@ export class BookingReviewPage implements OnInit {
         selectedservices.push(updateData)
       })
       if (valid) {
-        this.showPaypal = true;
-        this.pay(selectedservices)
+        // this.showPaypal = true;
+        this.sendRequest(selectedservices)
       }
     })
 
@@ -230,7 +230,7 @@ export class BookingReviewPage implements OnInit {
       this.popupData = {
         title: "Your booking request was successfully submitted",
         type: 'info',
-        otherInfo: `The <b>Explorehub admin</b> will communicate with you for the <b>payment</b>. Being not able to respond to the admin's message within <b>10 minutes</b> will cause to the rejection of this booking request. Please see the <b>Conversation</b> page for your booking. Thank you.`,
+        otherInfo: `The <b>owner/service operator</b> will review your booking request. It may take some time, please wait untill the status of your booking becomes <b>Accepted</b>. Once your booking is accepted, you need to pay <b>&#8369; 200.00</b> to make it officially booked.`,
         show: true
       }
     }, 200);

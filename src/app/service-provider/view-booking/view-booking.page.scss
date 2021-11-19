@@ -3,6 +3,11 @@
     height: 100%;
     overflow: scroll;
     padding-top: 100px !important;
+
+    .payButton {
+        padding: 15px;
+    
+    }
 }
 .noHeader {
     padding-top: 50px !important;
@@ -191,4 +196,46 @@
         text-align: right;
         font-size: 14px;
     }
+}
+.disabledBtn { opacity: .4; cursor: not-allowed;}
+
+.paypalButtons {
+    display: flex;
+    height:100%;
+    align-items: stretch;
+    justify-content: center;
+    flex-direction: column;
+    padding:20px;
+
+    
+    .payText {
+        padding: 10px 0;
+        text-align: left;
+        font-size: 21px;
+        color:rgb(57, 80, 104);
+    }
+
+    .amount {
+        padding: 15px;
+        text-align: center;
+        margin-bottom: 10px;
+        font-size: 24px;
+        border-radius: 5px;
+        background-color: rgb(236, 241, 245);
+        color: rgb(73, 97, 121);
+    }
+
+    .payThru {
+        font-size: 12px;
+        color:rgb(70, 91, 114);
+        padding: 5px 0;
+    }
+}
+
+.cancelPayment {
+    text-align: center;
+    border: 1px solid rgb(170, 78, 78) !important;
+    background: none !important;
+    color: rgb(182, 3, 3) !important;
+
 }

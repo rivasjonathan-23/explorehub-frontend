@@ -75,20 +75,20 @@
         <div *ngIf="!showPaypal">
           <div *ngIf="page.status == 'Pending'" class="">
             <h2>Waiting for the Administrator to review your page.</h2>
-            <p>Once your page is approved, you will be able to post this page online. The amount to pay is <b>200 Pesos</b>.</p>
+            <p>Once your page is approved, you will be able to post this page online. The amount to pay is <b>&#8369;200.00</b>.</p>
             <button class="appBtn primary disabledBtn">Post this page online</button>
           </div>
           <div *ngIf="page.status == 'Processing'" class="">
             <h2>Your page is approved</h2>
-            <p>To make it visible online you need to pay <b>200 Pesos</b>.</p>
+            <p>Please pay to make it visible online.</p>
             <button (click)="pay()" class="appBtn primary ion-activatable ripple-parent">
               <ion-ripple-effect></ion-ripple-effect>
-              Post this page online</button>
+              Pay Now</button>&#8369; 200.00
           </div>
         </div>
         <div class="paypalButtons" *ngIf="showPaypal">
           <div class="payText">Please pay to make your page visible online.</div>
-          <div class="amount">Amount: P 200.00</div>
+          <div class="amount">Amount: &#8369; 200.00</div>
           <div class="payThru">Pay Through:</div>
           <div #paypalRef></div>
           <div class="appBtn cancelPayment" (click)="showPaypal = false">Cancel</div>

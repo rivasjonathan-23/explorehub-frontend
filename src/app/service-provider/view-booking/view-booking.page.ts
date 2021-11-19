@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NavController } from '@ionic/angular';
 import { bookingData } from '../provider-services/interfaces/bookingData';
@@ -14,6 +14,8 @@ import { popupData } from '../view-booking-as-provider/view-booking-as-provider.
     '../components/booking-card/booking-card.component.scss'],
 })
 export class ViewBookingPage implements AfterViewInit {
+  @ViewChild('paypalRef') paypalRef: ElementRef;
+  public showPaypal: boolean = false;
   @ViewChild('tab', { read: ViewContainerRef }) tab: ViewContainerRef;
   public bookingId: string = '';
   public bookingStatus: string = '';
@@ -85,14 +87,14 @@ export class ViewBookingPage implements AfterViewInit {
         this.loading = false;
         this.selectedServices = this.booking.selectedServices
         this.bookingStatus = this.booking.status
-        if (this.bookingStatus == "Processing") {
-          this.popupData = {
-            title: `The status of this booking was set to <b>Processing</b>. The Explorehub admin is expecting you to process the payment within <b>20 minutes</b>.`,
-            type: 'info',
-            otherInfo: "Failure to send the payment will result to the <b>rejection</b> of this booking request. Thank you",
-            show: true
-          }
-        }
+        // if (this.bookingStatus == "Processing") {
+        //   this.popupData = {
+        //     title: `The status of this booking was set to <b>Processing</b>. The Explorehub admin is expecting you to process the payment within <b>20 minutes</b>.`,
+        //     type: 'info',
+        //     otherInfo: "Failure to send the payment will result to the <b>rejection</b> of this booking request. Thank you",
+        //     show: true
+        //   }
+        // }
       }
     )
   }
@@ -181,6 +183,63 @@ export class ViewBookingPage implements AfterViewInit {
 
     }
     this.popupData.show = false;
+  }
+
+  pay() {
+    this.showPaypal = true
+    setTimeout(() => {
+      window.paypal.Buttons({
+        createOrder: (data, actions) => {
+          return actions.order.create({
+            purchase_units: [
+              {
+                amount: {
+                  value: '8.00',
+                  currency_code: 'PHP'
+                }
+              }
+            ]
+          })
+        },
+        onApprove: (data, actions) => {
+          return actions.order.capture().then(details => {
+            // this.sendRequest(selectedServices)
+            const notificationData: any = {
+              receiver: this.booking.pageId.creator._id,
+              page: this.booking.pageId._id,
+              booking: this.booking._id,
+              isManual: this.booking.isManual,
+              mainReceiver: this.booking.pageId.creator._id,
+              updateBookingCount: true,
+              increment: true,
+              type: "booking-tourist",
+              messageForAdmin: `<b>${this.booking.tourist.fullName}</b>'s booking request has been <b>Booked</b>`,
+              message: `<b>${this.booking.tourist.fullName}</b>'s booking request has been <b>Booked</b>`,
+            }
+            this.mainService.changeBookingStatus("Booked", notificationData).subscribe(
+              (response: any) => {
+                this.mainService.notify({ user: this.mainService.user, bookingId: this.booking._id, type: "Closed_booking-fromServiceProvider", receiver: [notificationData.receiver, "admin"], message: notificationData.message })
+                this.booking.status = "Booked"
+                this.showPaypal= false
+              }, (error) => {
+                this.showPaypal= false
+                if (error.status == 400 && error.error.type == "item_availability_issue") {
+                  this.popupData = {
+                    type: 'info',
+                    title: error.error.message,
+                    otherInfo: '',
+                    show: true
+                  }
+                }
+              }
+            )
+          })
+        },
+        onError: error => {
+          console.log(error)
+        }
+      }).render(this.paypalRef.nativeElement)
+    }, 200);
   }
 
   resubmit() {
