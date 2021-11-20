@@ -14,6 +14,7 @@ export class BoardPage implements OnInit {
   @ViewChild('pending', { read: ViewContainerRef }) pending: ViewContainerRef;
   @ViewChild('booked', { read: ViewContainerRef }) booked: ViewContainerRef;
   @ViewChild('cancelled', { read: ViewContainerRef }) cancelled: ViewContainerRef;
+  @ViewChild('Rejected', { read: ViewContainerRef }) Rejected: ViewContainerRef;
   @ViewChild('closed', { read: ViewContainerRef }) closed: ViewContainerRef;
   @ViewChild('statistics', { read: ViewContainerRef }) statistics: ViewContainerRef;
   @ViewChild('processing', { read: ViewContainerRef }) processing: ViewContainerRef;
@@ -76,6 +77,9 @@ export class BoardPage implements OnInit {
       case 'Cancelled':
         this.cancelled.element.nativeElement.scrollIntoView()
         break;
+      case 'Rejected':
+        this.cancelled.element.nativeElement.scrollIntoView()
+        break;
       case 'Statistics':
         this.statistics.element.nativeElement.scrollIntoView()
         break;
@@ -109,8 +113,11 @@ export class BoardPage implements OnInit {
       case 'Cancelled':
         this.boxPosition = width * 4;
         break;
+      case 'Rejected':
+        this.boxPosition = width * 5;
+        break;
       default:
-        this.boxPosition = width * 5
+        this.boxPosition = width * 6
         break;
     }
   }

@@ -11,7 +11,7 @@
     <div (click)="selectImageSource('businessPermit')" [ngStyle]="{'background-image': 'url('+pageDocuments.businessPermit+ ')'}" class="businessPermit ion-activatable ripple-parent">
       <ion-icon  *ngIf="!pageDocuments || (pageDocuments && !pageDocuments.businessPermit)" class="cameraIcon primColor" name="camera-outline"></ion-icon>
       <p *ngIf="!pageDocuments || (pageDocuments && !pageDocuments.businessPermit)">
-        Upload a icture of your business permit
+        Upload a picture of your business permit
       </p>
       <ion-ripple-effect></ion-ripple-effect>
     </div>

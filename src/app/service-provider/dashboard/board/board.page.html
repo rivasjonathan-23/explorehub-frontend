@@ -45,6 +45,11 @@
           Cancelled
         </span>
       </div>
+      <div #rejected class="csTab">
+        <span>
+          Rejected
+        </span>
+      </div>
       <div #statistics class="csTab">
         <span>
           Statistics
@@ -64,6 +69,7 @@
         </div>
         <div (click)="goToSection('Closed', tab, ['booking', 'Closed'])" class="csTab"></div>
         <div (click)="goToSection('Cancelled', tab, ['booking', 'Cancelled'])" class="csTab"></div>
+        <div (click)="goToSection('Rejected', tab, ['booking', 'Rejected'])" class="csTab"></div>
         <div (click)="goToSection('Statistics', tab, ['statistics'])" class="csTab"></div>
       </div>
     </div>
