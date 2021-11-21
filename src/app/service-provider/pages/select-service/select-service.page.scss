@@ -24,6 +24,15 @@
    
 }
 
+.selectOtherBtn {
+    text-align: center;
+    padding: 10px;
+    button {
+        width: 100%;
+        background-color: rgb(146, 164, 179);
+    }
+}
+
 .selectedItem {
     margin:15px 5px;
     border-radius: 5px;

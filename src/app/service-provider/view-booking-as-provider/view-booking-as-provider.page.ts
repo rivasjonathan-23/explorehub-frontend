@@ -253,7 +253,7 @@ export class ViewBookingAsProviderPage implements OnInit, AfterViewInit {
           increment: true,
           type: "booking-tourist",
           messageForAdmin: `<b>${curBooking.tourist.fullName}</b> booking has been accepted`,
-          message: `Your booking to <b>${this.getName(this.booking.pageId.components)}</b> is accepted`,
+          message: `Your booking to <b>${this.getName(this.booking.pageId.components)}</b> has been accepted`,
         }
         this.mainService.changeBookingStatus("Processing", notificationData).subscribe(
           (response: any) => {

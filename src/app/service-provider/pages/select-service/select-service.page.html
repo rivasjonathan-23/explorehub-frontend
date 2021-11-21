@@ -10,7 +10,7 @@
   <div class="container">
     <div class="selectedServices mainLightBg2">
       <div class="sectionTitle">
-        <div  class="textHolder">
+        <div class="textHolder">
 
           <ion-icon name="briefcase-outline"></ion-icon>
           <span>
@@ -18,12 +18,26 @@
           </span>
         </div>
       </div>
-      <app-selected-service-card (changeItem)="changeItem($event)" *ngFor="let item of booking.selectedServices" [item]="item"></app-selected-service-card>
+      <app-selected-service-card (changeItem)="changeItem($event)" *ngFor="let item of booking.selectedServices"
+        [item]="item"></app-selected-service-card>
       <div class="notItemSelected" *ngIf="booking.selectedServices.length == 0">Not item selected</div>
     </div>
     <div class="notSelected">
-      <div *ngIf="notSelected.length > 0" class="sectionTitle selectMore">Select {{booking.selectedServices.length > 0 ? "other": ""}} Products/services</div>
-      <ng-template #services></ng-template>
+      <div class="selectOtherBtn">
+        <button (click)="selectOtherService = !selectOtherService" class="appBtn">
+          <span *ngIf="!selectOtherService">Select {{booking.selectedServices.length > 0 ? "other": ""}}
+            Products/services</span>
+          <span *ngIf="selectOtherService">Hide {{booking.selectedServices.length > 0 ? "other": ""}} Products/services</span>
+          <ion-ripple-effect></ion-ripple-effect>
+        </button>
+      </div>
+      <div [ngStyle]="{'height': selectOtherService? '100%': '1px', 'overflow': 'hidden'}">
+
+        <div *ngIf="notSelected.length > 0" class="sectionTitle selectMore">Select {{booking.selectedServices.length > 0
+          ? "other": ""}} Products/services</div>
+        <ng-template #services></ng-template>
+      </div>
+
     </div>
     <div class="bookSectionCont">
       <div (click)="bookNow()" class="bookSection ion-activatable ripple-parent boxShadowed2">

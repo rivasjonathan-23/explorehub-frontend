@@ -22,6 +22,7 @@ export class SelectServicePage implements AfterViewInit, ViewWillEnter {
   public selected: any[] = []
   public notSelected: ElementValues[] = []
   public fromDraft: boolean = false;
+  public selectOtherService: boolean = false
   public bookingId: string = ""
   public editing: boolean = false
   public isManual: boolean = false;
