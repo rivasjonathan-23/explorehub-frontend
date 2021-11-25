@@ -16,11 +16,11 @@
       <ion-ripple-effect></ion-ripple-effect>
     </div>
 
-    <label for="">Owner's Valid ID:</label>
+    <label for="">Owner's Valid Government ID:</label>
     <div (click)="selectImageSource('ownerValidId')"  [ngStyle]="{'background-image': 'url('+pageDocuments.ownerValidId+ ')'}" class="businessPermit ion-activatable ripple-parent">
       <ion-icon  *ngIf="!pageDocuments || (pageDocuments && !pageDocuments.ownerValidId)" class="cameraIcon primColor" name="camera-outline"></ion-icon>
       <p *ngIf="!pageDocuments || (pageDocuments && !pageDocuments.ownerValidId)">
-        Upload a picture of your valid ID
+        Upload a picture of your valid government ID
       </p>
       <ion-ripple-effect></ion-ripple-effect>
 

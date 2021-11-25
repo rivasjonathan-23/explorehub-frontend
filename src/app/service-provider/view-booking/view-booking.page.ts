@@ -194,7 +194,7 @@ export class ViewBookingPage implements AfterViewInit {
             purchase_units: [
               {
                 amount: {
-                  value: '8.00',
+                  value: '300.00',
                   currency_code: 'PHP'
                 }
               }

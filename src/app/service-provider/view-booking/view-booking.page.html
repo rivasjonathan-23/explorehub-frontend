@@ -62,11 +62,14 @@
     </div>
     <div class="payButton" *ngIf="booking.status == 'Pending'">
       <p> Once this booking is <b>Accepted</b>, you need to pay to make it officially <b>Booked</b></p>
-      <button class="appBtn disabledBtn">Pay Now</button>&nbsp;<b style="color: gray">&#8369; 200.00</b>
+      <button class="appBtn disabledBtn">Pay Now</button>&nbsp;<b style="color: gray">&#8369; 300.00</b>
+    </div>
+    <div class="payButton" *ngIf="booking.status == 'Rejected'">
+      <p><b>Reason: </b><span style="color: red">{{booking['rejectionReason'] ? booking['rejectionReason'] : ""}}</span></p>
     </div>
     <div class="payButton" *ngIf="booking.status == 'Processing'">
-      <p> <b>Please pay to finalize this booking.</b><br> If you will not be able to pay within 24 hours this booking request will be rejected.</p>
-      <button class="appBtn" (click)="pay()">Pay Now</button> &#8369; <b>200.00</b>
+      <p> <b>Please pay to finalize this booking.</b><br> Failure to pay within <b>24 hours</b> will make this booking rejected.</p>
+      <button class="appBtn" (click)="pay()">Pay Now</button> &#8369; <b>300.00</b>
     </div>
     <ion-progress-bar *ngIf="loading" type="indeterminate"></ion-progress-bar>
     <router-outlet></router-outlet>
@@ -77,7 +80,7 @@
 
   <div class="paypalButtons" *ngIf="showPaypal">
     <div class="payText">Please pay to finalize your booking</div>
-    <div class="amount">Booking payment: &#8369; 200.00</div>
+    <div class="amount">Booking fee: &#8369; 300.00</div>
     <div class="payThru">Pay Through:</div>
     <div #paypalRef></div>
     <div class="appBtn cancelPayment" (click)="showPaypal = false">Cancel</div>

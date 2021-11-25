@@ -29,6 +29,8 @@ export class ViewBookingAsProviderPage implements OnInit, AfterViewInit {
   public pageId: string;
   public isManual: boolean = false;
   public popupData: popupData;
+  public rejectionReson: string = ""
+  public inputReason: boolean = false
   loading = true
   constructor(public alert: AlertController, public route: ActivatedRoute, public router: Router, public mainService: MainServicesService) {
 
@@ -209,6 +211,7 @@ export class ViewBookingAsProviderPage implements OnInit, AfterViewInit {
           booking: curBooking._id,
           mainReceiver: curBooking.tourist._id,
           isManual: curBooking.isManual,
+          rejectionReason: this.rejectionReson,
           updateBookingCount: true,
           increment: false,
           type: "booking-tourist",

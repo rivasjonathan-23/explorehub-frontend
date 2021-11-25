@@ -230,7 +230,7 @@ export class BookingReviewPage implements OnInit {
       this.popupData = {
         title: "Your booking request was successfully submitted",
         type: 'info',
-        otherInfo: `The <b>owner/service operator</b> will review your booking request. It may take some time, please wait untill the status of your booking becomes <b>Accepted</b>. Once your booking is accepted, you need to pay <b>&#8369; 200.00</b> to make it officially booked.`,
+        otherInfo: `The <b>owner/service operator</b> will review your booking request. It may take some time, please wait untill the status of your booking becomes <b>Accepted</b>. Once your booking is accepted, you need to pay <b>&#8369; 500.00</b> to make it officially booked.`,
         show: true
       }
     }, 200);

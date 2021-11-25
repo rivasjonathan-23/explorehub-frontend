@@ -159,7 +159,7 @@ export class DashboardPage implements OnInit {
             purchase_units: [
               {
                 amount: {
-                  value: '8.00',
+                  value: '500.00',
                   currency_code: 'PHP'
                 }
               }

@@ -16,7 +16,7 @@
           <ion-icon class="back" name="chevron-back-outline"></ion-icon>Back
         </div>
         <div *ngIf="bookingStatus == 'Booked'" class="optionsTop">
-          
+
           <div class="cancel edit ion-activatable ripple-parent" (click)="done()">Close
             <ion-ripple-effect></ion-ripple-effect>
             <ion-icon class="editIcon" name="checkmark-outline"></ion-icon>
@@ -27,12 +27,13 @@
           </div>
         </div>
         <div *ngIf="bookingStatus == 'Pending' || bookingStatus == 'Processing'" class="optionsTop">
-          
-          <div class="cancel ion-activatable ripple-parent" (click)="reject()">Reject
+
+          <div class="cancel ion-activatable ripple-parent" (click)="inputReason = true">Reject
             <ion-ripple-effect></ion-ripple-effect>
             <ion-icon class="cancelIcon" name="close-outline"></ion-icon>
           </div>
-          <div *ngIf=" bookingStatus != 'Processing'" class="cancel edit ion-activatable ripple-parent" (click)="approve()">Accept
+          <div *ngIf=" bookingStatus != 'Processing'" class="cancel edit ion-activatable ripple-parent"
+            (click)="approve()">Accept
             <ion-ripple-effect></ion-ripple-effect>
             <ion-icon class="editIcon" name="checkmark-outline"></ion-icon>
           </div>
@@ -83,6 +84,17 @@
         <b>
           {{booking.status}}
         </b>
+      </div>
+    </div>
+    <div class="rejectionReasonDiv" *ngIf="inputReason">
+      <div style="font-weight: bold;">Reason for rejecting:</div>
+      <ion-textarea class="textArea" [(ngModel)]="rejectionReson" auto-grow="true" rows="4"
+        placeholder="Enter reason here">
+      </ion-textarea>
+      <div style="text-align: right; padding: 10px 0">
+        <button class="appBtn" style="margin-right: 10px; background-color: red;"
+          (click)="inputReason = false">Cancel</button>
+        <button class="appBtn" (click)="reject()">Submit</button>
       </div>
     </div>
 
