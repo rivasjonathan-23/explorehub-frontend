@@ -31,8 +31,6 @@
   <ion-progress-bar *ngIf="loading" type="indeterminate"></ion-progress-bar>
   <div class="currentConvoTitle">
     <p style="text-transform: Capitalize"></p>{{conReceiver == receiver.admin? "Admin": "Owner"}}
-
-    <p *ngIf='conReceiver == receiver.admin' style="font-size: 14px">Failure to respond to the <b>Explorehub Admin</b> in <b>10 minutes</b> will result to the <b>rejection</b> of this booking request.</p>
   </div>
   <div class="noMessages" *ngIf="messages.length == 0">No messages yet!</div>
   <app-message-box *ngFor="let message of messages" [message]="message"
